@@ -10,6 +10,6 @@ import SwiftUI
 extension View {
     //MARK: - Color
     func color(_ color: ColorType) -> some View {
-        self.foregroundStyle(Color(color.name))
+        self.foregroundStyle(color.color)
     }
 }

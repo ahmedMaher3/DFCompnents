@@ -22,8 +22,8 @@ struct RadioButtonView: View {
                               ? "largecircle.fill.circle"
                               : "circle")
                         .customizeImage(width: 24, height: 24,
-                                        type: radioButtonState.selectedItem(for: questionID)?.id == item.id ? .primaryBlue : .primaryGray,
-                                        contentMode: .fit, renderingMode: .original)
+                                        type: radioButtonState.selectedItem(
+                                            for: questionID)?.id == item.id ? .primaryBlue : .primaryGray,contentMode: .fit,  renderingMode: .original)
 
                         Text(item.name)
                             .fontWeight(.medium)

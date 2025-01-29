@@ -5,12 +5,22 @@
 //  Created by Eslam on 29/01/2025.
 //
 
-import Foundation
-enum ColorType: String {
-    case primaryBlue = "primaryBlue"
-    case primaryGray = "primaryGray"
+import SwiftUI
 
-    var name: String {
-        self.rawValue
+enum ColorType {
+    case primaryBlue
+    case primaryGray
+    case customColor(Color)
+
+
+    var color: Color {
+        switch self {
+            case .primaryBlue:
+                return Color("primaryBlue")
+            case .primaryGray:
+                return Color("primaryGray")
+            case .customColor(let colorName):
+                return Color(colorName)
+        }
     }
 }

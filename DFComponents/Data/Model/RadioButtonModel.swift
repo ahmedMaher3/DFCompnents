@@ -16,11 +16,12 @@ class RadioButtonModel: Identifiable {
     }
 
     static var elementsRadioButton: [RadioButtonModel] {
-        return
-           [RadioButtonModel(id:  "1", name: "Red"),
-             RadioButtonModel(id: "2", name: "Green"),
-             RadioButtonModel(id: "3", name: "Blue"),
-             RadioButtonModel(id: "4", name: "Yellow")]
+        return [
+            RadioButtonModel(id:  "1", name: "Red"),
+            RadioButtonModel(id: "2", name: "Green"),
+            RadioButtonModel(id: "3", name: "Blue"),
+            RadioButtonModel(id: "4", name: "Yellow")
+        ]
     }
 }
 
