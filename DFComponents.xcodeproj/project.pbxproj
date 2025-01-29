@@ -45,6 +45,7 @@
 		E4BBD0002D4A24C3004AA735 /* DFComponentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsUITests.swift; sourceTree = "<group>"; };
 		E4BBD0022D4A24C3004AA735 /* DFComponentsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E4BBD0132D4A25C6004AA735 /* DFComponentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsView.swift; sourceTree = "<group>"; };
+		E4BBD0162D4A29DB004AA735 /* .gitkeep.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = .gitkeep.md; path = DFComponents/Presentation/.gitkeep.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +158,7 @@
 		E4BBD0122D4A2573004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				E4BBD0162D4A29DB004AA735 /* .gitkeep.md */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
