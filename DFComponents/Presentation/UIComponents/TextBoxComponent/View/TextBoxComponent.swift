@@ -5,7 +5,10 @@
 //  Created by hassan elshaer on 28/01/2025.
 
 import SwiftUI
+import Combine
 
+
+// MARK: - TextBoxComponent
 struct TextBoxComponent: View {
     @ObservedObject var viewModel: TextBoxViewModel
 
@@ -24,16 +27,38 @@ struct TextBoxComponent: View {
 
             // Input Field with Prefix and Suffix
             HStack {
-//                if let prefix = viewModel.prefix {
-//                    Text(prefix)
-//                        .padding(.horizontal)
-//                        .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
-//                }
+                // Prefix
+                if !viewModel.prefixOptions.isEmpty {
+                    if viewModel.prefixOptions.count == 1, let prefix = viewModel.selectedPrefix {
+                        Text(prefix)
+                            .frame(height: 48)
+                            .padding(.horizontal)
+                            .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
+                    } else {
+                        Menu {
+                            ForEach(viewModel.prefixOptions, id: \.self) { option in
+                                Button(action: {
+                                    viewModel.selectedPrefix = option
+                                    viewModel.validateInput()
+                                }) {
+                                    Text(option)
+                                }
+                            }
+                        } label: {
+                            Text(viewModel.selectedPrefix ?? "Prefix")
+                                .frame(height: 48)
+                                .padding(.horizontal)
+                                .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
+                        }
+                    }
+                }
 
+                // Text Field
                 TextField(viewModel.placeholder, text: $viewModel.text, onEditingChanged: { isEditing in
                     viewModel.onEditingChanged(isEditing: isEditing)
                 })
                 .padding()
+                .frame(height: 48)
                 .background(RoundedRectangle(cornerRadius: 8)
                                 .stroke(viewModel.borderColor, lineWidth: 2))
                 .keyboardType(viewModel.config.inputType == .numbersOnly ? .numberPad : .default)
@@ -41,11 +66,31 @@ struct TextBoxComponent: View {
                     viewModel.validateInput()
                 }
 
-//                if let suffix = viewModel.suffix {
-//                    Text(suffix)
-//                        .padding(.horizontal)
-//                        .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
-//                }
+                // Suffix
+                if !viewModel.suffixOptions.isEmpty {
+                    if viewModel.suffixOptions.count == 1, let suffix = viewModel.selectedSuffix {
+                        Text(suffix)
+                            .frame(height: 48)
+                            .padding(.horizontal)
+                            .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
+                    } else {
+                        Menu {
+                            ForEach(viewModel.suffixOptions, id: \.self) { option in
+                                Button(action: {
+                                    viewModel.selectedSuffix = option
+                                    viewModel.validateInput()
+                                }) {
+                                    Text(option)
+                                }
+                            }
+                        } label: {
+                            Text(viewModel.selectedSuffix ?? "Suffix")
+                                .frame(height: 48)
+                                .padding(.horizontal)
+                                .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
+                        }
+                    }
+                }
             }
 
             // Error Message
@@ -62,7 +107,7 @@ struct TextBoxComponent: View {
         .padding()
     }
 }
-
+// MARK: - Preview
 #Preview {
     let config = TextBoxConfiguration(
         title: "What is your Name?",
@@ -70,8 +115,10 @@ struct TextBoxComponent: View {
         placeholder: "Enter your name",
         inputType: .mixed,
         minLength: 2,
-        prefix: "Prefix",
-        suffix: "Suffix"
+        prefixOptions: ["Mr", "Ms"],
+        suffixOptions: ["Jr"],
+        requiresPrefix: true,
+        requiresSuffix: true
     )
-    return  TextBoxComponent(viewModel: TextBoxViewModel(config: config))
+    return TextBoxComponent(viewModel: TextBoxViewModel(config: config))
 }

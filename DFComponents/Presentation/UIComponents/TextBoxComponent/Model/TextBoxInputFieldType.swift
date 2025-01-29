@@ -7,17 +7,21 @@
 
 import Foundation
 
+
+// MARK: - TextBoxConfiguration
 struct TextBoxConfiguration {
-    let title: String
-    let subtitle: String?
-    let placeholder: String
-    let inputType: TextBoxInputFieldType
-    let minLength: Int
-    let prefix: String?  // Prefix text or dropdown
-    let suffix: String?  // Suffix text
+    var title: String
+    var subtitle: String?
+    var placeholder: String
+    var inputType: InputType
+    var minLength: Int
+    var prefixOptions: [String] = []
+    var suffixOptions: [String] = []
+    var requiresPrefix: Bool = false
+    var requiresSuffix: Bool = false
 }
 
-enum TextBoxInputFieldType {
+enum InputType {
     case numbersOnly
     case mixed
 }

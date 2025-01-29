@@ -8,23 +8,34 @@
 import SwiftUI
 import Combine
 
+// MARK: - TextBoxViewModel
 class TextBoxViewModel: ObservableObject {
     @Published var text: String = ""
     @Published var errorMessage: String? = nil
     @Published var isValid: Bool = false
+    @Published var selectedPrefix: String? = nil // Selected prefix
+    @Published var selectedSuffix: String? = nil // Selected suffix
 
-    var config: TextBoxConfiguration  // Allows read-only access outside the class
+    var config: TextBoxConfiguration // Configuration for the text box
     var hasInteracted: Bool = false
 
     init(config: TextBoxConfiguration) {
         self.config = config
+        // Set default prefix and suffix if only one option is provided
+        if config.prefixOptions.count == 1 {
+            selectedPrefix = config.prefixOptions.first
+        }
+        if config.suffixOptions.count == 1 {
+            selectedSuffix = config.suffixOptions.first
+        }
     }
 
+    // Accessors for UI
     var title: String { config.title }
     var subtitle: String? { config.subtitle }
     var placeholder: String { config.placeholder }
-    var prefix: String? { config.prefix }
-    var suffix: String? { config.suffix }
+    var prefixOptions: [String] { config.prefixOptions }
+    var suffixOptions: [String] { config.suffixOptions }
 
     var borderColor: Color {
         if text.isEmpty {
@@ -35,9 +46,18 @@ class TextBoxViewModel: ObservableObject {
         return .gray
     }
 
+    // Validate input field and dropdown selections
     func validateInput() {
         hasInteracted = true
 
+        // Validate prefix if required
+        if config.requiresPrefix, selectedPrefix == nil {
+            errorMessage = "Please select a prefix."
+            isValid = false
+            return
+        }
+
+        // Validate text based on input type
         switch config.inputType {
         case .numbersOnly:
             if !text.allSatisfy({ $0.isNumber }) {
@@ -49,13 +69,23 @@ class TextBoxViewModel: ObservableObject {
             break
         }
 
+        // Validate text length
         if text.count < config.minLength {
             errorMessage = "Minimum \(config.minLength) characters required."
             isValid = false
-        } else {
-            errorMessage = nil
-            isValid = true
+            return
         }
+
+        // Validate suffix if required
+        if config.requiresSuffix, selectedSuffix == nil {
+            errorMessage = "Please select a suffix."
+            isValid = false
+            return
+        }
+
+        // If all validations pass
+        errorMessage = nil
+        isValid = true
     }
 
     func onEditingChanged(isEditing: Bool) {
@@ -64,4 +94,3 @@ class TextBoxViewModel: ObservableObject {
         }
     }
 }
-
