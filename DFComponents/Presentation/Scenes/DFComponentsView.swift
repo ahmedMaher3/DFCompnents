@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct DFComponentsView: View {
+    @StateObject var viewModel: DropDownViewModel = DropDownViewModel()
+
     var body: some View {
         List {
-            Text("DFComponentsView")
+            DropDownView(title: "Select Country", viewModel: viewModel )
+                .listRowSeparator(.hidden)
+   
         }
+        .listRowSeparator(.hidden)
+        .listStyle(PlainListStyle())
 
     }
 }
