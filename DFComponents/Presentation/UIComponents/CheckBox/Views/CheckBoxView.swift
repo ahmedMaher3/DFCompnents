@@ -7,36 +7,26 @@
 
 import SwiftUI
 
-struct CheckBoxView: View {
-//    @State private var isChecked: Bool = false
-//
-//    var body: some View {
-//        VStack(alignment: .leading) {
-//            // 3. Create the Toggle view
-//            Toggle(isOn: $isChecked) {
-//                // 4. Add a label for the Toggle
-//                Text("UnChecked")
-//            }
-//            .toggleStyle(CheckBoxStyle())
-//            .padding()
-//        }
-//    }
-    @State private var selectedItems: Set<String> = []
 
-    let options = ["Option 1", "Option 2", "Option 3"]
+struct CheckBoxView: View {
+
+    @ObservedObject var checkBoxState: CheckBoxViewModel
+    let questionID: String
+    let item: CheckBoxModel
 
     var body: some View {
-        VStack {
-            ForEach(options, id: \.self) { option in
-                Toggle(option, isOn: .constant(selectedItems.contains(option)))
-                    .toggleStyle(CheckBoxStyle(selectedItems: $selectedItems, itemID: option))
+        Toggle(isOn: Binding(
+            get: { checkBoxState.selectedItems[questionID]?.contains(item.id) ?? false },
+            set: { isSelected in
+                checkBoxState.onTapCheckBox(questionID: questionID, item: item)
+            }
+        )) {
+            HStack {
+                Image(systemName: "checkmark.square.fill")
+                    .color(.primaryGray)
+                    .frame(width: 24, height: 24)
+                Text(item.name)
             }
         }
-        .padding()
     }
-
-}
-
-#Preview(traits: .sizeThatFitsLayout) {
-    CheckBoxView()
 }
