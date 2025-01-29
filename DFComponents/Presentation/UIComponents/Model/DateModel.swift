@@ -11,7 +11,7 @@ struct DateField: Identifiable {
     var id = UUID()
     var title: String
     var representation: DateRepresentation
-    var value: Date // Now a normal property (no Binding)
+    var value: Date
 
     enum DateRepresentation {
         case date
