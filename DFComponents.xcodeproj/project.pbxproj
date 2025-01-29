@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A95D7A1D2D4A8AC4004FB6CA /* DateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A1C2D4A8AC4004FB6CA /* DateTimeView.swift */; };
+		A95D7A1F2D4A8ACE004FB6CA /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A1E2D4A8ACB004FB6CA /* DateViewModel.swift */; };
+		A95D7A212D4A8AD6004FB6CA /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A202D4A8AD1004FB6CA /* DateModel.swift */; };
 		E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */; };
 		E4BBCFE92D4A24C2004AA735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */; };
 		E4BBCFED2D4A24C2004AA735 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFEC2D4A24C2004AA735 /* Preview Assets.xcassets */; };
@@ -35,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A95D7A1C2D4A8AC4004FB6CA /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
+		A95D7A1E2D4A8ACB004FB6CA /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
+		A95D7A202D4A8AD1004FB6CA /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		E4BBCFE12D4A24BF004AA735 /* DFComponents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFComponents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsApp.swift; sourceTree = "<group>"; };
 		E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +80,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A95D7A192D4A8AA1004FB6CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A95D7A202D4A8AD1004FB6CA /* DateModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A95D7A1A2D4A8AA8004FB6CA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A95D7A1E2D4A8ACB004FB6CA /* DateViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A95D7A1B2D4A8AAD004FB6CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A95D7A1C2D4A8AC4004FB6CA /* DateTimeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E4BBCFD82D4A24BF004AA735 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +189,9 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A95D7A1B2D4A8AAD004FB6CA /* Views */,
+				A95D7A1A2D4A8AA8004FB6CA /* ViewModel */,
+				A95D7A192D4A8AA1004FB6CA /* Model */,
 				E4BBD01A2D4A2B24004AA735 /* README.md */,
 			);
 			path = UIComponents;
@@ -295,6 +328,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95D7A212D4A8AD6004FB6CA /* DateModel.swift in Sources */,
+				A95D7A1F2D4A8ACE004FB6CA /* DateViewModel.swift in Sources */,
+				A95D7A1D2D4A8AC4004FB6CA /* DateTimeView.swift in Sources */,
 				E4BBD0142D4A25C6004AA735 /* DFComponentsView.swift in Sources */,
 				E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */,
 			);
