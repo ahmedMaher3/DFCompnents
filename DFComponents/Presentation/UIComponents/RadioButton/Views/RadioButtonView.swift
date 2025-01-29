@@ -9,36 +9,32 @@ import SwiftUI
 
 struct RadioButtonView: View {
 
-    @ObservedObject var radioButtonVM: RadioButtonViewModel
+    @StateObject var radioButtonState: RadioButtonViewModel
+
+    let item: RadioButtonModel
+    let questionID: String  // Unique identifier for each question
 
     var body: some View {
         Button {
-            //MARK: - Action Button
-            radioButtonVM.onTapRadioButton()
+            radioButtonState.onTapRadioButton(questionID: questionID, item: item)
         } label: {
             HStack {
                 Image(systemName:
-                        radioButtonVM.selectedItem == radioButtonVM.itemValue
+                        radioButtonState.selectedItem(for: questionID)?.id == item.id
                       ? "largecircle.fill.circle"
-                      : "circle"
-                )
+                      : "circle")
                 .customizeImage(width: 24,
                                 height: 24,
-                                type: radioButtonVM.selectedItem == radioButtonVM.itemValue
-                                ? .primaryBlue
-                                : .primaryGray,
+                                type: radioButtonState.selectedItem(for: questionID)?.id == item.id ? .primaryBlue : .primaryGray,
                                 contentMode: .fit,
                                 renderingMode: .original)
 
-
-                Text(radioButtonVM.itemValue)
-                    .color(.primaryBlue)
+                Text(item.name)
+                    .fontWeight(.medium)
+                    .color(radioButtonState.selectedItem(for: questionID)?.id == item.id ? .primaryBlue : .primaryGray)
             }
         }
         .padding(8)
     }
 }
 
-#Preview {
-    RadioButtonView(radioButtonVM: RadioButtonViewModel())
-}

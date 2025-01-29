@@ -7,25 +7,32 @@
 
 import Foundation
 
+
 final class RadioButtonViewModel: ObservableObject {
 
-    @Published var itemValue: String
-    @Published var selectedItem: String?
-    var callbackAction: (String) -> Void
+    @Published var selectedItems: [String: RadioButtonModel] = [:]  // Key: Question ID, Value: Selected item
 
-    init(itemValue: String = "Red", selectedItem: String? = nil, callbackAction: @escaping (String) -> Void = { _ in }) {
-        self.itemValue = itemValue
-        self.selectedItem = selectedItem ?? ""
+    var callbackAction: (RadioButtonModel?) -> Void
+
+    init(callbackAction: @escaping (RadioButtonModel?) -> Void = { _ in }) {
         self.callbackAction = callbackAction
     }
 
-    //MARK: - Actions
-    func onTapRadioButton() {
-        if  selectedItem == itemValue {
-            selectedItem = nil
+    // Action to toggle the selection state for each question
+    func onTapRadioButton(questionID: String, item: RadioButtonModel) {
+        if selectedItems[questionID]?.id == item.id {
+            // Deselect if the same item is clicked again
+            selectedItems[questionID] = nil
+            callbackAction(nil)
         } else {
-            selectedItem = itemValue
+            // Select the new item
+            selectedItems[questionID] = item
+            callbackAction(item)
         }
-        callbackAction(itemValue)
+    }
+
+    // Get the selected item for a specific question
+    func selectedItem(for questionID: String) -> RadioButtonModel? {
+        return selectedItems[questionID]
     }
 }
