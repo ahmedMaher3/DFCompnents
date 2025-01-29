@@ -8,12 +8,11 @@
 import Foundation
 final class CheckBoxViewModel: ObservableObject {
 
-    // Store selected items as a set for each question
     @Published var selectedItems: [String: Set<String>] = [:] // Key: Question ID, Value: Set of selected item IDs
     @Published var questions: [String] = [
-        "What's your fav color?",
-        "What's your fav animal?",
-        "What's your fav food?"
+        "What's your favorite multicolor, ahmed?",
+        "What's your favorite multicolor, hassan?",
+        "What's your favorite multicolor, nasr?"
     ]
     @Published var checkBoxModels: [String: [CheckBoxModel]] = [
         "question0": CheckBoxModel.elementsCheckBox,
@@ -39,23 +38,23 @@ final class CheckBoxViewModel: ObservableObject {
             selectedItems[questionID, default: Set<String>()].insert(item.id)
             callbackAction(item)
         }
-        validate()
+        if selectedItems[questionID]?.isEmpty ?? true {
+            validationErrors[questionID] = "ياعم اختار اجابة واحدة الله يرضي عليك."
+        } else {
+            validationErrors[questionID] = nil
+        }
     }
-
-    // Get the selected items for a specific question
     func selectedItems(for questionID: String) -> Set<CheckBoxModel> {
         guard let selectedItemIDs = selectedItems[questionID] else { return [] }
         let models = checkBoxModels[questionID] ?? []
         return Set(models.filter { selectedItemIDs.contains($0.id) })
     }
-
-    // Validate that at least one item is selected for each question
     func validate() {
+        validationErrors.removeAll()
+
         for (questionID, _) in checkBoxModels {
-            if selectedItems[questionID]?.isEmpty == true {
-                validationErrors[questionID] = "Please select at least one option."
-            } else {
-                validationErrors[questionID] = nil
+            if selectedItems[questionID]?.isEmpty ?? true {
+                validationErrors[questionID] = "ياعم اختار اجابة واحدة الله يرضي عليك."
             }
         }
     }

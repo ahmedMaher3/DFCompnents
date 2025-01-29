@@ -6,32 +6,24 @@
 //
 
 import SwiftUI
-
 struct CheckBoxStyle: ToggleStyle {
-    @Binding var selectedItems: Set<String>  // Track selected items by IDs
-
-    let itemID: String  // Unique identifier for each checkbox item
+    let questionID: String  // The unique identifier for the question
+    let item: CheckBoxModel  // The checkbox item to be displayed
 
     func makeBody(configuration: Configuration) -> some View {
         HStack {
-            Image(systemName: selectedItems.contains(itemID) ? "checkmark.square" : "square")
+            Image(systemName: configuration.isOn ? "checkmark.square.fill" : "square")
                 .resizable()
                 .frame(width: 24, height: 24)
-                .foregroundColor(selectedItems.contains(itemID) ? .primaryBlue : .primaryGray)
+                .color(configuration.isOn ? .primaryBlue : .primaryGray)
                 .onTapGesture {
-                    if selectedItems.contains(itemID) {
-                        selectedItems.remove(itemID)
-                    } else {
-                        selectedItems.insert(itemID)
-                    }
+                    configuration.isOn.toggle()
                 }
                 .padding(.trailing, 8)
 
             configuration.label
-                .color(selectedItems.contains(itemID) ? .primaryBlue : .customColor(Color.black))
+                .color(configuration.isOn ? .primaryBlue : .customColor(.black))
                 .fontWeight(.medium)
         }
     }
 }
-
-

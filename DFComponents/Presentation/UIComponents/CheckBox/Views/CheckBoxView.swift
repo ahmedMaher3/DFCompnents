@@ -9,8 +9,7 @@ import SwiftUI
 
 
 struct CheckBoxView: View {
-
-    @ObservedObject var checkBoxState: CheckBoxViewModel
+    @StateObject var checkBoxState: CheckBoxViewModel
     let questionID: String
     let item: CheckBoxModel
 
@@ -21,12 +20,8 @@ struct CheckBoxView: View {
                 checkBoxState.onTapCheckBox(questionID: questionID, item: item)
             }
         )) {
-            HStack {
-                Image(systemName: "checkmark.square.fill")
-                    .color(.primaryGray)
-                    .frame(width: 24, height: 24)
-                Text(item.name)
-            }
+            Text(item.name)
         }
+        .toggleStyle(CheckBoxStyle(questionID: questionID, item: item))
     }
 }
