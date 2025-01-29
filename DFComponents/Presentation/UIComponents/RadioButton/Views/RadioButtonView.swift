@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RadioButtonView: View {
-    @ObservedObject var radioButtonState: RadioButtonViewModel
+    @StateObject var radioButtonState: RadioButtonViewModel
     let questionID: String
     var body: some View {
         VStack(alignment: .leading) {
