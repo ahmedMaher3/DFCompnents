@@ -9,7 +9,7 @@ import Foundation
 
 
 // MARK: - TextBoxConfiguration
-struct TextBoxConfiguration {
+struct TextBoxConfiguration: Hashable {
     var title: String
     var subtitle: String?
     var placeholder: String

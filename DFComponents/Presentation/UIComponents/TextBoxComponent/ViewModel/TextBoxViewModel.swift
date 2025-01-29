@@ -38,8 +38,8 @@ class TextBoxViewModel: ObservableObject {
     var suffixOptions: [String] { config.suffixOptions }
 
     var borderColor: Color {
-        guard !text.isEmpty else { return .gray }
-        return hasInteracted ? (isValid ? .green : .red) : .gray
+        guard !text.isEmpty else { return Color(hex: "#D0D9E2") }
+        return hasInteracted ? (isValid ? .green : .red) : Color(hex: "#D0D9E2")
     }
 
     // MARK: - Validation

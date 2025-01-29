@@ -5,8 +5,6 @@
 //  Created by hassan elshaer on 28/01/2025.
 
 import SwiftUI
-import Combine
-
 
 // MARK: - TextBoxComponent
 struct TextBoxComponent: View {
@@ -29,11 +27,16 @@ struct TextBoxComponent: View {
             HStack {
                 // Prefix
                 if !viewModel.prefixOptions.isEmpty {
+                    let prefixColor = viewModel.selectedPrefix == nil || viewModel.selectedPrefix?.isEmpty == true
+                        ? Color.init(hex: "9EB3C2")  // Default color before selection
+                        : Color.black  // Color after selection
+
                     if viewModel.prefixOptions.count == 1, let prefix = viewModel.selectedPrefix {
                         Text(prefix)
                             .frame(height: 48)
                             .padding(.horizontal)
-                            .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
+                            .foregroundColor(prefixColor)
+                            .background(RoundedRectangle(cornerRadius: 8).stroke(Color.init(hex: "#D0D9E2"), lineWidth: 1))
                     } else {
                         Menu {
                             ForEach(viewModel.prefixOptions, id: \.self) { option in
@@ -45,11 +48,18 @@ struct TextBoxComponent: View {
                                 }
                             }
                         } label: {
-                            Text(viewModel.selectedPrefix ?? "Prefix")
-                                .foregroundColor(.black)
-                                .frame(height: 48)
-                                .padding(.horizontal)
-                                .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
+                            HStack {
+                                Text(viewModel.selectedPrefix ?? "Prefix")
+                                    .foregroundColor(prefixColor)
+                                // Show the down arrow if there are multiple options
+                                if viewModel.prefixOptions.count > 1 {
+                                    Image(systemName: "chevron.down")
+                                        .foregroundColor(Color.init(hex: " #173E67"))
+                                }
+                            }
+                            .frame(height: 48)
+                            .padding(.horizontal)
+                            .background(RoundedRectangle(cornerRadius: 8).stroke(Color.init(hex: "#D0D9E2"), lineWidth: 1))
                         }
                     }
                 }
@@ -69,11 +79,16 @@ struct TextBoxComponent: View {
 
                 // Suffix
                 if !viewModel.suffixOptions.isEmpty {
+                    let suffixColor = viewModel.selectedSuffix == nil || viewModel.selectedSuffix?.isEmpty == true
+                        ? Color.init(hex: "9EB3C2")  // Default color before selection
+                        : Color.black  // Color after selection
+
                     if viewModel.suffixOptions.count == 1, let suffix = viewModel.selectedSuffix {
                         Text(suffix)
                             .frame(height: 48)
                             .padding(.horizontal)
-                            .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
+                            .foregroundColor(suffixColor)
+                            .background(RoundedRectangle(cornerRadius: 8).stroke(Color.init(hex: "#D0D9E2"), lineWidth: 1))
                     } else {
                         Menu {
                             ForEach(viewModel.suffixOptions, id: \.self) { option in
@@ -85,10 +100,16 @@ struct TextBoxComponent: View {
                                 }
                             }
                         } label: {
-                            Text(viewModel.selectedSuffix ?? "Suffix")
-                                .frame(height: 48)
-                                .padding(.horizontal)
-                                .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
+                            HStack {
+                                Text(viewModel.selectedSuffix ?? "Suffix")
+                                    .foregroundColor(suffixColor)
+                                // Show the down arrow if there are multiple options
+                                if viewModel.suffixOptions.count > 1 {
+                                    Image(systemName: "chevron.down")
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .background(RoundedRectangle(cornerRadius: 8).stroke(Color.init(hex: "#D0D9E2"), lineWidth: 1))
                         }
                     }
                 }
@@ -108,6 +129,8 @@ struct TextBoxComponent: View {
         .padding()
     }
 }
+
+
 // MARK: - Preview
 #Preview {
     let config = TextBoxConfiguration(
