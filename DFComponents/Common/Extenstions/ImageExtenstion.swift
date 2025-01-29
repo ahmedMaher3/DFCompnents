@@ -7,6 +7,7 @@
 
 import SwiftUI
 extension Image {
+    //MARK: - customize Image
     func customizeImage(width: CGFloat,
                         height: CGFloat,
                         type color: ColorType,
