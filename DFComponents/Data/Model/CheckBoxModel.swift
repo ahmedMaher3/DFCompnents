@@ -7,7 +7,8 @@
 
 import Foundation
 
-class CheckBoxModel: Identifiable {
+class CheckBoxModel: Identifiable, Hashable {
+
     let id: String
     let name: String
     init(id: String, name: String) {
@@ -15,7 +16,7 @@ class CheckBoxModel: Identifiable {
         self.name = name
     }
 
-    static var elementsRadioButton: [CheckBoxModel] {
+    static var elementsCheckBox: [CheckBoxModel] {
         return [
             CheckBoxModel(id: "1", name: "Red"),
             CheckBoxModel(id: "2", name: "Green"),
@@ -23,6 +24,15 @@ class CheckBoxModel: Identifiable {
             CheckBoxModel(id: "4", name: "Yellow")
         ]
     }
+
+    static func == (lhs: CheckBoxModel, rhs: CheckBoxModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id) // You can combine multiple properties if needed
+    }
+
 }
 
 
