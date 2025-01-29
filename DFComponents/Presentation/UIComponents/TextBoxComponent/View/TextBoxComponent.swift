@@ -46,6 +46,7 @@ struct TextBoxComponent: View {
                             }
                         } label: {
                             Text(viewModel.selectedPrefix ?? "Prefix")
+                                .foregroundColor(.black)
                                 .frame(height: 48)
                                 .padding(.horizontal)
                                 .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))

@@ -1,5 +1,5 @@
 //
-//  TextBoxInputFieldType.swift
+//  TextBoxConfiguration.swift
 //  LOTRConverter
 //
 //  Created by hassan elshaer on 28/01/2025.
