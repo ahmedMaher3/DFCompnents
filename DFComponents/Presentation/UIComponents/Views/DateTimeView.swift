@@ -17,7 +17,6 @@ struct DateTimeView: View {
             Text(viewModel.field.title)
                 .font(.headline)
             HStack {
-                let format = viewModel.getFormat()
                 Text(viewModel.formattedValue)
                 Spacer()
                 Image(systemName: "calendar")
