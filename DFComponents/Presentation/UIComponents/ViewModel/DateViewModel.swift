@@ -26,7 +26,7 @@ class DateFieldViewModel: ObservableObject {
         } else if field.representation == .dateTime {
             return (.long, .standard)
         } else if field.representation == .time {
-            return (.omitted, .standard)
+            return (.omitted, .shortened)
         } else {
             return (.omitted, .omitted)
         }
