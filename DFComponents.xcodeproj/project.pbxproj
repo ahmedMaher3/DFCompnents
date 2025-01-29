@@ -11,6 +11,7 @@
 		AAE5CA8F2D4A4D8D00FDA699 /* ImageExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CA8E2D4A4D8D00FDA699 /* ImageExtenstion.swift */; };
 		AAE5CABC2D4A506B00FDA699 /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CABB2D4A506B00FDA699 /* ColorType.swift */; };
 		AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CABD2D4A50AD00FDA699 /* ViewExtenstion.swift */; };
+		AAE5CAC42D4A561000FDA699 /* RadioButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CAC32D4A561000FDA699 /* RadioButtonViewModel.swift */; };
 		E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */; };
 		E4BBCFE92D4A24C2004AA735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */; };
 		E4BBCFED2D4A24C2004AA735 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFEC2D4A24C2004AA735 /* Preview Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		AAE5CA8E2D4A4D8D00FDA699 /* ImageExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtenstion.swift; sourceTree = "<group>"; };
 		AAE5CABB2D4A506B00FDA699 /* ColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
 		AAE5CABD2D4A50AD00FDA699 /* ViewExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtenstion.swift; sourceTree = "<group>"; };
+		AAE5CAC32D4A561000FDA699 /* RadioButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonViewModel.swift; sourceTree = "<group>"; };
 		E4BBCFE12D4A24BF004AA735 /* DFComponents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFComponents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsApp.swift; sourceTree = "<group>"; };
 		E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,7 +87,8 @@
 		AAE5CA8A2D4A447900FDA699 /* RadioButton */ = {
 			isa = PBXGroup;
 			children = (
-				AAE5CA8B2D4A448B00FDA699 /* RadioButtonView.swift */,
+				AAE5CAC22D4A55C200FDA699 /* ViewModel */,
+				AAE5CAC12D4A55B400FDA699 /* Views */,
 			);
 			path = RadioButton;
 			sourceTree = "<group>";
@@ -116,6 +119,37 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		AAE5CABF2D4A557400FDA699 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5CAC02D4A557A00FDA699 /* ViewModels */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AAE5CAC02D4A557A00FDA699 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AAE5CAC12D4A55B400FDA699 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5CA8B2D4A448B00FDA699 /* RadioButtonView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AAE5CAC22D4A55C200FDA699 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5CAC32D4A561000FDA699 /* RadioButtonViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E4BBCFD82D4A24BF004AA735 = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +173,7 @@
 		E4BBCFE32D4A24BF004AA735 /* DFComponents */ = {
 			isa = PBXGroup;
 			children = (
+				AAE5CABF2D4A557400FDA699 /* Data */,
 				AAE5CABA2D4A505100FDA699 /* Common */,
 				E4BBD00F2D4A24EA004AA735 /* Presentation */,
 				E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */,
@@ -342,6 +377,7 @@
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtenstion.swift in Sources */,
 				AAE5CABC2D4A506B00FDA699 /* ColorType.swift in Sources */,
 				AAE5CA8C2D4A448B00FDA699 /* RadioButtonView.swift in Sources */,
+				AAE5CAC42D4A561000FDA699 /* RadioButtonViewModel.swift in Sources */,
 				AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */,
 				E4BBD0142D4A25C6004AA735 /* DFComponentsView.swift in Sources */,
 				E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */,
