@@ -21,7 +21,13 @@ class CheckBoxModel: Identifiable, Hashable {
             CheckBoxModel(id: "1", name: "Red"),
             CheckBoxModel(id: "2", name: "Green"),
             CheckBoxModel(id: "3", name: "Blue"),
-            CheckBoxModel(id: "4", name: "Yellow")
+            CheckBoxModel(id: "4", name: "Yellow"),
+            CheckBoxModel(id: "5", name: "Purple"),
+            CheckBoxModel(id: "6", name: "Orange"),
+            CheckBoxModel(id: "7", name: "Pink"),
+            CheckBoxModel(id: "8", name: "Brown"),
+            CheckBoxModel(id: "9", name: "Black"),
+            CheckBoxModel(id: "10", name: "White")
         ]
     }
 

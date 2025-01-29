@@ -13,6 +13,7 @@
 		AAD5623A2D4AAC2700C19A11 /* CheckBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562392D4AAC2700C19A11 /* CheckBoxStyle.swift */; };
 		AAD5623D2D4ACBB600C19A11 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD5623C2D4ACBB600C19A11 /* ErrorMessageView.swift */; };
 		AAD5623F2D4ACC3200C19A11 /* SubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD5623E2D4ACC3200C19A11 /* SubmitButtonView.swift */; };
+		AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD964102D4AE3D300302958 /* ShowMoreButton.swift */; };
 		AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CA8E2D4A4D8D00FDA699 /* ImageExtension.swift */; };
 		AAE5CABC2D4A506B00FDA699 /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CABB2D4A506B00FDA699 /* ColorType.swift */; };
 		AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CABD2D4A50AD00FDA699 /* ViewExtenstion.swift */; };
@@ -51,6 +52,7 @@
 		AAD562392D4AAC2700C19A11 /* CheckBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxStyle.swift; sourceTree = "<group>"; };
 		AAD5623C2D4ACBB600C19A11 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AAD5623E2D4ACC3200C19A11 /* SubmitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonView.swift; sourceTree = "<group>"; };
+		AAD964102D4AE3D300302958 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
 		AAE5CA8E2D4A4D8D00FDA699 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		AAE5CABB2D4A506B00FDA699 /* ColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
 		AAE5CABD2D4A50AD00FDA699 /* ViewExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtenstion.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				AAD562362D4AABF300C19A11 /* MultiChoiceQuestion.swift */,
 				AAD5623C2D4ACBB600C19A11 /* ErrorMessageView.swift */,
 				AAD5623E2D4ACC3200C19A11 /* SubmitButtonView.swift */,
+				AAD964102D4AE3D300302958 /* ShowMoreButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
 				AAD5623F2D4ACC3200C19A11 /* SubmitButtonView.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
 				AAE5CABC2D4A506B00FDA699 /* ColorType.swift in Sources */,

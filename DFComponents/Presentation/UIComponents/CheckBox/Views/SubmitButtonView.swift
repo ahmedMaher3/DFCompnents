@@ -25,5 +25,6 @@ struct SubmitButtonView: View {
                 .frame(width: 100, height: 50)
         }
         .padding(.top, 8)
+        .frame(maxWidth: .infinity, alignment: .center)
     }
 }
