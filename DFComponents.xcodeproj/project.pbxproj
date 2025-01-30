@@ -12,6 +12,7 @@
 		E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */; };
 		E489E81E2D4A6A15007EA370 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81D2D4A6A15007EA370 /* Color+Extensions.swift */; };
 		E489E8202D4A7B72007EA370 /* ComponentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81F2D4A7B72007EA370 /* ComponentType.swift */; };
+		E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8232D4B5BA0007EA370 /* CustomDropDownView.swift */; };
 		E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */; };
 		E4BBCFE92D4A24C2004AA735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */; };
 		E4BBCFED2D4A24C2004AA735 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFEC2D4A24C2004AA735 /* Preview Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxViewModel.swift; sourceTree = "<group>"; };
 		E489E81D2D4A6A15007EA370 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		E489E81F2D4A7B72007EA370 /* ComponentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentType.swift; sourceTree = "<group>"; };
+		E489E8232D4B5BA0007EA370 /* CustomDropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownView.swift; sourceTree = "<group>"; };
 		E4BBCFE12D4A24BF004AA735 /* DFComponents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFComponents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsApp.swift; sourceTree = "<group>"; };
 		E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		E489E8182D4A3B8E007EA370 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E489E8222D4B5B82007EA370 /* CustomDropDownView */,
 				E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */,
 			);
 			path = View;
@@ -125,6 +128,14 @@
 				E489E81D2D4A6A15007EA370 /* Color+Extensions.swift */,
 			);
 			path = "Extensions ";
+			sourceTree = "<group>";
+		};
+		E489E8222D4B5B82007EA370 /* CustomDropDownView */ = {
+			isa = PBXGroup;
+			children = (
+				E489E8232D4B5BA0007EA370 /* CustomDropDownView.swift */,
+			);
+			path = CustomDropDownView;
 			sourceTree = "<group>";
 		};
 		E4BBCFD82D4A24BF004AA735 = {
@@ -356,6 +367,7 @@
 				E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */,
 				E489E8172D4A3B48007EA370 /* TextBoxConfiguration.swift in Sources */,
 				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
+				E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */,
 				E489E81E2D4A6A15007EA370 /* Color+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
