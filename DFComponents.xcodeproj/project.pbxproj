@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */; };
+		AAD562352D4AABE500C19A11 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562342D4AABE500C19A11 /* CheckBoxView.swift */; };
+		AAD562372D4AABF300C19A11 /* MultiChoiceQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562362D4AABF300C19A11 /* MultiChoiceQuestion.swift */; };
+		AAD5623A2D4AAC2700C19A11 /* CheckBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562392D4AAC2700C19A11 /* CheckBoxStyle.swift */; };
+		AAD5623D2D4ACBB600C19A11 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD5623C2D4ACBB600C19A11 /* ErrorMessageView.swift */; };
+		AAD5623F2D4ACC3200C19A11 /* SubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD5623E2D4ACC3200C19A11 /* SubmitButtonView.swift */; };
+		AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD964102D4AE3D300302958 /* ShowMoreButton.swift */; };
+		AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CA8E2D4A4D8D00FDA699 /* ImageExtension.swift */; };
+		AAE5CABC2D4A506B00FDA699 /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CABB2D4A506B00FDA699 /* ColorType.swift */; };
+		AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CABD2D4A50AD00FDA699 /* ViewExtenstion.swift */; };
+		AAE5CAC82D4A66AA00FDA699 /* CheckBoxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CAC72D4A66AA00FDA699 /* CheckBoxModel.swift */; };
 		E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */; };
 		E489E8172D4A3B48007EA370 /* TextBoxConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8162D4A3B48007EA370 /* TextBoxConfiguration.swift */; };
 		E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */; };
@@ -50,6 +61,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxViewModel.swift; sourceTree = "<group>"; };
+		AAD562342D4AABE500C19A11 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		AAD562362D4AABF300C19A11 /* MultiChoiceQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiChoiceQuestion.swift; sourceTree = "<group>"; };
+		AAD562392D4AAC2700C19A11 /* CheckBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxStyle.swift; sourceTree = "<group>"; };
+		AAD5623C2D4ACBB600C19A11 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
+		AAD5623E2D4ACC3200C19A11 /* SubmitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonView.swift; sourceTree = "<group>"; };
+		AAD964102D4AE3D300302958 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
+		AAE5CA8E2D4A4D8D00FDA699 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		AAE5CABB2D4A506B00FDA699 /* ColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
+		AAE5CABD2D4A50AD00FDA699 /* ViewExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtenstion.swift; sourceTree = "<group>"; };
+		AAE5CAC72D4A66AA00FDA699 /* CheckBoxModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxModel.swift; sourceTree = "<group>"; };
 		E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxComponent.swift; sourceTree = "<group>"; };
 		E489E8162D4A3B48007EA370 /* TextBoxConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxConfiguration.swift; sourceTree = "<group>"; };
 		E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxViewModel.swift; sourceTree = "<group>"; };
@@ -104,6 +126,86 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AAD5622F2D4AABAA00C19A11 /* CheckBox */ = {
+			isa = PBXGroup;
+			children = (
+				AAD562382D4AAC1500C19A11 /* Styling */,
+				AAD562312D4AABBC00C19A11 /* ViewModel */,
+				AAD562302D4AABB300C19A11 /* Views */,
+			);
+			path = CheckBox;
+			sourceTree = "<group>";
+		};
+		AAD562302D4AABB300C19A11 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAD562342D4AABE500C19A11 /* CheckBoxView.swift */,
+				AAD562362D4AABF300C19A11 /* MultiChoiceQuestion.swift */,
+				AAD5623C2D4ACBB600C19A11 /* ErrorMessageView.swift */,
+				AAD5623E2D4ACC3200C19A11 /* SubmitButtonView.swift */,
+				AAD964102D4AE3D300302958 /* ShowMoreButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AAD562312D4AABBC00C19A11 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AAD562382D4AAC1500C19A11 /* Styling */ = {
+			isa = PBXGroup;
+			children = (
+				AAD562392D4AAC2700C19A11 /* CheckBoxStyle.swift */,
+			);
+			path = Styling;
+			sourceTree = "<group>";
+		};
+		AAE5CA8D2D4A4D6F00FDA699 /* Extenstions */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5CA8E2D4A4D8D00FDA699 /* ImageExtension.swift */,
+				AAE5CABD2D4A50AD00FDA699 /* ViewExtenstion.swift */,
+			);
+			path = Extenstions;
+			sourceTree = "<group>";
+		};
+		AAE5CAB92D4A504800FDA699 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5CABB2D4A506B00FDA699 /* ColorType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		AAE5CABA2D4A505100FDA699 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5CAB92D4A504800FDA699 /* Enums */,
+				AAE5CA8D2D4A4D6F00FDA699 /* Extenstions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		AAE5CABF2D4A557400FDA699 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5CAC02D4A557A00FDA699 /* Model */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AAE5CAC02D4A557A00FDA699 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5CAC72D4A66AA00FDA699 /* CheckBoxModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E489E8122D4A3AFC007EA370 /* TextBoxComponent */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +415,7 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				AAD5622F2D4AABAA00C19A11 /* CheckBox */,
 				E489E81C2D4A6A04007EA370 /* Extensions  */,
 				E489E8122D4A3AFC007EA370 /* TextBoxComponent */,
 				AAE5CA8A2D4A447900FDA699 /* RadioButton */,
@@ -452,6 +555,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
+				AAD5623F2D4ACC3200C19A11 /* SubmitButtonView.swift in Sources */,
+				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
+				AAE5CABC2D4A506B00FDA699 /* ColorType.swift in Sources */,
+				AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */,
+				AAD5623D2D4ACBB600C19A11 /* ErrorMessageView.swift in Sources */,
+				AAE5CAC82D4A66AA00FDA699 /* CheckBoxModel.swift in Sources */,
+				AAD562372D4AABF300C19A11 /* MultiChoiceQuestion.swift in Sources */,
+				AAD5623A2D4AAC2700C19A11 /* CheckBoxStyle.swift in Sources */,
+				AAD562352D4AABE500C19A11 /* CheckBoxView.swift in Sources */,
 				E489E8202D4A7B72007EA370 /* ComponentType.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
 				AAD562422D4ACE8A00C19A11 /* ErrorMessageView.swift in Sources */,
@@ -463,6 +576,7 @@
 				E4BBD0142D4A25C6004AA735 /* DFComponentsView.swift in Sources */,
 				AAD562442D4ACEB500C19A11 /* SubmitButtonView.swift in Sources */,
 				E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */,
+				AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */,
 				E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */,
 				E489E8172D4A3B48007EA370 /* TextBoxConfiguration.swift in Sources */,
 				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
