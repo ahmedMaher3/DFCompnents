@@ -12,9 +12,5 @@ class FormViewModel: ObservableObject {
     @Published var dropdownViewModel: DropDownViewModel = DropDownViewModel()
     @Published var dateFieldViewModel: DateFieldViewModel = DateFieldViewModel()
     @Published var checkBoxViewModel: CheckBoxViewModel = CheckBoxViewModel()
-    @Published var textBoxViewModel: TextBoxViewModel
-    
-    init(textBoxConfig: TextBoxDTO) {
-        self.textBoxViewModel = TextBoxViewModel(config: textBoxConfig)
-    }
+    @Published var textBoxViewModel: TextBoxViewModel = TextBoxViewModel()
 }

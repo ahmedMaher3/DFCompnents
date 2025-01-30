@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct FormView: View {
-    @StateObject var viewModel: FormViewModel
-
+    @StateObject var viewModel: FormViewModel = FormViewModel()
     var body: some View {
         List {
             // DropDownView
@@ -33,17 +32,5 @@ struct FormView: View {
 }
 
 #Preview {
-    let textBoxConfig = TextBoxDTO(
-        title: "What is your Name?",
-        subtitle: nil,
-        placeholder: "Enter your name",
-        inputType: .mixed,
-        minLength: 2,
-        prefixOptions: ["Mr", "Ms"],
-        suffixOptions: ["Jr"],
-        requiresPrefix: true,
-        requiresSuffix: true
-    )
-    
-    return FormView(viewModel: FormViewModel(textBoxConfig: textBoxConfig))
+    FormView(viewModel: FormViewModel())
 }
