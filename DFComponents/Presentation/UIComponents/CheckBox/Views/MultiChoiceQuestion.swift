@@ -38,11 +38,9 @@ struct MultiChoiceQuestion: View {
                             16
                         )
                         .color(
-                            checkBoxVM.validationErrors[questionID] != nil ? .customColor(
-                                .red
-                            ) : .customColor(
-                                .primary
-                            )
+                            checkBoxVM.validationErrors[questionID] != nil
+                            ? .red : .primary
+
                         )
                         .onAppear {
                             if showAllAnswersForQuestion[questionID] == nil {

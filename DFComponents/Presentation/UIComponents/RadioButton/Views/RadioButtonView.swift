@@ -27,7 +27,7 @@ struct RadioButtonView: View {
 
                         Text(item.name)
                             .fontWeight(.medium)
-                            .color(radioButtonState.selectedItem(for: questionID)?.id == item.id ? .primaryBlue : .customColor(.black))
+                            .color(radioButtonState.selectedItem(for: questionID)?.id == item.id ? .primaryBlue : .black)
                     }
                 }
                 .padding(8)

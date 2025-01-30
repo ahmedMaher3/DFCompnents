@@ -23,7 +23,7 @@ struct ShowMoreButton: View {
             }) {
                 Text(showAll ? "Show Less" : "Show More")
                     .font(.subheadline)
-                    .color(.customColor(.blue))
+                    .color(.blue)
                     .padding(.top, 8)
             }
             .buttonStyle(PlainButtonStyle()) // Prevent the button from triggering unintended taps

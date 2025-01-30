@@ -22,7 +22,7 @@ struct CheckBoxStyle: ToggleStyle {
                 .padding(.trailing, 8)
 
             configuration.label
-                .color(configuration.isOn ? .primaryBlue : .customColor(.black))
+                .color(configuration.isOn ? .primaryBlue : .black)
                 .fontWeight(.medium)
         }
     }

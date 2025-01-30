@@ -16,7 +16,7 @@ struct ErrorMessageRadioButtonView: View {
             Text(errorMessage)
                 .font(.subheadline)
         }
-        .color(.customColor(.red))
+        .color(.red)
         .padding(.top, 4)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
