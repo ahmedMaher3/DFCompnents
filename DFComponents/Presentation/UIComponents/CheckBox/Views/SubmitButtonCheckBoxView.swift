@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct SubmitButtonCheckBoxView: View {
-    @StateObject var checkBoxState: CheckBoxViewModel
+    @StateObject var checkBoxVM: CheckBoxViewModel
     var body: some View {
         Button(action: {
-            checkBoxState.validate()
+            checkBoxVM.validate()
         }) {
             Text("Submit")
                 .fontWeight(.bold)

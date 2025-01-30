@@ -23,7 +23,7 @@ struct QuestionsRadioButton: View {
                             .padding(.bottom, 8)
                             .foregroundColor(radioButtonVM.validationErrors[questionID] != nil ? .red : .primary)
 
-                            RadioButtonView(radioButtonState: radioButtonVM,
+                            RadioButtonView(radioButtonVM: radioButtonVM,
                                             questionID: questionID)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             // Display error message if validation fails
@@ -36,7 +36,7 @@ struct QuestionsRadioButton: View {
                 }
                 .padding(16)
             }
-            SubmitButtonView(radioButtonState: radioButtonVM)
+            SubmitButtonView(radioButtonVM: radioButtonVM)
         }
     }
 }

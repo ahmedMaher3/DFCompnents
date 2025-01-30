@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct SubmitButtonView: View {
-    @StateObject var radioButtonState: RadioButtonViewModel
+    @StateObject var radioButtonVM: RadioButtonViewModel
     var body: some View {
         Button(action: {
-            radioButtonState.validate()
+            radioButtonVM.validate()
         }) {
             Text("Submit")
                 .fontWeight(.bold)

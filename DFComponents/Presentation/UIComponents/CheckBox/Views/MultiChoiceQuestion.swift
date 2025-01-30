@@ -87,7 +87,7 @@ struct MultiChoiceQuestion: View {
             }
 
             SubmitButtonCheckBoxView(
-                checkBoxState: checkBoxVM
+                checkBoxVM: checkBoxVM
             )
         }
     }
