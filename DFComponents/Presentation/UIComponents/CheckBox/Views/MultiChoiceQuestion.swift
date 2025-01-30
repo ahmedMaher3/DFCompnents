@@ -21,8 +21,7 @@ struct MultiChoiceQuestion: View {
                     let questionID = "question\(index)"
                     VStack(
                         alignment: .leading,
-                        spacing: 16
-                    ) {
+                        spacing: 16) {
                         Text(checkBoxVM.questions[index])
                             .font(.headline)
                             .padding(.bottom,4)
