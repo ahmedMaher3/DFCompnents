@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */; };
+		E489E8172D4A3B48007EA370 /* TextBoxConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8162D4A3B48007EA370 /* TextBoxConfiguration.swift */; };
+		E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */; };
+		E489E81E2D4A6A15007EA370 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81D2D4A6A15007EA370 /* Color+Extensions.swift */; };
+		E489E8202D4A7B72007EA370 /* ComponentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81F2D4A7B72007EA370 /* ComponentType.swift */; };
+		E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8232D4B5BA0007EA370 /* CustomDropDownView.swift */; };
 		AAD562422D4ACE8A00C19A11 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562412D4ACE8A00C19A11 /* ErrorMessageView.swift */; };
 		AAD562442D4ACEB500C19A11 /* SubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562432D4ACEB500C19A11 /* SubmitButtonView.swift */; };
 		AAE5CA8C2D4A448B00FDA699 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CA8B2D4A448B00FDA699 /* RadioButtonView.swift */; };
@@ -44,6 +50,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxComponent.swift; sourceTree = "<group>"; };
+		E489E8162D4A3B48007EA370 /* TextBoxConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxConfiguration.swift; sourceTree = "<group>"; };
+		E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxViewModel.swift; sourceTree = "<group>"; };
+		E489E81D2D4A6A15007EA370 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		E489E81F2D4A7B72007EA370 /* ComponentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentType.swift; sourceTree = "<group>"; };
+		E489E8232D4B5BA0007EA370 /* CustomDropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownView.swift; sourceTree = "<group>"; };
 		AAD562412D4ACE8A00C19A11 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AAD562432D4ACEB500C19A11 /* SubmitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonView.swift; sourceTree = "<group>"; };
 		AAE5CA8B2D4A448B00FDA699 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
@@ -92,6 +104,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E489E8122D4A3AFC007EA370 /* TextBoxComponent */ = {
+			isa = PBXGroup;
+			children = (
+				E489E8192D4A3B96007EA370 /* ViewModel */,
+				E489E8182D4A3B8E007EA370 /* View */,
+				E489E8152D4A3B3E007EA370 /* Model */,
+			);
+			path = TextBoxComponent;
+			sourceTree = "<group>";
+		};
+		E489E8152D4A3B3E007EA370 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E489E8162D4A3B48007EA370 /* TextBoxConfiguration.swift */,
+				E489E81F2D4A7B72007EA370 /* ComponentType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E489E8182D4A3B8E007EA370 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E489E8222D4B5B82007EA370 /* CustomDropDownView */,
+				E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E489E8192D4A3B96007EA370 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E489E81C2D4A6A04007EA370 /* Extensions  */ = {
+			isa = PBXGroup;
+			children = (
+				E489E81D2D4A6A15007EA370 /* Color+Extensions.swift */,
+			);
+			path = "Extensions ";
+			sourceTree = "<group>";
+		};
+		E489E8222D4B5B82007EA370 /* CustomDropDownView */ = {
+			isa = PBXGroup;
+			children = (
+				E489E8232D4B5BA0007EA370 /* CustomDropDownView.swift */,
+			);
+			path = CustomDropDownView;
+			sourceTree = "<group>";
+		};
 		AAE5CA8A2D4A447900FDA699 /* RadioButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +313,8 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				E489E81C2D4A6A04007EA370 /* Extensions  */,
+				E489E8122D4A3AFC007EA370 /* TextBoxComponent */,
 				AAE5CA8A2D4A447900FDA699 /* RadioButton */,
 				E4BBD01A2D4A2B24004AA735 /* README.md */,
 			);
@@ -386,6 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E489E8202D4A7B72007EA370 /* ComponentType.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
 				AAD562422D4ACE8A00C19A11 /* ErrorMessageView.swift in Sources */,
 				AAE5CABC2D4A506B00FDA699 /* ColorType.swift in Sources */,
@@ -396,6 +463,11 @@
 				E4BBD0142D4A25C6004AA735 /* DFComponentsView.swift in Sources */,
 				AAD562442D4ACEB500C19A11 /* SubmitButtonView.swift in Sources */,
 				E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */,
+				E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */,
+				E489E8172D4A3B48007EA370 /* TextBoxConfiguration.swift in Sources */,
+				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
+				E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */,
+				E489E81E2D4A6A15007EA370 /* Color+Extensions.swift in Sources */,
 				AAE5CAC62D4A61FD00FDA699 /* QuestionsRadioButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
