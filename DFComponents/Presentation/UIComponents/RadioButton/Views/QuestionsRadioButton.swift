@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct QuestionsRadioButton: View {
-    @ObservedObject var radioButtonVM: RadioButtonViewModel
     
+    @StateObject var radioButtonVM: RadioButtonViewModel = RadioButtonViewModel()
+
     var body: some View {
         VStack {
             ScrollView {
@@ -22,11 +23,10 @@ struct QuestionsRadioButton: View {
                             .font(.headline)
                             .padding(.bottom, 8)
                             .foregroundColor(radioButtonVM.validationErrors[questionID] != nil ? .red : .primary)
-                            
+
                             RadioButtonView(radioButtonVM: radioButtonVM,
                                             questionID: questionID)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            // Display error message if validation fails
                             if let errorMessage = radioButtonVM.validationErrors[questionID], !errorMessage.isEmpty {
                                 ErrorMessageView(errorMessage: errorMessage, imageName: "xmark.circle.fill")
                             }

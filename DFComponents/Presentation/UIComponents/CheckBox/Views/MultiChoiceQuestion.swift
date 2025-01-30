@@ -8,66 +8,44 @@
 import SwiftUI
 
 struct MultiChoiceQuestion: View {
-    @ObservedObject var checkBoxVM: CheckBoxViewModel
+
+    @StateObject var checkBoxVM: CheckBoxViewModel = CheckBoxViewModel()
+
     @State private var showAllAnswersForQuestion: [String: Bool] = [:]
 
     var body: some View {
         VStack {
             List {
-                ForEach(
-                    checkBoxVM.questions.indices,
-                    id: \.self
-                ) { index in
+                ForEach(checkBoxVM.questions.indices,
+                        id: \.self) { index in
                     let questionID = "question\(index)"
                     VStack(
                         alignment: .leading,
                         spacing: 16
                     ) {
-                        Text(
-                            checkBoxVM.questions[index]
-                        )
-                        .font(
-                            .headline
-                        )
-                        .padding(
-                            .bottom,
-                            4
-                        )
-                        .padding(
-                            .top,
-                            16
-                        )
-                        .color(
-                            checkBoxVM.validationErrors[questionID] != nil
-                            ? .red : .primary
-
-                        )
-                        .onAppear {
-                            if showAllAnswersForQuestion[questionID] == nil {
-                                showAllAnswersForQuestion[questionID] = false
+                        Text(checkBoxVM.questions[index])
+                            .font(.headline)
+                            .padding(.bottom,4)
+                            .padding( .top, 16)
+                            .color(checkBoxVM.validationErrors[questionID] != nil
+                                   ? .red : .primary)
+                            .onAppear {
+                                if showAllAnswersForQuestion[questionID] == nil {
+                                    showAllAnswersForQuestion[questionID] = false
+                                }
                             }
-                        }
                         let items = checkBoxVM.checkBoxModels[questionID] ?? []
                         let showAll = showAllAnswersForQuestion[questionID] ?? false
-                        let displayedItems = showAll ? items : Array(
-                            items.prefix(
-                                3
-                            )
-                        ) // Show all or first 3 items
+                        let displayedItems = showAll ? items : Array(items.prefix(3))
 
-
-                        ForEach(
-                            displayedItems
-                        ) { item in
+                        ForEach(displayedItems) { item in
                             CheckBoxView(
-                                checkBoxState: checkBoxVM,
+                                checkBoxVM: checkBoxVM,
                                 questionID: questionID,
                                 item: item
                             )
-                            .frame(
-                                maxWidth: .infinity,
-                                alignment: .leading
-                            )
+                            .frame(maxWidth: .infinity,
+                                   alignment: .leading)
                         }
                         ShowMoreButton(
                             showAll: showAll,
@@ -78,12 +56,11 @@ struct MultiChoiceQuestion: View {
                         if let errorMessage = checkBoxVM.validationErrors[questionID], !errorMessage.isEmpty {
                             ErrorMessageView(
                                 errorMessage: errorMessage,
-                                imageName: "xmark.circle.fill"
-                            )
+                                imageName: "xmark.circle.fill")
                         }
                     }
                 }
-                .listStyle(.automatic)
+                        .listStyle(.automatic)
             }
 
             SubmitButtonView(viewModel: checkBoxVM)

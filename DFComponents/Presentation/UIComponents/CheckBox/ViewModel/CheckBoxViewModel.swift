@@ -6,7 +6,7 @@
 //
 
 import Foundation
-final class CheckBoxViewModel: ObservableObject,SubmitControlProtocol {
+final class CheckBoxViewModel: ObservableObject, SubmitControlProtocol {
 
     @Published var selectedItems: [String: Set<String>] = [:] // Key: Question ID, Value: Set of selected item IDs
     @Published var questions: [String] = [
