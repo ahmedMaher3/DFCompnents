@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A95D7A262D4B8127004FB6CA /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A242D4B8127004FB6CA /* DateModel.swift */; };
+		A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A272D4B812E004FB6CA /* DateViewModel.swift */; };
+		A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */; };
 		AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxModel.swift */; };
 		AA3F83AE2D4B7DFA00C7A6C0 /* SubmitButtonCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83AD2D4B7DFA00C7A6C0 /* SubmitButtonCheckBoxView.swift */; };
 		AA3F83AF2D4B7DFA00C7A6C0 /* ErrorMessageCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83AC2D4B7DFA00C7A6C0 /* ErrorMessageCheckBoxView.swift */; };
@@ -62,6 +65,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A95D7A1C2D4A8AC4004FB6CA /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
+		A95D7A1E2D4A8ACB004FB6CA /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
+		A95D7A202D4A8AD1004FB6CA /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
+		A95D7A242D4B8127004FB6CA /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
+		A95D7A272D4B812E004FB6CA /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
+		A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
 		AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxModel.swift; sourceTree = "<group>"; };
 		AA3F83AC2D4B7DFA00C7A6C0 /* ErrorMessageCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageCheckBoxView.swift; sourceTree = "<group>"; };
 		AA3F83AD2D4B7DFA00C7A6C0 /* SubmitButtonCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonCheckBoxView.swift; sourceTree = "<group>"; };
@@ -128,6 +137,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A95D7A222D4B80D0004FB6CA /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				A95D7A202D4A8AD1004FB6CA /* DateModel.swift */,
+				A95D7A1E2D4A8ACB004FB6CA /* DateViewModel.swift */,
+				A95D7A1C2D4A8AC4004FB6CA /* DateTimeView.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		A95D7A232D4B8110004FB6CA /* DateComponent */ = {
+			isa = PBXGroup;
+			children = (
+				A95D7A252D4B8127004FB6CA /* Model */,
+				A95D7A282D4B812E004FB6CA /* ViewModel */,
+				A95D7A2B2D4B813D004FB6CA /* Views */,
+			);
+			path = DateComponent;
+			sourceTree = "<group>";
+		};
+		A95D7A252D4B8127004FB6CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A95D7A242D4B8127004FB6CA /* DateModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A95D7A282D4B812E004FB6CA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A95D7A272D4B812E004FB6CA /* DateViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A95D7A2B2D4B813D004FB6CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		AAD5622F2D4AABAA00C19A11 /* CheckBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +332,7 @@
 				E4BBCFF52D4A24C3004AA735 /* DFComponentsTests */,
 				E4BBCFFF2D4A24C3004AA735 /* DFComponentsUITests */,
 				E4BBCFE22D4A24BF004AA735 /* Products */,
+				A95D7A222D4B80D0004FB6CA /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -359,6 +413,7 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A95D7A232D4B8110004FB6CA /* DateComponent */,
 				E4BBD01C2D4A47A2004AA735 /* DropDownView */,
 				AAD5622F2D4AABAA00C19A11 /* CheckBox */,
 				E489E81C2D4A6A04007EA370 /* Extensions  */,
@@ -555,8 +610,10 @@
 				E4BBD0232D4A4A29004AA735 /* DropDownViewModel.swift in Sources */,
 				E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */,
 				AA3F83B22D4B7E1300C7A6C0 /* SubmitButtonRadioButtonView.swift in Sources */,
+				A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */,
 				AA3F83B32D4B7E1300C7A6C0 /* ErrorMessageRadioButtonView.swift in Sources */,
 				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
+				A95D7A262D4B8127004FB6CA /* DateModel.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
 				AAE5CABC2D4A506B00FDA699 /* ColorType.swift in Sources */,
 				AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */,
@@ -573,6 +630,7 @@
 				E4BBD0142D4A25C6004AA735 /* DFComponentsView.swift in Sources */,
 				E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */,
 				E4BBD0272D4A4A7F004AA735 /* CountryDTO.swift in Sources */,
+				A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */,
 				E4BBD01E2D4A47BD004AA735 /* DropDownView.swift in Sources */,
 				AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */,
 				E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */,
