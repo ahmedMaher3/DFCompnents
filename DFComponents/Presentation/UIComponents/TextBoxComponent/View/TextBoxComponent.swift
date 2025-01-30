@@ -22,6 +22,7 @@ struct TextBoxComponent: View {
                         .foregroundColor(.gray)
                 }
             }
+            .padding(.bottom)
 
             // Input Field with Prefix and Suffix
             HStack {

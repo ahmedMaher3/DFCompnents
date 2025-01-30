@@ -9,15 +9,15 @@ import SwiftUI
 
 
 struct CheckBoxView: View {
-    @StateObject var checkBoxState: CheckBoxViewModel
+    @ObservedObject var checkBoxVM: CheckBoxViewModel
     let questionID: String
     let item: CheckBoxDTO
 
     var body: some View {
         Toggle(isOn: Binding(
-            get: { checkBoxState.selectedItems[questionID]?.contains(item.id) ?? false },
+            get: { checkBoxVM.selectedItems[questionID]?.contains(item.id) ?? false },
             set: { isSelected in
-                checkBoxState.onTapCheckBox(questionID: questionID, item: item)
+                checkBoxVM.onTapCheckBox(questionID: questionID, item: item)
             }
         )) {
             Text(item.name)

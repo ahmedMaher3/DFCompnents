@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RadioButtonViewModel: ObservableObject {
+final class RadioButtonViewModel: ObservableObject, SubmitControlProtocol {
 
     @Published var selectedItems: [String: String] = [:]  // Key: Question ID, Value: Selected item ID
     @Published var questions: [String] = [
@@ -35,7 +35,7 @@ final class RadioButtonViewModel: ObservableObject {
             // Deselect if the same item is clicked again
             selectedItems[questionID] = nil
             callbackAction(nil)
-            validationErrors[questionID] = "جاوب علي ام السؤال."
+            validationErrors[questionID] = "Please select an answer."
         } else {
             // Select the new item
             selectedItems[questionID] = item.id
@@ -52,10 +52,16 @@ final class RadioButtonViewModel: ObservableObject {
     func validate() {
         for(questionId, _) in radioButtonModels {
             if selectedItems[questionId] == nil {
-                validationErrors[questionId] = "جاوب علي ام السؤال."
+                validationErrors[questionId] = "Please select an answer."
             } else {
                 validationErrors[questionId] = nil
             }
+        }
+        if validationErrors.values.contains(where: { $0.isEmpty == false }) {
+            print("Validation failed: Please answer all questions.")
+        } else {
+            print("Form submitted successfully!")
+            // Handle form submission here
         }
     }
     func errorMessage(for questionId: String) -> String? {

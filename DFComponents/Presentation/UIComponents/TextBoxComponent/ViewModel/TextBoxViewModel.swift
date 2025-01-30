@@ -14,16 +14,31 @@ class TextBoxViewModel: ObservableObject {
     @Published var isValid: Bool = false
     @Published var selectedPrefix: String?
     @Published var selectedSuffix: String?
-    
+
     let config: TextBoxDTO
     var hasInteracted: Bool = false
 
-    init(config: TextBoxDTO) {
+    init(config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
         self.config = config
-        
+
         // Set default prefix and suffix if only one option is available
         selectedPrefix = config.prefixOptions.count == 1 ? config.prefixOptions.first : nil
         selectedSuffix = config.suffixOptions.count == 1 ? config.suffixOptions.first : nil
+    }
+
+    // Default configuration
+    static var defaultConfig: TextBoxDTO {
+        return TextBoxDTO(
+            title: "What is your Name?",
+            subtitle: nil,
+            placeholder: "Enter your name",
+            inputType: .mixed,
+            minLength: 2,
+            prefixOptions: ["Mr", "Ms"],
+            suffixOptions: ["Jr"],
+            requiresPrefix: true,
+            requiresSuffix: true
+        )
     }
 
     // MARK: - UI Accessors

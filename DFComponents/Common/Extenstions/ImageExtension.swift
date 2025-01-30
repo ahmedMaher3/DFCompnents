@@ -10,7 +10,7 @@ extension Image {
     //MARK: - customize Image
     func customizeImage(width: CGFloat,
                         height: CGFloat,
-                        type color: ColorType,
+                        type color: Color,
                         contentMode: ContentMode,
                         renderingMode: TemplateRenderingMode) -> some View {
         self
