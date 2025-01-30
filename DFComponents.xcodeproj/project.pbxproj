@@ -448,19 +448,19 @@
 			children = (
 				E4BBD0192D4A2AFF004AA735 /* UIComponents */,
 				E4BBD0112D4A250D004AA735 /* Modifiers */,
-				E4BBD0102D4A24FE004AA735 /* Scenes */,
+				E4BBD0102D4A24FE004AA735 /* Views */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		E4BBD0102D4A24FE004AA735 /* Scenes */ = {
+		E4BBD0102D4A24FE004AA735 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				E4A901482D4BAD2C007080AC /* Splash */,
 				E4A9014D2D4BAE0D007080AC /* Main */,
 				E44926C22D4B8AAB00EA5D5E /* FormView */,
 			);
-			path = Scenes;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E4BBD0112D4A250D004AA735 /* Modifiers */ = {

@@ -22,7 +22,9 @@ struct ServicesListView: View {
                             NavigationLink(destination: FormView(title: form.name)) {
                                 FormRow(form: form)
                             }
-                  
+                            .buttonStyle(PlainButtonStyle()) 
+                             .listRowBackground(Color.clear)
+
                         }
                     }
                     .searchable(text: $searchText, prompt: "Forms Search")
