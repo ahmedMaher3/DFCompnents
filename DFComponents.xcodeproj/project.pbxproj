@@ -11,8 +11,8 @@
 		A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A272D4B812E004FB6CA /* DateViewModel.swift */; };
 		A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */; };
 		A95D7A302D4B8B6F004FB6CA /* FormDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A2F2D4B8B6C004FB6CA /* FormDTO.swift */; };
-		A95D7A392D4BA59D004FB6CA /* FormListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A362D4BA59D004FB6CA /* FormListViewModel.swift */; };
-		A95D7A3A2D4BA59D004FB6CA /* FormListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A352D4BA59D004FB6CA /* FormListView.swift */; };
+		A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A362D4BA59D004FB6CA /* ServicesListViewModel.swift */; };
+		A95D7A3A2D4BA59D004FB6CA /* ServicesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A352D4BA59D004FB6CA /* ServicesListView.swift */; };
 		AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */; };
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
 		AA84AE172D4B94090057D161 /* SubmitControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE162D4B94090057D161 /* SubmitControlView.swift */; };
@@ -35,6 +35,7 @@
 		E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */; };
 		E489E81E2D4A6A15007EA370 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81D2D4A6A15007EA370 /* ColorExtension.swift */; };
 		E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8232D4B5BA0007EA370 /* CustomDropDownView.swift */; };
+		E4A9014A2D4BAD2C007080AC /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901492D4BAD2C007080AC /* SplashView.swift */; };
 		E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */; };
 		E4BBCFE92D4A24C2004AA735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */; };
 		E4BBCFED2D4A24C2004AA735 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFEC2D4A24C2004AA735 /* Preview Assets.xcassets */; };
@@ -74,8 +75,8 @@
 		A95D7A272D4B812E004FB6CA /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
 		A95D7A2F2D4B8B6C004FB6CA /* FormDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDTO.swift; sourceTree = "<group>"; };
-		A95D7A352D4BA59D004FB6CA /* FormListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListView.swift; sourceTree = "<group>"; };
-		A95D7A362D4BA59D004FB6CA /* FormListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListViewModel.swift; sourceTree = "<group>"; };
+		A95D7A352D4BA59D004FB6CA /* ServicesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListView.swift; sourceTree = "<group>"; };
+		A95D7A362D4BA59D004FB6CA /* ServicesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListViewModel.swift; sourceTree = "<group>"; };
 		AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxDTO.swift; sourceTree = "<group>"; };
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AA84AE162D4B94090057D161 /* SubmitControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitControlView.swift; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 		E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxViewModel.swift; sourceTree = "<group>"; };
 		E489E81D2D4A6A15007EA370 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		E489E8232D4B5BA0007EA370 /* CustomDropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownView.swift; sourceTree = "<group>"; };
+		E4A901492D4BAD2C007080AC /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		E4BBCFE12D4A24BF004AA735 /* DFComponents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFComponents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsApp.swift; sourceTree = "<group>"; };
 		E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -172,23 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		A95D7A372D4BA59D004FB6CA /* Forms */ = {
-			isa = PBXGroup;
-			children = (
-				A95D7A352D4BA59D004FB6CA /* FormListView.swift */,
-				A95D7A362D4BA59D004FB6CA /* FormListViewModel.swift */,
-			);
-			path = Forms;
-			sourceTree = "<group>";
-		};
-		A95D7A382D4BA59D004FB6CA /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A95D7A372D4BA59D004FB6CA /* Forms */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,6 +336,55 @@
 			path = CustomDropDownView;
 			sourceTree = "<group>";
 		};
+		E4A901482D4BAD2C007080AC /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				E4A901492D4BAD2C007080AC /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		E4A9014B2D4BADD0007080AC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E4A9014C2D4BADE6007080AC /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		E4A9014D2D4BAE0D007080AC /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E4A9014F2D4BAE1A007080AC /* ViewModel */,
+				E4A9014E2D4BAE14007080AC /* Views */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		E4A9014E2D4BAE14007080AC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A95D7A352D4BA59D004FB6CA /* ServicesListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E4A9014F2D4BAE1A007080AC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A95D7A362D4BA59D004FB6CA /* ServicesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E4BBCFD82D4A24BF004AA735 = {
 			isa = PBXGroup;
 			children = (
@@ -375,11 +409,11 @@
 		E4BBCFE32D4A24BF004AA735 /* DFComponents */ = {
 			isa = PBXGroup;
 			children = (
-				E4BBD0242D4A4A53004AA735 /* Data */,
+				E4A9014C2D4BADE6007080AC /* Root */,
 				AAE5CABA2D4A505100FDA699 /* Common */,
+				E4BBD0242D4A4A53004AA735 /* Data */,
+				E4A9014B2D4BADD0007080AC /* Resources */,
 				E4BBD00F2D4A24EA004AA735 /* Presentation */,
-				E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */,
-				E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */,
 				E4BBCFEA2D4A24C2004AA735 /* DFComponents.entitlements */,
 				E4BBCFEB2D4A24C2004AA735 /* Preview Content */,
 			);
@@ -414,7 +448,8 @@
 		E4BBD00F2D4A24EA004AA735 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				A95D7A382D4BA59D004FB6CA /* Views */,
+				E4A901482D4BAD2C007080AC /* Splash */,
+				E4A9014D2D4BAE0D007080AC /* Main */,
 				E44926C22D4B8AAB00EA5D5E /* FormView */,
 				E4BBD0192D4A2AFF004AA735 /* UIComponents */,
 				E4BBD0112D4A250D004AA735 /* Modifiers */,
@@ -658,6 +693,7 @@
 				E4BBD0142D4A25C6004AA735 /* DFComponentsView.swift in Sources */,
 				E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */,
 				E4BBD0272D4A4A7F004AA735 /* CountryDTO.swift in Sources */,
+				E4A9014A2D4BAD2C007080AC /* SplashView.swift in Sources */,
 				A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */,
 				E4BBD01E2D4A47BD004AA735 /* DropDownView.swift in Sources */,
 				AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */,
@@ -671,8 +707,8 @@
 				E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */,
 				E489E81E2D4A6A15007EA370 /* ColorExtension.swift in Sources */,
 				AAE5CAC62D4A61FD00FDA699 /* QuestionsRadioButton.swift in Sources */,
-				A95D7A392D4BA59D004FB6CA /* FormListViewModel.swift in Sources */,
-				A95D7A3A2D4BA59D004FB6CA /* FormListView.swift in Sources */,
+				A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */,
+				A95D7A3A2D4BA59D004FB6CA /* ServicesListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

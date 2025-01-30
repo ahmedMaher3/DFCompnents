@@ -11,7 +11,7 @@ import SwiftUI
 struct DFComponentsApp: App {
     var body: some Scene {
         WindowGroup {
-            DFComponentsView()
+            SplashView()
             // test commit/push
         }
     }

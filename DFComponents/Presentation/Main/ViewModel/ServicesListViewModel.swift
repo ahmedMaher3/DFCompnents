@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FormListViewModel: ObservableObject {
+class ServicesListViewModel: ObservableObject {
     @Published var forms: [FormDTO] = []
     @Published var isLoading: Bool = true
     
@@ -20,8 +20,8 @@ class FormListViewModel: ObservableObject {
     func fetchForms() async {
         isLoading = true
         
-        try? await Task.sleep(nanoseconds: 2_000_000_000)
-        
+      //  try? await Task.sleep(nanoseconds: 2_000_000_000)
+
         let sampleForms: [FormDTO] = [
             FormDTO(name: "Contact Form", fields: ["Name", "Email", "Message"]),
             FormDTO(name: "Survey Form", fields: ["Rating", "Comments"]),

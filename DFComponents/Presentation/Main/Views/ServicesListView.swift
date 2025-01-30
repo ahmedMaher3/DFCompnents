@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct FormListView: View {
-    @StateObject var viewModel = FormListViewModel()
+struct ServicesListView: View {
+    @StateObject var viewModel = ServicesListViewModel()
     @State private var searchText: String = ""
     
     var body: some View {
@@ -22,12 +22,13 @@ struct FormListView: View {
                             NavigationLink(destination: FormView(title: form.name)) {
                                 FormRow(form: form)
                             }
+                  
                         }
                     }
                     .searchable(text: $searchText, prompt: "Forms Search")
                 }
             }
-            .navigationTitle("Forms")
+            .navigationTitle("Services")
         }
     }
     
@@ -61,5 +62,5 @@ struct FormRow: View {
 
 
 #Preview {
-    FormListView()
+    ServicesListView()
 }
