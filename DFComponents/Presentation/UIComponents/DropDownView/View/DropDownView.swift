@@ -16,21 +16,24 @@ struct DropDownView: View {
             HStack {
                 Text(title)
                     .font(.subheadline)
+                    .foregroundColor(Color.gray)
                 Spacer()
-                Image(systemName: "chevron.down.circle.fill")
+                Image("Mask")
                     .font(.subheadline)
-                    .foregroundColor(.black)
-                    .onTapGesture {
-                        withAnimation {
-                            isBottomSheetPresented.toggle()
-                        }
-                    }
+                    .foregroundColor(Color.gray)
+
             }
             .padding()
             .background(
                       RoundedRectangle(cornerRadius: 8)
-                          .stroke(Color.gray, lineWidth: 1)
+                          .stroke(Color.gray.opacity(0.5), lineWidth: 1)
                   )
+            .contentShape(Rectangle()) 
+            .onTapGesture {
+                withAnimation {
+                    isBottomSheetPresented.toggle()
+                }
+            }
 
             .sheet(isPresented: $isBottomSheetPresented) {
                 BottomSheetView(viewModel: viewModel)
@@ -45,6 +48,16 @@ struct BottomSheetView: View {
 
     var body: some View {
         VStack {
+            VStack (alignment: .leading){
+                Text("Where do you live ")
+                    .font(.title3)
+                    .padding(.top,25)
+                    .padding(.horizontal,20)
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(Color.gray.opacity(0.5))
+                    .padding(.vertical, 10)
+            }
             SearchBar(text: $searchText)
             List(viewModel.filteredCountries(searchText: searchText)) { country in
                 HStack {
@@ -61,7 +74,7 @@ struct BottomSheetView: View {
             }
             .listStyle(PlainListStyle())
         }
-        .padding(.top, 20)
+        //.padding(.top, 20)
     }
 }
 

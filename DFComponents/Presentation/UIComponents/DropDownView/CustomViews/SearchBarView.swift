@@ -13,7 +13,7 @@ struct SearchBar: View {
 
     var body: some View {
         TextField("Search countries", text: $text)
-            .padding(7)
+            .padding(12)
             .padding(.horizontal, 25)
             .background(Color.gray.opacity(0.1))
             .cornerRadius(10)
