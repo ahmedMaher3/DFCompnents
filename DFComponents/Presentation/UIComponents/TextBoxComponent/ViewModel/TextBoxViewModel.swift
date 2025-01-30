@@ -41,6 +41,13 @@ class TextBoxViewModel: ObservableObject {
     // MARK: - Validation
     func validateInput() {
         hasInteracted = true
+        // Clear the error message if text is empty
+        if text.isEmpty {
+            errorMessage = nil
+            isValid = false
+            return
+        }
+        // Reset the error message before validation
         errorMessage = nil
 
         if config.requiresPrefix, selectedPrefix == nil {
@@ -52,7 +59,6 @@ class TextBoxViewModel: ObservableObject {
         } else if config.requiresSuffix, selectedSuffix == nil {
             errorMessage = "Please select a suffix."
         }
-
         isValid = errorMessage == nil
     }
 
