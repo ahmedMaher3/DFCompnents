@@ -29,6 +29,9 @@ class FormListViewModel: ObservableObject {
             FormDTO(name: "Feedback Form", fields: ["Feedback"]),
             FormDTO(name: "Inspection Form", fields: ["Inspection Date", "Issues Found"]),
             FormDTO(name: "Checklist Form", fields: ["Checklist Items"]),
+            FormDTO(name: "Order Form", fields: ["Order Number", "Items"]),
+            FormDTO(name: "Quote Form", fields: ["Quote Number", "Items"]),
+            FormDTO(name: "Purchase Order Form", fields: ["PO Number", "Items"]),
         ]
         
         await MainActor.run {
