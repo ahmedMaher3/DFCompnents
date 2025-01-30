@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ErrorMessageView: View {
+struct ErrorMessageRadioButtonView: View {
     let errorMessage: String
 
     var body: some View {

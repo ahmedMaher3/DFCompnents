@@ -28,7 +28,7 @@ struct QuestionsRadioButton: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             // Display error message if validation fails
                             if let errorMessage = radioButtonVM.validationErrors[questionID], !errorMessage.isEmpty {
-                                ErrorMessageView(errorMessage: errorMessage)
+                                ErrorMessageRadioButtonView(errorMessage: errorMessage)
                             }
                         }
                         .padding(.bottom, 16)

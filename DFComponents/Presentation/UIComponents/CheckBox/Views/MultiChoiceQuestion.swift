@@ -78,7 +78,7 @@ struct MultiChoiceQuestion: View {
                         )
                         //MARK: - Error
                         if let errorMessage = checkBoxVM.validationErrors[questionID], !errorMessage.isEmpty {
-                            ErrorMessageView(
+                            ErrorMessageCheckBoxView(
                                 errorMessage: errorMessage
                             )
                         }
@@ -87,7 +87,7 @@ struct MultiChoiceQuestion: View {
                 .listStyle(.automatic)
             }
 
-            SubmitButtonView(
+            SubmitButtonCheckBoxView(
                 checkBoxState: checkBoxVM
             )
         }
