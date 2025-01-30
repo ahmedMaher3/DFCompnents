@@ -42,7 +42,6 @@
 		E4BBCFF72D4A24C3004AA735 /* DFComponentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBCFF62D4A24C3004AA735 /* DFComponentsTests.swift */; };
 		E4BBD0012D4A24C3004AA735 /* DFComponentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD0002D4A24C3004AA735 /* DFComponentsUITests.swift */; };
 		E4BBD0032D4A24C3004AA735 /* DFComponentsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD0022D4A24C3004AA735 /* DFComponentsUITestsLaunchTests.swift */; };
-		E4BBD0142D4A25C6004AA735 /* DFComponentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD0132D4A25C6004AA735 /* DFComponentsView.swift */; };
 		E4BBD01B2D4A2B24004AA735 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E4BBD01A2D4A2B24004AA735 /* README.md */; };
 		E4BBD01E2D4A47BD004AA735 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD01D2D4A47BD004AA735 /* DropDownView.swift */; };
 		E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD01F2D4A49BC004AA735 /* SearchBarView.swift */; };
@@ -110,7 +109,6 @@
 		E4BBCFFC2D4A24C3004AA735 /* DFComponentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DFComponentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BBD0002D4A24C3004AA735 /* DFComponentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsUITests.swift; sourceTree = "<group>"; };
 		E4BBD0022D4A24C3004AA735 /* DFComponentsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		E4BBD0132D4A25C6004AA735 /* DFComponentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsView.swift; sourceTree = "<group>"; };
 		E4BBD01A2D4A2B24004AA735 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E4BBD01D2D4A47BD004AA735 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		E4BBD01F2D4A49BC004AA735 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
@@ -448,9 +446,6 @@
 		E4BBD00F2D4A24EA004AA735 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				E4A901482D4BAD2C007080AC /* Splash */,
-				E4A9014D2D4BAE0D007080AC /* Main */,
-				E44926C22D4B8AAB00EA5D5E /* FormView */,
 				E4BBD0192D4A2AFF004AA735 /* UIComponents */,
 				E4BBD0112D4A250D004AA735 /* Modifiers */,
 				E4BBD0102D4A24FE004AA735 /* Scenes */,
@@ -461,7 +456,9 @@
 		E4BBD0102D4A24FE004AA735 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				E4BBD0132D4A25C6004AA735 /* DFComponentsView.swift */,
+				E4A901482D4BAD2C007080AC /* Splash */,
+				E4A9014D2D4BAE0D007080AC /* Main */,
+				E44926C22D4B8AAB00EA5D5E /* FormView */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -690,7 +687,6 @@
 				AAE5CA8C2D4A448B00FDA699 /* RadioButtonView.swift in Sources */,
 				AAE5CAC42D4A561000FDA699 /* RadioButtonViewModel.swift in Sources */,
 				AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */,
-				E4BBD0142D4A25C6004AA735 /* DFComponentsView.swift in Sources */,
 				E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */,
 				E4BBD0272D4A4A7F004AA735 /* CountryDTO.swift in Sources */,
 				E4A9014A2D4BAD2C007080AC /* SplashView.swift in Sources */,
