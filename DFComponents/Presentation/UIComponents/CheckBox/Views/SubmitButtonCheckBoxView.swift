@@ -1,5 +1,5 @@
 //
-//  SubmitButtonView.swift
+//  SubmitButtonCheckBoxView.swift
 //  DFComponents
 //
 //  Created by Eslam on 29/01/2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SubmitButtonView: View {
+struct SubmitButtonCheckBoxView: View {
     @StateObject var checkBoxState: CheckBoxViewModel
     var body: some View {
         Button(action: {
