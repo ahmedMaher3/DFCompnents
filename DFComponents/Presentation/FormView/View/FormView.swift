@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
+    var title: String = ""
+    
     var body: some View {
         List {
             // DropDownView
@@ -25,6 +27,8 @@ struct FormView: View {
                 .listRowSeparator(.hidden)
             MultiChoiceQuestion(checkBoxVM: viewModel.checkBoxViewModel)
         }
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
         .padding(.top, 10)
         .listRowSeparator(.hidden)
         .listStyle(PlainListStyle())

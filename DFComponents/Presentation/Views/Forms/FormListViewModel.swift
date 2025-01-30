@@ -25,7 +25,10 @@ class FormListViewModel: ObservableObject {
         let sampleForms: [FormDTO] = [
             FormDTO(name: "Contact Form", fields: ["Name", "Email", "Message"]),
             FormDTO(name: "Survey Form", fields: ["Rating", "Comments"]),
-            FormDTO(name: "Application Form", fields: ["Name", "Address", "Experience"])
+            FormDTO(name: "Application Form", fields: ["Name", "Address", "Experience"]),
+            FormDTO(name: "Feedback Form", fields: ["Feedback"]),
+            FormDTO(name: "Inspection Form", fields: ["Inspection Date", "Issues Found"]),
+            FormDTO(name: "Checklist Form", fields: ["Checklist Items"]),
         ]
         
         await MainActor.run {

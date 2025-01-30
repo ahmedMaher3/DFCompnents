@@ -18,8 +18,10 @@ struct FormListView: View {
                 } else {
                     List {
                         ForEach(viewModel.forms) { form in
-                            NavigationLink(destination: FormView()) {
+                            NavigationLink(destination: FormView(title: form.name)) {
                                 Text(form.name)
+                                    .font(.title)
+                                    .padding()
                             }
                         }
                     }
