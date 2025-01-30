@@ -15,21 +15,21 @@ final class RadioButtonViewModel: ObservableObject {
         "What's your fav hassan?",
         "What's your fav nasr?"
     ]
-    @Published var radioButtonModels: [String: [RadioButtonModel]] = [
-        "question0": RadioButtonModel.elementsRadioButton,
-        "question1": RadioButtonModel.elementsRadioButton,
-        "question2": RadioButtonModel.elementsRadioButton
+    @Published var radioButtonModels: [String: [RadioButtonDTO]] = [
+        "question0": RadioButtonDTO.elementsRadioButton,
+        "question1": RadioButtonDTO.elementsRadioButton,
+        "question2": RadioButtonDTO.elementsRadioButton
     ]
     @Published var validationErrors: [String: String] = [:]
 
-    var callbackAction: (RadioButtonModel?) -> Void
+    var callbackAction: (RadioButtonDTO?) -> Void
 
-    init(callbackAction: @escaping (RadioButtonModel?) -> Void = { _ in }) {
+    init(callbackAction: @escaping (RadioButtonDTO?) -> Void = { _ in }) {
         self.callbackAction = callbackAction
     }
 
     // Action to toggle the selection state for each question
-    func onTapRadioButton(questionID: String, item: RadioButtonModel) {
+    func onTapRadioButton(questionID: String, item: RadioButtonDTO) {
         // Check if the current item is selected for this question
         if selectedItems[questionID] == item.id {
             // Deselect if the same item is clicked again
@@ -44,7 +44,7 @@ final class RadioButtonViewModel: ObservableObject {
         }
     }
     // Get the selected item for a specific question
-    func selectedItem(for questionID: String) -> RadioButtonModel? {
+    func selectedItem(for questionID: String) -> RadioButtonDTO? {
         guard let selectedItemID = selectedItems[questionID] else { return nil }
         let models = radioButtonModels[questionID] ?? []
         return models.first { $0.id == selectedItemID }

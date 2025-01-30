@@ -15,10 +15,10 @@ class TextBoxViewModel: ObservableObject {
     @Published var selectedPrefix: String?
     @Published var selectedSuffix: String?
     
-    let config: TextBoxConfiguration
+    let config: TextBoxDTO
     var hasInteracted: Bool = false
 
-    init(config: TextBoxConfiguration) {
+    init(config: TextBoxDTO) {
         self.config = config
         
         // Set default prefix and suffix if only one option is available

@@ -1,5 +1,5 @@
 //
-//  TextBoxConfiguration.swift
+//  TextBoxDTO.swift
 //  LOTRConverter
 //
 //  Created by hassan elshaer on 28/01/2025.
@@ -9,7 +9,7 @@ import Foundation
 
 
 // MARK: - TextBoxConfiguration
-struct TextBoxConfiguration: Hashable {
+struct TextBoxDTO: Hashable {
     var title: String
     var subtitle: String?
     var placeholder: String

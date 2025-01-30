@@ -7,8 +7,8 @@
 
 import SwiftUI
 struct CheckBoxStyle: ToggleStyle {
-    let questionID: String  // The unique identifier for the question
-    let item: CheckBoxModel  // The checkbox item to be displayed
+    let questionID: String 
+    let item: CheckBoxDTO
 
     func makeBody(configuration: Configuration) -> some View {
         HStack {

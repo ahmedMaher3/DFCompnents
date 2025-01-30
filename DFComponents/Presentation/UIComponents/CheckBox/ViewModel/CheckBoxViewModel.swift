@@ -14,21 +14,21 @@ final class CheckBoxViewModel: ObservableObject {
         "What's your favorite multicolor, hassan?",
         "What's your favorite multicolor, nasr?"
     ]
-    @Published var checkBoxModels: [String: [CheckBoxModel]] = [
-        "question0": CheckBoxModel.elementsCheckBox,
-        "question1": CheckBoxModel.elementsCheckBox,
-        "question2": CheckBoxModel.elementsCheckBox
+    @Published var checkBoxModels: [String: [CheckBoxDTO]] = [
+        "question0": CheckBoxDTO.elementsCheckBox,
+        "question1": CheckBoxDTO.elementsCheckBox,
+        "question2": CheckBoxDTO.elementsCheckBox
     ]
     @Published var validationErrors: [String: String] = [:]
 
-    var callbackAction: (CheckBoxModel?) -> Void
+    var callbackAction: (CheckBoxDTO?) -> Void
 
-    init(callbackAction: @escaping (CheckBoxModel?) -> Void = { _ in }) {
+    init(callbackAction: @escaping (CheckBoxDTO?) -> Void = { _ in }) {
         self.callbackAction = callbackAction
     }
 
     // Action to toggle the selection state for each checkbox item
-    func onTapCheckBox(questionID: String, item: CheckBoxModel) {
+    func onTapCheckBox(questionID: String, item: CheckBoxDTO) {
         if selectedItems[questionID]?.contains(item.id) == true {
             // Deselect if the same item is clicked again
             selectedItems[questionID]?.remove(item.id)
@@ -44,7 +44,7 @@ final class CheckBoxViewModel: ObservableObject {
             validationErrors[questionID] = nil
         }
     }
-    func selectedItems(for questionID: String) -> Set<CheckBoxModel> {
+    func selectedItems(for questionID: String) -> Set<CheckBoxDTO> {
         guard let selectedItemIDs = selectedItems[questionID] else { return [] }
         let models = checkBoxModels[questionID] ?? []
         return Set(models.filter { selectedItemIDs.contains($0.id) })

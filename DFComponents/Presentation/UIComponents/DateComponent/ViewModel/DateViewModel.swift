@@ -14,8 +14,8 @@ class DateFieldViewModel: ObservableObject {
         return dateValue.formatted(date: format.date, time: format.time)
     }
 
-    let field: DateField
-    
+    let field: DateDTO
+
     init() {
         field = .init(title: "Date", representation: .date, value: .now)
     }

@@ -12,7 +12,7 @@ import Combine
 @MainActor
 class DropDownViewModel: ObservableObject {
 
-    @Published var countries: [Country] = []
+    @Published var countries: [CountryDTO] = []
 
     init() {
         initializeLocationAndData()
@@ -25,7 +25,7 @@ class DropDownViewModel: ObservableObject {
         }
     }
 
-    func filteredCountries(searchText: String) -> [Country] {
+    func filteredCountries(searchText: String) -> [CountryDTO] {
         if searchText.isEmpty {
             return countries
         } else {
@@ -36,11 +36,11 @@ class DropDownViewModel: ObservableObject {
     @MainActor
     func fetchCountries() async {
          countries = [
-            Country(name: "United States", capital: "Washington, D.C.", flag: "🇺🇸"),
-            Country(name: "Canada", capital: "Ottawa", flag: "🇨🇦"),
-            Country(name: "Japan", capital: "Tokyo", flag: "🇯🇵"),
-            Country(name: "Germany", capital: "Berlin", flag: "🇩🇪"),
-            Country(name: "Australia", capital: "Canberra", flag: "🇦🇺")
+            CountryDTO(name: "United States", capital: "Washington, D.C.", flag: "🇺🇸"),
+            CountryDTO(name: "Canada", capital: "Ottawa", flag: "🇨🇦"),
+            CountryDTO(name: "Japan", capital: "Tokyo", flag: "🇯🇵"),
+            CountryDTO(name: "Germany", capital: "Berlin", flag: "🇩🇪"),
+            CountryDTO(name: "Australia", capital: "Canberra", flag: "🇦🇺")
         ]
 
     }

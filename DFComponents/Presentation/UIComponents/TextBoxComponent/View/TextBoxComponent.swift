@@ -70,7 +70,7 @@ struct TextBoxComponent: View {
 
 // MARK: - Preview
 #Preview {
-    let config = TextBoxConfiguration(
+    let config = TextBoxDTO(
         title: "What is your Name?",
         subtitle: nil,
         placeholder: "Enter your name",

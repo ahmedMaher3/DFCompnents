@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DateField: Identifiable {
+struct DateDTO: Identifiable {
     var id = UUID()
     var title: String
     var representation: DateRepresentation

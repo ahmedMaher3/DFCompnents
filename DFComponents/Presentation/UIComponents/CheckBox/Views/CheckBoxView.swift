@@ -11,7 +11,7 @@ import SwiftUI
 struct CheckBoxView: View {
     @StateObject var checkBoxState: CheckBoxViewModel
     let questionID: String
-    let item: CheckBoxModel
+    let item: CheckBoxDTO
 
     var body: some View {
         Toggle(isOn: Binding(
