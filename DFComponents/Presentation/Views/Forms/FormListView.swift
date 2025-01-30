@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FormListView: View {
-    @StateObject var viewModel = FormViewModel()
+    @StateObject var viewModel = FormListViewModel()
     
     var body: some View {
         NavigationView {

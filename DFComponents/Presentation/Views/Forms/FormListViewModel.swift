@@ -1,5 +1,5 @@
 //
-//  FormViewModel.swift
+//  FormListViewModel.swift
 //  DFComponents
 //
 //  Created by Yasser Osama on 1/30/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FormViewModel: ObservableObject {
+class FormListViewModel: ObservableObject {
     @Published var forms: [FormDTO] = []
     @Published var isLoading: Bool = true
     
