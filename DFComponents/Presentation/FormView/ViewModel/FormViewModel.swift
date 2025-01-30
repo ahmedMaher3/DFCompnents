@@ -1,0 +1,20 @@
+//
+//  FormViewModel.swift
+//  DFComponents
+//
+//  Created by hassan elshaer on 30/01/2025.
+//
+
+import SwiftUI
+
+@MainActor
+class FormViewModel: ObservableObject {
+    @Published var dropdownViewModel: DropDownViewModel = DropDownViewModel()
+    @Published var dateFieldViewModel: DateFieldViewModel = DateFieldViewModel()
+    @Published var checkBoxViewModel: CheckBoxViewModel = CheckBoxViewModel()
+    @Published var textBoxViewModel: TextBoxViewModel
+    
+    init(textBoxConfig: TextBoxDTO) {
+        self.textBoxViewModel = TextBoxViewModel(config: textBoxConfig)
+    }
+}
