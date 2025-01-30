@@ -57,6 +57,12 @@ final class RadioButtonViewModel: ObservableObject {
                 validationErrors[questionId] = nil
             }
         }
+        if validationErrors.values.contains(where: { $0.isEmpty == false }) {
+            print("Validation failed: Please answer all questions.")
+        } else {
+            print("Form submitted successfully!")
+            // Handle form submission here
+        }
     }
     func errorMessage(for questionId: String) -> String? {
         return validationErrors[questionId]
