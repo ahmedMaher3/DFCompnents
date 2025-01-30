@@ -36,7 +36,7 @@ struct QuestionsRadioButton: View {
                 }
                 .padding(16)
             }
-            SubmitButtonView(viewModel: radioButtonVM)
+//            SubmitButtonView(viewModel: radioButtonVM)
         }
     }
 }

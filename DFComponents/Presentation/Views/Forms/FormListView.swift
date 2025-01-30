@@ -14,7 +14,7 @@ struct FormListView: View {
         NavigationView {
             Group {
                 if viewModel.isLoading {
-                    ProgressView()
+//                    ProgressView()
                 } else {
                     List {
                         ForEach(viewModel.forms) { form in
