@@ -22,7 +22,7 @@ class RadioButtonDTO: Identifiable {
     static var elementsRadioButton: [RadioButtonDTO] {
         return [
 
-            RadioButtonDTO(id:  "1", name: "Red"),
+            RadioButtonDTO(id: "1", name: "Red"),
 
             RadioButtonDTO(id: "2", name: "Green"),
 
