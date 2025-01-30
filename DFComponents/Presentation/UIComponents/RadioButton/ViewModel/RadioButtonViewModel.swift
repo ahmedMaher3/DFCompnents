@@ -35,7 +35,7 @@ final class RadioButtonViewModel: ObservableObject {
             // Deselect if the same item is clicked again
             selectedItems[questionID] = nil
             callbackAction(nil)
-            validationErrors[questionID] = "جاوب علي ام السؤال."
+            validationErrors[questionID] = "Please select an answer."
         } else {
             // Select the new item
             selectedItems[questionID] = item.id
@@ -52,7 +52,7 @@ final class RadioButtonViewModel: ObservableObject {
     func validate() {
         for(questionId, _) in radioButtonModels {
             if selectedItems[questionId] == nil {
-                validationErrors[questionId] = "جاوب علي ام السؤال."
+                validationErrors[questionId] = "Please select an answer."
             } else {
                 validationErrors[questionId] = nil
             }
