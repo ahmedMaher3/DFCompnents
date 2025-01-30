@@ -51,11 +51,16 @@ final class CheckBoxViewModel: ObservableObject {
     }
     func validate() {
         validationErrors.removeAll()
-
         for (questionID, _) in checkBoxModels {
             if selectedItems[questionID]?.isEmpty ?? true {
                 validationErrors[questionID] = "Please select at least one answer."
             }
+        }
+        if validationErrors.values.contains(where: { $0.isEmpty == false }) {
+            print("Validation failed: Please answer all questions.")
+        } else {
+            print("Form submitted successfully!")
+            // Handle form submission here
         }
     }
 
