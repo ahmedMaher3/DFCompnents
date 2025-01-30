@@ -86,9 +86,7 @@ struct MultiChoiceQuestion: View {
                 .listStyle(.automatic)
             }
 
-            SubmitButtonCheckBoxView(
-                checkBoxVM: checkBoxVM
-            )
+            SubmitButtonView(viewModel: checkBoxVM)
         }
     }
 }

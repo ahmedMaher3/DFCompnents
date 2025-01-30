@@ -1,17 +1,18 @@
 //
-//  SubmitButtonCheckBoxView.swift
+//  SubmitControlView.swift
 //  DFComponents
 //
-//  Created by Eslam on 29/01/2025.
+//  Created by Eslam on 30/01/2025.
 //
 
 import SwiftUI
 
-struct SubmitButtonCheckBoxView: View {
-    @StateObject var checkBoxVM: CheckBoxViewModel
+struct SubmitButtonView<ViewModel: SubmitControlProtocol>: View {
+    @StateObject var viewModel: ViewModel
     var body: some View {
         Button(action: {
-            checkBoxVM.validate()
+            viewModel.validate()
+
         }) {
             Text("Submit")
                 .fontWeight(.bold)
@@ -19,6 +20,5 @@ struct SubmitButtonCheckBoxView: View {
                 .frame(width: 100, height: 50)
         }
         .padding(.top, 8)
-        .frame(maxWidth: .infinity, alignment: .center)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuestionsRadioButton: View {
     @ObservedObject var radioButtonVM: RadioButtonViewModel
-
+    
     var body: some View {
         VStack {
             ScrollView {
@@ -22,7 +22,7 @@ struct QuestionsRadioButton: View {
                             .font(.headline)
                             .padding(.bottom, 8)
                             .foregroundColor(radioButtonVM.validationErrors[questionID] != nil ? .red : .primary)
-
+                            
                             RadioButtonView(radioButtonVM: radioButtonVM,
                                             questionID: questionID)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -36,7 +36,7 @@ struct QuestionsRadioButton: View {
                 }
                 .padding(16)
             }
-            SubmitButtonView(radioButtonVM: radioButtonVM)
+            SubmitButtonView(viewModel: radioButtonVM)
         }
     }
 }
