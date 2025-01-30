@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FormListView: View {
     @StateObject var viewModel = FormListViewModel()
+    @State private var searchText: String = ""
     
     var body: some View {
         NavigationView {
@@ -17,20 +18,47 @@ struct FormListView: View {
                     ProgressView()
                 } else {
                     List {
-                        ForEach(viewModel.forms) { form in
+                        ForEach(filteredForms) { form in
                             NavigationLink(destination: FormView(title: form.name)) {
-                                Text(form.name)
-                                    .font(.title)
-                                    .padding()
+                                FormRow(form: form)
                             }
                         }
                     }
+                    .searchable(text: $searchText, prompt: "Forms Search")
                 }
             }
             .navigationTitle("Forms")
         }
     }
+    
+    var filteredForms: [FormDTO] {
+        guard !searchText.isEmpty else {
+            return viewModel.forms
+        }
+        
+        return viewModel.forms.filter {
+            $0.name.lowercased().contains(searchText.lowercased())
+        }
+    }
 }
+
+struct FormRow: View {
+    let form: FormDTO
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) { // Add spacing within the row
+            Text(form.name)
+                .font(.title2)
+                .foregroundColor(.primaryBlue)
+            
+            Text(form.fields.joined(separator: ", "))
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+        }
+        .padding(.vertical, 12)
+    }
+}
+
 
 #Preview {
     FormListView()
