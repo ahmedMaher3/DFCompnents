@@ -39,7 +39,7 @@ final class CheckBoxViewModel: ObservableObject {
             callbackAction(item)
         }
         if selectedItems[questionID]?.isEmpty ?? true {
-            validationErrors[questionID] = "ياعم اختار اجابة واحدة الله يرضي عليك."
+            validationErrors[questionID] = "Please select at least one answer."
         } else {
             validationErrors[questionID] = nil
         }
@@ -54,7 +54,7 @@ final class CheckBoxViewModel: ObservableObject {
 
         for (questionID, _) in checkBoxModels {
             if selectedItems[questionID]?.isEmpty ?? true {
-                validationErrors[questionID] = "ياعم اختار اجابة واحدة الله يرضي عليك."
+                validationErrors[questionID] = "Please select at least one answer."
             }
         }
     }
