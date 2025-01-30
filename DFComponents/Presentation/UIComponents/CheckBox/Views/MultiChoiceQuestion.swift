@@ -76,8 +76,9 @@ struct MultiChoiceQuestion: View {
                         )
                         //MARK: - Error
                         if let errorMessage = checkBoxVM.validationErrors[questionID], !errorMessage.isEmpty {
-                            ErrorMessageCheckBoxView(
-                                errorMessage: errorMessage
+                            ErrorMessageView(
+                                errorMessage: errorMessage,
+                                imageName: "xmark.circle.fill"
                             )
                         }
                     }

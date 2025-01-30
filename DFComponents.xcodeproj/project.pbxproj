@@ -12,9 +12,8 @@
 		A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */; };
 		AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */; };
 		AA3F83AE2D4B7DFA00C7A6C0 /* SubmitButtonCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83AD2D4B7DFA00C7A6C0 /* SubmitButtonCheckBoxView.swift */; };
-		AA3F83AF2D4B7DFA00C7A6C0 /* ErrorMessageCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83AC2D4B7DFA00C7A6C0 /* ErrorMessageCheckBoxView.swift */; };
 		AA3F83B22D4B7E1300C7A6C0 /* SubmitButtonRadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83B12D4B7E1300C7A6C0 /* SubmitButtonRadioButtonView.swift */; };
-		AA3F83B32D4B7E1300C7A6C0 /* ErrorMessageRadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83B02D4B7E1300C7A6C0 /* ErrorMessageRadioButtonView.swift */; };
+		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
 		AAD1E7C02D4B7F9400442BA4 /* RadioButtonDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */; };
 		AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */; };
 		AAD562352D4AABE500C19A11 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562342D4AABE500C19A11 /* CheckBoxView.swift */; };
@@ -70,10 +69,9 @@
 		A95D7A272D4B812E004FB6CA /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
 		AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxDTO.swift; sourceTree = "<group>"; };
-		AA3F83AC2D4B7DFA00C7A6C0 /* ErrorMessageCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageCheckBoxView.swift; sourceTree = "<group>"; };
 		AA3F83AD2D4B7DFA00C7A6C0 /* SubmitButtonCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonCheckBoxView.swift; sourceTree = "<group>"; };
-		AA3F83B02D4B7E1300C7A6C0 /* ErrorMessageRadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageRadioButtonView.swift; sourceTree = "<group>"; };
 		AA3F83B12D4B7E1300C7A6C0 /* SubmitButtonRadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonRadioButtonView.swift; sourceTree = "<group>"; };
+		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonDTO.swift; sourceTree = "<group>"; };
 		AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxViewModel.swift; sourceTree = "<group>"; };
 		AAD562342D4AABE500C19A11 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
@@ -168,6 +166,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		AA84AE132D4B8B8E0057D161 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		AAD5622F2D4AABAA00C19A11 /* CheckBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,7 +187,6 @@
 		AAD562302D4AABB300C19A11 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AA3F83AC2D4B7DFA00C7A6C0 /* ErrorMessageCheckBoxView.swift */,
 				AA3F83AD2D4B7DFA00C7A6C0 /* SubmitButtonCheckBoxView.swift */,
 				AAD562342D4AABE500C19A11 /* CheckBoxView.swift */,
 				AAD562362D4AABF300C19A11 /* MultiChoiceQuestion.swift */,
@@ -228,6 +233,7 @@
 		AAE5CABA2D4A505100FDA699 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AA84AE132D4B8B8E0057D161 /* Views */,
 				AAE5CA8D2D4A4D6F00FDA699 /* Extenstions */,
 			);
 			path = Common;
@@ -236,7 +242,6 @@
 		AAE5CAC12D4A55B400FDA699 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AA3F83B02D4B7E1300C7A6C0 /* ErrorMessageRadioButtonView.swift */,
 				AA3F83B12D4B7E1300C7A6C0 /* SubmitButtonRadioButtonView.swift */,
 				AAE5CA8B2D4A448B00FDA699 /* RadioButtonView.swift */,
 				AAE5CAC52D4A61FD00FDA699 /* QuestionsRadioButton.swift */,
@@ -573,7 +578,6 @@
 				E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */,
 				AA3F83B22D4B7E1300C7A6C0 /* SubmitButtonRadioButtonView.swift in Sources */,
 				A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */,
-				AA3F83B32D4B7E1300C7A6C0 /* ErrorMessageRadioButtonView.swift in Sources */,
 				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
 				A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
@@ -593,9 +597,9 @@
 				E4BBD01E2D4A47BD004AA735 /* DropDownView.swift in Sources */,
 				AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */,
 				E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */,
+				AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */,
 				E489E8172D4A3B48007EA370 /* TextBoxDTO.swift in Sources */,
 				AA3F83AE2D4B7DFA00C7A6C0 /* SubmitButtonCheckBoxView.swift in Sources */,
-				AA3F83AF2D4B7DFA00C7A6C0 /* ErrorMessageCheckBoxView.swift in Sources */,
 				AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */,
 				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
 				E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */,
