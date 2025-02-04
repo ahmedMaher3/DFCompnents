@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		A95D7A302D4B8B6F004FB6CA /* FormDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A2F2D4B8B6C004FB6CA /* FormDTO.swift */; };
 		A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A362D4BA59D004FB6CA /* ServicesListViewModel.swift */; };
 		A95D7A3A2D4BA59D004FB6CA /* ServicesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A352D4BA59D004FB6CA /* ServicesListView.swift */; };
+		A9BF45D52D50DB15003F2333 /* SliderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF45D42D50DB0D003F2333 /* SliderDTO.swift */; };
 		AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */; };
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
 		AA84AE172D4B94090057D161 /* SubmitControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE162D4B94090057D161 /* SubmitControlView.swift */; };
@@ -76,6 +77,7 @@
 		A95D7A2F2D4B8B6C004FB6CA /* FormDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDTO.swift; sourceTree = "<group>"; };
 		A95D7A352D4BA59D004FB6CA /* ServicesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListView.swift; sourceTree = "<group>"; };
 		A95D7A362D4BA59D004FB6CA /* ServicesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListViewModel.swift; sourceTree = "<group>"; };
+		A9BF45D42D50DB0D003F2333 /* SliderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderDTO.swift; sourceTree = "<group>"; };
 		AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxDTO.swift; sourceTree = "<group>"; };
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AA84AE162D4B94090057D161 /* SubmitControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitControlView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,11 @@
 		E4BBD0222D4A4A29004AA735 /* DropDownViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownViewModel.swift; sourceTree = "<group>"; };
 		E4BBD0262D4A4A7F004AA735 /* CountryDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A9BF45D62D50DB5D003F2333 /* SliderComponent */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SliderComponent; sourceTree = "<group>"; };
+		A9BF45E02D511E75003F2333 /* Image-File Upload */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Image-File Upload"; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E4BBCFDE2D4A24BF004AA735 /* Frameworks */ = {
@@ -473,6 +480,8 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A9BF45E02D511E75003F2333 /* Image-File Upload */,
+				A9BF45D62D50DB5D003F2333 /* SliderComponent */,
 				A95D7A232D4B8110004FB6CA /* DateComponent */,
 				E4BBD01C2D4A47A2004AA735 /* DropDownView */,
 				AAD5622F2D4AABAA00C19A11 /* CheckBox */,
@@ -513,6 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				A95D7A242D4B8127004FB6CA /* DateDTO.swift */,
+				A9BF45D42D50DB0D003F2333 /* SliderDTO.swift */,
 				E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */,
 				E4BBD0262D4A4A7F004AA735 /* CountryDTO.swift */,
 				AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */,
@@ -552,6 +562,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A9BF45D62D50DB5D003F2333 /* SliderComponent */,
+				A9BF45E02D511E75003F2333 /* Image-File Upload */,
 			);
 			name = DFComponents;
 			productName = DFComponents;
@@ -672,6 +686,7 @@
 				E4BBD0232D4A4A29004AA735 /* DropDownViewModel.swift in Sources */,
 				E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */,
 				E44926C42D4B8AD200EA5D5E /* FormView.swift in Sources */,
+				A9BF45D52D50DB15003F2333 /* SliderDTO.swift in Sources */,
 				AA84AE1A2D4B94340057D161 /* SubmitControlProtocol.swift in Sources */,
 				AA84AE172D4B94090057D161 /* SubmitControlView.swift in Sources */,
 				A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */,

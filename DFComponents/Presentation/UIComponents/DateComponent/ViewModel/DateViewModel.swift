@@ -9,6 +9,7 @@ import SwiftUI
 
 class DateFieldViewModel: ObservableObject {
     @Published var dateValue: Date = .now
+    
     var formattedValue: String {
         let format = getFormat()
         return dateValue.formatted(date: format.date, time: format.time)
