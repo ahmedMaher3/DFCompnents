@@ -457,6 +457,7 @@
 			children = (
 				E4BBD0192D4A2AFF004AA735 /* UIComponents */,
 				E4BBD0112D4A250D004AA735 /* Modifiers */,
+				AA32D0BB2D537D0C000027A4 /* ViewBuilder */,
 				E4BBD0102D4A24FE004AA735 /* Views */,
 			);
 			path = Presentation;
@@ -490,7 +491,6 @@
 				AAD5622F2D4AABAA00C19A11 /* CheckBox */,
 				E489E8122D4A3AFC007EA370 /* TextBoxComponent */,
 				AAE5CA8A2D4A447900FDA699 /* RadioButton */,
-				AA32D0BB2D537D0C000027A4 /* ViewBuilder */,
 				E4BBD01A2D4A2B24004AA735 /* README.md */,
 			);
 			path = UIComponents;
