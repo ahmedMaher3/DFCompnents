@@ -11,29 +11,33 @@ struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
     var title: String = ""
     @Environment(\.presentationMode) var presentationMode
-    
     var body: some View {
         VStack {
             List {
-                // DropDownView
-                DropDownView(title: "Select Country", viewModel: viewModel.dropdownViewModel)
-                    .listRowSeparator(.hidden)
-                    .padding(.horizontal)
-                
-                // TextBoxComponent
-                TextBoxComponent(viewModel: viewModel.textBoxViewModel)
-                    .listRowSeparator(.hidden)
-                
-                // DateTimeView
-                DateTimeView(viewModel: viewModel.dateFieldViewModel) // Added here
-                    .listRowSeparator(.hidden)
-                MultiChoiceQuestion(checkBoxVM: viewModel.checkBoxViewModel)
-                QuestionsRadioButton(radioButtonVM: viewModel.radioButtonViewModel)
+                ControlFormBuilderView(titleControl: "Drop Down") {
+                    DropDownView(title: "Select Country", viewModel: viewModel.dropdownViewModel)
+                        .padding(.horizontal)
+                }
+                ControlFormBuilderView(titleControl: "Text Box") {
+                    TextBoxComponent(viewModel: viewModel.textBoxViewModel)
+                }
+                ControlFormBuilderView(titleControl: "Date Picker") {
+                    DateTimeView(viewModel: viewModel.dateFieldViewModel)
+                }
+                ControlFormBuilderView(titleControl: "Date Range Picker") {
+                    DateRangePickerView()
+                }
+                ControlFormBuilderView(titleControl: "Radio Button") {
+                    QuestionsRadioButton(radioButtonVM: viewModel.radioButtonViewModel)
+                }
+                ControlFormBuilderView(titleControl: "CheckBox") {
+                    MultiChoiceQuestion(checkBoxVM: viewModel.checkBoxViewModel)
+                }
             }
             .padding(.top, 10)
             .listRowSeparator(.hidden)
             .listStyle(PlainListStyle())
-            
+
             // Buttons at the bottom
             HStack(spacing: 16) {
                 Button(action: {
@@ -46,7 +50,7 @@ struct FormView: View {
                         .foregroundColor(.blue)
                         .cornerRadius(8)
                 }
-                
+
                 Button(action: {
                     // Submit action
                 }) {

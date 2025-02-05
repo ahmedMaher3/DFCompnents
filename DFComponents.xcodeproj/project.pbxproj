@@ -121,6 +121,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A9BF45D62D50DB5D003F2333 /* SliderComponent */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SliderComponent; sourceTree = "<group>"; };
 		A9BF45E02D511E75003F2333 /* Image-File Upload */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Image-File Upload"; sourceTree = "<group>"; };
+		AA32D0BB2D537D0C000027A4 /* ViewBuilder */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewBuilder; sourceTree = "<group>"; };
+		AA32D0BF2D537E15000027A4 /* Data Range Picker */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Data Range Picker"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,11 +484,13 @@
 			children = (
 				A9BF45E02D511E75003F2333 /* Image-File Upload */,
 				A9BF45D62D50DB5D003F2333 /* SliderComponent */,
+				AA32D0BF2D537E15000027A4 /* Data Range Picker */,
 				A95D7A232D4B8110004FB6CA /* DateComponent */,
 				E4BBD01C2D4A47A2004AA735 /* DropDownView */,
 				AAD5622F2D4AABAA00C19A11 /* CheckBox */,
 				E489E8122D4A3AFC007EA370 /* TextBoxComponent */,
 				AAE5CA8A2D4A447900FDA699 /* RadioButton */,
+				AA32D0BB2D537D0C000027A4 /* ViewBuilder */,
 				E4BBD01A2D4A2B24004AA735 /* README.md */,
 			);
 			path = UIComponents;
@@ -566,6 +570,8 @@
 			fileSystemSynchronizedGroups = (
 				A9BF45D62D50DB5D003F2333 /* SliderComponent */,
 				A9BF45E02D511E75003F2333 /* Image-File Upload */,
+				AA32D0BB2D537D0C000027A4 /* ViewBuilder */,
+				AA32D0BF2D537E15000027A4 /* Data Range Picker */,
 			);
 			name = DFComponents;
 			productName = DFComponents;
