@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct SignatureView: View {
-    @StateObject private var viewModel = SignatureViewModel()
+    @ObservedObject var viewModel: SignatureViewModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -52,7 +52,7 @@ struct SignatureView: View {
                             .frame(width: 24, height: 24)
                             .foregroundColor(.red)
                     }
-                    .offset(x: 150, y: -80)
+                    .offset(x: 120, y: -80)
                 }
             }
         }
@@ -60,5 +60,5 @@ struct SignatureView: View {
     }
 }
 #Preview {
-    SignatureView()
+    SignatureView(viewModel: SignatureViewModel())
 }

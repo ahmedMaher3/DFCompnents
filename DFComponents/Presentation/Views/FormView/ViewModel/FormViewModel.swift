@@ -14,5 +14,6 @@ class FormViewModel: ObservableObject {
     @Published var checkBoxViewModel: CheckBoxViewModel = CheckBoxViewModel()
     @Published var radioButtonViewModel: RadioButtonViewModel = RadioButtonViewModel()
     @Published var textBoxViewModel: TextBoxViewModel = TextBoxViewModel()
+    @Published var signatureViewModel: SignatureViewModel = SignatureViewModel()
     
 }

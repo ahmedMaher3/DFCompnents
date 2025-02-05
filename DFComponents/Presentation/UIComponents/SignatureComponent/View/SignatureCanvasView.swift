@@ -30,3 +30,7 @@ struct SignatureCanvasView: View {
         )
     }
 }
+
+#Preview {
+    SignatureCanvasView(viewModel: SignatureViewModel())
+}

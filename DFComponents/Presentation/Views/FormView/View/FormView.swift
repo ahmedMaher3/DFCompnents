@@ -28,6 +28,7 @@ struct FormView: View {
                     .padding(.horizontal)
                 MultiChoiceQuestion(checkBoxVM: viewModel.checkBoxViewModel)
                 QuestionsRadioButton(radioButtonVM: viewModel.radioButtonViewModel)
+                SignatureView(viewModel: viewModel.signatureViewModel)
             }
             .padding(.top, 10)
             .listRowSeparator(.hidden)
