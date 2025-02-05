@@ -1,7 +1,6 @@
 //
 //  SectionView.swift
 //  DFComponents
-//
 //  Created by ahmed maher on 04/02/2025.
 
 
@@ -13,19 +12,17 @@ struct SectionView: View {
     var body: some View {
 
         List (viewModel.sections) {  section in
-            //ForEach(viewModel.sections) { section in
                 Section(header: headerView(for: section)) {
                     if section.isExpanded {
                         ForEach(section.items, id: \.self) { item in
                             Text(item)
                                 .padding(.vertical, 8)
-
                                 .padding(.horizontal, 8)
                                 .listRowSeparator(.hidden)
                         }
                     }
                 }
-           // }
+
         }
         .listStyle(PlainListStyle())
     }
