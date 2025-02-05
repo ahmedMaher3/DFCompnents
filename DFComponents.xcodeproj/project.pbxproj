@@ -14,6 +14,11 @@
 		A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A362D4BA59D004FB6CA /* ServicesListViewModel.swift */; };
 		A95D7A3A2D4BA59D004FB6CA /* ServicesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A352D4BA59D004FB6CA /* ServicesListView.swift */; };
 		A9BF45D52D50DB15003F2333 /* SliderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF45D42D50DB0D003F2333 /* SliderDTO.swift */; };
+		A9BF46942D53886A003F2333 /* ControlFormBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF46922D53886A003F2333 /* ControlFormBuilderView.swift */; };
+		A9BF46972D53887B003F2333 /* DateRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF46952D53887B003F2333 /* DateRangePickerView.swift */; };
+		A9BF469D2D538893003F2333 /* SliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF46982D538893003F2333 /* SliderViewModel.swift */; };
+		A9BF469E2D538893003F2333 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF469A2D538893003F2333 /* SliderView.swift */; };
+		A9BF46A22D538896003F2333 /* ImageFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF469F2D538896003F2333 /* ImageFileView.swift */; };
 		AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */; };
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
 		AA84AE172D4B94090057D161 /* SubmitControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE162D4B94090057D161 /* SubmitControlView.swift */; };
@@ -78,6 +83,11 @@
 		A95D7A352D4BA59D004FB6CA /* ServicesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListView.swift; sourceTree = "<group>"; };
 		A95D7A362D4BA59D004FB6CA /* ServicesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListViewModel.swift; sourceTree = "<group>"; };
 		A9BF45D42D50DB0D003F2333 /* SliderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderDTO.swift; sourceTree = "<group>"; };
+		A9BF46922D53886A003F2333 /* ControlFormBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlFormBuilderView.swift; sourceTree = "<group>"; };
+		A9BF46952D53887B003F2333 /* DateRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangePickerView.swift; sourceTree = "<group>"; };
+		A9BF46982D538893003F2333 /* SliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewModel.swift; sourceTree = "<group>"; };
+		A9BF469A2D538893003F2333 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		A9BF469F2D538896003F2333 /* ImageFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileView.swift; sourceTree = "<group>"; };
 		AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxDTO.swift; sourceTree = "<group>"; };
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AA84AE162D4B94090057D161 /* SubmitControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitControlView.swift; sourceTree = "<group>"; };
@@ -117,13 +127,6 @@
 		E4BBD0222D4A4A29004AA735 /* DropDownViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownViewModel.swift; sourceTree = "<group>"; };
 		E4BBD0262D4A4A7F004AA735 /* CountryDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		A9BF45D62D50DB5D003F2333 /* SliderComponent */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SliderComponent; sourceTree = "<group>"; };
-		A9BF45E02D511E75003F2333 /* Image-File Upload */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Image-File Upload"; sourceTree = "<group>"; };
-		AA32D0BB2D537D0C000027A4 /* ViewBuilder */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewBuilder; sourceTree = "<group>"; };
-		AA32D0BF2D537E15000027A4 /* Data Range Picker */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Data Range Picker"; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E4BBCFDE2D4A24BF004AA735 /* Frameworks */ = {
@@ -183,6 +186,63 @@
 				A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A9BF46932D53886A003F2333 /* ViewBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				A9BF46922D53886A003F2333 /* ControlFormBuilderView.swift */,
+			);
+			path = ViewBuilder;
+			sourceTree = "<group>";
+		};
+		A9BF46962D53887B003F2333 /* Data Range Picker */ = {
+			isa = PBXGroup;
+			children = (
+				A9BF46952D53887B003F2333 /* DateRangePickerView.swift */,
+			);
+			path = "Data Range Picker";
+			sourceTree = "<group>";
+		};
+		A9BF46992D538893003F2333 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A9BF46982D538893003F2333 /* SliderViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A9BF469B2D538893003F2333 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A9BF469A2D538893003F2333 /* SliderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A9BF469C2D538893003F2333 /* SliderComponent */ = {
+			isa = PBXGroup;
+			children = (
+				A9BF46992D538893003F2333 /* ViewModel */,
+				A9BF469B2D538893003F2333 /* Views */,
+			);
+			path = SliderComponent;
+			sourceTree = "<group>";
+		};
+		A9BF46A02D538896003F2333 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A9BF469F2D538896003F2333 /* ImageFileView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A9BF46A12D538896003F2333 /* Image-File Upload */ = {
+			isa = PBXGroup;
+			children = (
+				A9BF46A02D538896003F2333 /* Views */,
+			);
+			path = "Image-File Upload";
 			sourceTree = "<group>";
 		};
 		AA84AE132D4B8B8E0057D161 /* Views */ = {
@@ -457,7 +517,7 @@
 			children = (
 				E4BBD0192D4A2AFF004AA735 /* UIComponents */,
 				E4BBD0112D4A250D004AA735 /* Modifiers */,
-				AA32D0BB2D537D0C000027A4 /* ViewBuilder */,
+				A9BF46932D53886A003F2333 /* ViewBuilder */,
 				E4BBD0102D4A24FE004AA735 /* Views */,
 			);
 			path = Presentation;
@@ -483,9 +543,9 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				A9BF45E02D511E75003F2333 /* Image-File Upload */,
-				A9BF45D62D50DB5D003F2333 /* SliderComponent */,
-				AA32D0BF2D537E15000027A4 /* Data Range Picker */,
+				A9BF46A12D538896003F2333 /* Image-File Upload */,
+				A9BF469C2D538893003F2333 /* SliderComponent */,
+				A9BF46962D53887B003F2333 /* Data Range Picker */,
 				A95D7A232D4B8110004FB6CA /* DateComponent */,
 				E4BBD01C2D4A47A2004AA735 /* DropDownView */,
 				AAD5622F2D4AABAA00C19A11 /* CheckBox */,
@@ -566,12 +626,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				A9BF45D62D50DB5D003F2333 /* SliderComponent */,
-				A9BF45E02D511E75003F2333 /* Image-File Upload */,
-				AA32D0BB2D537D0C000027A4 /* ViewBuilder */,
-				AA32D0BF2D537E15000027A4 /* Data Range Picker */,
 			);
 			name = DFComponents;
 			productName = DFComponents;
@@ -701,6 +755,7 @@
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
 				AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */,
 				AAD562372D4AABF300C19A11 /* MultiChoiceQuestion.swift in Sources */,
+				A9BF46A22D538896003F2333 /* ImageFileView.swift in Sources */,
 				AAD5623A2D4AAC2700C19A11 /* CheckBoxStyle.swift in Sources */,
 				AAD562352D4AABE500C19A11 /* CheckBoxView.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
@@ -719,10 +774,14 @@
 				AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */,
 				E489E8172D4A3B48007EA370 /* TextBoxDTO.swift in Sources */,
 				E44926C82D4B8B0D00EA5D5E /* FormViewModel.swift in Sources */,
+				A9BF469D2D538893003F2333 /* SliderViewModel.swift in Sources */,
+				A9BF469E2D538893003F2333 /* SliderView.swift in Sources */,
+				A9BF46942D53886A003F2333 /* ControlFormBuilderView.swift in Sources */,
 				AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */,
 				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
 				E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */,
 				E489E81E2D4A6A15007EA370 /* ColorExtension.swift in Sources */,
+				A9BF46972D53887B003F2333 /* DateRangePickerView.swift in Sources */,
 				AAE5CAC62D4A61FD00FDA699 /* QuestionsRadioButton.swift in Sources */,
 				A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */,
 				A95D7A3A2D4BA59D004FB6CA /* ServicesListView.swift in Sources */,
