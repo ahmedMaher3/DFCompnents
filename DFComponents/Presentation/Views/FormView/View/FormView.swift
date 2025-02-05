@@ -15,7 +15,8 @@ struct FormView: View {
         VStack {
             List {
                 ControlFormBuilderView(titleControl: "Drop Down") {
-                    DropDownView(title: "Select Country", viewModel: viewModel.dropdownViewModel)
+                    DropDownView(title: viewModel.dropdownViewModel.selectedCountry?.name ?? "", viewModel: viewModel.dropdownViewModel)
+                        .listRowSeparator(.hidden)
                         .padding(.horizontal)
                 }
                 ControlFormBuilderView(titleControl: "Text Box") {

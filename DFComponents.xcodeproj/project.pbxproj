@@ -42,6 +42,11 @@
 		E489E81E2D4A6A15007EA370 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81D2D4A6A15007EA370 /* ColorExtension.swift */; };
 		E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8232D4B5BA0007EA370 /* CustomDropDownView.swift */; };
 		E4A9014A2D4BAD2C007080AC /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901492D4BAD2C007080AC /* SplashView.swift */; };
+		E4A901532D50DC07007080AC /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901522D50DC07007080AC /* MapView.swift */; };
+		E4A901582D525BB2007080AC /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901572D525BB2007080AC /* SectionView.swift */; };
+		E4A9015A2D52C848007080AC /* SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901592D52C848007080AC /* SectionModel.swift */; };
+		E4A9015C2D52CD73007080AC /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9015B2D52CD73007080AC /* SectionViewModel.swift */; };
+		E4A901632D52D536007080AC /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901622D52D536007080AC /* StepView.swift */; };
 		E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */; };
 		E4BBCFE92D4A24C2004AA735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */; };
 		E4BBCFED2D4A24C2004AA735 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFEC2D4A24C2004AA735 /* Preview Assets.xcassets */; };
@@ -111,6 +116,11 @@
 		E489E81D2D4A6A15007EA370 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		E489E8232D4B5BA0007EA370 /* CustomDropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownView.swift; sourceTree = "<group>"; };
 		E4A901492D4BAD2C007080AC /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		E4A901522D50DC07007080AC /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E4A901572D525BB2007080AC /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
+		E4A901592D52C848007080AC /* SectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModel.swift; sourceTree = "<group>"; };
+		E4A9015B2D52CD73007080AC /* SectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
+		E4A901622D52D536007080AC /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
 		E4BBCFE12D4A24BF004AA735 /* DFComponents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFComponents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsApp.swift; sourceTree = "<group>"; };
 		E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -452,6 +462,71 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		E4A901502D50DBED007080AC /* MapComponent */ = {
+			isa = PBXGroup;
+			children = (
+				E4A901512D50DBF9007080AC /* View */,
+			);
+			path = MapComponent;
+			sourceTree = "<group>";
+		};
+		E4A901512D50DBF9007080AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E4A901522D50DC07007080AC /* MapView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E4A901542D525B84007080AC /* SectionComponent */ = {
+			isa = PBXGroup;
+			children = (
+				E4A901562D525B99007080AC /* ViewModel */,
+				E4A901552D525B94007080AC /* View */,
+			);
+			path = SectionComponent;
+			sourceTree = "<group>";
+		};
+		E4A901552D525B94007080AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E4A901572D525BB2007080AC /* SectionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E4A901562D525B99007080AC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E4A9015B2D52CD73007080AC /* SectionViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E4A9015D2D52D4C0007080AC /* StepComponent */ = {
+			isa = PBXGroup;
+			children = (
+				E4A9015F2D52D4CF007080AC /* ViewModel */,
+				E4A9015E2D52D4CA007080AC /* View */,
+			);
+			path = StepComponent;
+			sourceTree = "<group>";
+		};
+		E4A9015E2D52D4CA007080AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E4A901622D52D536007080AC /* StepView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E4A9015F2D52D4CF007080AC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E4BBCFD82D4A24BF004AA735 = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +621,9 @@
 				A9BF46A12D538896003F2333 /* Image-File Upload */,
 				A9BF469C2D538893003F2333 /* SliderComponent */,
 				A9BF46962D53887B003F2333 /* Data Range Picker */,
+				E4A9015D2D52D4C0007080AC /* StepComponent */,
+				E4A901542D525B84007080AC /* SectionComponent */,
+				E4A901502D50DBED007080AC /* MapComponent */,
 				A95D7A232D4B8110004FB6CA /* DateComponent */,
 				E4BBD01C2D4A47A2004AA735 /* DropDownView */,
 				AAD5622F2D4AABAA00C19A11 /* CheckBox */,
@@ -592,6 +670,7 @@
 				AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */,
 				AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */,
 				A95D7A2F2D4B8B6C004FB6CA /* FormDTO.swift */,
+				E4A901592D52C848007080AC /* SectionModel.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -748,18 +827,23 @@
 				E44926C42D4B8AD200EA5D5E /* FormView.swift in Sources */,
 				A9BF45D52D50DB15003F2333 /* SliderDTO.swift in Sources */,
 				AA84AE1A2D4B94340057D161 /* SubmitControlProtocol.swift in Sources */,
+				E4A901582D525BB2007080AC /* SectionView.swift in Sources */,
 				AA84AE172D4B94090057D161 /* SubmitControlView.swift in Sources */,
 				A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */,
 				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
 				A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */,
+				E4A901532D50DC07007080AC /* MapView.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
 				AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */,
 				AAD562372D4AABF300C19A11 /* MultiChoiceQuestion.swift in Sources */,
 				A9BF46A22D538896003F2333 /* ImageFileView.swift in Sources */,
 				AAD5623A2D4AAC2700C19A11 /* CheckBoxStyle.swift in Sources */,
+				E4A901632D52D536007080AC /* StepView.swift in Sources */,
+				E4A9015A2D52C848007080AC /* SectionModel.swift in Sources */,
 				AAD562352D4AABE500C19A11 /* CheckBoxView.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
 				AAD1E7C02D4B7F9400442BA4 /* RadioButtonDTO.swift in Sources */,
+				E4A9015C2D52CD73007080AC /* SectionViewModel.swift in Sources */,
 				AAE5CA8C2D4A448B00FDA699 /* RadioButtonView.swift in Sources */,
 				AAE5CAC42D4A561000FDA699 /* RadioButtonViewModel.swift in Sources */,
 				AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */,
