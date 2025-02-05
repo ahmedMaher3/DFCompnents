@@ -20,7 +20,7 @@ struct SliderView: View {
     
 
         var body: some View {
-            VStack {
+            VStack(spacing: 20) {
                 
                 HStack {
                     Slider(
@@ -40,12 +40,12 @@ struct SliderView: View {
                         Image(systemName: "arrow.uturn.backward")
                     }
                 }
-                CustomSliderOLD(range: 0...100)
-                CustomSlider(value: $sliderValue, range: range, step: step)
-                    .padding()
+//                CustomSliderOLD(range: 0...100)
+//                CustomSlider(value: $sliderValue, range: range, step: step)
+//                    .padding()
 
-                Text("Current Value: \(Int(sliderValue))")
-                    .font(.title)
+//                Text("Current Value: \(Int(sliderValue))")
+//                    .font(.title)
                 
                 HStack {
                     RangeSliderView(selection: $selection, range: 0...100)
@@ -60,7 +60,7 @@ struct SliderView: View {
                 
 //                RangeSliderViewGPT(lowerValue: $value1, upperValue: $value2, range: 0...100)
                 
-                RangeSlider()
+//                RangeSlider()
             }
             .padding()
         }

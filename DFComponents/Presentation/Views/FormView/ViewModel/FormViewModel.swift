@@ -15,5 +15,6 @@ class FormViewModel: ObservableObject {
     @Published var radioButtonViewModel: RadioButtonViewModel = RadioButtonViewModel()
     @Published var textBoxViewModel: TextBoxViewModel = TextBoxViewModel()
     @Published var signatureViewModel: SignatureViewModel = SignatureViewModel()
+    @Published var sliderViewModel: SliderViewModel = SliderViewModel()
     
 }

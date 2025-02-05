@@ -34,8 +34,28 @@ struct FormView: View {
                 ControlFormBuilderView(titleControl: "CheckBox") {
                     MultiChoiceQuestion(checkBoxVM: viewModel.checkBoxViewModel)
                 }
-                ControlFormBuilderView(titleControl: "CheckBox") {
+                ControlFormBuilderView(titleControl: "Signature") {
                     SignatureView(viewModel: viewModel.signatureViewModel)
+                }
+                ControlFormBuilderView(titleControl: "Image Picker") {
+                    ImagePickerView()
+                }
+                ControlFormBuilderView(titleControl: "File Picker") {
+                    FilePickerView()
+                }
+                ControlFormBuilderView(titleControl: "Slider") {
+                    SliderView(viewModel: viewModel.sliderViewModel)
+                }
+                ControlFormBuilderView(titleControl: "Map") {
+                    MapView()
+                        .frame(height: 200)
+                }
+                ControlFormBuilderView(titleControl: "Section") {
+                    SectionView()
+                        .frame(height: 400)
+                }
+                ControlFormBuilderView(titleControl: "Step Indicator") {
+                    StepView()
                 }
             }
             .padding(.top, 10)

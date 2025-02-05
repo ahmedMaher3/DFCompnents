@@ -29,9 +29,9 @@ class TextBoxViewModel: ObservableObject {
     // Default configuration
     static var defaultConfig: TextBoxDTO {
         return TextBoxDTO(
-            title: "What is your Name?",
+            title: "Mobile Number",
             subtitle: nil,
-            placeholder: "Enter your name",
+            placeholder: "Enter your mobile number",
             inputType: .mixed,
             minLength: 2,
             prefixOptions: ["Mr", "Ms"],
