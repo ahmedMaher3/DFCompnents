@@ -44,6 +44,10 @@
 		E48CA0032D5374D300A519ED /* AKMaskFieldBlockCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C9FF92D5374D300A519ED /* AKMaskFieldBlockCharacter.swift */; };
 		E48CA0042D5374D300A519ED /* AKMaskFieldPatternCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C9FFA2D5374D300A519ED /* AKMaskFieldPatternCharacter.swift */; };
 		E48CA0052D5374D300A519ED /* AKMaskFieldStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48C9FFB2D5374D300A519ED /* AKMaskFieldStatus.swift */; };
+		E48CA0132D537D5000A519ED /* SignatureDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CA0122D537D5000A519ED /* SignatureDTO.swift */; };
+		E48CA0192D537D7100A519ED /* SignatureCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CA0152D537D7000A519ED /* SignatureCanvasView.swift */; };
+		E48CA01A2D537D7100A519ED /* SignatureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CA0162D537D7000A519ED /* SignatureComponent.swift */; };
+		E48CA01B2D537D7100A519ED /* SignatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48CA0182D537D7000A519ED /* SignatureViewModel.swift */; };
 		E4A9014A2D4BAD2C007080AC /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901492D4BAD2C007080AC /* SplashView.swift */; };
 		E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */; };
 		E4BBCFE92D4A24C2004AA735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */; };
@@ -116,6 +120,10 @@
 		E48C9FF92D5374D300A519ED /* AKMaskFieldBlockCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKMaskFieldBlockCharacter.swift; sourceTree = "<group>"; };
 		E48C9FFA2D5374D300A519ED /* AKMaskFieldPatternCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKMaskFieldPatternCharacter.swift; sourceTree = "<group>"; };
 		E48C9FFB2D5374D300A519ED /* AKMaskFieldStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKMaskFieldStatus.swift; sourceTree = "<group>"; };
+		E48CA0122D537D5000A519ED /* SignatureDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureDTO.swift; sourceTree = "<group>"; };
+		E48CA0152D537D7000A519ED /* SignatureCanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureCanvasView.swift; sourceTree = "<group>"; };
+		E48CA0162D537D7000A519ED /* SignatureComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureComponent.swift; sourceTree = "<group>"; };
+		E48CA0182D537D7000A519ED /* SignatureViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewModel.swift; sourceTree = "<group>"; };
 		E4A901492D4BAD2C007080AC /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		E4BBCFE12D4A24BF004AA735 /* DFComponents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFComponents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsApp.swift; sourceTree = "<group>"; };
@@ -393,6 +401,32 @@
 			path = AKMaskField;
 			sourceTree = "<group>";
 		};
+		E48CA0072D5379F800A519ED /* SignatureComponent */ = {
+			isa = PBXGroup;
+			children = (
+				E48CA0142D537D7000A519ED /* View */,
+				E48CA0172D537D7000A519ED /* ViewModel */,
+			);
+			path = SignatureComponent;
+			sourceTree = "<group>";
+		};
+		E48CA0142D537D7000A519ED /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E48CA0152D537D7000A519ED /* SignatureCanvasView.swift */,
+				E48CA0162D537D7000A519ED /* SignatureComponent.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E48CA0172D537D7000A519ED /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E48CA0182D537D7000A519ED /* SignatureViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E4A901482D4BAD2C007080AC /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,6 +566,7 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				E48CA0072D5379F800A519ED /* SignatureComponent */,
 				A95D7A232D4B8110004FB6CA /* DateComponent */,
 				E4BBD01C2D4A47A2004AA735 /* DropDownView */,
 				AAD5622F2D4AABAA00C19A11 /* CheckBox */,
@@ -577,6 +612,7 @@
 				AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */,
 				AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */,
 				A95D7A2F2D4B8B6C004FB6CA /* FormDTO.swift */,
+				E48CA0122D537D5000A519ED /* SignatureDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -732,6 +768,7 @@
 				E48CA0052D5374D300A519ED /* AKMaskFieldStatus.swift in Sources */,
 				E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */,
 				E44926C42D4B8AD200EA5D5E /* FormView.swift in Sources */,
+				E48CA0132D537D5000A519ED /* SignatureDTO.swift in Sources */,
 				AA84AE1A2D4B94340057D161 /* SubmitControlProtocol.swift in Sources */,
 				AA84AE172D4B94090057D161 /* SubmitControlView.swift in Sources */,
 				A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */,
@@ -758,6 +795,7 @@
 				E48C9FFE2D5374D300A519ED /* AKMaskFieldBrackets.swift in Sources */,
 				E48CA0032D5374D300A519ED /* AKMaskFieldBlockCharacter.swift in Sources */,
 				E4A9014A2D4BAD2C007080AC /* SplashView.swift in Sources */,
+				E48CA01B2D537D7100A519ED /* SignatureViewModel.swift in Sources */,
 				A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */,
 				E4BBD01E2D4A47BD004AA735 /* DropDownView.swift in Sources */,
 				AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */,
@@ -767,12 +805,14 @@
 				E489E8172D4A3B48007EA370 /* TextBoxDTO.swift in Sources */,
 				E44926C82D4B8B0D00EA5D5E /* FormViewModel.swift in Sources */,
 				AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */,
+				E48CA01A2D537D7100A519ED /* SignatureComponent.swift in Sources */,
 				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
 				E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */,
 				E489E81E2D4A6A15007EA370 /* ColorExtension.swift in Sources */,
 				AAE5CAC62D4A61FD00FDA699 /* QuestionsRadioButton.swift in Sources */,
 				A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */,
 				A95D7A3A2D4BA59D004FB6CA /* ServicesListView.swift in Sources */,
+				E48CA0192D537D7100A519ED /* SignatureCanvasView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
