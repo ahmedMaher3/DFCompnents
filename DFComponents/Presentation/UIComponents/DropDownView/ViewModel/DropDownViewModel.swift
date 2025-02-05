@@ -26,6 +26,10 @@ class DropDownViewModel: ObservableObject {
         }
     }
 
+    func setDefaultCountry (){
+        selectedCountry = countries.first
+    }
+
     func selectCountry(_ country: CountryDTO) {
            selectedCountry = country
        }
@@ -47,6 +51,7 @@ class DropDownViewModel: ObservableObject {
             CountryDTO(name: "Germany", capital: "Berlin", flag: "🇩🇪"),
             CountryDTO(name: "Australia", capital: "Canberra", flag: "🇦🇺")
         ]
+        setDefaultCountry()
 
     }
 }

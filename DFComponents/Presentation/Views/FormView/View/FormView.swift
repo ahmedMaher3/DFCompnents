@@ -35,7 +35,7 @@ struct FormView: View {
                 }
                 ControlFormBuilderView(titleControl: "Section") {
                     SectionView()
-                        .frame(height: 400)
+                        .frame(height: 300)
                 }
                 ControlFormBuilderView(titleControl: "Drop Down") {
                     DropDownView(title: viewModel.dropdownViewModel.selectedCountry?.name ?? "Select Country", viewModel: viewModel.dropdownViewModel)
@@ -58,6 +58,8 @@ struct FormView: View {
             .padding(.top, 10)
             .listRowSeparator(.hidden)
             .listStyle(PlainListStyle())
+            .buttonStyle(PlainButtonStyle())
+            .listRowBackground(Color.clear)
 
             // Buttons at the bottom
             HStack(spacing: 16) {

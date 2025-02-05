@@ -13,12 +13,7 @@ struct DropDownView: View {
     @State private var isBottomSheetPresented = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            // Title above the dropdown
-            Text(viewModel.selectedCountry?.name ?? "")
-                .font(.headline)
-                .foregroundColor(.black)
-                .padding(.bottom)
+       
             HStack {
                 Text(viewModel.selectedCountry?.name ?? "")
                     .font(.subheadline)
@@ -44,7 +39,7 @@ struct DropDownView: View {
             .sheet(isPresented: $isBottomSheetPresented) {
                 BottomSheetView(viewModel: viewModel, isBottomSheetPresented: $isBottomSheetPresented)
             }
-        }
+
     }
 }
 

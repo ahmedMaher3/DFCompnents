@@ -53,6 +53,7 @@ struct SignatureView: View {
                             .foregroundColor(.red)
                     }
                     .offset(x: 120, y: -80)
+                    
                 }
             }
         }
