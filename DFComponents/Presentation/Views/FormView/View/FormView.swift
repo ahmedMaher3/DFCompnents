@@ -15,11 +15,6 @@ struct FormView: View {
     var body: some View {
         VStack {
             List {
-                // DropDownView
-                DropDownView(title: "Select Country", viewModel: viewModel.dropdownViewModel)
-                    .listRowSeparator(.hidden)
-                    .padding(.horizontal)
-                
                 // TextBoxComponent
                 TextBoxComponent(viewModel: viewModel.textBoxViewModel)
                     .listRowSeparator(.hidden)
@@ -27,6 +22,10 @@ struct FormView: View {
                 // DateTimeView
                 DateTimeView(viewModel: viewModel.dateFieldViewModel) // Added here
                     .listRowSeparator(.hidden)
+                // DropDownView
+                DropDownView(title: "Select Country", viewModel: viewModel.dropdownViewModel)
+                    .listRowSeparator(.hidden)
+                    .padding(.horizontal)
                 MultiChoiceQuestion(checkBoxVM: viewModel.checkBoxViewModel)
                 QuestionsRadioButton(radioButtonVM: viewModel.radioButtonViewModel)
             }

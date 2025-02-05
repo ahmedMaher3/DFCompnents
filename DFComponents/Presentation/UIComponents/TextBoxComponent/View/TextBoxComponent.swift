@@ -9,6 +9,7 @@ import SwiftUI
 // MARK: - TextBoxComponent
 struct TextBoxComponent: View {
     @ObservedObject var viewModel: TextBoxViewModel
+    @State private var text: String = ""
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -32,20 +33,15 @@ struct TextBoxComponent: View {
                         borderColor: viewModel.borderColor
                     )
                 }
-
-                // Text Field
-                TextField(viewModel.placeholder, text: $viewModel.text, onEditingChanged: { isEditing in
-                    viewModel.onEditingChanged(isEditing: isEditing)
-                })
+                MaskTextField(text: $text, mask: viewModel.mask)  // Pass mask from ViewModel
                 .padding()
                 .frame(height: 48)
                 .background(RoundedRectangle(cornerRadius: 8)
-                                .stroke(viewModel.borderColor, lineWidth: 2))
+                .stroke(viewModel.borderColor, lineWidth: 2))
                 .keyboardType(viewModel.config.inputType == .numbersOnly ? .numberPad : .default)
-                .onChange(of: viewModel.text) { _ in
+                .onChange(of: text) { _ in
                     viewModel.validateInput()
                 }
-
                 // Suffix
                 if !viewModel.suffixOptions.isEmpty {
                     CustomDropdownView(selectedOption: $viewModel.selectedSuffix, options: viewModel.suffixOptions, label: "Suffix",
@@ -72,11 +68,11 @@ struct TextBoxComponent: View {
 // MARK: - Preview
 #Preview {
     let config = TextBoxDTO(
-        title: "What is your Name?",
-        subtitle: nil,
-        placeholder: "Enter your name",
+        title: "Phone Number",
+        subtitle: "Enter a valid number",
+        placeholder: "XXX-XXX-XXXX",
         inputType: .mixed,
-        minLength: 2,
+        minLength: 10,
         prefixOptions: ["Mr", "Ms"],
         suffixOptions: ["Jr"],
         requiresPrefix: true,
@@ -84,3 +80,5 @@ struct TextBoxComponent: View {
     )
     return TextBoxComponent(viewModel: TextBoxViewModel(config: config))
 }
+
+
