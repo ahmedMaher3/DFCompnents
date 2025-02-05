@@ -14,25 +14,8 @@ struct FormView: View {
     var body: some View {
         VStack {
             List {
-                ControlFormBuilderView(titleControl: "Drop Down") {
-                    DropDownView(title: viewModel.dropdownViewModel.selectedCountry?.name ?? "", viewModel: viewModel.dropdownViewModel)
-                        .listRowSeparator(.hidden)
-                        .padding(.horizontal)
-                }
-                ControlFormBuilderView(titleControl: "Text Box") {
-                    TextBoxComponent(viewModel: viewModel.textBoxViewModel)
-                }
-                ControlFormBuilderView(titleControl: "Date Picker") {
-                    DateTimeView(viewModel: viewModel.dateFieldViewModel)
-                }
                 ControlFormBuilderView(titleControl: "Date Range Picker") {
                     DateRangePickerView()
-                }
-                ControlFormBuilderView(titleControl: "Radio Button") {
-                    QuestionsRadioButton(radioButtonVM: viewModel.radioButtonViewModel)
-                }
-                ControlFormBuilderView(titleControl: "CheckBox") {
-                    MultiChoiceQuestion(checkBoxVM: viewModel.checkBoxViewModel)
                 }
                 ControlFormBuilderView(titleControl: "Signature") {
                     SignatureView(viewModel: viewModel.signatureViewModel)
@@ -54,8 +37,22 @@ struct FormView: View {
                     SectionView()
                         .frame(height: 400)
                 }
-                ControlFormBuilderView(titleControl: "Step Indicator") {
-                    StepView()
+                ControlFormBuilderView(titleControl: "Drop Down") {
+                    DropDownView(title: viewModel.dropdownViewModel.selectedCountry?.name ?? "Select Country", viewModel: viewModel.dropdownViewModel)
+                        .listRowSeparator(.hidden)
+                        .padding(.horizontal)
+                }
+                ControlFormBuilderView(titleControl: "Text Box") {
+                    TextBoxComponent(viewModel: viewModel.textBoxViewModel)
+                }
+                ControlFormBuilderView(titleControl: "Date Picker") {
+                    DateTimeView(viewModel: viewModel.dateFieldViewModel)
+                }
+                ControlFormBuilderView(titleControl: "Radio Button") {
+                    QuestionsRadioButton(radioButtonVM: viewModel.radioButtonViewModel)
+                }
+                ControlFormBuilderView(titleControl: "CheckBox") {
+                    MultiChoiceQuestion(checkBoxVM: viewModel.checkBoxViewModel)
                 }
             }
             .padding(.top, 10)
