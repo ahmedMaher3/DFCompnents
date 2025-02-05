@@ -15,12 +15,12 @@ struct DropDownView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             // Title above the dropdown
-            Text(title)
+            Text(viewModel.selectedCountry?.name ?? "")
                 .font(.headline)
                 .foregroundColor(.black)
                 .padding(.bottom)
             HStack {
-                Text(title)
+                Text(viewModel.selectedCountry?.name ?? "")
                     .font(.subheadline)
                     .foregroundColor(Color.gray)
                 Spacer()
@@ -31,10 +31,10 @@ struct DropDownView: View {
             }
             .padding()
             .background(
-                      RoundedRectangle(cornerRadius: 8)
-                          .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                  )
-            .contentShape(Rectangle()) 
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+            )
+            .contentShape(Rectangle())
             .onTapGesture {
                 withAnimation {
                     isBottomSheetPresented.toggle()
@@ -42,7 +42,7 @@ struct DropDownView: View {
             }
 
             .sheet(isPresented: $isBottomSheetPresented) {
-                BottomSheetView(viewModel: viewModel)
+                BottomSheetView(viewModel: viewModel, isBottomSheetPresented: $isBottomSheetPresented)
             }
         }
     }
@@ -52,6 +52,7 @@ struct DropDownView: View {
 struct BottomSheetView: View {
     @ObservedObject var viewModel: DropDownViewModel
     @State private var searchText = ""
+    @Binding var isBottomSheetPresented: Bool
 
     var body: some View {
         VStack {
@@ -78,10 +79,13 @@ struct BottomSheetView: View {
 
                 }
                 .padding(.vertical, 4)
+                .onTapGesture {
+                    viewModel.selectCountry(country)
+                    isBottomSheetPresented = false
+                }
             }
             .listStyle(PlainListStyle())
         }
-        //.padding(.top, 20)
     }
 }
 

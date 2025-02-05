@@ -13,6 +13,7 @@ import Combine
 class DropDownViewModel: ObservableObject {
 
     @Published var countries: [CountryDTO] = []
+    @Published var selectedCountry: CountryDTO?
 
     init() {
         initializeLocationAndData()
@@ -24,6 +25,10 @@ class DropDownViewModel: ObservableObject {
 
         }
     }
+
+    func selectCountry(_ country: CountryDTO) {
+           selectedCountry = country
+       }
 
     func filteredCountries(searchText: String) -> [CountryDTO] {
         if searchText.isEmpty {
