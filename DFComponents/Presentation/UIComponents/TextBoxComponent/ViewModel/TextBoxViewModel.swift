@@ -14,7 +14,7 @@ class TextBoxViewModel: ObservableObject {
     @Published var isValid: Bool = false
     @Published var selectedPrefix: String?
     @Published var selectedSuffix: String?
-
+    var mask: String = "9(999)-9999"  // Ex
     let config: TextBoxDTO
     var hasInteracted: Bool = false
 

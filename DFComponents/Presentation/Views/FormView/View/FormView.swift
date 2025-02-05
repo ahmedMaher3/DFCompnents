@@ -34,6 +34,9 @@ struct FormView: View {
                 ControlFormBuilderView(titleControl: "CheckBox") {
                     MultiChoiceQuestion(checkBoxVM: viewModel.checkBoxViewModel)
                 }
+                ControlFormBuilderView(titleControl: "CheckBox") {
+                    SignatureView(viewModel: viewModel.signatureViewModel)
+                }
             }
             .padding(.top, 10)
             .listRowSeparator(.hidden)
