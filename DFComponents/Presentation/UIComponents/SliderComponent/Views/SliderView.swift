@@ -244,7 +244,7 @@ struct RangeSliderView: View {
                             )
                     }
                 }
-                .frame(width: .infinity)
+//                .frame(width: .infinity)
                 .task {
                     guard !isInitial else { return }
                     isInitial = true
