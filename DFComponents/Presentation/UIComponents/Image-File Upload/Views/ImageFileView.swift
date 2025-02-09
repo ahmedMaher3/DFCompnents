@@ -34,6 +34,29 @@ struct ImagePickerView: View {
     }
 }
 
+struct CameraPickerView: View {
+    @State private var selectedImage: UIImage?
+    @State private var isPickerPresented = false
+    
+    var body: some View {
+        VStack {
+            if let image = selectedImage {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+            } else {
+                Text("Tap to select an image")
+            }
+        }
+        .onTapGesture {
+            isPickerPresented = true
+        }
+        .sheet(isPresented: $isPickerPresented) {
+            CameraPicker(image: $selectedImage)
+        }
+    }
+}
+
 struct FilePickerView: View {
     @State private var selectedFileURL: URL?
     @State private var isPickerPresented = false
@@ -151,4 +174,8 @@ struct WebView: UIViewRepresentable {
 
 #Preview("File Picker") {
     FilePickerView()
+}
+
+#Preview("Camera Picker") {
+    CameraPickerView()
 }

@@ -23,6 +23,9 @@ struct FormView: View {
                 ControlFormBuilderView(titleControl: "Image Picker") {
                     ImagePickerView()
                 }
+                ControlFormBuilderView(titleControl: "Camera Picker") {
+                    CameraPickerView()
+                }
                 ControlFormBuilderView(titleControl: "File Picker") {
                     FilePickerView()
                 }
