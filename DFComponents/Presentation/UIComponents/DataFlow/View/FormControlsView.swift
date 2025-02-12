@@ -58,7 +58,7 @@ struct FormControlsView: View {
                         .padding(.all, 8)
                         .overlay {
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(viewModel.email.isValidEmail && viewModel.emailError == nil ? Color.green : Color.gray, lineWidth: 1)
+                                .stroke((viewModel.emailError == nil && !viewModel.email.isEmpty) ? Color.green : Color.gray, lineWidth: 1)
                                 .padding(.horizontal, 1)
                         }
                     if let error = viewModel.emailError {
@@ -72,12 +72,17 @@ struct FormControlsView: View {
                         .padding(.all, 8)
                         .overlay {
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(viewModel.isEmailMatching && viewModel.confirmEmail.isValidEmail && viewModel.confirmEmailError == nil ? Color.green : Color.gray, lineWidth: 1)
+                                .stroke(viewModel.isEmailMatching && (viewModel.confirmEmailError == nil && !viewModel.confirmEmail.isEmpty) && viewModel.confirmEmailError == nil ? Color.green : Color.gray, lineWidth: 1)
                                 .padding(.horizontal, 1)
                         }
                     if let error = viewModel.confirmEmailError {
                         ErrorMessageView(errorMessage: error, imageName: "xmark.circle.fill")
                     }
+                }
+            }
+            Section("Media") {
+                ControlFormBuilderView(titleControl: "Camera Picker") {
+                    FilePickerView()
                 }
             }
         }
@@ -89,8 +94,4 @@ struct FormControlsView: View {
 #Preview {
     FormControlsView(viewModel: DataFlowViewModel())
 }
-extension String {
-    var isValidEmail: Bool {
-        NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: self)
-    }
-}
+
