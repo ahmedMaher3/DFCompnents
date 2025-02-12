@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
+    @StateObject private var styleManagerVM = StyleManagerViewModel()
+
     var title: String = ""
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
@@ -92,7 +94,15 @@ struct FormView: View {
             .padding(.bottom, 16)
         }
         .navigationTitle(title)
+        .environmentObject(styleManagerVM)
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            APIService.fetchStyles { apiResponse in
+                if let apiResponse = apiResponse {
+                    styleManagerVM.updateStyles(from: apiResponse)
+                }
+            }
+        }
     }
 }
 

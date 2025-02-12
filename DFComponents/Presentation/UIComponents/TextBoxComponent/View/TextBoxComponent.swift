@@ -9,59 +9,84 @@ import SwiftUI
 // MARK: - TextBoxComponent
 struct TextBoxComponent: View {
     @ObservedObject var viewModel: TextBoxViewModel
-    @State private var text: String = ""
+    @EnvironmentObject var styleManagerVM: StyleManagerViewModel
+    var isDisabled: Bool = false // Add this line
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        let styleManager = styleManagerVM.styleManager
+
+        VStack(alignment: .leading, spacing: styleManager.innerPadding) {
             // Title and Subtitle
             VStack(alignment: .leading, spacing: 2) {
                 Text(viewModel.title)
-                    .font(.headline)
+                    .styledText(font: styleManager.titleFont, color: isDisabled ? styleManager.disabledTextColor : styleManager.primaryTextColor)
+
                 if let subtitle = viewModel.subtitle {
                     Text(subtitle)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .styledText(font: styleManager.subtitleFont, color: isDisabled ? styleManager.disabledTextColor.opacity(0.7) : styleManager.secondaryTextColor)
                 }
             }
-            .padding(.bottom)
+            .padding(.bottom, styleManager.innerPadding)
 
             // Input Field with Prefix and Suffix
             HStack {
                 // Prefix
                 if !viewModel.prefixOptions.isEmpty {
-                    CustomDropdownView(selectedOption: $viewModel.selectedPrefix, options: viewModel.prefixOptions, label: "Prefix",
+                    CustomDropdownView(
+                        selectedOption: $viewModel.selectedPrefix,
+                        options: viewModel.prefixOptions,
+                        label: "Prefix",
                         borderColor: viewModel.borderColor
                     )
+                    .disabled(isDisabled) // Use isDisabled here
+                    .opacity(isDisabled ? 0.6 : 1.0)
                 }
-                MaskTextField(text: $text, mask: viewModel.mask)  // Pass mask from ViewModel
+
+                TextField(viewModel.placeholder, text: $viewModel.text, onEditingChanged: { isEditing in
+                    if !isDisabled {
+                        viewModel.onEditingChanged(isEditing: isEditing)
+                    }
+                })
                 .padding()
                 .frame(height: 48)
-                .background(RoundedRectangle(cornerRadius: 8)
-                .stroke(viewModel.borderColor, lineWidth: 2))
+                .styledBorder(color: viewModel.borderColor, width: styleManager.borderWidth, cornerRadius: styleManager.cornerRadius)
+                .background(
+                    RoundedRectangle(cornerRadius: styleManager.cornerRadius)
+                        .fill(isDisabled ? styleManager.disabledBackgroundColor : Color.clear)
+                )
+                .disabled(isDisabled) // Use isDisabled here
+                .opacity(isDisabled ? 0.6 : 1.0)
                 .keyboardType(viewModel.config.inputType == .numbersOnly ? .numberPad : .default)
-                .onChange(of: text) { _ in
-                    viewModel.validateInput()
+                .onChange(of: viewModel.text) { _ in
+                    if !isDisabled {
+                        viewModel.validateInput()
+                    }
                 }
+
                 // Suffix
                 if !viewModel.suffixOptions.isEmpty {
-                    CustomDropdownView(selectedOption: $viewModel.selectedSuffix, options: viewModel.suffixOptions, label: "Suffix",
+                    CustomDropdownView(
+                        selectedOption: $viewModel.selectedSuffix,
+                        options: viewModel.suffixOptions,
+                        label: "Suffix",
                         borderColor: viewModel.borderColor
                     )
+                    .disabled(isDisabled) // Use isDisabled here
+                    .opacity(isDisabled ? 0.6 : 1.0)
                 }
             }
 
             // Error Message
-            if let errorMessage = viewModel.errorMessage, viewModel.hasInteracted {
+            if let errorMessage = viewModel.errorMessage, viewModel.hasInteracted, !isDisabled {
                 HStack {
                     Image(systemName: "exclamationmark.circle.fill")
-                        .foregroundColor(.red)
+                        .foregroundColor(styleManager.errorColor)
                     Text(errorMessage)
-                        .font(.footnote)
-                        .foregroundColor(.red)
+                        .styledText(font: styleManager.errorFont, color: styleManager.errorColor)
                 }
             }
         }
-        .padding()
+        .padding(styleManager.componentPadding)
     }
 }
 
