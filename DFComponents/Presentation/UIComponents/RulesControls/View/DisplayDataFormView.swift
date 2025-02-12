@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct DisplayDataFormView: View {
-    @ObservedObject var viewModel: RulesControlsViewModel
+//    @ObservedObject var viewModel: RulesControlsViewModel
+    @EnvironmentObject var viewModel: RulesControlsViewModel
 
     var body: some View {
             VStack(alignment: .leading, spacing: 16) {
@@ -24,7 +25,7 @@ struct DisplayDataFormView: View {
         .padding(.vertical, 16)
     }
 }
-
-#Preview {
-    DisplayDataFormView(viewModel: RulesControlsViewModel())
-}
+//
+//#Preview {
+//    DisplayDataFormView(viewModel: RulesControlsViewModel())
+//}

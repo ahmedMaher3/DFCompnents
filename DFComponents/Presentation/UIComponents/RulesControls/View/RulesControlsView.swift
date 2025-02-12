@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct RulesControlsView: View {
-    @StateObject var viewModel = RulesControlsViewModel()
+    @EnvironmentObject var viewModel: RulesControlsViewModel
     var body: some View {
-//        NavigationStack {
-//            Form {
-//                Section("Name") {
         LazyVStack(spacing: 10) {
                         ControlFormBuilderView(titleControl: "First Name") {
                             TextField("Enter your first name", text: $viewModel.firstName)
@@ -78,26 +75,13 @@ struct RulesControlsView: View {
                                 ErrorMessageView(errorMessage: error, imageName: "xmark.circle.fill")
                             }
                         }
+            
                     }
                     .padding(.horizontal, 0)
-//                }
-//                Section("Email") {
-
-//                }
-//                NavigationLink {
-//                    DisplayDataFormView(viewModel: viewModel)
-//                } label: {
-//                    Text("Submit")
-//                        .frame(maxWidth: .infinity, alignment: .center)
-//                        .foregroundStyle(viewModel.validateControls() == true ? .blue : .gray)
-//                }
-//            }
-//        }
-//        .padding(0)
     }
 }
 
 #Preview {
-    RulesControlsView(viewModel: RulesControlsViewModel())
+    RulesControlsView()
 }
 

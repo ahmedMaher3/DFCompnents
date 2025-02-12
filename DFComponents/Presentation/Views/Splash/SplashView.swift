@@ -13,7 +13,6 @@ struct SplashView: View {
     var body: some View {
            ZStack {
                if isActive {
-//                   RulesControlsView()
                        FormView()
                } else {
                    SplashContentView()
