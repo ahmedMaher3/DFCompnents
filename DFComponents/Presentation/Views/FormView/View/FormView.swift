@@ -10,7 +10,6 @@ import SwiftUI
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
-    @Environment(\.presentationMode) var presentationMode
 
     var title: String = ""
 
@@ -77,30 +76,7 @@ struct FormView: View {
                 .listRowBackground(Color.clear)
 
                 // Buttons at the bottom
-                HStack(spacing: 16) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("Cancel")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.gray.opacity(0.2))
-                            .foregroundColor(.blue)
-                            .cornerRadius(8)
-                    }
-                    NavigationLink {
-                        DisplayDataFormView()
-                    } label: {
-                        Text("Submit")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.bottom, 16)
+                FooterFormView()
             }
         }
         .navigationTitle(title)
