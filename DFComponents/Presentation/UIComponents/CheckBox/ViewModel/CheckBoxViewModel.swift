@@ -12,8 +12,8 @@ final class CheckBoxViewModel: ObservableObject, SubmitControlProtocol {
     @Published var selectedItems: [String: Set<String>] = [:] // Key: Question ID, Value: Set of selected item IDs
     @Published var questions: [String] = [
         "What's your favorite multicolor, ahmed?",
-        "What's your favorite multicolor, hassan?",
-        "What's your favorite multicolor, nasr?"
+//        "What's your favorite multicolor, hassan?",
+//        "What's your favorite multicolor, nasr?"
     ]
     @Published var checkBoxModels: [String: [CheckBoxDTO]] = [:] // Dynamically populated later
 
@@ -72,12 +72,12 @@ final class CheckBoxViewModel: ObservableObject, SubmitControlProtocol {
             CheckBoxDTO(id: "2", name: "Green"),
             CheckBoxDTO(id: "3", name: "Blue"),
             CheckBoxDTO(id: "4", name: "Yellow"),
-            CheckBoxDTO(id: "5", name: "Purple"),
-            CheckBoxDTO(id: "6", name: "Orange"),
-            CheckBoxDTO(id: "7", name: "Pink"),
-            CheckBoxDTO(id: "8", name: "Brown"),
-            CheckBoxDTO(id: "9", name: "Black"),
-            CheckBoxDTO(id: "10", name: "White")
+//            CheckBoxDTO(id: "5", name: "Purple"),
+//            CheckBoxDTO(id: "6", name: "Orange"),
+//            CheckBoxDTO(id: "7", name: "Pink"),
+//            CheckBoxDTO(id: "8", name: "Brown"),
+//            CheckBoxDTO(id: "9", name: "Black"),
+//            CheckBoxDTO(id: "10", name: "White")
         ]
     }
 
