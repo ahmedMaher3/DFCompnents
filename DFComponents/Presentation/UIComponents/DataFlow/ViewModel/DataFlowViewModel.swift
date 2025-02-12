@@ -5,92 +5,71 @@
 //  Created by Eslam on 12/02/2025.
 //
 
-//class DataFlowViewModel: ObservableObject {
-//    enum Field {
-//        case firstName
-//        case lastName
-//    }
-//    @Published var firstName = "" {
-//        didSet {
-//            validateInput(for: .firstName, value: firstName)
-//        }
-//    }
-//    @Published var lastName = "" {
-//        didSet {
-//            validateInput(for: .lastName, value: lastName)
-//        }
-//    }
-//    @Published var firstNameError: String? = nil
-//    @Published var lastNameError: String? = nil
-//    var fullName: String {
-//        if firstNameError != nil || lastNameError != nil {
-//            return ""
-//        }
-//        return firstName + " " + lastName
-//    }
-//
-//    func validateInput(for field: Field, value: String) {
-//        if value.contains(" ") {
-//            // If there's more than one word, show the error
-//            if field == .firstName {
-//                firstNameError = "First name must be one word."
-//            } else if field == .lastName {
-//                lastNameError = "Last name must be one word."
-//            }
-//        } else {
-//            // If there's only one word, remove the error
-//            if field == .firstName {
-//                firstNameError = nil
-//            } else if field == .lastName {
-//                lastNameError = nil
-//            }
-//        }
-//    }
-//
-//}
 import SwiftUI
-
-
 class DataFlowViewModel: ObservableObject {
     @Published var firstName = "" {
-        didSet {
-            validateInput(for: "firstName", value: firstName)
-        }
+        didSet { validateFirstName() }
     }
-
     @Published var lastName = "" {
-        didSet {
-            validateInput(for: "lastName", value: lastName)
-        }
+        didSet { validateLastName() }
+    }
+    @Published var email = "" {
+        didSet { validateEmail() }
+    }
+    @Published var confirmEmail = "" {
+        didSet { validateConfirmEmail() }
     }
 
     @Published var firstNameError: String? = nil
     @Published var lastNameError: String? = nil
+    @Published var emailError: String? = nil
+    @Published var confirmEmailError: String? = nil
 
-    // Full name will be empty if there's an error in either first name or last name
     var fullName: String {
         if firstNameError != nil || lastNameError != nil {
-            return ""  // Full name is empty if there's an error
+            return ""
         }
         return firstName + " " + lastName
     }
 
-    // Validation function to check for one word only
-    func validateInput(for field: String, value: String) {
-        if value.contains(" ") {
-            // If more than one word, set error
-            if field == "firstName" {
-                firstNameError = "First name must be one word."
-            } else if field == "lastName" {
-                lastNameError = "Last name must be one word."
-            }
+    var isEmailMatching: Bool {
+        return email == confirmEmail
+    }
+
+    func validateFirstName() {
+        if firstName.contains(" ") {
+            firstNameError = "First name must be one word."
         } else {
-            // If valid, remove the error
-            if field == "firstName" {
-                firstNameError = nil
-            } else if field == "lastName" {
-                lastNameError = nil
-            }
+            firstNameError = nil
+        }
+    }
+
+    func validateLastName() {
+        if lastName.contains(" ") {
+            lastNameError = "Last name must be one word."
+        } else {
+            lastNameError = nil
+        }
+    }
+
+    func validateEmail() {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegex)
+
+        if !emailTest.evaluate(with: email) {
+            emailError = "Please enter a valid email address."
+        } else {
+            emailError = nil
+        }
+    }
+
+    func validateConfirmEmail() {
+        if confirmEmail.isEmpty {
+            confirmEmailError = "Please confirm your email."
+        } else if !isEmailMatching {
+            confirmEmailError = "Emails do not match."
+        } else {
+            confirmEmailError = nil
         }
     }
 }
