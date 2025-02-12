@@ -26,13 +26,13 @@ struct FormControlsView: View {
                         ErrorMessageView(errorMessage: error, imageName: "xmark.circle.fill")
                     }
                 }
-                ControlFormBuilderView(titleControl: "Last Name") {
+                ControlFormBuilderView(titleControl: "Last Name") { 
                     TextField("Enter your last name", text: $viewModel.lastName)
                         .textInputAutocapitalization(.words)
-                        .padding(.bottom, 8)
+                        .padding(.all, 8)
                         .overlay {
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(!viewModel.lastName.isEmpty && viewModel.lastNameError == nil ? Color.green : Color.gray, lineWidth: 1)
+                                .stroke(!viewModel.lastName.isEmpty && viewModel.lastNameError == nil  ? Color.green : Color.gray, lineWidth: 1)
                                 .padding(.horizontal, 1)
                         }
                     if let error = viewModel.lastNameError {
@@ -55,5 +55,5 @@ struct FormControlsView: View {
 }
 
 #Preview {
-    FormControlsView()
+    FormControlsView(viewModel: DataFlowViewModel())
 }
