@@ -9,27 +9,48 @@ import SwiftUI
 
 struct FormControlsView: View {
     @StateObject var viewModel = DataFlowViewModel()
+
     var body: some View {
         ScrollView {
             LazyVStack {
                 ControlFormBuilderView(titleControl: "First Name") {
                     TextField("Enter your first name", text: $viewModel.firstName)
-                        .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.words)
-                        .padding(.bottom, 8)
+                        .padding(.all, 8)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(!viewModel.firstName.isEmpty && viewModel.firstNameError == nil  ? Color.green : Color.gray, lineWidth: 1)
+                                .padding(.horizontal, 1)
+                        }
+                    if let error = viewModel.firstNameError {
+                        ErrorMessageView(errorMessage: error, imageName: "xmark.circle.fill")
+                    }
                 }
                 ControlFormBuilderView(titleControl: "Last Name") {
                     TextField("Enter your last name", text: $viewModel.lastName)
-                        .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.words)
                         .padding(.bottom, 8)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(!viewModel.lastName.isEmpty && viewModel.lastNameError == nil ? Color.green : Color.gray, lineWidth: 1)
+                                .padding(.horizontal, 1)
+                        }
+                    if let error = viewModel.lastNameError {
+                        ErrorMessageView(errorMessage: error, imageName: "xmark.circle.fill")
+                    }
                 }
                 ControlFormBuilderView(titleControl: "Full Name") {
-                    Text(viewModel.fullName)
+                    if viewModel.firstNameError == nil && viewModel.lastNameError == nil {
+                        Text(viewModel.fullName)
+                            .textFieldStyle(.roundedBorder)
+                            .padding(.bottom, 8)
+                    } else {
+                        ErrorMessageView(errorMessage: "Invalid name entries", imageName: "xmark.circle.fill")
+                    }
                 }
             }
         }
-        .padding(16)
+        .padding(20)
     }
 }
 
