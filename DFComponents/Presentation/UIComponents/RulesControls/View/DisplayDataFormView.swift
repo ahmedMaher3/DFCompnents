@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct DisplayDataFormView: View {
-    @ObservedObject var viewModel: DataFlowViewModel
+    @ObservedObject var viewModel: RulesControlsViewModel
+
     var body: some View {
             VStack(alignment: .leading, spacing: 16) {
                 Text("First Name: \(viewModel.firstName)")
@@ -16,6 +17,7 @@ struct DisplayDataFormView: View {
                 Text("Full Name: \(viewModel.fullName)")
                 Text("Email: \(viewModel.email)")
                 Text("Confirm Email: \(viewModel.confirmEmail)")
+
             }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .padding(.horizontal, 16)
@@ -24,5 +26,5 @@ struct DisplayDataFormView: View {
 }
 
 #Preview {
-    DisplayDataFormView(viewModel: DataFlowViewModel())
+    DisplayDataFormView(viewModel: RulesControlsViewModel())
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
+    @StateObject var dataFlowViewModel = RulesControlsViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
 
     var title: String = ""
@@ -16,6 +17,14 @@ struct FormView: View {
     var body: some View {
         VStack {
             List {
+                Form {
+                    Section("Rules Controls") {
+                        RulesControlsView()
+                    }
+                }
+                .frame(height: 500)
+                            .background(RoundedRectangle(cornerRadius: 2).fill(Color.white).shadow(radius: 2))
+
                 ControlFormBuilderView(titleControl: "Date Range Picker") {
                     DateRangePickerView()
                 }

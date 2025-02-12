@@ -12,13 +12,13 @@ final class RadioButtonViewModel: ObservableObject, SubmitControlProtocol {
     @Published var selectedItems: [String: String] = [:]  // Key: Question ID, Value: Selected item ID
     @Published var questions: [String] = [
         "What's your fav color ahmed?",
-        "What's your fav hassan?",
-        "What's your fav nasr?"
+//        "What's your fav hassan?",
+//        "What's your fav nasr?"
     ]
     @Published var radioButtonModels: [String: [RadioButtonDTO]] = [
         "question0": RadioButtonDTO.elementsRadioButton,
-        "question1": RadioButtonDTO.elementsRadioButton,
-        "question2": RadioButtonDTO.elementsRadioButton
+//        "question1": RadioButtonDTO.elementsRadioButton,
+//        "question2": RadioButtonDTO.elementsRadioButton
     ]
     @Published var validationErrors: [String: String] = [:]
 

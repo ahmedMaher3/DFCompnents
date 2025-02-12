@@ -25,8 +25,8 @@
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
 		AA84AE172D4B94090057D161 /* SubmitControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE162D4B94090057D161 /* SubmitControlView.swift */; };
 		AA84AE1A2D4B94340057D161 /* SubmitControlProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE192D4B94340057D161 /* SubmitControlProtocol.swift */; };
-		AAD099692D5CC911007A6CE9 /* FormControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099682D5CC911007A6CE9 /* FormControlsView.swift */; };
-		AAD0996B2D5CCA23007A6CE9 /* DataFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0996A2D5CCA23007A6CE9 /* DataFlowViewModel.swift */; };
+		AAD099692D5CC911007A6CE9 /* RulesControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099682D5CC911007A6CE9 /* RulesControlsView.swift */; };
+		AAD0996B2D5CCA23007A6CE9 /* RulesControlsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0996A2D5CCA23007A6CE9 /* RulesControlsViewModel.swift */; };
 		AAD099722D5CF4C6007A6CE9 /* DisplayDataFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099712D5CF4C6007A6CE9 /* DisplayDataFormView.swift */; };
 		AAD1E7C02D4B7F9400442BA4 /* RadioButtonDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */; };
 		AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */; };
@@ -125,8 +125,8 @@
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AA84AE162D4B94090057D161 /* SubmitControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitControlView.swift; sourceTree = "<group>"; };
 		AA84AE192D4B94340057D161 /* SubmitControlProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitControlProtocol.swift; sourceTree = "<group>"; };
-		AAD099682D5CC911007A6CE9 /* FormControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormControlsView.swift; sourceTree = "<group>"; };
-		AAD0996A2D5CCA23007A6CE9 /* DataFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlowViewModel.swift; sourceTree = "<group>"; };
+		AAD099682D5CC911007A6CE9 /* RulesControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesControlsView.swift; sourceTree = "<group>"; };
+		AAD0996A2D5CCA23007A6CE9 /* RulesControlsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesControlsViewModel.swift; sourceTree = "<group>"; };
 		AAD099712D5CF4C6007A6CE9 /* DisplayDataFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDataFormView.swift; sourceTree = "<group>"; };
 		AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonDTO.swift; sourceTree = "<group>"; };
 		AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxViewModel.swift; sourceTree = "<group>"; };
@@ -333,19 +333,19 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		AAD099652D5CC8CA007A6CE9 /* DataFlow */ = {
+		AAD099652D5CC8CA007A6CE9 /* RulesControls */ = {
 			isa = PBXGroup;
 			children = (
 				AAD099672D5CC8FC007A6CE9 /* ViewModel */,
 				AAD099662D5CC8EF007A6CE9 /* View */,
 			);
-			path = DataFlow;
+			path = RulesControls;
 			sourceTree = "<group>";
 		};
 		AAD099662D5CC8EF007A6CE9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AAD099682D5CC911007A6CE9 /* FormControlsView.swift */,
+				AAD099682D5CC911007A6CE9 /* RulesControlsView.swift */,
 				AAD099712D5CF4C6007A6CE9 /* DisplayDataFormView.swift */,
 			);
 			path = View;
@@ -354,7 +354,7 @@
 		AAD099672D5CC8FC007A6CE9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				AAD0996A2D5CCA23007A6CE9 /* DataFlowViewModel.swift */,
+				AAD0996A2D5CCA23007A6CE9 /* RulesControlsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -813,7 +813,7 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				AAD099652D5CC8CA007A6CE9 /* DataFlow */,
+				AAD099652D5CC8CA007A6CE9 /* RulesControls */,
 				A9BF46A12D538896003F2333 /* Image-File Upload */,
 				A9BF469C2D538893003F2333 /* SliderComponent */,
 				A9BF46962D53887B003F2333 /* Data Range Picker */,
@@ -1020,7 +1020,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAD099692D5CC911007A6CE9 /* FormControlsView.swift in Sources */,
+				AAD099692D5CC911007A6CE9 /* RulesControlsView.swift in Sources */,
 				E4BBD0232D4A4A29004AA735 /* DropDownViewModel.swift in Sources */,
 				E48CA0052D5374D300A519ED /* AKMaskFieldStatus.swift in Sources */,
 				A9BF46A72D53992A003F2333 /* CameraPicker.swift in Sources */,
@@ -1038,7 +1038,7 @@
 				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
 				E48CA1172D5CC72300A519ED /* BorderStyling.swift in Sources */,
 				A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */,
-				AAD0996B2D5CCA23007A6CE9 /* DataFlowViewModel.swift in Sources */,
+				AAD0996B2D5CCA23007A6CE9 /* RulesControlsViewModel.swift in Sources */,
 				E4A901532D50DC07007080AC /* MapView.swift in Sources */,
 				E48CA0042D5374D300A519ED /* AKMaskFieldPatternCharacter.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
