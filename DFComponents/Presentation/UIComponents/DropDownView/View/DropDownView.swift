@@ -10,39 +10,38 @@ import SwiftUI
 struct DropDownView: View {
     let title: String
     @ObservedObject var viewModel: DropDownViewModel
+    var isDisabled: Bool = false  // Passed from summary view
+
     @State private var isBottomSheetPresented = false
 
     var body: some View {
-       
-            HStack {
-                Text(viewModel.selectedCountry?.name ?? "")
-                    .font(.subheadline)
-                    .foregroundColor(Color.gray)
-                Spacer()
-                Image("Mask")
-                    .font(.subheadline)
-                    .foregroundColor(Color.gray)
-
-            }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-            )
-            .contentShape(Rectangle())
-            .onTapGesture {
+        HStack {
+            Text(viewModel.selectedCountry?.name ?? title)
+                .styledText(font: .subheadline, color: isDisabled ? .gray : .primary)
+            Spacer()
+            Image(systemName: "chevron.down")
+                .styledText(font: .subheadline, color: isDisabled ? .gray : .primary)
+        }
+        .padding()
+        .styledBorder(
+            color: isDisabled ? Color.gray.opacity(0.5) : Color.blue,
+            width: 1.5,
+            cornerRadius: 8
+        )
+        .opacity(isDisabled ? 0.5 : 1.0)  // Gray effect
+        .allowsHitTesting(!isDisabled)  // Disable interactions
+        .onTapGesture {
+            if !isDisabled {
                 withAnimation {
                     isBottomSheetPresented.toggle()
                 }
             }
-
-            .sheet(isPresented: $isBottomSheetPresented) {
-                BottomSheetView(viewModel: viewModel, isBottomSheetPresented: $isBottomSheetPresented)
-            }
-
+        }
+        .sheet(isPresented: $isBottomSheetPresented) {
+            BottomSheetView(viewModel: viewModel, isBottomSheetPresented: $isBottomSheetPresented)
+        }
     }
 }
-
 
 struct BottomSheetView: View {
     @ObservedObject var viewModel: DropDownViewModel
