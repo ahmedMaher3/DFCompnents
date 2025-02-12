@@ -76,6 +76,7 @@ struct FormView: View {
                 .listRowBackground(Color.clear)
 
                 // Buttons at the bottom
+                //MARK: - This Footer work only with controls consider as rules
                 FooterFormView()
             }
         }
