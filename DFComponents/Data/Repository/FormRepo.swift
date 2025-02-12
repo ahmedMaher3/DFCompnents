@@ -31,7 +31,7 @@ class FormRepoImpl: FormRepo {
                 ["lang": "1"]
             }))
             
-            await chain.addResponseHandler(ErrorPropagationHandler())
+            await chain.addResponseHandler(ErrorInterceptor())
             // Add multiple interceptors here
         }
         
@@ -39,6 +39,23 @@ class FormRepoImpl: FormRepo {
             baseURL: URL(string: "https://jsonplaceholder.typicode.com")!,
             interceptorChain: chain
         )
+        
+        Task {
+            await GlobalErrorHandler.shared.setHandler { error in
+                switch error {
+                case .unauthorized:
+                    print("User is unauthorized! Logging out...")
+                case .notFound:
+                    print("Resource not found.")
+                case .connectionFailed:
+                    print("No internet connection! Show alert.")
+                case .serverError(let code):
+                    print("Server error: \(code)")
+                default:
+                    print("Unhandled error: \(error)")
+                }
+            }
+        }
     }
     
     func fetchForms() async throws -> [FormDTO] {

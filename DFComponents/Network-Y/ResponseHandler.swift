@@ -25,29 +25,40 @@ public struct LoggingResponseHandler: ResponseHandler {
     }
 }
 
-public struct ErrorPropagationHandler: ResponseHandler {
+public struct ErrorInterceptor: ResponseHandler {
     public init() {}
 
     public func handle(response: HTTPURLResponse?, data: Data?, error: Error?) async -> (Data?, Error?) {
         if let error = error {
+            await GlobalErrorHandler.shared.notify(error: NetworkError.unknown) // Generic error
             return (nil, error)
         }
-        
+
         guard let response = response else {
+            await GlobalErrorHandler.shared.notify(error: NetworkError.unknown)
             return (nil, NetworkError.unknown)
         }
+
+        let networkError: NetworkError?
         
         switch response.statusCode {
         case 200..<300:
-            return (data, nil)
+            return (data, nil) // Maybe add server error handling here
         case 401:
-            return (nil, NetworkError.unauthorized)
+            networkError = .unauthorized
         case 404:
-            return (nil, NetworkError.notFound)
+            networkError = .notFound
         case 500..<600:
-            return (nil, NetworkError.serverError(response.statusCode))
+            networkError = .serverError(response.statusCode)
         default:
-            return (nil, NetworkError.unknown)
+            networkError = .unknown
         }
+
+        if let errorToSend = networkError {
+            await GlobalErrorHandler.shared.notify(error: errorToSend)
+            return (nil, errorToSend)
+        }
+
+        return (data, nil)
     }
 }

@@ -14,6 +14,7 @@
 		A9474BCD2D5CE49C00031047 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BCC2D5CE49800031047 /* NetworkError.swift */; };
 		A9474BCF2D5CE4E500031047 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BCE2D5CE4DE00031047 /* ContentType.swift */; };
 		A9474BD42D5CE60300031047 /* FormRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BD32D5CE5FF00031047 /* FormRepo.swift */; };
+		A9474BD62D5CEF7E00031047 /* GlobalErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BD52D5CEF7600031047 /* GlobalErrorHandler.swift */; };
 		A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A242D4B8127004FB6CA /* DateDTO.swift */; };
 		A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A272D4B812E004FB6CA /* DateViewModel.swift */; };
 		A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */; };
@@ -115,6 +116,7 @@
 		A9474BCC2D5CE49800031047 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		A9474BCE2D5CE4DE00031047 /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		A9474BD32D5CE5FF00031047 /* FormRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRepo.swift; sourceTree = "<group>"; };
+		A9474BD52D5CEF7600031047 /* GlobalErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalErrorHandler.swift; sourceTree = "<group>"; };
 		A95D7A1C2D4A8AC4004FB6CA /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
 		A95D7A1E2D4A8ACB004FB6CA /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		A95D7A202D4A8AD1004FB6CA /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				A9474BC62D5CE3EA00031047 /* Interceptor.swift */,
 				A9474BC82D5CE41C00031047 /* RequestModifier.swift */,
 				A9474BCA2D5CE44100031047 /* ResponseHandler.swift */,
+				A9474BD52D5CEF7600031047 /* GlobalErrorHandler.swift */,
 			);
 			path = "Network-Y";
 			sourceTree = "<group>";
@@ -1038,6 +1041,7 @@
 				A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */,
 				E48CA0012D5374D300A519ED /* AKMaskField.swift in Sources */,
 				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
+				A9474BD62D5CEF7E00031047 /* GlobalErrorHandler.swift in Sources */,
 				E48CA1172D5CC72300A519ED /* BorderStyling.swift in Sources */,
 				A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */,
 				E4A901532D50DC07007080AC /* MapView.swift in Sources */,
