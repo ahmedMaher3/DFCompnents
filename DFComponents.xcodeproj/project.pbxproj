@@ -25,6 +25,8 @@
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
 		AA84AE172D4B94090057D161 /* SubmitControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE162D4B94090057D161 /* SubmitControlView.swift */; };
 		AA84AE1A2D4B94340057D161 /* SubmitControlProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE192D4B94340057D161 /* SubmitControlProtocol.swift */; };
+		AAD099692D5CC911007A6CE9 /* FormControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099682D5CC911007A6CE9 /* FormControlsView.swift */; };
+		AAD0996B2D5CCA23007A6CE9 /* DataFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0996A2D5CCA23007A6CE9 /* DataFlowViewModel.swift */; };
 		AAD1E7C02D4B7F9400442BA4 /* RadioButtonDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */; };
 		AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */; };
 		AAD562352D4AABE500C19A11 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562342D4AABE500C19A11 /* CheckBoxView.swift */; };
@@ -114,6 +116,8 @@
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AA84AE162D4B94090057D161 /* SubmitControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitControlView.swift; sourceTree = "<group>"; };
 		AA84AE192D4B94340057D161 /* SubmitControlProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitControlProtocol.swift; sourceTree = "<group>"; };
+		AAD099682D5CC911007A6CE9 /* FormControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormControlsView.swift; sourceTree = "<group>"; };
+		AAD0996A2D5CCA23007A6CE9 /* DataFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlowViewModel.swift; sourceTree = "<group>"; };
 		AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonDTO.swift; sourceTree = "<group>"; };
 		AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxViewModel.swift; sourceTree = "<group>"; };
 		AAD562342D4AABE500C19A11 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
@@ -309,6 +313,31 @@
 				AA84AE192D4B94340057D161 /* SubmitControlProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		AAD099652D5CC8CA007A6CE9 /* DataFlow */ = {
+			isa = PBXGroup;
+			children = (
+				AAD099672D5CC8FC007A6CE9 /* ViewModel */,
+				AAD099662D5CC8EF007A6CE9 /* View */,
+			);
+			path = DataFlow;
+			sourceTree = "<group>";
+		};
+		AAD099662D5CC8EF007A6CE9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AAD099682D5CC911007A6CE9 /* FormControlsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AAD099672D5CC8FC007A6CE9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AAD0996A2D5CCA23007A6CE9 /* DataFlowViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		AAD5622F2D4AABAA00C19A11 /* CheckBox */ = {
@@ -725,6 +754,7 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				AAD099652D5CC8CA007A6CE9 /* DataFlow */,
 				A9BF46A12D538896003F2333 /* Image-File Upload */,
 				A9BF469C2D538893003F2333 /* SliderComponent */,
 				A9BF46962D53887B003F2333 /* Data Range Picker */,
@@ -931,6 +961,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD099692D5CC911007A6CE9 /* FormControlsView.swift in Sources */,
 				E4BBD0232D4A4A29004AA735 /* DropDownViewModel.swift in Sources */,
 				E48CA0052D5374D300A519ED /* AKMaskFieldStatus.swift in Sources */,
 				A9BF46A72D53992A003F2333 /* CameraPicker.swift in Sources */,
@@ -946,6 +977,7 @@
 				E48CA0012D5374D300A519ED /* AKMaskField.swift in Sources */,
 				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
 				A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */,
+				AAD0996B2D5CCA23007A6CE9 /* DataFlowViewModel.swift in Sources */,
 				E4A901532D50DC07007080AC /* MapView.swift in Sources */,
 				E48CA0042D5374D300A519ED /* AKMaskFieldPatternCharacter.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
