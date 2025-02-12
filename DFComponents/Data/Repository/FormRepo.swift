@@ -18,7 +18,6 @@ class FormRepoImpl: FormRepo {
         // Setup network client with base URL and interceptors
         let chain = InterceptorChain()
         
-        // Add logging
         Task {
             await chain.addResponseHandler(LoggingResponseHandler())
             
@@ -32,7 +31,8 @@ class FormRepoImpl: FormRepo {
                 ["lang": "1"]
             }))
             
-            //add multiple interceptors here
+            await chain.addResponseHandler(ErrorPropagationHandler())
+            // Add multiple interceptors here
         }
         
         self.networkClient = NetworkClient(
@@ -45,4 +45,6 @@ class FormRepoImpl: FormRepo {
         let response: [FormDTO] = try await networkClient.request(endpoint: "Forms", method: "GET")
         return response
     }
+    
+    // using fetchForms throws an error of type Network Error.
 }
