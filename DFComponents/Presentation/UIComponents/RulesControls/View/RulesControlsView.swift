@@ -10,8 +10,7 @@ import SwiftUI
 struct RulesControlsView: View {
     @EnvironmentObject var viewModel: RulesControlsViewModel
     var body: some View {
-        LazyVStack(spacing: 10) {
-            LazyVStack(spacing: 10) {
+        VStack(spacing: 10) {
                 ControlFormBuilderView(titleControl: "First Name") {
                     FormFieldView(
                         text: $viewModel.firstName,
@@ -55,7 +54,6 @@ struct RulesControlsView: View {
                         isValid: viewModel.isEmailMatching && (viewModel.confirmEmailError == nil && !viewModel.confirmEmail.isEmpty),
                         isEmailConfirmField: true
                     )
-                }
             }
         }
         .padding(.horizontal, 0)

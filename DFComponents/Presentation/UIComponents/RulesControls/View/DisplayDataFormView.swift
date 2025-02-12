@@ -23,7 +23,6 @@ struct DisplayDataFormView: View {
         .padding(.vertical, 16)
     }
 }
-//
 #Preview {
     DisplayDataFormView()
         .environmentObject(RulesControlsViewModel())
