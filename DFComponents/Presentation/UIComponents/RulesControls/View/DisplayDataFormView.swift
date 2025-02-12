@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct DisplayDataFormView: View {
-//    @ObservedObject var viewModel: RulesControlsViewModel
     @EnvironmentObject var viewModel: RulesControlsViewModel
-
     var body: some View {
             VStack(alignment: .leading, spacing: 16) {
                 Text("First Name: \(viewModel.firstName)")
@@ -26,6 +24,7 @@ struct DisplayDataFormView: View {
     }
 }
 //
-//#Preview {
-//    DisplayDataFormView(viewModel: RulesControlsViewModel())
-//}
+#Preview {
+    DisplayDataFormView()
+        .environmentObject(RulesControlsViewModel())
+}

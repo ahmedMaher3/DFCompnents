@@ -29,6 +29,7 @@
 		AAD0996B2D5CCA23007A6CE9 /* RulesControlsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0996A2D5CCA23007A6CE9 /* RulesControlsViewModel.swift */; };
 		AAD099722D5CF4C6007A6CE9 /* DisplayDataFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099712D5CF4C6007A6CE9 /* DisplayDataFormView.swift */; };
 		AAD099752D5D3A53007A6CE9 /* FooterFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099742D5D3A53007A6CE9 /* FooterFormView.swift */; };
+		AAD099772D5D3CCB007A6CE9 /* FormFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099762D5D3CCB007A6CE9 /* FormFieldView.swift */; };
 		AAD1E7C02D4B7F9400442BA4 /* RadioButtonDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */; };
 		AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */; };
 		AAD562352D4AABE500C19A11 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562342D4AABE500C19A11 /* CheckBoxView.swift */; };
@@ -130,6 +131,7 @@
 		AAD0996A2D5CCA23007A6CE9 /* RulesControlsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesControlsViewModel.swift; sourceTree = "<group>"; };
 		AAD099712D5CF4C6007A6CE9 /* DisplayDataFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDataFormView.swift; sourceTree = "<group>"; };
 		AAD099742D5D3A53007A6CE9 /* FooterFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterFormView.swift; sourceTree = "<group>"; };
+		AAD099762D5D3CCB007A6CE9 /* FormFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldView.swift; sourceTree = "<group>"; };
 		AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonDTO.swift; sourceTree = "<group>"; };
 		AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxViewModel.swift; sourceTree = "<group>"; };
 		AAD562342D4AABE500C19A11 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 			children = (
 				AAD099682D5CC911007A6CE9 /* RulesControlsView.swift */,
 				AAD099712D5CF4C6007A6CE9 /* DisplayDataFormView.swift */,
+				AAD099762D5D3CCB007A6CE9 /* FormFieldView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1069,6 +1072,7 @@
 				E48CA0002D5374D300A519ED /* AKMaskFieldBlock.swift in Sources */,
 				AAE5CA8C2D4A448B00FDA699 /* RadioButtonView.swift in Sources */,
 				AAE5CAC42D4A561000FDA699 /* RadioButtonViewModel.swift in Sources */,
+				AAD099772D5D3CCB007A6CE9 /* FormFieldView.swift in Sources */,
 				E48C9FFF2D5374D300A519ED /* AKMaskFieldEvent.swift in Sources */,
 				E48CA1162D5CC72300A519ED /* TextStyling.swift in Sources */,
 				AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */,
