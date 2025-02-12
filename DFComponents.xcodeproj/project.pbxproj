@@ -27,6 +27,7 @@
 		AA84AE1A2D4B94340057D161 /* SubmitControlProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE192D4B94340057D161 /* SubmitControlProtocol.swift */; };
 		AAD099692D5CC911007A6CE9 /* FormControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099682D5CC911007A6CE9 /* FormControlsView.swift */; };
 		AAD0996B2D5CCA23007A6CE9 /* DataFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0996A2D5CCA23007A6CE9 /* DataFlowViewModel.swift */; };
+		AAD099722D5CF4C6007A6CE9 /* DisplayDataFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099712D5CF4C6007A6CE9 /* DisplayDataFormView.swift */; };
 		AAD1E7C02D4B7F9400442BA4 /* RadioButtonDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */; };
 		AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */; };
 		AAD562352D4AABE500C19A11 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD562342D4AABE500C19A11 /* CheckBoxView.swift */; };
@@ -126,6 +127,7 @@
 		AA84AE192D4B94340057D161 /* SubmitControlProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitControlProtocol.swift; sourceTree = "<group>"; };
 		AAD099682D5CC911007A6CE9 /* FormControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormControlsView.swift; sourceTree = "<group>"; };
 		AAD0996A2D5CCA23007A6CE9 /* DataFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlowViewModel.swift; sourceTree = "<group>"; };
+		AAD099712D5CF4C6007A6CE9 /* DisplayDataFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDataFormView.swift; sourceTree = "<group>"; };
 		AAD1E7BF2D4B7F9400442BA4 /* RadioButtonDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonDTO.swift; sourceTree = "<group>"; };
 		AAD562322D4AABD200C19A11 /* CheckBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxViewModel.swift; sourceTree = "<group>"; };
 		AAD562342D4AABE500C19A11 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				AAD099682D5CC911007A6CE9 /* FormControlsView.swift */,
+				AAD099712D5CF4C6007A6CE9 /* DisplayDataFormView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1027,6 +1030,7 @@
 				A9BF45D52D50DB15003F2333 /* SliderDTO.swift in Sources */,
 				E48CA0132D537D5000A519ED /* SignatureDTO.swift in Sources */,
 				AA84AE1A2D4B94340057D161 /* SubmitControlProtocol.swift in Sources */,
+				AAD099722D5CF4C6007A6CE9 /* DisplayDataFormView.swift in Sources */,
 				E4A901582D525BB2007080AC /* SectionView.swift in Sources */,
 				AA84AE172D4B94090057D161 /* SubmitControlView.swift in Sources */,
 				A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */,
