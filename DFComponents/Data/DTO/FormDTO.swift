@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct FormDTO: Identifiable {
-    let id: UUID = UUID()
+struct FormDTO: Codable, Identifiable {
+    var id: UUID = UUID()
     var name: String
     var fields: [String]
 }

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9474BC52D5CE3CC00031047 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BC42D5CE3C900031047 /* NetworkClient.swift */; };
+		A9474BC72D5CE3EA00031047 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BC62D5CE3EA00031047 /* Interceptor.swift */; };
+		A9474BC92D5CE42100031047 /* RequestModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BC82D5CE41C00031047 /* RequestModifier.swift */; };
+		A9474BCB2D5CE44400031047 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BCA2D5CE44100031047 /* ResponseHandler.swift */; };
+		A9474BCD2D5CE49C00031047 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BCC2D5CE49800031047 /* NetworkError.swift */; };
+		A9474BCF2D5CE4E500031047 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BCE2D5CE4DE00031047 /* ContentType.swift */; };
+		A9474BD42D5CE60300031047 /* FormRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BD32D5CE5FF00031047 /* FormRepo.swift */; };
+		A9474BD62D5CEF7E00031047 /* GlobalErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BD52D5CEF7600031047 /* GlobalErrorHandler.swift */; };
 		A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A242D4B8127004FB6CA /* DateDTO.swift */; };
 		A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A272D4B812E004FB6CA /* DateViewModel.swift */; };
 		A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */; };
@@ -105,6 +113,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A9474BC42D5CE3C900031047 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		A9474BC62D5CE3EA00031047 /* Interceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
+		A9474BC82D5CE41C00031047 /* RequestModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModifier.swift; sourceTree = "<group>"; };
+		A9474BCA2D5CE44100031047 /* ResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
+		A9474BCC2D5CE49800031047 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		A9474BCE2D5CE4DE00031047 /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
+		A9474BD32D5CE5FF00031047 /* FormRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRepo.swift; sourceTree = "<group>"; };
+		A9474BD52D5CEF7600031047 /* GlobalErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalErrorHandler.swift; sourceTree = "<group>"; };
 		A95D7A1C2D4A8AC4004FB6CA /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
 		A95D7A1E2D4A8ACB004FB6CA /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		A95D7A202D4A8AD1004FB6CA /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
@@ -217,6 +233,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A9474BB02D5CE3AB00031047 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A9474BC42D5CE3C900031047 /* NetworkClient.swift */,
+				A9474BCC2D5CE49800031047 /* NetworkError.swift */,
+				A9474BCE2D5CE4DE00031047 /* ContentType.swift */,
+				A9474BC62D5CE3EA00031047 /* Interceptor.swift */,
+				A9474BC82D5CE41C00031047 /* RequestModifier.swift */,
+				A9474BCA2D5CE44100031047 /* ResponseHandler.swift */,
+				A9474BD52D5CEF7600031047 /* GlobalErrorHandler.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A9474BD22D5CE5F800031047 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				A9474BD32D5CE5FF00031047 /* FormRepo.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		A95D7A222D4B80D0004FB6CA /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,6 +806,7 @@
 		E4BBCFE32D4A24BF004AA735 /* DFComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A9474BB02D5CE3AB00031047 /* Network */,
 				E4A9014C2D4BADE6007080AC /* Root */,
 				E4A9014B2D4BADD0007080AC /* Resources */,
 				AAE5CABA2D4A505100FDA699 /* Common */,
@@ -879,6 +918,7 @@
 		E4BBD0242D4A4A53004AA735 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A9474BD22D5CE5F800031047 /* Repository */,
 				E4BBD0252D4A4A64004AA735 /* DTO */,
 			);
 			path = Data;
@@ -1061,13 +1101,16 @@
 				A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */,
 				E48CA0012D5374D300A519ED /* AKMaskField.swift in Sources */,
 				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
+				A9474BD62D5CEF7E00031047 /* GlobalErrorHandler.swift in Sources */,
 				E48CA1172D5CC72300A519ED /* BorderStyling.swift in Sources */,
 				A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */,
 				AAD0996B2D5CCA23007A6CE9 /* RulesControlsViewModel.swift in Sources */,
 				E4A901532D50DC07007080AC /* MapView.swift in Sources */,
+				A9474BCB2D5CE44400031047 /* ResponseHandler.swift in Sources */,
 				E48CA0042D5374D300A519ED /* AKMaskFieldPatternCharacter.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
 				AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */,
+				A9474BCF2D5CE4E500031047 /* ContentType.swift in Sources */,
 				AAD562372D4AABF300C19A11 /* MultiChoiceQuestion.swift in Sources */,
 				A9BF46A22D538896003F2333 /* ImageFileView.swift in Sources */,
 				AAD5623A2D4AAC2700C19A11 /* CheckBoxStyle.swift in Sources */,
@@ -1076,6 +1119,7 @@
 				E4A9015A2D52C848007080AC /* SectionModel.swift in Sources */,
 				E4A9017E2D5CCE90007080AC /* RouterManager.swift in Sources */,
 				AAD562352D4AABE500C19A11 /* CheckBoxView.swift in Sources */,
+				A9474BC52D5CE3CC00031047 /* NetworkClient.swift in Sources */,
 				E48C9FEF2D5374A900A519ED /* MaskedTextField.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
 				AAD1E7C02D4B7F9400442BA4 /* RadioButtonDTO.swift in Sources */,
@@ -1093,6 +1137,7 @@
 				E48C9FFE2D5374D300A519ED /* AKMaskFieldBrackets.swift in Sources */,
 				E48CA0032D5374D300A519ED /* AKMaskFieldBlockCharacter.swift in Sources */,
 				E4A9014A2D4BAD2C007080AC /* SplashView.swift in Sources */,
+				A9474BC72D5CE3EA00031047 /* Interceptor.swift in Sources */,
 				E48CA01B2D537D7100A519ED /* SignatureViewModel.swift in Sources */,
 				A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */,
 				E4BBD01E2D4A47BD004AA735 /* DropDownView.swift in Sources */,
@@ -1103,6 +1148,7 @@
 				AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */,
 				E489E8172D4A3B48007EA370 /* TextBoxDTO.swift in Sources */,
 				E44926C82D4B8B0D00EA5D5E /* FormViewModel.swift in Sources */,
+				A9474BD42D5CE60300031047 /* FormRepo.swift in Sources */,
 				A9BF469D2D538893003F2333 /* SliderViewModel.swift in Sources */,
 				A9BF469E2D538893003F2333 /* SliderView.swift in Sources */,
 				E48CA1182D5CC72300A519ED /* StyleManager.swift in Sources */,
@@ -1117,8 +1163,10 @@
 				A9BF46972D53887B003F2333 /* DateRangePickerView.swift in Sources */,
 				AAE5CAC62D4A61FD00FDA699 /* QuestionsRadioButton.swift in Sources */,
 				A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */,
+				A9474BCD2D5CE49C00031047 /* NetworkError.swift in Sources */,
 				E48CA1152D5CC72300A519ED /* AppFonts.swift in Sources */,
 				E48CA1142D5CC72300A519ED /* AppColors.swift in Sources */,
+				A9474BC92D5CE42100031047 /* RequestModifier.swift in Sources */,
 				A95D7A3A2D4BA59D004FB6CA /* ServicesListView.swift in Sources */,
 				E48CA0192D537D7100A519ED /* SignatureCanvasView.swift in Sources */,
 			);

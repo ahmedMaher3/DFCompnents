@@ -40,12 +40,12 @@ struct FormView: View {
                             SliderView(viewModel: viewModel.sliderViewModel)
                         }
                         //MARK: - There issue when the Map appears after the user scrolls in the form 
-                        /*
+
                          ControlFormBuilderView(titleControl: "Map") {
                              MapView()
                                  .frame(height: 200)
                          }
-                         */
+                       
                         ControlFormBuilderView(titleControl: "Section") {
                             SectionView()
                                 .frame(height: 300)
