@@ -364,12 +364,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		AAD099732D5D3A41007A6CE9 /* Submit */ = {
+		AAD099732D5D3A41007A6CE9 /* FooterView */ = {
 			isa = PBXGroup;
 			children = (
 				AAD099742D5D3A53007A6CE9 /* FooterFormView.swift */,
 			);
-			path = Submit;
+			path = FooterView;
 			sourceTree = "<group>";
 		};
 		AAD5622F2D4AABAA00C19A11 /* CheckBox */ = {
@@ -808,7 +808,7 @@
 		E4BBD0102D4A24FE004AA735 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AAD099732D5D3A41007A6CE9 /* Submit */,
+				AAD099732D5D3A41007A6CE9 /* FooterView */,
 				A9BF46A32D538E90003F2333 /* ComplicatedView */,
 				E4A901482D4BAD2C007080AC /* Splash */,
 				E4A9014D2D4BAE0D007080AC /* Main */,

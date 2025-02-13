@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct FormFieldView: View {
+    @EnvironmentObject var styleManagerVM: StyleManagerViewModel
+    @FocusState private var txtFieldFocused: Bool
+
     @Binding var text: String
     @Binding var error: String?
     var placeholder: String
@@ -17,12 +20,15 @@ struct FormFieldView: View {
     var body: some View {
         VStack(alignment: .leading) {
             TextField(placeholder, text: $text)
+                .submitLabel(.done)
+                .focused($txtFieldFocused)
+                .foregroundStyle(.black)
                 .textInputAutocapitalization(isEmailField ? .none : .words)
                 .keyboardType(isEmailField || isEmailConfirmField ? .emailAddress : .default)
                 .padding(.all, 8)
                 .overlay {
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(isValid ? Color.green : Color.gray, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: styleManagerVM.styleManager.cornerRadius)
+                        .stroke(isValid ? styleManagerVM.styleManager.secondaryTextColor : styleManagerVM.styleManager.borderColor, lineWidth: styleManagerVM.styleManager.borderWidth - 0.5)
                         .padding(.horizontal, 1)
                 }
 
