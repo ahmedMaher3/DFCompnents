@@ -19,7 +19,7 @@ struct ErrorMessageView: View {
             Text(errorMessage)
                 .font(styleManagerVM.styleManager.subtitleFont)
         }
-        .foregroundStyle(styleManagerVM.styleManager.primaryTextColor)
+        .foregroundStyle(styleManagerVM.styleManager.errorColor)
 //        .color(.red)
         .padding(.top, 4)
         .frame(maxWidth: .infinity, alignment: .leading)

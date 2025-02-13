@@ -15,6 +15,7 @@ class StyleManagerViewModel: ObservableObject {
         styleManager.primaryTextColor = Color(hex: apiResponse.primaryTextColor)
         styleManager.secondaryTextColor = Color(hex: apiResponse.secondaryTextColor)
         styleManager.borderColor = Color(hex: apiResponse.borderColor)
+        styleManager.borderValidColor = Color(hex: apiResponse.borderValidColor)
         styleManager.errorColor = Color(hex: apiResponse.errorColor)
         styleManager.titleFont = Font.custom(apiResponse.titleFontName, size: apiResponse.titleFontSize)
         styleManager.subtitleFont = Font.custom(apiResponse.subtitleFontName, size: apiResponse.subtitleFontSize)
@@ -27,6 +28,7 @@ struct APIStyleResponse: Codable {
     let primaryTextColor: String
     let secondaryTextColor: String
     let borderColor: String
+    let borderValidColor: String
     let errorColor: String
     let titleFontName: String
     let titleFontSize: CGFloat
@@ -36,18 +38,20 @@ struct APIStyleResponse: Codable {
     let cornerRadius: CGFloat
 }
 
+
 class APIService {
     static func fetchStyles(completion: @escaping (APIStyleResponse?) -> Void) {
-        // Simulate API call
+        // Simulate API call with styled colors
         let mockResponse = APIStyleResponse(
-            primaryTextColor: "#FF0000", // Red
-            secondaryTextColor: "#00FF00", // Green
-            borderColor: "#0000FF", // Blue
-            errorColor: "#FFA500", // Orange
+            primaryTextColor: "#1D3557", // Dark Blue
+            secondaryTextColor: "#457B9D", // Soft Blue
+            borderColor: "#D0D9E2", 
+            borderValidColor: "#7BE9B8" ,
+            errorColor: "#FFA500", // Keep Orange
             titleFontName: "Helvetica",
-            titleFontSize: 24,
+            titleFontSize: 18,
             subtitleFontName: "Helvetica",
-            subtitleFontSize: 18,
+            subtitleFontSize: 12,
             borderWidth: 2,
             cornerRadius: 10
         )
@@ -57,3 +61,5 @@ class APIService {
         }
     }
 }
+
+

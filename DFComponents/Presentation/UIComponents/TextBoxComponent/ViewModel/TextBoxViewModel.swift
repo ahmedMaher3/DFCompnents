@@ -34,8 +34,8 @@ class TextBoxViewModel: ObservableObject {
             placeholder: "Enter your mobile number",
             inputType: .mixed,
             minLength: 2,
-            prefixOptions: ["Mr", "Ms"],
-            suffixOptions: ["Jr"],
+            prefixOptions: [],
+            suffixOptions: [],
             requiresPrefix: true,
             requiresSuffix: true
         )
@@ -65,14 +65,10 @@ class TextBoxViewModel: ObservableObject {
         // Reset the error message before validation
         errorMessage = nil
 
-        if config.requiresPrefix, selectedPrefix == nil {
-            errorMessage = "Please select a prefix."
-        } else if config.inputType == .numbersOnly, !text.allSatisfy({ $0.isNumber }) {
+        if config.inputType == .numbersOnly, !text.allSatisfy({ $0.isNumber }) {
             errorMessage = "Only numbers are allowed."
         } else if text.count < config.minLength {
             errorMessage = "Minimum \(config.minLength) characters required."
-        } else if config.requiresSuffix, selectedSuffix == nil {
-            errorMessage = "Please select a suffix."
         }
         isValid = errorMessage == nil
     }

@@ -11,7 +11,6 @@ import SwiftUI
 enum Route: Hashable {
     case search
     case details
-
 }
 
 class Router: ObservableObject {
@@ -38,7 +37,6 @@ class Router: ObservableObject {
                SplashView()
            case .details:
                SplashView()
-
            }
        }
 

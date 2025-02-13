@@ -11,23 +11,20 @@ struct DropDownView: View {
     let title: String
     @ObservedObject var viewModel: DropDownViewModel
     var isDisabled: Bool = false  // Passed from summary view
-
     @State private var isBottomSheetPresented = false
+    @EnvironmentObject var styleManagerVM: StyleManagerViewModel
 
     var body: some View {
+        let styleManager = styleManagerVM.styleManager
         HStack {
             Text(viewModel.selectedCountry?.name ?? title)
-                .styledText(font: .subheadline, color: isDisabled ? .gray : .primary)
+                .styledText(font: styleManager.subtitleFont, color: isDisabled ? styleManager.disabledTextColor : styleManager.primaryTextColor)
             Spacer()
             Image(systemName: "chevron.down")
-                .styledText(font: .subheadline, color: isDisabled ? .gray : .primary)
+                .styledText(font: styleManager.subtitleFont, color: isDisabled ? styleManager.disabledTextColor : styleManager.primaryTextColor)
         }
         .padding()
-        .styledBorder(
-            color: isDisabled ? Color.gray.opacity(0.5) : Color.blue,
-            width: 1.5,
-            cornerRadius: 8
-        )
+        .styledBorder(color: styleManager.borderColor, width: styleManager.borderWidth, cornerRadius: styleManager.cornerRadius)
         .opacity(isDisabled ? 0.5 : 1.0)  // Gray effect
         .allowsHitTesting(!isDisabled)  // Disable interactions
         .onTapGesture {

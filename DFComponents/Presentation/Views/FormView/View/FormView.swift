@@ -57,6 +57,7 @@ struct FormView: View {
                         }
                         ControlFormBuilderView(titleControl: "Text Box") {
                             TextBoxComponent(viewModel: viewModel.textBoxViewModel)
+                            
                         }
                         ControlFormBuilderView(titleControl: "Date Picker") {
                             DateTimeView(viewModel: viewModel.dateFieldViewModel)

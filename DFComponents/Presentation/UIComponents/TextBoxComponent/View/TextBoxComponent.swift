@@ -27,7 +27,7 @@ struct TextBoxComponent: View {
                 }
             }
             .padding(.bottom, styleManager.innerPadding)
-
+            let borderColor = viewModel.hasInteracted ? (viewModel.isValid ? styleManager.borderValidColor : styleManager.errorColor) : styleManager.borderColor
             // Input Field with Prefix and Suffix
             HStack {
                 // Prefix
@@ -36,7 +36,7 @@ struct TextBoxComponent: View {
                         selectedOption: $viewModel.selectedPrefix,
                         options: viewModel.prefixOptions,
                         label: "Prefix",
-                        borderColor: viewModel.borderColor
+                        borderColor: borderColor
                     )
                     .disabled(isDisabled) // Use isDisabled here
                     .opacity(isDisabled ? 0.6 : 1.0)
@@ -49,7 +49,7 @@ struct TextBoxComponent: View {
                 })
                 .padding()
                 .frame(height: 48)
-                .styledBorder(color: viewModel.borderColor, width: styleManager.borderWidth, cornerRadius: styleManager.cornerRadius)
+                .styledBorder(color: borderColor, width: styleManager.borderWidth, cornerRadius: styleManager.cornerRadius)
                 .background(
                     RoundedRectangle(cornerRadius: styleManager.cornerRadius)
                         .fill(isDisabled ? styleManager.disabledBackgroundColor : Color.clear)
@@ -69,7 +69,7 @@ struct TextBoxComponent: View {
                         selectedOption: $viewModel.selectedSuffix,
                         options: viewModel.suffixOptions,
                         label: "Suffix",
-                        borderColor: viewModel.borderColor
+                        borderColor: borderColor
                     )
                     .disabled(isDisabled) // Use isDisabled here
                     .opacity(isDisabled ? 0.6 : 1.0)
@@ -98,8 +98,8 @@ struct TextBoxComponent: View {
         placeholder: "XXX-XXX-XXXX",
         inputType: .mixed,
         minLength: 10,
-        prefixOptions: ["Mr", "Ms"],
-        suffixOptions: ["Jr"],
+        prefixOptions: [],
+        suffixOptions: [],
         requiresPrefix: true,
         requiresSuffix: true
     )

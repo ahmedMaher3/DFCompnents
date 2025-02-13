@@ -13,6 +13,7 @@ struct StyleManager {
     var secondaryTextColor: Color = AppColors.secondaryText
     var disabledTextColor: Color = AppColors.disabledText
     var borderColor: Color = AppColors.border
+    var borderValidColor: Color = AppColors.borderValid
     var errorColor: Color = AppColors.error
     var disabledBackgroundColor: Color = AppColors.disabledBackground
 
