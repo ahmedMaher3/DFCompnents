@@ -75,6 +75,7 @@
 		E4A9015A2D52C848007080AC /* SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901592D52C848007080AC /* SectionModel.swift */; };
 		E4A9015C2D52CD73007080AC /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9015B2D52CD73007080AC /* SectionViewModel.swift */; };
 		E4A901632D52D536007080AC /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901622D52D536007080AC /* StepView.swift */; };
+		E4A9017E2D5CCE90007080AC /* RouterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9017D2D5CCE90007080AC /* RouterManager.swift */; };
 		E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */; };
 		E4BBCFE92D4A24C2004AA735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */; };
 		E4BBCFED2D4A24C2004AA735 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFEC2D4A24C2004AA735 /* Preview Assets.xcassets */; };
@@ -177,6 +178,7 @@
 		E4A901592D52C848007080AC /* SectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModel.swift; sourceTree = "<group>"; };
 		E4A9015B2D52CD73007080AC /* SectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
 		E4A901622D52D536007080AC /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
+		E4A9017D2D5CCE90007080AC /* RouterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterManager.swift; sourceTree = "<group>"; };
 		E4BBCFE12D4A24BF004AA735 /* DFComponents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFComponents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsApp.swift; sourceTree = "<group>"; };
 		E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -254,14 +256,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		A9BF46932D53886A003F2333 /* ViewBuilder */ = {
-			isa = PBXGroup;
-			children = (
-				A9BF46922D53886A003F2333 /* ControlFormBuilderView.swift */,
-			);
-			path = ViewBuilder;
-			sourceTree = "<group>";
-		};
 		A9BF46962D53887B003F2333 /* Data Range Picker */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,23 +312,6 @@
 				A9BF46A42D538EC5003F2333 /* ComplicatedView.swift */,
 			);
 			path = ComplicatedView;
-			sourceTree = "<group>";
-		};
-		AA84AE132D4B8B8E0057D161 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */,
-				AA84AE162D4B94090057D161 /* SubmitControlView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		AA84AE182D4B94140057D161 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				AA84AE192D4B94340057D161 /* SubmitControlProtocol.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		AAD099652D5CC8CA007A6CE9 /* RulesControls */ = {
@@ -430,10 +407,7 @@
 		AAE5CABA2D4A505100FDA699 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E48CA1062D5CC72300A519ED /* Theming */,
 				E48C9FF02D5374BE00A519ED /* DependentPackages */,
-				AA84AE182D4B94140057D161 /* Protocols */,
-				AA84AE132D4B8B8E0057D161 /* Views */,
 				AAE5CA8D2D4A4D6F00FDA699 /* Extenstions */,
 			);
 			path = Common;
@@ -581,16 +555,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		E48CA1062D5CC72300A519ED /* Theming */ = {
-			isa = PBXGroup;
-			children = (
-				E48CA10F2D5CC72300A519ED /* StyleManager */,
-				E48CA1072D5CC72300A519ED /* ThemeAssets */,
-				E48CA10C2D5CC72300A519ED /* StyledView */,
-			);
-			path = Theming;
-			sourceTree = "<group>";
-		};
 		E48CA1072D5CC72300A519ED /* ThemeAssets */ = {
 			isa = PBXGroup;
 			children = (
@@ -631,6 +595,8 @@
 		E4A9014B2D4BADD0007080AC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E4A901842D5CD77B007080AC /* Images */,
+				E4A901832D5CD776007080AC /* Fonts */,
 				E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -734,6 +700,54 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		E4A9017C2D5CCE67007080AC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E4A9017D2D5CCE90007080AC /* RouterManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		E4A9017F2D5CCF8B007080AC /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				E48CA10F2D5CC72300A519ED /* StyleManager */,
+				E48CA1072D5CC72300A519ED /* ThemeAssets */,
+				E48CA10C2D5CC72300A519ED /* StyledView */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		E4A901812D5CD5EF007080AC /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		E4A901822D5CD5F8007080AC /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				A9BF46922D53886A003F2333 /* ControlFormBuilderView.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		E4A901832D5CD776007080AC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E4A901842D5CD77B007080AC /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		E4BBCFD82D4A24BF004AA735 = {
 			isa = PBXGroup;
 			children = (
@@ -759,8 +773,10 @@
 			isa = PBXGroup;
 			children = (
 				E4A9014C2D4BADE6007080AC /* Root */,
-				AAE5CABA2D4A505100FDA699 /* Common */,
 				E4A9014B2D4BADD0007080AC /* Resources */,
+				AAE5CABA2D4A505100FDA699 /* Common */,
+				E4A9017C2D5CCE67007080AC /* Managers */,
+				E4A9017F2D5CCF8B007080AC /* Theme */,
 				E4BBD0242D4A4A53004AA735 /* Data */,
 				E4BBD00F2D4A24EA004AA735 /* Presentation */,
 				E4BBCFEA2D4A24C2004AA735 /* DFComponents.entitlements */,
@@ -798,7 +814,6 @@
 			isa = PBXGroup;
 			children = (
 				E4BBD0192D4A2AFF004AA735 /* UIComponents */,
-				A9BF46932D53886A003F2333 /* ViewBuilder */,
 				E4BBD0102D4A24FE004AA735 /* Views */,
 				E4BBD0112D4A250D004AA735 /* Modifiers */,
 			);
@@ -828,6 +843,8 @@
 			isa = PBXGroup;
 			children = (
 				AAD099652D5CC8CA007A6CE9 /* RulesControls */,
+				E4A901822D5CD5F8007080AC /* Builders */,
+				E4A901812D5CD5EF007080AC /* Messages */,
 				A9BF46A12D538896003F2333 /* Image-File Upload */,
 				A9BF469C2D538893003F2333 /* SliderComponent */,
 				A9BF46962D53887B003F2333 /* Data Range Picker */,
@@ -1046,7 +1063,6 @@
 				AA84AE1A2D4B94340057D161 /* SubmitControlProtocol.swift in Sources */,
 				AAD099722D5CF4C6007A6CE9 /* DisplayDataFormView.swift in Sources */,
 				E4A901582D525BB2007080AC /* SectionView.swift in Sources */,
-				AA84AE172D4B94090057D161 /* SubmitControlView.swift in Sources */,
 				A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */,
 				E48CA0012D5374D300A519ED /* AKMaskField.swift in Sources */,
 				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
@@ -1063,6 +1079,7 @@
 				AAD099752D5D3A53007A6CE9 /* FooterFormView.swift in Sources */,
 				E4A901632D52D536007080AC /* StepView.swift in Sources */,
 				E4A9015A2D52C848007080AC /* SectionModel.swift in Sources */,
+				E4A9017E2D5CCE90007080AC /* RouterManager.swift in Sources */,
 				AAD562352D4AABE500C19A11 /* CheckBoxView.swift in Sources */,
 				E48C9FEF2D5374A900A519ED /* MaskedTextField.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,

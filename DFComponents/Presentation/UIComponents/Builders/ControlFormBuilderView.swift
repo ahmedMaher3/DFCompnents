@@ -6,23 +6,24 @@
 //
 
 import SwiftUI
-struct ControlFormBuilderView<Control>: View where Control: View {
-    //MARK: - Title Control
+struct ControlFormBuilderView<Control: View>: View  {
+
     let titleControl: String
-    //MARK: - Content related to control for examples (Date Range Picker, Date Picker)
-    let control: Control
+    let control: () -> Control
+
 
     //MARK: - inilize control
-    init(titleControl: String, @ViewBuilder controlType: () -> Control) {
+    init(titleControl: String, @ViewBuilder controlType: @escaping () -> Control) {
         self.titleControl = titleControl
-        self.control = controlType()
+        self.control = controlType
     }
+
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 8) {
             Text(titleControl)
                 .fontWeight(.bold)
                 .font(.system(size: 20))
-            control
+            control()
         }
     }
 }
