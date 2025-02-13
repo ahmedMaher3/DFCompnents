@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RadioButtonViewModel: ObservableObject, SubmitControlProtocol {
+final class RadioButtonViewModel: ObservableObject {
 
     @Published var selectedItems: [String: String] = [:]  // Key: Question ID, Value: Selected item ID
     @Published var questions: [String] = [
