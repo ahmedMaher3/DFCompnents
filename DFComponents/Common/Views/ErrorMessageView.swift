@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ErrorMessageView: View {
+    @EnvironmentObject var styleManagerVM: StyleManagerViewModel
+
     let errorMessage: String
     let imageName: String
 
@@ -15,9 +17,10 @@ struct ErrorMessageView: View {
         HStack {
             Image(systemName: imageName)
             Text(errorMessage)
-                .font(.subheadline)
+                .font(styleManagerVM.styleManager.subtitleFont)
         }
-        .color(.red)
+        .foregroundStyle(styleManagerVM.styleManager.primaryTextColor)
+//        .color(.red)
         .padding(.top, 4)
         .frame(maxWidth: .infinity, alignment: .leading)
     }

@@ -39,7 +39,7 @@ struct FormView: View {
                         ControlFormBuilderView(titleControl: "Slider") {
                             SliderView(viewModel: viewModel.sliderViewModel)
                         }
-                        //MARK: - There issue when appear Map
+                        //MARK: - There issue when the Map appears after the user scrolls in the form 
                         /*
                          ControlFormBuilderView(titleControl: "Map") {
                              MapView()
