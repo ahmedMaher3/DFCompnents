@@ -233,7 +233,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A9474BB02D5CE3AB00031047 /* Network-Y */ = {
+		A9474BB02D5CE3AB00031047 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				A9474BC42D5CE3C900031047 /* NetworkClient.swift */,
@@ -244,7 +244,7 @@
 				A9474BCA2D5CE44100031047 /* ResponseHandler.swift */,
 				A9474BD52D5CEF7600031047 /* GlobalErrorHandler.swift */,
 			);
-			path = "Network-Y";
+			path = Network;
 			sourceTree = "<group>";
 		};
 		A9474BD22D5CE5F800031047 /* Repository */ = {
@@ -806,7 +806,7 @@
 		E4BBCFE32D4A24BF004AA735 /* DFComponents */ = {
 			isa = PBXGroup;
 			children = (
-				A9474BB02D5CE3AB00031047 /* Network-Y */,
+				A9474BB02D5CE3AB00031047 /* Network */,
 				E4A9014C2D4BADE6007080AC /* Root */,
 				E4A9014B2D4BADD0007080AC /* Resources */,
 				AAE5CABA2D4A505100FDA699 /* Common */,
