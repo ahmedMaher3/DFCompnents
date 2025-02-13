@@ -11,6 +11,8 @@ struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
 
+    @State private var showingAppearanceSheet = false
+
     var title: String = ""
 
     var body: some View {
@@ -75,6 +77,13 @@ struct FormView: View {
                 .listStyle(PlainListStyle())
                 .buttonStyle(PlainButtonStyle())
                 .listRowBackground(Color.clear)
+                
+                Button("Show Appearance Sheet") {
+                    showingAppearanceSheet.toggle()
+                }
+                .sheet(isPresented: $showingAppearanceSheet) {
+                    AppearanceSheetView()
+                }
 
                 // Buttons at the bottom
                 //MARK: - This Footer work only with controls consider as rules

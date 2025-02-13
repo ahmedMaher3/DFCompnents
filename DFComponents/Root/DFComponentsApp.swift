@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct DFComponentsApp: App {
+    
+    @State var appearanceManager = AppearanceManager()
+    
     var body: some Scene {
         WindowGroup {
             SplashView()
+                .environment(appearanceManager)
+                .onAppear {
+                    appearanceManager.initAppearanceStyle()
+                }
             // test commit/push
         }
     }

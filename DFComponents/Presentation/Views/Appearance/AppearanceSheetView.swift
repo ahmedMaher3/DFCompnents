@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct AppearanceSheetView: View {
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        NavigationStack {
+            AppearanceSelectionPicker()
+            .navigationBarTitle(Text("Settings"), displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
+               dismiss()
+            }) {
+               Text("Done").bold()
+            })
+        }.interactiveDismissDisabled()
     }
 }
 

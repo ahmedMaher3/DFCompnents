@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04C1DE322D5DFA120034B704 /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DE312D5DFA120034B704 /* AppearanceManager.swift */; };
+		04C1DE352D5DFB970034B704 /* AppearanceSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DE342D5DFB970034B704 /* AppearanceSheetView.swift */; };
+		04C1DE372D5DFBDC0034B704 /* AppearanceSelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DE362D5DFBDC0034B704 /* AppearanceSelectionPicker.swift */; };
 		A9474BC52D5CE3CC00031047 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BC42D5CE3C900031047 /* NetworkClient.swift */; };
 		A9474BC72D5CE3EA00031047 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BC62D5CE3EA00031047 /* Interceptor.swift */; };
 		A9474BC92D5CE42100031047 /* RequestModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BC82D5CE41C00031047 /* RequestModifier.swift */; };
@@ -113,6 +116,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04C1DE312D5DFA120034B704 /* AppearanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
+		04C1DE342D5DFB970034B704 /* AppearanceSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSheetView.swift; sourceTree = "<group>"; };
+		04C1DE362D5DFBDC0034B704 /* AppearanceSelectionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSelectionPicker.swift; sourceTree = "<group>"; };
 		A9474BC42D5CE3C900031047 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		A9474BC62D5CE3EA00031047 /* Interceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
 		A9474BC82D5CE41C00031047 /* RequestModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModifier.swift; sourceTree = "<group>"; };
@@ -233,6 +239,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04C1DE302D5DF9E70034B704 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
+		04C1DE332D5DFB750034B704 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				04C1DE342D5DFB970034B704 /* AppearanceSheetView.swift */,
+				04C1DE362D5DFBDC0034B704 /* AppearanceSelectionPicker.swift */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
 		A9474BB02D5CE3AB00031047 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -738,6 +760,7 @@
 			isa = PBXGroup;
 			children = (
 				E4A9017D2D5CCE90007080AC /* RouterManager.swift */,
+				04C1DE312D5DFA120034B704 /* AppearanceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -806,6 +829,7 @@
 		E4BBCFE32D4A24BF004AA735 /* DFComponents */ = {
 			isa = PBXGroup;
 			children = (
+				04C1DE302D5DF9E70034B704 /* Appearance */,
 				A9474BB02D5CE3AB00031047 /* Network */,
 				E4A9014C2D4BADE6007080AC /* Root */,
 				E4A9014B2D4BADD0007080AC /* Resources */,
@@ -858,6 +882,7 @@
 		E4BBD0102D4A24FE004AA735 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04C1DE332D5DFB750034B704 /* Appearance */,
 				AAD099732D5D3A41007A6CE9 /* FooterView */,
 				A9BF46A32D538E90003F2333 /* ComplicatedView */,
 				E4A901482D4BAD2C007080AC /* Splash */,
@@ -1099,6 +1124,7 @@
 				AAD099722D5CF4C6007A6CE9 /* DisplayDataFormView.swift in Sources */,
 				E4A901582D525BB2007080AC /* SectionView.swift in Sources */,
 				A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */,
+				04C1DE352D5DFB970034B704 /* AppearanceSheetView.swift in Sources */,
 				E48CA0012D5374D300A519ED /* AKMaskField.swift in Sources */,
 				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
 				A9474BD62D5CEF7E00031047 /* GlobalErrorHandler.swift in Sources */,
@@ -1149,6 +1175,7 @@
 				E489E8172D4A3B48007EA370 /* TextBoxDTO.swift in Sources */,
 				E44926C82D4B8B0D00EA5D5E /* FormViewModel.swift in Sources */,
 				A9474BD42D5CE60300031047 /* FormRepo.swift in Sources */,
+				04C1DE372D5DFBDC0034B704 /* AppearanceSelectionPicker.swift in Sources */,
 				A9BF469D2D538893003F2333 /* SliderViewModel.swift in Sources */,
 				A9BF469E2D538893003F2333 /* SliderView.swift in Sources */,
 				E48CA1182D5CC72300A519ED /* StyleManager.swift in Sources */,
@@ -1167,6 +1194,7 @@
 				E48CA1152D5CC72300A519ED /* AppFonts.swift in Sources */,
 				E48CA1142D5CC72300A519ED /* AppColors.swift in Sources */,
 				A9474BC92D5CE42100031047 /* RequestModifier.swift in Sources */,
+				04C1DE322D5DFA120034B704 /* AppearanceManager.swift in Sources */,
 				A95D7A3A2D4BA59D004FB6CA /* ServicesListView.swift in Sources */,
 				E48CA0192D537D7100A519ED /* SignatureCanvasView.swift in Sources */,
 			);
