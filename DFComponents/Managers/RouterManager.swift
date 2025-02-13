@@ -8,16 +8,27 @@
 import Foundation
 import SwiftUI
 
-enum Route: Hashable {
+enum RouteType: Hashable {
     case search
     case details
-
 }
 
-class Router: ObservableObject {
-    @Published var path = NavigationPath()  // Stores the navigation stack
+protocol Routable {
+    var path: NavigationPath { get set }
+    func push(to route: RouteType)
+    func goBack()
+    func reset()
+    func goToRoot()
+    func navigateToSpecific(route: RouteType)
+    @ViewBuilder func destination(for route: RouteType)
+}
 
-    func navigate(to route: Route) {
+
+
+class Router: ObservableObject {
+    @Published var path = NavigationPath()
+
+    func push(to route: RouteType) {
         path.append(route)
     }
 
@@ -31,9 +42,14 @@ class Router: ObservableObject {
         path = NavigationPath()
     }
 
+    func navigateToSpecific(route: RouteType) {
+           reset()
+           push(to: route)
+       }
+
     @ViewBuilder
-       func destination(for route: Route) -> some View {
-           switch route {
+       func destination(for routeType: RouteType) -> some View {
+           switch routeType {
            case .search:
                SplashView()
            case .details:
@@ -41,6 +57,5 @@ class Router: ObservableObject {
 
            }
        }
-
 }
 
