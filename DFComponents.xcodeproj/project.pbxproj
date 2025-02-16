@@ -85,6 +85,16 @@
 		E4A9015C2D52CD73007080AC /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9015B2D52CD73007080AC /* SectionViewModel.swift */; };
 		E4A901632D52D536007080AC /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901622D52D536007080AC /* StepView.swift */; };
 		E4A9017E2D5CCE90007080AC /* RouterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9017D2D5CCE90007080AC /* RouterManager.swift */; };
+		E4A9019D2D5E01E9007080AC /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901922D5E01E9007080AC /* Endpoint.swift */; };
+		E4A9019E2D5E01E9007080AC /* NetworkServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901942D5E01E9007080AC /* NetworkServiceImpl.swift */; };
+		E4A9019F2D5E01E9007080AC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901952D5E01E9007080AC /* Network.swift */; };
+		E4A901A12D5E01E9007080AC /* NetworkErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901972D5E01E9007080AC /* NetworkErrorHandling.swift */; };
+		E4A901A22D5E01E9007080AC /* AlamofireService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901982D5E01E9007080AC /* AlamofireService.swift */; };
+		E4A901A32D5E01E9007080AC /* UserAuthoriationHandlerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9019A2D5E01E9007080AC /* UserAuthoriationHandlerImpl.swift */; };
+		E4A901A42D5E01E9007080AC /* AuthorizationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9019B2D5E01E9007080AC /* AuthorizationHandler.swift */; };
+		E4A901A52D5E01E9007080AC /* GuestAuthorizationImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9019C2D5E01E9007080AC /* GuestAuthorizationImpl.swift */; };
+		E4A901A82D5E02D3007080AC /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E4A901A72D5E02D3007080AC /* KeychainSwift */; };
+		E4A901AE2D61CF07007080AC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E4A901AD2D61CF07007080AC /* Alamofire */; };
 		E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */; };
 		E4BBCFE92D4A24C2004AA735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */; };
 		E4BBCFED2D4A24C2004AA735 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFEC2D4A24C2004AA735 /* Preview Assets.xcassets */; };
@@ -197,6 +207,14 @@
 		E4A9015B2D52CD73007080AC /* SectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
 		E4A901622D52D536007080AC /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
 		E4A9017D2D5CCE90007080AC /* RouterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterManager.swift; sourceTree = "<group>"; };
+		E4A901922D5E01E9007080AC /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		E4A901942D5E01E9007080AC /* NetworkServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceImpl.swift; sourceTree = "<group>"; };
+		E4A901952D5E01E9007080AC /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		E4A901972D5E01E9007080AC /* NetworkErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorHandling.swift; sourceTree = "<group>"; };
+		E4A901982D5E01E9007080AC /* AlamofireService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireService.swift; sourceTree = "<group>"; };
+		E4A9019A2D5E01E9007080AC /* UserAuthoriationHandlerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthoriationHandlerImpl.swift; sourceTree = "<group>"; };
+		E4A9019B2D5E01E9007080AC /* AuthorizationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationHandler.swift; sourceTree = "<group>"; };
+		E4A9019C2D5E01E9007080AC /* GuestAuthorizationImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestAuthorizationImpl.swift; sourceTree = "<group>"; };
 		E4BBCFE12D4A24BF004AA735 /* DFComponents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFComponents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsApp.swift; sourceTree = "<group>"; };
 		E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -219,6 +237,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4A901A82D5E02D3007080AC /* KeychainSwift in Frameworks */,
+				E4A901AE2D61CF07007080AC /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +825,60 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		E4A9018F2D5E01E9007080AC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E4A901902D5E01E9007080AC /* Remote */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E4A901902D5E01E9007080AC /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				E4A901912D5E01E9007080AC /* Endpoint */,
+				E4A901932D5E01E9007080AC /* Service */,
+				E4A901992D5E01E9007080AC /* Authorization */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		E4A901912D5E01E9007080AC /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				E4A901922D5E01E9007080AC /* Endpoint.swift */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		E4A901932D5E01E9007080AC /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E4A901942D5E01E9007080AC /* NetworkServiceImpl.swift */,
+				E4A901952D5E01E9007080AC /* Network.swift */,
+				E4A901972D5E01E9007080AC /* NetworkErrorHandling.swift */,
+				E4A901982D5E01E9007080AC /* AlamofireService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E4A901992D5E01E9007080AC /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				E4A9019A2D5E01E9007080AC /* UserAuthoriationHandlerImpl.swift */,
+				E4A9019B2D5E01E9007080AC /* AuthorizationHandler.swift */,
+				E4A9019C2D5E01E9007080AC /* GuestAuthorizationImpl.swift */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		E4A901AC2D61CF07007080AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E4BBCFD82D4A24BF004AA735 = {
 			isa = PBXGroup;
 			children = (
@@ -813,6 +887,7 @@
 				E4BBCFFF2D4A24C3004AA735 /* DFComponentsUITests */,
 				E4BBCFE22D4A24BF004AA735 /* Products */,
 				A95D7A222D4B80D0004FB6CA /* Recovered References */,
+				E4A901AC2D61CF07007080AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -944,6 +1019,7 @@
 			isa = PBXGroup;
 			children = (
 				A9474BD22D5CE5F800031047 /* Repository */,
+				E4A9018F2D5E01E9007080AC /* Network */,
 				E4BBD0252D4A4A64004AA735 /* DTO */,
 			);
 			path = Data;
@@ -997,6 +1073,10 @@
 			dependencies = (
 			);
 			name = DFComponents;
+			packageProductDependencies = (
+				E4A901A72D5E02D3007080AC /* KeychainSwift */,
+				E4A901AD2D61CF07007080AC /* Alamofire */,
+			);
 			productName = DFComponents;
 			productReference = E4BBCFE12D4A24BF004AA735 /* DFComponents.app */;
 			productType = "com.apple.product-type.application";
@@ -1069,6 +1149,10 @@
 				Base,
 			);
 			mainGroup = E4BBCFD82D4A24BF004AA735;
+			packageReferences = (
+				E4A901A62D5E02D3007080AC /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				E4A901AB2D61CEF5007080AC /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = E4BBCFE22D4A24BF004AA735 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1117,6 +1201,7 @@
 				E48CA0052D5374D300A519ED /* AKMaskFieldStatus.swift in Sources */,
 				A9BF46A72D53992A003F2333 /* CameraPicker.swift in Sources */,
 				A9BF46A52D538EC9003F2333 /* ComplicatedView.swift in Sources */,
+				E4A9019F2D5E01E9007080AC /* Network.swift in Sources */,
 				E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */,
 				E44926C42D4B8AD200EA5D5E /* FormView.swift in Sources */,
 				A9BF45D52D50DB15003F2333 /* SliderDTO.swift in Sources */,
@@ -1131,14 +1216,17 @@
 				E48CA1172D5CC72300A519ED /* BorderStyling.swift in Sources */,
 				A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */,
 				AAD0996B2D5CCA23007A6CE9 /* RulesControlsViewModel.swift in Sources */,
+				E4A901A22D5E01E9007080AC /* AlamofireService.swift in Sources */,
 				E4A901532D50DC07007080AC /* MapView.swift in Sources */,
 				A9474BCB2D5CE44400031047 /* ResponseHandler.swift in Sources */,
 				E48CA0042D5374D300A519ED /* AKMaskFieldPatternCharacter.swift in Sources */,
+				E4A901A32D5E01E9007080AC /* UserAuthoriationHandlerImpl.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
 				AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */,
 				A9474BCF2D5CE4E500031047 /* ContentType.swift in Sources */,
 				AAD562372D4AABF300C19A11 /* MultiChoiceQuestion.swift in Sources */,
 				A9BF46A22D538896003F2333 /* ImageFileView.swift in Sources */,
+				E4A901A52D5E01E9007080AC /* GuestAuthorizationImpl.swift in Sources */,
 				AAD5623A2D4AAC2700C19A11 /* CheckBoxStyle.swift in Sources */,
 				AAD099752D5D3A53007A6CE9 /* FooterFormView.swift in Sources */,
 				E4A901632D52D536007080AC /* StepView.swift in Sources */,
@@ -1167,12 +1255,14 @@
 				E48CA01B2D537D7100A519ED /* SignatureViewModel.swift in Sources */,
 				A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */,
 				E4BBD01E2D4A47BD004AA735 /* DropDownView.swift in Sources */,
+				E4A9019D2D5E01E9007080AC /* Endpoint.swift in Sources */,
 				AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */,
 				E48CA1122D5CC72300A519ED /* AppBorders.swift in Sources */,
 				E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */,
 				A95D7A302D4B8B6F004FB6CA /* FormDTO.swift in Sources */,
 				AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */,
 				E489E8172D4A3B48007EA370 /* TextBoxDTO.swift in Sources */,
+				E4A901A12D5E01E9007080AC /* NetworkErrorHandling.swift in Sources */,
 				E44926C82D4B8B0D00EA5D5E /* FormViewModel.swift in Sources */,
 				A9474BD42D5CE60300031047 /* FormRepo.swift in Sources */,
 				04C1DE372D5DFBDC0034B704 /* AppearanceSelectionPicker.swift in Sources */,
@@ -1183,7 +1273,9 @@
 				E48CA1132D5CC72300A519ED /* AppSpacing.swift in Sources */,
 				AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */,
 				E48CA01A2D537D7100A519ED /* SignatureComponent.swift in Sources */,
+				E4A9019E2D5E01E9007080AC /* NetworkServiceImpl.swift in Sources */,
 				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
+				E4A901A42D5E01E9007080AC /* AuthorizationHandler.swift in Sources */,
 				E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */,
 				E489E81E2D4A6A15007EA370 /* ColorExtension.swift in Sources */,
 				E48CA1192D5CC72300A519ED /* StyleManagerViewModel.swift in Sources */,
@@ -1555,6 +1647,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E4A901A62D5E02D3007080AC /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
+		E4A901AB2D61CEF5007080AC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E4A901A72D5E02D3007080AC /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4A901A62D5E02D3007080AC /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+		E4A901AD2D61CF07007080AC /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4A901AB2D61CEF5007080AC /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E4BBCFD92D4A24BF004AA735 /* Project object */;
 }
