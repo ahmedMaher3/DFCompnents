@@ -259,13 +259,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04C1DE302D5DF9E70034B704 /* Appearance */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Appearance;
-			sourceTree = "<group>";
-		};
 		04C1DE332D5DFB750034B704 /* Appearance */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,7 +476,6 @@
 		AAE5CABA2D4A505100FDA699 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E48C9FF02D5374BE00A519ED /* DependentPackages */,
 				AAE5CA8D2D4A4D6F00FDA699 /* Extenstions */,
 			);
 			path = Common;
@@ -879,6 +871,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E4A901B22D61E000007080AC /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				E4A901B52D61E013007080AC /* Mappers */,
+				E4A901B42D61E00D007080AC /* Entities */,
+				E4A901B32D61E005007080AC /* UseCase */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		E4A901B32D61E005007080AC /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		E4A901B42D61E00D007080AC /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		E4A901B52D61E013007080AC /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
 		E4BBCFD82D4A24BF004AA735 = {
 			isa = PBXGroup;
 			children = (
@@ -904,15 +927,16 @@
 		E4BBCFE32D4A24BF004AA735 /* DFComponents */ = {
 			isa = PBXGroup;
 			children = (
-				04C1DE302D5DF9E70034B704 /* Appearance */,
-				A9474BB02D5CE3AB00031047 /* Network */,
 				E4A9014C2D4BADE6007080AC /* Root */,
+				E4A901B22D61E000007080AC /* Domain */,
+				E4BBD00F2D4A24EA004AA735 /* Presentation */,
+				E4BBD0242D4A4A53004AA735 /* Data */,
+				E48C9FF02D5374BE00A519ED /* DependentPackages */,
+				A9474BB02D5CE3AB00031047 /* Network */,
 				E4A9014B2D4BADD0007080AC /* Resources */,
 				AAE5CABA2D4A505100FDA699 /* Common */,
 				E4A9017C2D5CCE67007080AC /* Managers */,
 				E4A9017F2D5CCF8B007080AC /* Theme */,
-				E4BBD0242D4A4A53004AA735 /* Data */,
-				E4BBD00F2D4A24EA004AA735 /* Presentation */,
 				E4BBCFEA2D4A24C2004AA735 /* DFComponents.entitlements */,
 				E4BBCFEB2D4A24C2004AA735 /* Preview Content */,
 			);

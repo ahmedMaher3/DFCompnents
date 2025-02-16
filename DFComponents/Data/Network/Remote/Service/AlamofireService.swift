@@ -11,8 +11,6 @@ import Alamofire
 
 class AlamofireService: EndpointExecuter {
 
-
-
     // 🔹 Standard session (without caching)
     private let manager: Session = {
         let configuration = URLSessionConfiguration.default
