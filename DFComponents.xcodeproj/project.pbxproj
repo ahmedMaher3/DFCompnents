@@ -18,6 +18,12 @@
 		A9474BCF2D5CE4E500031047 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BCE2D5CE4DE00031047 /* ContentType.swift */; };
 		A9474BD42D5CE60300031047 /* FormRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BD32D5CE5FF00031047 /* FormRepo.swift */; };
 		A9474BD62D5CEF7E00031047 /* GlobalErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474BD52D5CEF7600031047 /* GlobalErrorHandler.swift */; };
+		A9474D762D649BFF00031047 /* form.json in Resources */ = {isa = PBXBuildFile; fileRef = A9474D752D649BFF00031047 /* form.json */; };
+		A9474D782D649D2E00031047 /* android.json in Resources */ = {isa = PBXBuildFile; fileRef = A9474D772D649D2E00031047 /* android.json */; };
+		A9474D7A2D64A97800031047 /* checkSurvey.json in Resources */ = {isa = PBXBuildFile; fileRef = A9474D792D64A97800031047 /* checkSurvey.json */; };
+		A9474D7C2D64ACC200031047 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474D7B2D64ACBB00031047 /* APIResponse.swift */; };
+		A9474D7E2D64AD7700031047 /* FieldRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474D7D2D64AD7700031047 /* FieldRules.swift */; };
+		A9474D802D64AD8700031047 /* DefaultAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474D7F2D64AD8700031047 /* DefaultAnswer.swift */; };
 		A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A242D4B8127004FB6CA /* DateDTO.swift */; };
 		A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A272D4B812E004FB6CA /* DateViewModel.swift */; };
 		A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */; };
@@ -137,6 +143,12 @@
 		A9474BCE2D5CE4DE00031047 /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		A9474BD32D5CE5FF00031047 /* FormRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRepo.swift; sourceTree = "<group>"; };
 		A9474BD52D5CEF7600031047 /* GlobalErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalErrorHandler.swift; sourceTree = "<group>"; };
+		A9474D752D649BFF00031047 /* form.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = form.json; sourceTree = "<group>"; };
+		A9474D772D649D2E00031047 /* android.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = android.json; sourceTree = "<group>"; };
+		A9474D792D64A97800031047 /* checkSurvey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = checkSurvey.json; sourceTree = "<group>"; };
+		A9474D7B2D64ACBB00031047 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		A9474D7D2D64AD7700031047 /* FieldRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldRules.swift; sourceTree = "<group>"; };
+		A9474D7F2D64AD8700031047 /* DefaultAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAnswer.swift; sourceTree = "<group>"; };
 		A95D7A1C2D4A8AC4004FB6CA /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
 		A95D7A1E2D4A8ACB004FB6CA /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		A95D7A202D4A8AD1004FB6CA /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
@@ -1042,6 +1054,9 @@
 		E4BBD0242D4A4A53004AA735 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A9474D752D649BFF00031047 /* form.json */,
+				A9474D772D649D2E00031047 /* android.json */,
+				A9474D792D64A97800031047 /* checkSurvey.json */,
 				A9474BD22D5CE5F800031047 /* Repository */,
 				E4A9018F2D5E01E9007080AC /* Network */,
 				E4BBD0252D4A4A64004AA735 /* DTO */,
@@ -1052,7 +1067,10 @@
 		E4BBD0252D4A4A64004AA735 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				A9474D7D2D64AD7700031047 /* FieldRules.swift */,
 				A95D7A242D4B8127004FB6CA /* DateDTO.swift */,
+				A9474D7B2D64ACBB00031047 /* APIResponse.swift */,
+				A9474D7F2D64AD8700031047 /* DefaultAnswer.swift */,
 				A9BF45D42D50DB0D003F2333 /* SliderDTO.swift */,
 				E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */,
 				E4BBD0262D4A4A7F004AA735 /* CountryDTO.swift */,
@@ -1193,8 +1211,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9474D782D649D2E00031047 /* android.json in Resources */,
 				E4BBD01B2D4A2B24004AA735 /* README.md in Resources */,
+				A9474D7A2D64A97800031047 /* checkSurvey.json in Resources */,
 				E4BBCFED2D4A24C2004AA735 /* Preview Assets.xcassets in Resources */,
+				A9474D762D649BFF00031047 /* form.json in Resources */,
 				E4BBCFE92D4A24C2004AA735 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1223,6 +1244,7 @@
 				AAD099692D5CC911007A6CE9 /* RulesControlsView.swift in Sources */,
 				E4BBD0232D4A4A29004AA735 /* DropDownViewModel.swift in Sources */,
 				E48CA0052D5374D300A519ED /* AKMaskFieldStatus.swift in Sources */,
+				A9474D802D64AD8700031047 /* DefaultAnswer.swift in Sources */,
 				A9BF46A72D53992A003F2333 /* CameraPicker.swift in Sources */,
 				A9BF46A52D538EC9003F2333 /* ComplicatedView.swift in Sources */,
 				E4A9019F2D5E01E9007080AC /* Network.swift in Sources */,
@@ -1263,6 +1285,7 @@
 				AAD1E7C02D4B7F9400442BA4 /* RadioButtonDTO.swift in Sources */,
 				E4A9015C2D52CD73007080AC /* SectionViewModel.swift in Sources */,
 				E48CA0022D5374D300A519ED /* AKMaskFieldUtility.swift in Sources */,
+				A9474D7C2D64ACC200031047 /* APIResponse.swift in Sources */,
 				E48CA0002D5374D300A519ED /* AKMaskFieldBlock.swift in Sources */,
 				AAE5CA8C2D4A448B00FDA699 /* RadioButtonView.swift in Sources */,
 				AAE5CAC42D4A561000FDA699 /* RadioButtonViewModel.swift in Sources */,
@@ -1297,6 +1320,7 @@
 				E48CA1132D5CC72300A519ED /* AppSpacing.swift in Sources */,
 				AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */,
 				E48CA01A2D537D7100A519ED /* SignatureComponent.swift in Sources */,
+				A9474D7E2D64AD7700031047 /* FieldRules.swift in Sources */,
 				E4A9019E2D5E01E9007080AC /* NetworkServiceImpl.swift in Sources */,
 				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
 				E4A901A42D5E01E9007080AC /* AuthorizationHandler.swift in Sources */,

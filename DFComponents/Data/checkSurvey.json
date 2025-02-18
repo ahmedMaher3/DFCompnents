@@ -1,0 +1,249 @@
+{
+    "hasErrors": false,
+    "errors": null,
+    "data": {
+        "schema": {
+            "id": "76e7e79e-16be-42b1-9d54-59608c5516d2",
+            "lastAppliedEventId": "5a998930-fbfb-4bae-87b6-d5325d9af4de",
+            "properties": {
+                "localization": {},
+                "submit": "",
+                "next": "",
+                "back": "",
+                "start": "",
+                "backVisibility": true,
+                "viewResults": "",
+                "session": {
+                    "timesUp": "",
+                    "sessionEnded": "",
+                    "canSubmit": "",
+                    "canNotSubmit": "",
+                    "startNewSession": ""
+                }
+            },
+            "warnings": {
+                "formWarning": {
+                    "formValidation": {
+                        "expired": "",
+                        "notAvailable": "",
+                        "multipleSubmission": "",
+                        "notStarted": ""
+                    },
+                    "fieldValidation": {
+                        "emptyForm": "",
+                        "required": "",
+                        "maxAttachment": "",
+                        "input": {
+                            "minimumCharacterLength": "",
+                            "maximumCharacterLength": "",
+                            "minimumWordLength": "",
+                            "maximumWordLength": "",
+                            "email": "",
+                            "url": "",
+                            "numeric": "",
+                            "alphabetic": "",
+                            "alphanumeric": "",
+                            "custom": ""
+                        },
+                        "number": {
+                            "minimumValue": "",
+                            "maximumValue": "",
+                            "minimumDigits": "",
+                            "maximumDigits": ""
+                        },
+                        "dateTime": {
+                            "dateTime": "",
+                            "dateRange": ""
+                        },
+                        "mcq": {
+                            "minimumNumberOfSelectedOptions": "",
+                            "maximumNumberOfSelectedOptions": ""
+                        },
+                        "fileUpload": {
+                            "maxFilesSize": "",
+                            "maxSizePerFile": "",
+                            "minNumberOfFiles": "",
+                            "maxNumberOfFiles": "",
+                            "allowedExtensions": "",
+                            "invalidLink": ""
+                        },
+                        "location": {
+                            "maximumLocations": "",
+                            "minimumLocations": "",
+                            "notInRange": ""
+                        }
+                    }
+                },
+                "localization": {}
+            },
+            "fields": [
+                {
+                    "id": "c9477141-cb5e-494b-9434-a2b1a6b0b3f1",
+                    "templateQuestionId": null,
+                    "type": "Page",
+                    "parentId": null,
+                    "order": "a0",
+                    "properties": {
+                        "submit": "",
+                        "next": "",
+                        "back": "",
+                        "backVisibility": true,
+                        "labelPosition": "Top",
+                        "label": "",
+                        "sublabel": "",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "options": null,
+                        "value": 0
+                    },
+                    "id": "cf6c2b5c-3dec-4222-9ceb-ac958c5bb24f",
+                    "templateQuestionId": null,
+                    "type": "Radio",
+                    "parentId": "c9477141-cb5e-494b-9434-a2b1a6b0b3f1",
+                    "order": "Zz",
+                    "properties": {
+                        "options": [
+                            {
+                                "id": "ef3aeae1-4710-49fa-9a3a-5648f3de1e35",
+                                "name": "Show"
+                            },
+                            {
+                                "id": "40be73a5-ae69-4480-af83-fdca85c08152",
+                                "name": "Hide"
+                            }
+                        ],
+                        "predefinedOptionsId": null,
+                        "shuffleOptions": false,
+                        "otherOption": false,
+                        "otherOptionText": null,
+                        "naOption": false,
+                        "naOptionText": null,
+                        "required": false,
+                        "unique": null,
+                        "addAttachment": false,
+                        "addNote": false,
+                        "defaultAnswer": {
+                            "value": null,
+                            "otherAnswer": null,
+                            "type": "Radio",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "Do you want to show or hide Textbox?",
+                        "sublabel": "This is a sub label for the MCQ",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": {
+                        "effectIn": [
+                            "39f2c380-de28-4ae8-886c-db85185736b3"
+                        ],
+                        "dependOn": []
+                    }
+                },
+                {
+                    "weight": {
+                        "criteria": null,
+                        "value": 0
+                    },
+                    "id": "3fc04705-996f-44cc-82fc-60cb16d53a63",
+                    "templateQuestionId": null,
+                    "type": "TextBox",
+                    "parentId": "c9477141-cb5e-494b-9434-a2b1a6b0b3f1",
+                    "order": "a0",
+                    "properties": {
+                        "mask": "",
+                        "regex": "",
+                        "subType": "Any",
+                        "prefix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "suffix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "autoComplete": true,
+                        "allowSpellCheck": true,
+                        "textCase": "Mixed",
+                        "entryLimit": "Word",
+                        "minimumLength": 2,
+                        "maximumLength": 5,
+                        "required": false,
+                        "unique": null,
+                        "addAttachment": false,
+                        "addNote": false,
+                        "defaultAnswer": {
+                            "prefix": null,
+                            "suffix": null,
+                            "value": "default answwer for input field",
+                            "type": "TextBox",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "Name placeholder",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "What is your name?",
+                        "sublabel": "Sublabel for Textbox",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": {
+                        "effectIn": [],
+                        "dependOn": [
+                            "39f2c380-de28-4ae8-886c-db85185736b3"
+                        ]
+                    }
+                }
+            ],
+            "rules": [
+                {
+                    "id": "39f2c380-de28-4ae8-886c-db85185736b3",
+                    "disabled": false,
+                    "operation": "Any",
+                    "ifConditions": [
+                        {
+                            "fieldId": "cf6c2b5c-3dec-4222-9ceb-ac958c5bb24f",
+                            "fieldState": "Include",
+                            "target": "Value",
+                            "value": "ef3aeae1-4710-49fa-9a3a-5648f3de1e35",
+                            "quota": 0
+                        }
+                    ],
+                    "doActions": [
+                        {
+                            "type": "Show",
+                            "sourceFieldsIds": null,
+                            "targetFieldsIds": [
+                                "3fc04705-996f-44cc-82fc-60cb16d53a63"
+                            ],
+                            "expression": null,
+                            "actionImpact": "Field"
+                        }
+                    ],
+                    "actionsCategory": "Show",
+                    "isValid": true
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,118 @@
+{
+    "message": null,
+    "success": true,
+    "result": {
+        "data": {
+            "formVersionId": "c34b8247-f00b-4f5f-8fd1-70a8c7eee59d",
+            "requestForm": {
+                "schema": {
+                    "id": "c34b8247-f00b-4f5f-8fd1-70a8c7eee59d",
+                    "title": "Dynamic Formula Evaluation",
+                    "status": "Active",
+                    "fields": [
+                        {
+                            "id": "00000000-0000-0000-0000-000000000022",
+                            "type": "TextBox",
+                            "parentId": null,
+                            "rowIndex": null,
+                            "order": "2",
+                            "properties": {
+                                "mask": "(88)VWIU99-aa-99-**",
+                                "regex": "",
+                                "subType": "Any",
+                                "prefix": {
+                                    "display": "None",
+                                    "value": ""
+                                },
+                                "suffix": {
+                                    "display": "None",
+                                    "value": ""
+                                },
+                                "autoComplete": false,
+                                "allowSpellCheck": true,
+                                "textCase": "Mixed",
+                                "entryLimit": "Character",
+                                "minimumLength": null,
+                                "maximumLength": null,
+                                "dataSourcId": null,
+                                "required": false,
+                                "readonly": false,
+                                "unique": null,
+                                "placeholder": "TextBox 9",
+                                "sendToBPM": true,
+                                "icon": null,
+                                "isVisibleInViewMode": true,
+                                "label": "TextBox 9",
+                                "sublabel": "",
+                                "tooltip": "",
+                                "defaultAnswer": {
+                                    "value": null,
+                                    "prefix": null,
+                                    "suffix": null
+                                }
+                            },
+                            "rules": {
+                                "effectIn": [],
+                                "dependOn": []
+                            },
+                            "templateQuestionId": null,
+                            "visibilityPermissions": null
+                        },
+                        {
+                            "id": "00000000-0000-0000-0000-000000000033",
+                            "type": "TextBox",
+                            "parentId": null,
+                            "rowIndex": null,
+                            "order": "2",
+                            "properties": {
+                                "mask": "(88)VWIU99-aa-99-**",
+                                "regex": "",
+                                "subType": "Any",
+                                "prefix": {
+                                    "display": "None",
+                                    "value": ""
+                                },
+                                "suffix": {
+                                    "display": "None",
+                                    "value": ""
+                                },
+                                "autoComplete": false,
+                                "allowSpellCheck": true,
+                                "textCase": "Mixed",
+                                "entryLimit": "Character",
+                                "minimumLength": null,
+                                "maximumLength": null,
+                                "dataSourcId": null,
+                                "required": false,
+                                "readonly": false,
+                                "unique": null,
+                                "placeholder": "TextBox 9",
+                                "sendToBPM": true,
+                                "icon": null,
+                                "isVisibleInViewMode": true,
+                                "label": "TextBox 9",
+                                "sublabel": "",
+                                "tooltip": "",
+                                "defaultAnswer": {
+                                    "value": null,
+                                    "prefix": null,
+                                    "suffix": null
+                                }
+                            },
+                            "rules": {
+                                "effectIn": [],
+                                "dependOn": []
+                            },
+                            "templateQuestionId": null,
+                            "visibilityPermissions": null
+                        }
+                        
+                    ],
+                    "rules": []
+                }
+            },
+            "serviceDescription": "Dynamic Formula Evaluation",
+            "serviceName": "Dynamic Formula Evaluation"
+        }
+    }
+}
