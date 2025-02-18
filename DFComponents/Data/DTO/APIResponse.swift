@@ -90,6 +90,7 @@ struct Field: Codable {
 }
 
 enum FieldType: String, Codable {
+    case Page = "Page"
     case TextBox = "TextBox"
     case Number = "number"
     case DateTime = "datetime"
@@ -103,7 +104,8 @@ enum FieldType: String, Codable {
 struct FieldProperties: Codable {
     let submit, next, back: String?
     let backVisibility: Bool?
-    let labelPosition, label, sublabel, tooltip: String?
+    let label: String
+    let labelPosition, sublabel, tooltip: String?
     let localization: [String: String]?
     let options: [Option]?
     let predefinedOptionsId: String?

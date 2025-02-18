@@ -24,6 +24,7 @@
 		A9474D7C2D64ACC200031047 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474D7B2D64ACBB00031047 /* APIResponse.swift */; };
 		A9474D7E2D64AD7700031047 /* FieldRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474D7D2D64AD7700031047 /* FieldRules.swift */; };
 		A9474D802D64AD8700031047 /* DefaultAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474D7F2D64AD8700031047 /* DefaultAnswer.swift */; };
+		A9474D8D2D64B4AC00031047 /* FormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474D8C2D64B4A800031047 /* FormField.swift */; };
 		A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A242D4B8127004FB6CA /* DateDTO.swift */; };
 		A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A272D4B812E004FB6CA /* DateViewModel.swift */; };
 		A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */; };
@@ -149,6 +150,7 @@
 		A9474D7B2D64ACBB00031047 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		A9474D7D2D64AD7700031047 /* FieldRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldRules.swift; sourceTree = "<group>"; };
 		A9474D7F2D64AD8700031047 /* DefaultAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAnswer.swift; sourceTree = "<group>"; };
+		A9474D8C2D64B4A800031047 /* FormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormField.swift; sourceTree = "<group>"; };
 		A95D7A1C2D4A8AC4004FB6CA /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
 		A95D7A1E2D4A8ACB004FB6CA /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		A95D7A202D4A8AD1004FB6CA /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
@@ -300,6 +302,38 @@
 				A9474BD32D5CE5FF00031047 /* FormRepo.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		A9474D882D64B48100031047 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				A9474D892D64B48600031047 /* Mappers */,
+				A9474D8A2D64B48D00031047 /* Entities */,
+				A9474D8B2D64B49200031047 /* UseCase */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		A9474D892D64B48600031047 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		A9474D8A2D64B48D00031047 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A9474D8C2D64B4A800031047 /* FormField.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		A9474D8B2D64B49200031047 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		A95D7A222D4B80D0004FB6CA /* Recovered References */ = {
@@ -883,37 +917,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E4A901B22D61E000007080AC /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				E4A901B52D61E013007080AC /* Mappers */,
-				E4A901B42D61E00D007080AC /* Entities */,
-				E4A901B32D61E005007080AC /* UseCase */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		E4A901B32D61E005007080AC /* UseCase */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UseCase;
-			sourceTree = "<group>";
-		};
-		E4A901B42D61E00D007080AC /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		E4A901B52D61E013007080AC /* Mappers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mappers;
-			sourceTree = "<group>";
-		};
 		E4BBCFD82D4A24BF004AA735 = {
 			isa = PBXGroup;
 			children = (
@@ -939,8 +942,8 @@
 		E4BBCFE32D4A24BF004AA735 /* DFComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A9474D882D64B48100031047 /* Domain */,
 				E4A9014C2D4BADE6007080AC /* Root */,
-				E4A901B22D61E000007080AC /* Domain */,
 				E4BBD00F2D4A24EA004AA735 /* Presentation */,
 				E4BBD0242D4A4A53004AA735 /* Data */,
 				E48C9FF02D5374BE00A519ED /* DependentPackages */,
@@ -1324,6 +1327,7 @@
 				E4A9019E2D5E01E9007080AC /* NetworkServiceImpl.swift in Sources */,
 				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
 				E4A901A42D5E01E9007080AC /* AuthorizationHandler.swift in Sources */,
+				A9474D8D2D64B4AC00031047 /* FormField.swift in Sources */,
 				E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */,
 				E489E81E2D4A6A15007EA370 /* ColorExtension.swift in Sources */,
 				E48CA1192D5CC72300A519ED /* StyleManagerViewModel.swift in Sources */,
