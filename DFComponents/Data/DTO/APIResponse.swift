@@ -30,11 +30,6 @@ struct SchemaProperties: Codable {
     let localization: [String: String]?
     let submit, next, back, start, viewResults: String
     let backVisibility: Bool
-    let session: Session
-}
-
-struct Session: Codable {
-    let timesUp, sessionEnded, canSubmit, canNotSubmit, startNewSession: String
 }
 
 struct Warnings: Codable {
