@@ -18,8 +18,9 @@ class FormViewModel: ObservableObject {
     @Published var sliderViewModel: SliderViewModel = SliderViewModel()
     @Published var rulesViewModel: RulesControlsViewModel = RulesControlsViewModel()
     
-    @Published var formFields: [FormField] = []
-    
+//    @Published var formFields: [FormField] = []
+    @Published var formFields: [ControlType] = []
+
     func fetchForm() {
         if let path = Bundle.main.path(forResource: "checkSurvey", ofType: "json") {
             guard let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped) else {
@@ -27,6 +28,7 @@ class FormViewModel: ObservableObject {
             }
             do {
                 let apiResponse = try JSONDecoder().decode(APIResponse.self, from: data)
+
                 mapFields(apiResponse.data.schema.fields)
             } catch let error as NSError {
                 print(error.localizedDescription)
@@ -35,6 +37,6 @@ class FormViewModel: ObservableObject {
     }
     
     func mapFields(_ fields: [Field]) {
-        formFields = fields.map(FormField.init)
+        formFields =  FormUseCase().excute(fields)
     }
 }

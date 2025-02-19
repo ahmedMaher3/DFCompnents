@@ -102,6 +102,9 @@
 		E4A901A52D5E01E9007080AC /* GuestAuthorizationImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9019C2D5E01E9007080AC /* GuestAuthorizationImpl.swift */; };
 		E4A901A82D5E02D3007080AC /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E4A901A72D5E02D3007080AC /* KeychainSwift */; };
 		E4A901AE2D61CF07007080AC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E4A901AD2D61CF07007080AC /* Alamofire */; };
+		E4A901C62D65E5F8007080AC /* ControlEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901C52D65E5F8007080AC /* ControlEntity.swift */; };
+		E4A901C82D65E84B007080AC /* FormUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901C72D65E84B007080AC /* FormUseCase.swift */; };
+		E4A901CA2D65E873007080AC /* FormMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901C92D65E873007080AC /* FormMapper.swift */; };
 		E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */; };
 		E4BBCFE92D4A24C2004AA735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */; };
 		E4BBCFED2D4A24C2004AA735 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BBCFEC2D4A24C2004AA735 /* Preview Assets.xcassets */; };
@@ -229,6 +232,9 @@
 		E4A9019A2D5E01E9007080AC /* UserAuthoriationHandlerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthoriationHandlerImpl.swift; sourceTree = "<group>"; };
 		E4A9019B2D5E01E9007080AC /* AuthorizationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationHandler.swift; sourceTree = "<group>"; };
 		E4A9019C2D5E01E9007080AC /* GuestAuthorizationImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestAuthorizationImpl.swift; sourceTree = "<group>"; };
+		E4A901C52D65E5F8007080AC /* ControlEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlEntity.swift; sourceTree = "<group>"; };
+		E4A901C72D65E84B007080AC /* FormUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormUseCase.swift; sourceTree = "<group>"; };
+		E4A901C92D65E873007080AC /* FormMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormMapper.swift; sourceTree = "<group>"; };
 		E4BBCFE12D4A24BF004AA735 /* DFComponents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFComponents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BBCFE42D4A24BF004AA735 /* DFComponentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFComponentsApp.swift; sourceTree = "<group>"; };
 		E4BBCFE82D4A24C2004AA735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -317,6 +323,7 @@
 		A9474D892D64B48600031047 /* Mappers */ = {
 			isa = PBXGroup;
 			children = (
+				E4A901C92D65E873007080AC /* FormMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -325,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				A9474D8C2D64B4A800031047 /* FormField.swift */,
+				E4A901C52D65E5F8007080AC /* ControlEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -332,6 +340,7 @@
 		A9474D8B2D64B49200031047 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				E4A901C72D65E84B007080AC /* FormUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -942,10 +951,10 @@
 		E4BBCFE32D4A24BF004AA735 /* DFComponents */ = {
 			isa = PBXGroup;
 			children = (
-				A9474D882D64B48100031047 /* Domain */,
 				E4A9014C2D4BADE6007080AC /* Root */,
-				E4BBD00F2D4A24EA004AA735 /* Presentation */,
 				E4BBD0242D4A4A53004AA735 /* Data */,
+				A9474D882D64B48100031047 /* Domain */,
+				E4BBD00F2D4A24EA004AA735 /* Presentation */,
 				E48C9FF02D5374BE00A519ED /* DependentPackages */,
 				A9474BB02D5CE3AB00031047 /* Network */,
 				E4A9014B2D4BADD0007080AC /* Resources */,
@@ -1332,10 +1341,13 @@
 				E489E81E2D4A6A15007EA370 /* ColorExtension.swift in Sources */,
 				E48CA1192D5CC72300A519ED /* StyleManagerViewModel.swift in Sources */,
 				A9BF46972D53887B003F2333 /* DateRangePickerView.swift in Sources */,
+				E4A901CA2D65E873007080AC /* FormMapper.swift in Sources */,
 				AAE5CAC62D4A61FD00FDA699 /* QuestionsRadioButton.swift in Sources */,
 				A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */,
+				E4A901C62D65E5F8007080AC /* ControlEntity.swift in Sources */,
 				A9474BCD2D5CE49C00031047 /* NetworkError.swift in Sources */,
 				E48CA1152D5CC72300A519ED /* AppFonts.swift in Sources */,
+				E4A901C82D65E84B007080AC /* FormUseCase.swift in Sources */,
 				E48CA1142D5CC72300A519ED /* AppColors.swift in Sources */,
 				A9474BC92D5CE42100031047 /* RequestModifier.swift in Sources */,
 				04C1DE322D5DFA120034B704 /* AppearanceManager.swift in Sources */,
