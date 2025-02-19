@@ -6,20 +6,11 @@
 //
 
 import SwiftUI
-
 @MainActor
 class FormViewModel: ObservableObject {
-    @Published var dropdownViewModel: DropDownViewModel = DropDownViewModel()
-    @Published var dateFieldViewModel: DateFieldViewModel = DateFieldViewModel()
-    @Published var checkBoxViewModel: CheckBoxViewModel = CheckBoxViewModel()
-    @Published var radioButtonViewModel: RadioButtonViewModel = RadioButtonViewModel()
-    @Published var textBoxViewModel: TextBoxViewModel = TextBoxViewModel()
-    @Published var signatureViewModel: SignatureViewModel = SignatureViewModel()
-    @Published var sliderViewModel: SliderViewModel = SliderViewModel()
-    @Published var rulesViewModel: RulesControlsViewModel = RulesControlsViewModel()
-    
+    @Published var viewModels: [String: any ObservableObject] = [:]
     @Published var formFields: [FormField] = []
-    
+    private let viewModelFactory = ViewModelFactory()
     func fetchForm() {
         if let path = Bundle.main.path(forResource: "checkSurvey", ofType: "json") {
             guard let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped) else {
@@ -28,13 +19,33 @@ class FormViewModel: ObservableObject {
             do {
                 let apiResponse = try JSONDecoder().decode(APIResponse.self, from: data)
                 mapFields(apiResponse.data.schema.fields)
+
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
         }
     }
-    
     func mapFields(_ fields: [Field]) {
         formFields = fields.map(FormField.init)
+    }
+    func mapControls(_ fields: [FormField]) {
+        fields.forEach { formField in
+            //MARK: - Register Child Controls View Model
+            self.registerField(formField.field)
+            //MARK: - Resolve Child View Models
+            if let viewModel = viewModelFactory.resolve(for: formField.type.rawValue, field: formField.field) {
+                viewModels[formField.id] = viewModel
+            }
+        }
+    }
+    func registerField(_ field: Field) {
+        switch field.type.rawValue {
+            case FieldType.Radio.rawValue:
+                viewModelFactory.registerViewModel(FieldType.Radio.rawValue) { field in
+                    RadioButtonViewModel(fieldId: field.id ?? "")
+                }
+            default:
+                break
+        }
     }
 }

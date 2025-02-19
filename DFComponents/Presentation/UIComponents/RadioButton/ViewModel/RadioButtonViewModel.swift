@@ -6,28 +6,27 @@
 //
 
 import Foundation
-
 final class RadioButtonViewModel: ObservableObject {
-
     @Published var selectedItems: [String: String] = [:]  // Key: Question ID, Value: Selected item ID
-    @Published var questions: [String] = [
-        "What's your fav color ahmed?",
-//        "What's your fav hassan?",
-//        "What's your fav nasr?"
-    ]
-    @Published var radioButtonModels: [String: [RadioButtonDTO]] = [
-        "question0": RadioButtonDTO.elementsRadioButton,
-//        "question1": RadioButtonDTO.elementsRadioButton,
-//        "question2": RadioButtonDTO.elementsRadioButton
-    ]
+    @Published var questions: [String] = [] // Dynamically loaded questions
+    @Published var radioButtonModels: [String: [RadioButtonDTO]] = [:] // Key: Question ID, Value: List of options for that question
     @Published var validationErrors: [String: String] = [:]
+    @Published var options: [Option]? = []
+    var fieldId: String  // Store the question ID directly
 
+    
     var callbackAction: (RadioButtonDTO?) -> Void
-
-    init(callbackAction: @escaping (RadioButtonDTO?) -> Void = { _ in }) {
+    init(fieldId: String, callbackAction: @escaping (RadioButtonDTO?) -> Void = { _ in }) {
+        self.fieldId = fieldId
         self.callbackAction = callbackAction
     }
 
+    func loadOptions(from options: [Option]) {
+        let radioButtons = options.map { option in
+            RadioButtonDTO(id: option.id, label: option.name, value: option.name)
+        }
+        self.radioButtonModels = [fieldId: radioButtons]
+    }
     // Action to toggle the selection state for each question
     func onTapRadioButton(questionID: String, item: RadioButtonDTO) {
         // Check if the current item is selected for this question
@@ -43,14 +42,16 @@ final class RadioButtonViewModel: ObservableObject {
             validationErrors[questionID] = nil
         }
     }
+
     // Get the selected item for a specific question
     func selectedItem(for questionID: String) -> RadioButtonDTO? {
         guard let selectedItemID = selectedItems[questionID] else { return nil }
         let models = radioButtonModels[questionID] ?? []
         return models.first { $0.id == selectedItemID }
     }
+
     func validate() {
-        for(questionId, _) in radioButtonModels {
+        for (questionId, _) in radioButtonModels {
             if selectedItems[questionId] == nil {
                 validationErrors[questionId] = "Please select an answer."
             } else {
@@ -64,8 +65,8 @@ final class RadioButtonViewModel: ObservableObject {
             // Handle form submission here
         }
     }
+
     func errorMessage(for questionId: String) -> String? {
         return validationErrors[questionId]
     }
 }
-

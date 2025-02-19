@@ -28,7 +28,7 @@ struct FooterFormView: View {
                 Text("Submit")
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(viewModel.validateControls() ? .blue : .gray)
+//                    .background(viewModel.validateControls() ? .blue : .gray)
                     .foregroundColor(.white)
                     .cornerRadius(8)
             }

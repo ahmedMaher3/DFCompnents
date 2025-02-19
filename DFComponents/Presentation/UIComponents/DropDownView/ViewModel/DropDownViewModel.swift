@@ -14,10 +14,15 @@ class DropDownViewModel: ObservableObject {
 
     @Published var countries: [CountryDTO] = []
     @Published var selectedCountry: CountryDTO?
+    let config: TextBoxDTO
 
-    init() {
+//    init() {
+//        initializeLocationAndData()
+//    }
+    init(config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
+         self.config = config
         initializeLocationAndData()
-    }
+     }
 
     private func initializeLocationAndData() {
         Task {

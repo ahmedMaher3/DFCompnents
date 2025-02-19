@@ -17,7 +17,8 @@ struct FormField: Identifiable {
     let properties: FieldProperties?
     var isVisible: Bool
     let rules: FieldRules?
-    
+    var field: Field  // Add the `field` property, which holds the actual Field
+
     init(field: Field) {
         id = field.id ?? ""
         type = field.type
@@ -28,5 +29,6 @@ struct FormField: Identifiable {
         properties = field.properties
         isVisible = true
         rules = field.rules
+        self.field = field
     }
 }

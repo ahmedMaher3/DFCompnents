@@ -41,6 +41,7 @@
 		A9BF46A72D53992A003F2333 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF46A62D539921003F2333 /* CameraPicker.swift */; };
 		AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */; };
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
+		AABE5E152D653EB900B26A18 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABE5E142D653EB800B26A18 /* ViewModelFactory.swift */; };
 		AAD099692D5CC911007A6CE9 /* RulesControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099682D5CC911007A6CE9 /* RulesControlsView.swift */; };
 		AAD0996B2D5CCA23007A6CE9 /* RulesControlsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0996A2D5CCA23007A6CE9 /* RulesControlsViewModel.swift */; };
 		AAD099722D5CF4C6007A6CE9 /* DisplayDataFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099712D5CF4C6007A6CE9 /* DisplayDataFormView.swift */; };
@@ -170,6 +171,7 @@
 		A9BF46A62D539921003F2333 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 		AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxDTO.swift; sourceTree = "<group>"; };
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
+		AABE5E142D653EB800B26A18 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		AAD099682D5CC911007A6CE9 /* RulesControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesControlsView.swift; sourceTree = "<group>"; };
 		AAD0996A2D5CCA23007A6CE9 /* RulesControlsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesControlsViewModel.swift; sourceTree = "<group>"; };
 		AAD099712D5CF4C6007A6CE9 /* DisplayDataFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDataFormView.swift; sourceTree = "<group>"; };
@@ -429,6 +431,14 @@
 			path = ComplicatedView;
 			sourceTree = "<group>";
 		};
+		AAC2544C2D65C7F50010EF91 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				AABE5E142D653EB800B26A18 /* ViewModelFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 		AAD099652D5CC8CA007A6CE9 /* RulesControls */ = {
 			isa = PBXGroup;
 			children = (
@@ -547,6 +557,7 @@
 		E44926C22D4B8AAB00EA5D5E /* FormView */ = {
 			isa = PBXGroup;
 			children = (
+				AAC2544C2D65C7F50010EF91 /* Factory */,
 				E44926C62D4B8B0000EA5D5E /* ViewModel */,
 				E44926C52D4B8AF000EA5D5E /* View */,
 			);
@@ -1271,6 +1282,7 @@
 				E48CA0042D5374D300A519ED /* AKMaskFieldPatternCharacter.swift in Sources */,
 				E4A901A32D5E01E9007080AC /* UserAuthoriationHandlerImpl.swift in Sources */,
 				AAE5CA8F2D4A4D8D00FDA699 /* ImageExtension.swift in Sources */,
+				AABE5E152D653EB900B26A18 /* ViewModelFactory.swift in Sources */,
 				AAE5CABE2D4A50AD00FDA699 /* ViewExtenstion.swift in Sources */,
 				A9474BCF2D5CE4E500031047 /* ContentType.swift in Sources */,
 				AAD562372D4AABF300C19A11 /* MultiChoiceQuestion.swift in Sources */,

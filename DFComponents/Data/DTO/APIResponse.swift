@@ -117,7 +117,7 @@ struct FieldProperties: Codable {
     let hidden, disabled: Bool?
 }
 
-struct Option: Codable {
+struct Option: Codable, Identifiable {
     let id, name: String
 }
 
