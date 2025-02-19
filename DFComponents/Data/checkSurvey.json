@@ -78,25 +78,6 @@
             },
             "fields": [
                 {
-                    "id": "c9477141-cb5e-494b-9434-a2b1a6b0b3f1",
-                    "templateQuestionId": null,
-                    "type": "Page",
-                    "parentId": null,
-                    "order": "a0",
-                    "properties": {
-                        "submit": "",
-                        "next": "",
-                        "back": "",
-                        "backVisibility": true,
-                        "labelPosition": "Top",
-                        "label": "",
-                        "sublabel": "",
-                        "tooltip": "",
-                        "localization": {}
-                    },
-                    "rules": null
-                },
-                {
                     "weight": {
                         "options": null,
                         "value": 0

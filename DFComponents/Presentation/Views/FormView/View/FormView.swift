@@ -4,106 +4,82 @@
 //
 //  Created by hassan elshaer on 30/01/2025.
 //
-
 import SwiftUI
 
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
-
+    
     @State private var showingAppearanceSheet = false
-
+    
     var title: String = ""
-
+    
     var body: some View {
         NavigationStack {
             VStack {
-                Form {
-                    Section("Rules Controls") {
-                        RulesControlsView()
-                    }
-                    Section("Without Rules") {
-                        ControlFormBuilderView(titleControl: "Date Range Picker") {
-                            DateRangePickerView()
-                        }
-                        ControlFormBuilderView(titleControl: "Signature") {
-                            SignatureView(viewModel: viewModel.signatureViewModel)
-                        }
-                        ControlFormBuilderView(titleControl: "Image Picker") {
-                            ImagePickerView()
-                        }
-                        ControlFormBuilderView(titleControl: "Camera Picker") {
-                            CameraPickerView()
-                        }
-                        ControlFormBuilderView(titleControl: "File Picker") {
-                            FilePickerView()
-                        }
-                        ControlFormBuilderView(titleControl: "Slider") {
-                            SliderView(viewModel: viewModel.sliderViewModel)
-                        }
-                        //MARK: - There issue when the Map appears after the user scrolls in the form 
-
-                         ControlFormBuilderView(titleControl: "Map") {
-                             MapView()
-                                 .frame(height: 200)
-                         }
-                       
-                        ControlFormBuilderView(titleControl: "Section") {
-                            SectionView()
-                                .frame(height: 300)
-                        }
-                        ControlFormBuilderView(titleControl: "Drop Down") {
-                            DropDownView(title: viewModel.dropdownViewModel.selectedCountry?.name ?? "Select Country", viewModel: viewModel.dropdownViewModel)
-                                .listRowSeparator(.hidden)
-                                .padding(.horizontal)
-                        }
-                        ControlFormBuilderView(titleControl: "Text Box") {
-                            TextBoxComponent(viewModel: viewModel.textBoxViewModel)
-                            
-                        }
-                        ControlFormBuilderView(titleControl: "Date Picker") {
-                            DateTimeView(viewModel: viewModel.dateFieldViewModel)
-                        }
-                        ControlFormBuilderView(titleControl: "Radio Button") {
-                            QuestionsRadioButton(radioButtonVM: viewModel.radioButtonViewModel)
-                        }
-                        ControlFormBuilderView(titleControl: "CheckBox") {
-                            MultiChoiceQuestion(checkBoxVM: viewModel.checkBoxViewModel)
+                if !viewModel.formFields.isEmpty {
+                    Form {
+                        ForEach(viewModel.formFields , id: \.id) { field in
+                            renderField(for: field)
                         }
                     }
-                }
-                .padding(.top, 10)
-                .listRowSeparator(.hidden)
-                .listStyle(PlainListStyle())
-                .buttonStyle(PlainButtonStyle())
-                .listRowBackground(Color.clear)
-                
-                Button("Show Appearance Sheet") {
-                    showingAppearanceSheet.toggle()
-                }
-                .sheet(isPresented: $showingAppearanceSheet) {
-                    AppearanceSheetView()
-                }
-
-                // Buttons at the bottom
-                //MARK: - This Footer work only with controls consider as rules
-                FooterFormView()
-            }
-        }
-        .navigationTitle(title)
-        .environmentObject(styleManagerVM)
-        .environmentObject(viewModel.rulesViewModel)
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            APIService.fetchStyles { apiResponse in
-                if let apiResponse = apiResponse {
-                    styleManagerVM.updateStyles(from: apiResponse)
+                    .padding()
+                } else {
+                    // Show loading state while form data is being fetched
+                    loadingView()
+                        .onAppear {
+                            Task {
+                                await viewModel.fetchForm()
+                            }
+                        }
                 }
             }
+            .navigationBarTitle(title, displayMode: .inline)
+            .environmentObject(styleManagerVM)
+            .environmentObject(viewModel.rulesViewModel)
         }
     }
-}
-
-#Preview {
-    FormView(viewModel: FormViewModel(), title: "Form Title")
+    
+    // This function handles rendering the appropriate form control based on the field type
+    @ViewBuilder
+    private func renderField(for field: FormField) -> some View {
+        switch field.type {
+        case .DateTime:
+            ControlFormBuilderView(titleControl: field.properties?.label ?? "Date Picker") {
+                DateTimeView(viewModel: viewModel.dateFieldViewModel)
+            }
+        case .Checkbox:
+            ControlFormBuilderView(titleControl: field.properties?.label ?? "Checkbox") {
+                //                CheckBoxView(viewModel: viewModel.checkBoxViewModel)
+            }
+        case .Radio:
+            ControlFormBuilderView(titleControl: field.properties?.label ?? "Radio Button") {
+                //                RadioButtonView(viewModel: viewModel.radioButtonViewModel)
+            }
+        case .TextBox:
+            ControlFormBuilderView(titleControl: field.properties?.label ?? "Text Box") {
+                TextBoxComponent(viewModel: viewModel.textBoxViewModel)
+            }
+        case .DropDown:
+            ControlFormBuilderView(titleControl: field.properties?.label ?? "Drop Down") {
+                DropDownView(title: viewModel.dropdownViewModel.selectedCountry?.name ?? "Select Country", viewModel: viewModel.dropdownViewModel)
+                    .listRowSeparator(.hidden)
+                    .padding(.horizontal)
+            }
+        default:
+            Text("Unsupported field type")
+                .foregroundColor(.red)
+        }
+    }
+    
+    
+    // Loading view to be displayed while fetching the form data
+    private func loadingView() -> some View {
+        VStack {
+            Text("Loading form data...")
+                .padding()
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle())
+        }
+    }
 }
