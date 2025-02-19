@@ -10,7 +10,7 @@ import SwiftUI
 class FormViewModel: ObservableObject {
     @Published var viewModels: [String: any ObservableObject] = [:]
     @Published var formFields: [FormField] = []
-    private let viewModelFactory = ViewModelFactory()
+    private let viewModelContainer = FormViewModelContainer()
     func fetchForm() {
         if let path = Bundle.main.path(forResource: "checkSurvey", ofType: "json") {
             guard let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped) else {
@@ -33,7 +33,7 @@ class FormViewModel: ObservableObject {
             //MARK: - Register Child Controls View Model
             self.registerField(formField.field)
             //MARK: - Resolve Child View Models
-            if let viewModel = viewModelFactory.resolve(for: formField.type.rawValue, field: formField.field) {
+            if let viewModel = viewModelContainer.resolve(for: formField.type.rawValue, field: formField.field) {
                 viewModels[formField.id] = viewModel
             }
         }
@@ -41,7 +41,7 @@ class FormViewModel: ObservableObject {
     func registerField(_ field: Field) {
         switch field.type.rawValue {
             case FieldType.Radio.rawValue:
-                viewModelFactory.registerViewModel(FieldType.Radio.rawValue) { field in
+                viewModelContainer.registerViewModel(FieldType.Radio.rawValue) { field in
                     RadioButtonViewModel(fieldId: field.id ?? "")
                 }
             default:

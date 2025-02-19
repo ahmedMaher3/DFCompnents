@@ -1,12 +1,12 @@
 //
-//  ViewModelFactory.swift
+//  FormViewModelContainer.swift
 //  DFComponents
 //
 //  Created by Eslam on 19/02/2025.
 //
 import SwiftUI
 
-class ViewModelFactory {
+class FormViewModelContainer {
     private var viewModels: [String: (Field) -> any ObservableObject] = [:]
 
     func registerViewModel<T: ObservableObject>(_ fieldType: String, factory: @escaping (Field) -> T) {
@@ -16,8 +16,8 @@ class ViewModelFactory {
     }
 
     func resolve(for fieldType: String, field: Field) -> (any ObservableObject)? {
-        if let viewModelFactory = viewModels[fieldType] {
-            return viewModelFactory(field)
+        if let viewModel = viewModels[fieldType] {
+            return viewModel(field)
         }
         return nil
     }
