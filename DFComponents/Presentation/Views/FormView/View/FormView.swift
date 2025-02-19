@@ -19,24 +19,25 @@ struct FormView: View {
         NavigationStack {
             VStack {
                 Form {
-                    Section("Controls") {
-                        ForEach(viewModel.formFields, id: \.id) { field in
-                            // Dynamically resolve and render view model for each field
-                            if let viewModel = viewModel.viewModels[field.id] {
-                                switch field.type.rawValue {
-                                case "Radio":
-                                        ControlFormBuilderView(titleControl: field.label) {
-                                            let vm = viewModel as! RadioButtonViewModel
-                                            QuestionsRadioButton(radioButtonVM: vm)
-                                        }
-                                    case "TextBox":
-                                            EmptyView()
-                                default:
-                                    EmptyView() 
-                                }
-                            }
-                        }
-                    }
+                    Text("Tets")
+//                    Section("Controls") {
+//                        ForEach(viewModel.formFields, id: \.id) { field in
+//                            // Dynamically resolve and render view model for each field
+//                            if let viewModel = viewModel.viewModels[field.id] {
+//                                switch field.type.rawValue {
+//                                case "Radio":
+//                                        ControlFormBuilderView(titleControl: field.label) {
+//                                            let vm = viewModel as! RadioButtonViewModel
+//                                            QuestionsRadioButton(radioButtonVM: vm)
+//                                        }
+//                                    case "TextBox":
+//                                            EmptyView()
+//                                default:
+//                                    EmptyView() 
+//                                }
+//                            }
+//                        }
+//                    }
                 }
                 .padding(.top, 10)
                 .listRowSeparator(.hidden)

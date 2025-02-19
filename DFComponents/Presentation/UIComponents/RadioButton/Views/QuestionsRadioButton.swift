@@ -59,11 +59,11 @@ struct QuestionsRadioButton: View {
     
     func loadOptionsForRadioButtons() {
         viewModel.viewModels.values.forEach { viewModel in
-            if let radioButtonVM = viewModel as? RadioButtonViewModel {
-                if let formField = self.viewModel.formFields.first(where: { $0.id == radioButtonVM.fieldId }) {
-                    radioButtonVM.loadOptions(from: formField.properties?.options ?? [])
-                }
-            }
+//            if let radioButtonVM = viewModel as? RadioButtonViewModel {
+//                if let formField = self.viewModel.formFields.first(where: { $0.id == radioButtonVM.fieldId }) {
+////                    radioButtonVM.loadOptions(from: formField.properties?.options ?? [])
+//                }
+//            }
         }
     }
 }

@@ -25,6 +25,7 @@
 		A9474D7E2D64AD7700031047 /* FieldRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474D7D2D64AD7700031047 /* FieldRules.swift */; };
 		A9474D802D64AD8700031047 /* DefaultAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474D7F2D64AD8700031047 /* DefaultAnswer.swift */; };
 		A9474D8D2D64B4AC00031047 /* FormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474D8C2D64B4A800031047 /* FormField.swift */; };
+		A9474D912D65F63B00031047 /* FieldProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9474D902D65F63700031047 /* FieldProperties.swift */; };
 		A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A242D4B8127004FB6CA /* DateDTO.swift */; };
 		A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A272D4B812E004FB6CA /* DateViewModel.swift */; };
 		A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */; };
@@ -152,6 +153,7 @@
 		A9474D7D2D64AD7700031047 /* FieldRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldRules.swift; sourceTree = "<group>"; };
 		A9474D7F2D64AD8700031047 /* DefaultAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAnswer.swift; sourceTree = "<group>"; };
 		A9474D8C2D64B4A800031047 /* FormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormField.swift; sourceTree = "<group>"; };
+		A9474D902D65F63700031047 /* FieldProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldProperties.swift; sourceTree = "<group>"; };
 		A95D7A1C2D4A8AC4004FB6CA /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
 		A95D7A1E2D4A8ACB004FB6CA /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		A95D7A202D4A8AD1004FB6CA /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
@@ -1085,6 +1087,7 @@
 				A95D7A242D4B8127004FB6CA /* DateDTO.swift */,
 				A9474D7B2D64ACBB00031047 /* APIResponse.swift */,
 				A9474D7F2D64AD8700031047 /* DefaultAnswer.swift */,
+				A9474D902D65F63700031047 /* FieldProperties.swift */,
 				A9BF45D42D50DB0D003F2333 /* SliderDTO.swift */,
 				E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */,
 				E4BBD0262D4A4A7F004AA735 /* CountryDTO.swift */,
@@ -1316,6 +1319,7 @@
 				A9474BC72D5CE3EA00031047 /* Interceptor.swift in Sources */,
 				E48CA01B2D537D7100A519ED /* SignatureViewModel.swift in Sources */,
 				A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */,
+				A9474D912D65F63B00031047 /* FieldProperties.swift in Sources */,
 				E4BBD01E2D4A47BD004AA735 /* DropDownView.swift in Sources */,
 				E4A9019D2D5E01E9007080AC /* Endpoint.swift in Sources */,
 				AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */,
