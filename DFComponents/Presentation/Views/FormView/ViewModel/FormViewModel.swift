@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+
 @MainActor
 class FormViewModel: ObservableObject {
     @Published var viewModels: [String: any ObservableObject] = [:]
@@ -27,6 +28,7 @@ class FormViewModel: ObservableObject {
     }
     func mapFields(_ fields: [Field]) {
         formFields = fields.map(FormField.init)
+        mapControls(formFields)
     }
     func mapControls(_ fields: [FormField]) {
         fields.forEach { formField in

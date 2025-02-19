@@ -164,7 +164,6 @@ struct FormView: View {
                 }
             }
             viewModel.fetchForm()
-            viewModel.mapControls(viewModel.formFields)
         }
     }
 }
