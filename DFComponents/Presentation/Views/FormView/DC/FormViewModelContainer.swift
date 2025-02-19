@@ -7,6 +7,7 @@
 import SwiftUI
 
 class FormViewModelContainer {
+    //MARK: - any because of deal with Opaque Types,we don’t know exactly what type it is at compile time
     private var viewModels: [String: (Field) -> any ObservableObject] = [:]
 
     func registerViewModel<T: ObservableObject>(_ fieldType: String, factory: @escaping (Field) -> T) {
