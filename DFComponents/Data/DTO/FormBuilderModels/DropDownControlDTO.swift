@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - DropdownControl
 struct DropdownControlDTO: Control {
-    var controlProperties: ControlProperties
+    var controlProperties: BaseProperties
     struct DefaultAnswer: Codable {
          let value: [String]?
         let otherAnswer: String?
@@ -27,7 +27,7 @@ struct DropdownControlDTO: Control {
 }
 
 struct Properties: Codable {
-    let controlProperties: ControlProperties // Composition
+    let controlProperties: BaseProperties // Composition
     let subType: String
     let multiSelect: Bool
     let selectAllBox: Bool
