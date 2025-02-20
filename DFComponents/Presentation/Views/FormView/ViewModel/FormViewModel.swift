@@ -31,8 +31,15 @@ class FormViewModel: ObservableObject {
     }
     
     func mapForm(_ form: Schema) {
-        let formEntity = FormEntity(form)
+        var formEntity = FormEntity(form)
         print(formEntity)
+        
+        var textBoxItem = formEntity.getTextBoxItem(by: "3fc04705-996f-44cc-82fc-60cb16d53a63")
+        textBoxItem?.addNote = true
+        
+        formEntity.updateItem(textBoxItem)
+        print("Test")
+//        formEntity.update
     }
     
 //    func mapFields(_ fields: [Field]) {
