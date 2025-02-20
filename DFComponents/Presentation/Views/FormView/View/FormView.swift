@@ -28,7 +28,9 @@ struct FormView: View {
                                     case FieldType.TextBox.rawValue:
                                         ControlFormBuilderView(titleControl: field.label) {
                                             let vm = viewModel as! TextBoxViewModel
-                                            TextBoxComponent(viewModel: vm)
+                                            TextBoxComponent(viewModel: vm) { value in
+                                                self.viewModel.updatevalue(field.fieldId, value: value)
+                                            }
                                         }
                                     default:
                                         EmptyView()

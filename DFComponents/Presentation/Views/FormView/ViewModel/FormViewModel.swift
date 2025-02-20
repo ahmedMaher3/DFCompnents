@@ -15,6 +15,17 @@ class FormViewModel: ObservableObject {
     @Published var controls = [FormViewModelItemProtocol]()
 
     private let viewModelContainer = FormViewModelContainer()
+    
+    private var formEntity: FormEntity!
+    
+    func updatevalue(_ id: String, value: String) {
+//        formEntity?.updateItem(formEntity?.getItem(by: id))
+        formEntity?.updateAnswer(for: id, with: value)
+//        viewModels[id] = viewModelContainer.resolve(for: id, field: formEntity)
+//        viewModelContainer.registerViewModel(<#T##fieldType: String##String#>) { <#FormEntity#> in
+//            <#code#>
+//        }
+    }
 
     func fetchForm() {
         if let path = Bundle.main.path(forResource: "checkSurvey", ofType: "json") {
@@ -30,11 +41,13 @@ class FormViewModel: ObservableObject {
             }
         }
     }
+    
     func mapForm(_ form: Schema) {
-        let formEntity = FormEntity(form)
+        self.formEntity = FormEntity(form)
         print(formEntity)
         controls = self.registerAndResolveField(formEntity)
     }
+    
     func registerAndResolveField(_ formEntity: FormEntity) -> [FormViewModelItemProtocol] {
         var formBuilderEntity: FormEntity = formEntity
         formBuilderEntity.items.forEach { fieldControl in

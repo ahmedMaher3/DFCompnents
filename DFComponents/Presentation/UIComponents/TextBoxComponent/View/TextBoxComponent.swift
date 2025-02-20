@@ -11,6 +11,8 @@ struct TextBoxComponent: View {
     @ObservedObject var viewModel: TextBoxViewModel
     @EnvironmentObject var styleManagerVM: StyleManagerViewModel
     var isDisabled: Bool = false // Add this line
+    
+    var onChangeText: ((String) -> Void)?
 
     var body: some View {
         let styleManager = styleManagerVM.styleManager
@@ -85,7 +87,8 @@ struct TextBoxComponent: View {
                 }
             }
             Button {
-                viewModel.textBoxField?.isError = true 
+                viewModel.textBoxField?.answer = "orqywiyeo"
+                onChangeText?("orqywiyeo")
             } label: {
                 Text("Submit")
             }
