@@ -20,24 +20,22 @@ struct FormView: View {
             VStack {
                 Form {
                     Text("Tets")
-//                    Section("Controls") {
-//                        ForEach(viewModel.formFields, id: \.id) { field in
-//                            // Dynamically resolve and render view model for each field
-//                            if let viewModel = viewModel.viewModels[field.id] {
-//                                switch field.type.rawValue {
-//                                case "Radio":
-//                                        ControlFormBuilderView(titleControl: field.label) {
-//                                            let vm = viewModel as! RadioButtonViewModel
-//                                            QuestionsRadioButton(radioButtonVM: vm)
-//                                        }
-//                                    case "TextBox":
-//                                            EmptyView()
-//                                default:
-//                                    EmptyView() 
-//                                }
-//                            }
-//                        }
-//                    }
+                    Section("Controls") {
+                        ForEach(viewModel.controls, id: \.fieldId) {
+                            field in
+                            if let viewModel = viewModel.viewModels[field.fieldId] {
+                                switch field.type.rawValue {
+                                    case FieldType.TextBox.rawValue:
+                                        ControlFormBuilderView(titleControl: field.label) {
+                                            let vm = viewModel as! TextBoxViewModel
+                                            TextBoxComponent(viewModel: vm)
+                                        }
+                                    default:
+                                        EmptyView()
+                                }
+                            }
+                        }
+                    }
                 }
                 .padding(.top, 10)
                 .listRowSeparator(.hidden)
@@ -51,8 +49,13 @@ struct FormView: View {
                 .sheet(isPresented: $showingAppearanceSheet) {
                     AppearanceSheetView()
                 }
-
-                FooterFormView()
+                Button {
+                    
+                    print(viewModel)
+                } label: {
+                    Text("Submit")
+                }
+//                FooterFormView()
             }
         }
         .navigationTitle(title)

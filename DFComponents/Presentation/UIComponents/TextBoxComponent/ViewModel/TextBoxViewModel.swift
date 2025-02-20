@@ -17,15 +17,20 @@ class TextBoxViewModel: ObservableObject {
     var mask: String = "9(999)-9999"  // Ex
     let config: TextBoxDTO
     var hasInteracted: Bool = false
-
-    init(config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
-        self.config = config
-
-        // Set default prefix and suffix if only one option is available
+    var textBoxField: FormViewModelTextBoxItem?
+//    init(config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
+//        self.config = config
+//
+//        // Set default prefix and suffix if only one option is available
+//        selectedPrefix = config.prefixOptions.count == 1 ? config.prefixOptions.first : nil
+//        selectedSuffix = config.suffixOptions.count == 1 ? config.suffixOptions.first : nil
+//    }
+    init(textBoxField: FormViewModelTextBoxItem? = nil, config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
+         self.config = config
+        self.textBoxField = textBoxField
         selectedPrefix = config.prefixOptions.count == 1 ? config.prefixOptions.first : nil
         selectedSuffix = config.suffixOptions.count == 1 ? config.suffixOptions.first : nil
     }
-
     // Default configuration
     static var defaultConfig: TextBoxDTO {
         return TextBoxDTO(

@@ -14,11 +14,10 @@ struct TextBoxComponent: View {
 
     var body: some View {
         let styleManager = styleManagerVM.styleManager
-
         VStack(alignment: .leading, spacing: styleManager.innerPadding) {
             // Title and Subtitle
             VStack(alignment: .leading, spacing: 2) {
-                Text(viewModel.title)
+                Text(viewModel.textBoxField?.label ?? "")
                     .styledText(font: styleManager.titleFont, color: isDisabled ? styleManager.disabledTextColor : styleManager.primaryTextColor)
 
                 if let subtitle = viewModel.subtitle {
@@ -85,25 +84,30 @@ struct TextBoxComponent: View {
                         .styledText(font: styleManager.errorFont, color: styleManager.errorColor)
                 }
             }
+            Button {
+                viewModel.textBoxField?.isError = true 
+            } label: {
+                Text("Submit")
+            }
         }
         .padding(styleManager.componentPadding)
     }
 }
-
-// MARK: - Preview
-#Preview {
-    let config = TextBoxDTO(
-        title: "Phone Number",
-        subtitle: "Enter a valid number",
-        placeholder: "XXX-XXX-XXXX",
-        inputType: .mixed,
-        minLength: 10,
-        prefixOptions: [],
-        suffixOptions: [],
-        requiresPrefix: true,
-        requiresSuffix: true
-    )
-    return TextBoxComponent(viewModel: TextBoxViewModel(config: config))
-}
+//
+//// MARK: - Preview
+//#Preview {
+//    let config = TextBoxDTO(
+//        title: "Phone Number",
+//        subtitle: "Enter a valid number",
+//        placeholder: "XXX-XXX-XXXX",
+//        inputType: .mixed,
+//        minLength: 10,
+//        prefixOptions: [],
+//        suffixOptions: [],
+//        requiresPrefix: true,
+//        requiresSuffix: true
+//    )
+//    return TextBoxComponent(viewModel: TextBoxViewModel(config: config))
+//}
 
 
