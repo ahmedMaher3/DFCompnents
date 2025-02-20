@@ -17,7 +17,17 @@ class FormViewModel: ObservableObject {
     private let viewModelContainer = FormViewModelContainer()
     
     private var formEntity: FormEntity!
-    
+
+    //MARK: - First Approach using Closure
+    /*
+     - How to update control in view model
+     - Listen the changes
+     - update DataSource @Published var controls = [FormViewModelItemProtocol]()
+     - bla bla bla bla
+
+
+     */
+
     func updatevalue(_ id: String, value: String) {
 //        formEntity?.updateItem(formEntity?.getItem(by: id))
         formEntity?.updateAnswer(for: id, with: value)
@@ -44,19 +54,13 @@ class FormViewModel: ObservableObject {
     
     func mapForm(_ form: Schema) {
         self.formEntity = FormEntity(form)
-        print(formEntity)
         controls = self.registerAndResolveField(formEntity)
     }
-    
     func registerAndResolveField(_ formEntity: FormEntity) -> [FormViewModelItemProtocol] {
         var formBuilderEntity: FormEntity = formEntity
         formBuilderEntity.items.forEach { fieldControl in
             switch fieldControl.type.rawValue {
                 case FieldType.TextBox.rawValue:
-                    var textBoxItem = formBuilderEntity.getTextBoxItem(by: fieldControl.fieldId)
-                    textBoxItem?.addNote = true
-                    formBuilderEntity.updateItem(textBoxItem)
-                    print("Test")
                     viewModelContainer.registerViewModel(FieldType.TextBox.rawValue) { formFieldEntity in
                         return TextBoxViewModel(textBoxField: formFieldEntity.getTextBoxItem(by: fieldControl.fieldId))
                     }
