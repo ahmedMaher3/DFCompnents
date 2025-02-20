@@ -273,96 +273,70 @@ struct FormViewModelTextAreaItem: TextBaseItemDelegate {
     }
 }
 
-//// Example of a specific form item
-//struct FormViewModelTextBoxItem: FormViewModelItemProtocol, InteractiveItemProtocol {
-//    private var base: FormViewModelInteractiveItem
-//    var regex: String?
-////    var prefix: PrefixViewModel?
-////    var suffix: PrefixViewModel?
-//    var mask: String?
-//    var defaultAnswer: TextboxAnswer?
-//    var subType: TextBoxSubType?
-//    
-//    // Delegate properties from FormViewModelItemProtocol
-//    var type: FieldType! { get { base.type } }
-//    var fieldId: String! { get { base.fieldId } }
-//    var label: String! { get { base.label } }
-//    var parentId: String? { get { base.parentId } }
-//    var index: Int! { get { base.index } }
-//    var answer: Any? { get { base.answer } set { base.answer = newValue } }
-//    var isError: Bool! { get { base.isError } set { base.isError = newValue } }
-//    var rules: FieldRules? { get { base.rules } }
-//    var hidden: Bool! { get { base.hidden } set { base.hidden = newValue } }
-//    var disabled: Bool! { get { base.disabled } set { base.disabled = newValue } }
-////    var localization: BaseLocalization? { get { base.localization } set { base.localization = newValue } }
-//    
-//    // Delegate properties from InteractiveItemProtocol
-//    var required: Bool! { get { base.required } }
-//    var placeHolder: String! { get { base.placeHolder } }
-//    var note: String? { get { base.note } set { base.note = newValue } }
-//    var attachmentImages: [Any]? { get { base.attachmentImages } set { base.attachmentImages = newValue } }
-//    var attachmentFiles: [Any]? { get { base.attachmentFiles } set { base.attachmentFiles = newValue } }
-//    var sublabel: String? { get { base.sublabel } }
-//    var tooltip: String? { get { base.tooltip } }
-//    var addNote: Bool! { get { base.addNote } set { base.addNote = newValue } }
-//    var addAttachment: Bool! { get { base.addAttachment } set { base.addAttachment = newValue } }
-//    var attachmentType: AttachmentType! { get { base.attachmentType } }
-//    var attachmentExtensions: String! { get { base.attachmentExtensions } }
-//    
-//    init(field: Field?) {
-//        base = FormViewModelInteractiveItem(field: field)
-//        
-//        if let properties = field?.properties as? TextBoxProperties {
-////            prefix = PrefixViewModel(prefix: properties.prefix)
-////            suffix = PrefixViewModel(prefix: properties.suffix)
-//            mask = properties.mask
-//            defaultAnswer = properties.defaultAnswer
-//            subType = properties.subType
-//        }
-//    }
-//    
-//    func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
-////        if let valueObject = sAnswer as? JSON {
-////            return TextboxAnswer(JSON: valueObject)
-////        }
-//        return nil
-//    }
-//    
-//    func getAnswerString() -> String {
-//        guard let answerValue = (answer as? TextboxAnswer)?.value else {
-//            return ""
-//        }
-//        return answerValue
-//    }
-//    
-//    func isAnswered() -> Bool {
-//        if let textValue = (answer as? BaseAnswerText)?.value, !textValue.isEmpty {
-//            return true
-//        }
-//        return false
-//    }
-//}
-//struct FormViewModelTextBoxItem {
-//    private var base: FormViewModelInteractiveItem
-//    var regex: String?
-////    var prefix: PrefixViewModel?
-////    var suffix: PrefixViewModel?
-//    var mask: String?
-//    var defaultAnswer: TextboxAnswer?
-//    var subType: TextBoxSubType?
-//    
-//    init(field: Field?) {
-//        base = FormViewModelInteractiveItem(field: field)
-//        
-//        if let properties = field?.properties as? TextBoxProperties {
-////            prefix = PrefixViewModel(prefix: properties.prefix)
-////            suffix = PrefixViewModel(prefix: properties.suffix)
-//            mask = properties.mask
-//            defaultAnswer = properties.defaultAnswer
-//            subType = properties.subType
-//        }
-//    }
-//}
+struct MCQBaseItem: InteractiveFieldDelegate {
+    var base: InteractiveFieldBase
+    
+    var options: [MCQOption]?
+    var defaultAnswer: BaseAnswerMCQ?
+    var predefinedOptions: String?
+    var shuffleOptions: Bool?
+    var otherOption: Bool?
+    var otherOptionText: String?
+    var naOption: Bool?
+    var naOptionText: String?
+    
+    init(field: Field?) {
+        base = InteractiveFieldBase(field: field)
+        
+        if let properties = field?.properties as? MCQPropertiesProtocol {
+            options = properties.options
+            defaultAnswer = properties.defaultAnswer
+            predefinedOptions = properties.predefinedOptions
+            shuffleOptions = properties.shuffleOptions
+            otherOption = properties.otherOption
+            otherOptionText = properties.otherOptionText
+            naOption = properties.naOption
+            naOptionText = properties.naOptionText
+        } else {
+            options = nil
+            defaultAnswer = nil
+            predefinedOptions = nil
+            shuffleOptions = nil
+            otherOption = nil
+            otherOptionText = nil
+            naOption = nil
+            naOptionText = nil
+        }
+    }
+}
+
+protocol MCQBaseItemDelegate: InteractiveFieldDelegate {
+    var mcqBase: MCQBaseItem { get set }
+}
+
+extension MCQBaseItemDelegate {
+    var options: [MCQOption]? { mcqBase.options }
+    var defaultAnswer: BaseAnswerMCQ? { mcqBase.defaultAnswer }
+    var predefinedOptions: String? { mcqBase.predefinedOptions }
+    var shuffleOptions: Bool? { mcqBase.shuffleOptions }
+    var otherOption: Bool? { mcqBase.otherOption }
+    var otherOptionText: String? { mcqBase.otherOptionText }
+    var naOption: Bool? { mcqBase.naOption }
+    var naOptionText: String? { mcqBase.naOptionText }
+    
+    var base: InteractiveFieldBase {
+        get { mcqBase.base }
+        set { mcqBase.base = newValue }
+    }
+}
+
+struct RadioButtonItem: MCQBaseItemDelegate {
+    var mcqBase: MCQBaseItem
+    
+    init(field: Field?) {
+        mcqBase = MCQBaseItem(field: field)
+    }
+}
 
 // Main ViewModel struct
 struct FormEntity {
@@ -450,119 +424,3 @@ extension FormEntity {
         }
     }
 }
-
-//protocol FormFieldProtocol {
-//    var type: FieldType! { get }
-//    var fieldId: String! { get }
-//    var label: String! { get }
-//    var answer: Any? { get set }
-//    var isError: Bool! { get set }
-////    let rules: FieldRule?
-//    var hidden: Bool { get set }
-//    var disabled: Bool { get set }
-//}
-//
-//protocol InteractiveFormFieldProtocol: FormFieldProtocol {
-//    var required: Bool! { get }
-//    var placeHolder: String! { get }
-//    var note: String? { get set }
-//    var attachmentImages: [Any]? { get set }
-//    var attachmentFiles: [Any]? { get set }
-//    var sublabel: String? { get }
-//    var tooltip: String? { get }
-//    var addNote: Bool! { get set }
-//    var addAttachment: Bool! { get set }
-//    var attachmentType: AttachmentType! { get }
-//    var attachmentExtensions: String! { get }
-//}
-//
-//protocol TextBaseFormFieldProtocol: InteractiveFormFieldProtocol {
-//    var allowSpellCheck: Bool? { get }
-//    var maximumLength: Int? { get }
-//    var minimumLength: Int? { get }
-//    var entryLimit: EntryLimit? { get }
-//}
-//
-//struct TextBoxFormField: TextBaseFormFieldProtocol {
-//    var allowSpellCheck: Bool?
-//    
-//    var maximumLength: Int?
-//    
-//    var minimumLength: Int?
-//    
-//    var entryLimit: EntryLimit?
-//    
-//    var required: Bool!
-//    
-//    var placeHolder: String!
-//    
-//    var note: String?
-//    
-//    var attachmentImages: [Any]?
-//    
-//    var attachmentFiles: [Any]?
-//    
-//    var sublabel: String?
-//    
-//    var tooltip: String?
-//    
-//    var addNote: Bool!
-//    
-//    var addAttachment: Bool!
-//    
-//    var attachmentType: AttachmentType!
-//    
-//    var attachmentExtensions: String!
-//    
-//    var type: FieldType!
-//    
-//    var fieldId: String!
-//    
-//    var label: String!
-//    
-//    var answer: Any?
-//    
-//    var isError: Bool!
-//    
-//    var hidden: Bool
-//    
-//    var disabled: Bool
-//    
-//    
-//}
-//
-//struct FormField: FormFieldProtocol {
-//    let type: FieldType!
-//    let fieldId: String!
-//    let label: String!
-//    var answer: Any?
-//    var isError: Bool!
-//    var hidden: Bool = false
-//    var disabled: Bool = false
-//}
-
-//struct FormField: Identifiable {
-//    let id: String
-//    let type: FieldType
-//    let label: String
-//    let sublabel: String?
-//    var value: String?
-////    let isRequired: Bool
-//    let properties: BaseProperties?
-//    var isVisible: Bool
-//    let rules: FieldRules?
-//    var field: Field  // Add the `field` property, which holds the actual Field
-//
-//    init(field: Field) {
-//        id = field.id ?? ""
-//        type = field.type
-//        label = field.properties.label ?? ""
-//        sublabel = field.properties.subLabel ?? ""
-//        value = ""
-////        isRequired = field.properties.required ?? false
-//        properties = field.properties
-//        isVisible = true
-//        rules = field.rules
-//        self.field = field
-//    }
-//}
