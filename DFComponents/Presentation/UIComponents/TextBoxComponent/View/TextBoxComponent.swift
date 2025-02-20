@@ -21,7 +21,7 @@ struct TextBoxComponent: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(viewModel.textBoxField?.label ?? "")
                     .styledText(font: styleManager.titleFont, color: isDisabled ? styleManager.disabledTextColor : styleManager.primaryTextColor)
-
+                Text("\(viewModel.textBoxField?.answer)")
                 if let subtitle = viewModel.subtitle {
                     Text(subtitle)
                         .styledText(font: styleManager.subtitleFont, color: isDisabled ? styleManager.disabledTextColor.opacity(0.7) : styleManager.secondaryTextColor)
@@ -43,7 +43,7 @@ struct TextBoxComponent: View {
                     .opacity(isDisabled ? 0.6 : 1.0)
                 }
 
-                TextField(viewModel.placeholder, text: $viewModel.text, onEditingChanged: { isEditing in
+                TextField(viewModel.textBoxField?.placeHolder ?? "", text: $viewModel.text, onEditingChanged: { isEditing in
                     if !isDisabled {
                         viewModel.onEditingChanged(isEditing: isEditing)
                     }
@@ -87,7 +87,7 @@ struct TextBoxComponent: View {
                 }
             }
             Button {
-                viewModel.textBoxField?.answer = "orqywiyeo"
+//                viewModel.textBoxField?.answer = "orqywiyeo"
                 onChangeText?("orqywiyeo")
             } label: {
                 Text("Submit")

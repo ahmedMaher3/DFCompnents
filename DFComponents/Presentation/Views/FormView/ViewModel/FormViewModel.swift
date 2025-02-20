@@ -21,6 +21,18 @@ class FormViewModel: ObservableObject {
     func updatevalue(_ id: String, value: String) {
 //        formEntity?.updateItem(formEntity?.getItem(by: id))
         formEntity?.updateAnswer(for: id, with: value)
+        let texBoxVM = viewModels[id] as! TextBoxViewModel
+        texBoxVM.textBoxField?.answer = value
+//        if texBoxVM.textBoxField?.rules?.effectIn {
+//            pqpqw[ewqp eqw]qwe[qw[e]]
+//            formEntity.rules =qw qwe9qwe-
+//        }
+        viewModels[id] = texBoxVM
+//        let itemType = formEntity.getItem(by: id)?.type.rawValue ?? ""
+//        viewModelContainer.registerViewModel(itemType) { _ in
+//            TextBoxViewModel(textBoxField: self.formEntity.getTextBoxItem(by: id))
+//        }
+//        viewModelContainer
 //        viewModels[id] = viewModelContainer.resolve(for: id, field: formEntity)
 //        viewModelContainer.registerViewModel(<#T##fieldType: String##String#>) { <#FormEntity#> in
 //            <#code#>
@@ -53,12 +65,8 @@ class FormViewModel: ObservableObject {
         formBuilderEntity.items.forEach { fieldControl in
             switch fieldControl.type.rawValue {
                 case FieldType.TextBox.rawValue:
-                    var textBoxItem = formBuilderEntity.getTextBoxItem(by: fieldControl.fieldId)
-                    textBoxItem?.addNote = true
-                    formBuilderEntity.updateItem(textBoxItem)
-                    print("Test")
                     viewModelContainer.registerViewModel(FieldType.TextBox.rawValue) { formFieldEntity in
-                        return TextBoxViewModel(textBoxField: formFieldEntity.getTextBoxItem(by: fieldControl.fieldId))
+                        TextBoxViewModel(textBoxField: formFieldEntity.getTextBoxItem(by: fieldControl.fieldId))
                     }
                 default:
                     break
