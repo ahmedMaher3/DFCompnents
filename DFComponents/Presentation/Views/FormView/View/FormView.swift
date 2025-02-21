@@ -51,7 +51,11 @@ struct FormView: View {
                     AppearanceSheetView()
                 }
                 Button {
-                    
+                    viewModel.viewModels.forEach { (key: String, viewModel) in
+                        if let textBoxVM = viewModel as? TextBoxViewModel {
+                            print("Answer:\(textBoxVM.textBoxField?.answer) and text base please:\(textBoxVM.textBoxField?.textBase) and text:\(textBoxVM.text)")
+                        }
+                    }
                     print(viewModel)
                 } label: {
                     Text("Submit")

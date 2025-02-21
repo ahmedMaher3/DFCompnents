@@ -36,6 +36,12 @@ class FormViewModel: ObservableObject {
                     viewModels[controlId] = textBoxViewModel
                     textBoxViewModel.validateInput()
                     textBoxViewModel.textBoxField?.answer = textBoxViewModel
+                    //MARK: - Approach
+                    /*
+                     1. textBoxViewModel.getAnswer()
+                     2. textBoxViewModel.getRule()
+                     and so on ...
+                     */
                     formEntity.updateAnswer(for: controlId, with: textBoxViewModel)
                     if let answer = textBoxViewModel.textBoxField?.answer {
                         print("Updated answer: \(answer)")
