@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
-
+//class TxtViewModel: FormViewModelInitializable {
+//    required init(field: FormEntity) {
+//
+//    }
+//    
+//
+//}
 // MARK: - TextBoxViewModel
 class TextBoxViewModel: ObservableObject {
+
     @Published var text: String = ""
     @Published var errorMessage: String?
     @Published var isValid: Bool = false
@@ -18,14 +25,8 @@ class TextBoxViewModel: ObservableObject {
     let config: TextBoxDTO
     var hasInteracted: Bool = false
     var textBoxField: FormViewModelTextBoxItem?
-//    init(config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
-//        self.config = config
-//
-//        // Set default prefix and suffix if only one option is available
-//        selectedPrefix = config.prefixOptions.count == 1 ? config.prefixOptions.first : nil
-//        selectedSuffix = config.suffixOptions.count == 1 ? config.suffixOptions.first : nil
-//    }
-    init(textBoxField: FormViewModelTextBoxItem? = nil, config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
+
+     init(textBoxField: FormViewModelTextBoxItem? = nil, config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
          self.config = config
         self.textBoxField = textBoxField
         selectedPrefix = config.prefixOptions.count == 1 ? config.prefixOptions.first : nil
@@ -76,6 +77,7 @@ class TextBoxViewModel: ObservableObject {
             errorMessage = "Minimum \(config.minLength) characters required."
         }
         isValid = errorMessage == nil
+        print("statis isValid:\(isValid)")
     }
 
     func onEditingChanged(isEditing: Bool) {

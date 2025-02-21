@@ -28,9 +28,7 @@ struct FormView: View {
                                     case FieldType.TextBox.rawValue:
                                         ControlFormBuilderView(titleControl: field.label) {
                                             let vm = viewModel as! TextBoxViewModel
-                                            TextBoxComponent(viewModel: vm) { value in
-                                                self.viewModel.updatevalue(field.fieldId, value: value)
-                                            }
+                                            TextBoxComponent(viewModel: vm)
                                         }
                                     default:
                                         EmptyView()
@@ -44,6 +42,7 @@ struct FormView: View {
                 .listStyle(PlainListStyle())
                 .buttonStyle(PlainButtonStyle())
                 .listRowBackground(Color.clear)
+
 
                 Button("Show Appearance Sheet") {
                     showingAppearanceSheet.toggle()

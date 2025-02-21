@@ -405,6 +405,7 @@ extension FormEntity {
     mutating func updateAnswer(for id: String, with answer: Any) {
         if let index = items.firstIndex(where: { $0.fieldId == id }) {
             items[index].answer = answer
+            print("Display the answer please!!!:\(items[index].answer)")
         }
     }
     

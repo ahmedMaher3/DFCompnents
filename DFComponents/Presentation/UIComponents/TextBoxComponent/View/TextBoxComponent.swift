@@ -12,8 +12,10 @@ struct TextBoxComponent: View {
     @EnvironmentObject var styleManagerVM: StyleManagerViewModel
     var isDisabled: Bool = false // Add this line
     
-    var onChangeText: ((String) -> Void)?
+//    var onChangeText: ((String) -> Void)?
+    @EnvironmentObject var formViewModel: FormViewModel // Add this line to access FormViewModel
 
+    
     var body: some View {
         let styleManager = styleManagerVM.styleManager
         VStack(alignment: .leading, spacing: styleManager.innerPadding) {
@@ -21,7 +23,9 @@ struct TextBoxComponent: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(viewModel.textBoxField?.label ?? "")
                     .styledText(font: styleManager.titleFont, color: isDisabled ? styleManager.disabledTextColor : styleManager.primaryTextColor)
-                Text("\(viewModel.textBoxField?.answer)")
+                if viewModel.textBoxField?.answer != nil {
+               Text("\(viewModel.textBoxField?.answer ?? "")")
+                } else {EmptyView()}
                 if let subtitle = viewModel.subtitle {
                     Text(subtitle)
                         .styledText(font: styleManager.subtitleFont, color: isDisabled ? styleManager.disabledTextColor.opacity(0.7) : styleManager.secondaryTextColor)
@@ -87,8 +91,7 @@ struct TextBoxComponent: View {
                 }
             }
             Button {
-//                viewModel.textBoxField?.answer = "orqywiyeo"
-                onChangeText?("orqywiyeo")
+                self.formViewModel.updateControlByViewModel(controlId: viewModel.textBoxField?.fieldId ?? "", viewModel: viewModel)
             } label: {
                 Text("Submit")
             }
