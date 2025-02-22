@@ -29,19 +29,19 @@ class FormViewModel: ObservableObject {
     private var formEntity: FormEntity!
 
 
-    func updateControlByViewModel(controlId: String, viewModel: any ObservableObject) {
+    func updateControlByViewModel(controlId: String) {
         switch formEntity.getItem(by: controlId)?.type {
             case .TextBox:
-                if let textBoxViewModel = viewModel as? TextBoxViewModel  {
-                    viewModels[controlId] = textBoxViewModel
+                if let textBoxViewModel = viewModels[controlId] as? TextBoxViewModel {
                     textBoxViewModel.validateInput()
-                    textBoxViewModel.textBoxField?.answer = textBoxViewModel
                     //MARK: - Approach
                     /*
-                     1. textBoxViewModel.getAnswer()
-                     2. textBoxViewModel.getRule()
+                     1. textBoxViewModel.textBoxField?.answer =  textBoxViewModel.getAnswer()
+                     2. textBoxViewModel.textBoxField?.rules = textBoxViewModel.getRules()
                      and so on ...
                      */
+                    /// answer = viewModel itself this is just example
+                    textBoxViewModel.textBoxField?.answer = textBoxViewModel
                     formEntity.updateAnswer(for: controlId, with: textBoxViewModel)
                     if let answer = textBoxViewModel.textBoxField?.answer {
                         print("Updated answer: \(answer)")

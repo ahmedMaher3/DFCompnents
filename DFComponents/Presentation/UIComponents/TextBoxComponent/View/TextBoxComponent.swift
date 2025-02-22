@@ -91,7 +91,7 @@ struct TextBoxComponent: View {
                 }
             }
             Button {
-                self.formViewModel.updateControlByViewModel(controlId: viewModel.textBoxField?.fieldId ?? "", viewModel: viewModel)
+                self.formViewModel.updateControlByViewModel(controlId: viewModel.textBoxField?.fieldId ?? "")
             } label: {
                 Text("Submit")
             }
