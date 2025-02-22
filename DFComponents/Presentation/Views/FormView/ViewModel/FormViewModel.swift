@@ -40,14 +40,23 @@ class FormViewModel: ObservableObject {
                      2. textBoxViewModel.textBoxField?.rules = textBoxViewModel.getRules()
                      and so on ...
                      */
-                    /// answer = viewModel itself this is just example
-                    textBoxViewModel.textBoxField?.answer = textBoxViewModel
                     formEntity.updateAnswer(for: controlId, with: textBoxViewModel)
-                    if let answer = textBoxViewModel.textBoxField?.answer {
+                    formEntity.updateItem(formEntity.getItem(by: controlId))
+                    let getItem = formEntity.getItem(by: controlId)
+                    textBoxViewModel.textBoxField = formEntity.getTextBoxItem(by: controlId)
+                    print("Get Item For this Entity:\(getItem)")
+                    if let answer = getItem?.answer {
                         print("Updated answer: \(answer)")
                     } else {
                         print("Answer is nil")
                     }
+                    //MARK: - Check answer related to textBox
+                    if let answerTextBoxControl = textBoxViewModel.textBoxField?.answer {
+                        print("Contain answer for text field")
+                    } else {
+                        print("Not contain any answer")
+                    }
+
                 } else {
                     // Handle the case where the view model couldn't be resolved
                     print("Failed to resolve view model for controlId: \(controlId)")
@@ -104,6 +113,40 @@ class FormViewModel: ObservableObject {
 
 
 }
+/* func updateControlByViewModel(controlId: String) {
+ switch formEntity.getItem(by: controlId)?.type {
+ case .TextBox:
+ if let textBoxViewModel = viewModels[controlId] as? TextBoxViewModel {
+ //MARK: - Approach
+ /*
+  1. textBoxViewModel.textBoxField?.answer =  textBoxViewModel.getAnswer()
+  2. textBoxViewModel.textBoxField?.rules = textBoxViewModel.getRules()
+  and so on ...
+  */
+ formEntity.updateItem(formEntity.getItem(by: controlId))
+ let getItem = formEntity.getItem(by: controlId)
+
+ print(getItem)
+ print("Status Validate:\(formEntity.validateAll())")
+ textBoxViewModel.textBoxField = formEntity.getTextBoxItem(by: controlId)
+ /// answer = viewModel itself this is just example
+ textBoxViewModel.textBoxField?.answer = textBoxViewModel
+ formEntity.updateAnswer(for: controlId, with: textBoxViewModel)
+ if let answer = textBoxViewModel.textBoxField?.answer {
+ print("Updated answer: \(answer)")
+ } else {
+ print("Answer is nil")
+ }
+ } else {
+ // Handle the case where the view model couldn't be resolved
+ print("Failed to resolve view model for controlId: \(controlId)")
+ }
+ break
+ default:
+ break
+ }
+ }
+ */
 /*
  //    func mapFields(_ fields: [Field]) {
  //        formFields = fields.map(FormField.init)

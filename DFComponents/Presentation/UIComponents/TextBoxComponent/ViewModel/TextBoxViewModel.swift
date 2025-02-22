@@ -77,7 +77,6 @@ class TextBoxViewModel: ObservableObject {
             errorMessage = "Minimum \(config.minLength) characters required."
         }
         isValid = errorMessage == nil
-        print("statis isValid:\(isValid)")
     }
 
     func onEditingChanged(isEditing: Bool) {
