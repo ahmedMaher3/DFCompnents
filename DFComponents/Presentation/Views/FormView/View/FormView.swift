@@ -19,7 +19,6 @@ struct FormView: View {
         NavigationStack {
             VStack {
                 Form {
-                    Text("Tets")
                     Section("Controls") {
                         ForEach(viewModel.controls, id: \.fieldId) {
                             field in
@@ -53,7 +52,9 @@ struct FormView: View {
                 Button {
                     viewModel.viewModels.forEach { (key: String, viewModel) in
                         if let textBoxVM = viewModel as? TextBoxViewModel {
-                            print("Answer:\(textBoxVM.textBoxField?.answer) and text base please:\(textBoxVM.textBoxField?.textBase) and text:\(textBoxVM.text)")
+                            self.viewModel.updateControlByViewModel(controlId: key)
+                            print("Display the key:\(key)")
+                           print("Answer:\(textBoxVM.textBoxField?.answer) and text base please:\(textBoxVM.textBoxField?.textBase) and text:\(textBoxVM.text)")
                         }
                     }
                     print(viewModel)

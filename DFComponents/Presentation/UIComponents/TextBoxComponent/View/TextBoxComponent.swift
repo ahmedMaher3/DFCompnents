@@ -90,11 +90,13 @@ struct TextBoxComponent: View {
                         .styledText(font: styleManager.errorFont, color: styleManager.errorColor)
                 }
             }
+            /*
             Button {
                 self.formViewModel.updateControlByViewModel(controlId: viewModel.textBoxField?.fieldId ?? "")
             } label: {
                 Text("Submit")
             }
+             */
         }
         .padding(styleManager.componentPadding)
     }
