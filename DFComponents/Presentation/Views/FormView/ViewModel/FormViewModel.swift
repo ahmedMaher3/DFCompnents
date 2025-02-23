@@ -17,26 +17,36 @@ class FormViewModel: ObservableObject {
     @Published var signatureViewModel: SignatureViewModel = SignatureViewModel()
     @Published var sliderViewModel: SliderViewModel = SliderViewModel()
     @Published var rulesViewModel: RulesControlsViewModel = RulesControlsViewModel()
-    
-//    @Published var formFields: [FormField] = []
-    @Published var formFields: [ControlType] = []
 
-    func fetchForm() {
-        if let path = Bundle.main.path(forResource: "checkSurvey", ofType: "json") {
-            guard let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped) else {
-                return
-            }
-            do {
-                let apiResponse = try JSONDecoder().decode(APIResponse.self, from: data)
+    //@Published var formFields: [ControlType] = []
 
-                mapFields(apiResponse.data.schema.fields)
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
+    @Published var formFields: [FieldDTOEnum] = []
+    var formBuildUseCase: FormBuildUseCase = FormBuildUseCase()
+
+
+    func fetchForm() async {
+        do {
+            formFields =  try await formBuildUseCase.excute()
         }
+        catch let error as NSError {
+            print(error.localizedDescription)
+        }
+
+        //        if let path = Bundle.main.path(forResource: "checkSurvey", ofType: "json") {
+        //            guard let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped) else {
+        //                return
+        //            }
+        //            do {
+        //                let apiResponse = try JSONDecoder().decode(APIResponse.self, from: data)
+        //
+        //                mapFields(apiResponse.data.schema.fields)
+        //            } catch let error as NSError {
+        //                print(error.localizedDescription)
+        //            }
+        //        }
     }
-    
-    func mapFields(_ fields: [Field]) {
-        formFields =  FormUseCase().excute(fields)
-    }
+
+    //    func mapFields(_ fields: [Field]) {
+    //        formFields =  FormUseCase().excute(fields)
+    //    }
 }

@@ -7,22 +7,22 @@
 
 import Foundation
 
-struct APIResponse: Codable {
+struct APIResponse: Decodable {
     let hasErrors: Bool
     let errors: String?
     let data: FormData
 }
 
-struct FormData: Codable {
+struct FormData: Decodable {
     let schema: Schema
 }
 
-struct Schema: Codable {
+struct Schema: Decodable {
     let id: String
     let lastAppliedEventId: String
     let properties: SchemaProperties
     let warnings: Warnings
-    let fields: [Field]
+    let fields: [FieldDTOEnum]
     let rules: [Rule]
 }
 
@@ -142,4 +142,39 @@ struct DoAction: Codable {
     let targetFieldsIds: [String]
     let expression: String?
     let actionImpact: String
+}
+
+enum FieldDTOEnum: Decodable {
+    case textBox(TextBoxxDTO)
+    case radio(RadioDTO)
+
+    var id: String {
+        switch self {
+        case .textBox(let dto):
+            return dto.id
+        case .radio(let dto):
+            return dto.id
+        }
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let type = try container.decode(FieldType.self, forKey: .type)
+        switch type {
+        case .TextBox:
+            let dto = try TextBoxxDTO(from: decoder)
+            self = .textBox(dto)
+        case.Radio:
+            let dto = try RadioDTO(from: decoder)
+            self = .radio(dto)
+        default:
+            let dto = try TextBoxxDTO(from: decoder)
+            self = .textBox(dto)
+
+        }
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case type
+    }
 }

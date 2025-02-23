@@ -9,11 +9,11 @@ import SwiftUI
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
-    
+
     @State private var showingAppearanceSheet = false
-    
+
     var title: String = ""
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -29,7 +29,7 @@ struct FormView: View {
                     loadingView()
                         .onAppear {
                             Task {
-                                 viewModel.fetchForm()
+                                await viewModel.fetchForm()
                             }
                         }
                 }
@@ -39,54 +39,54 @@ struct FormView: View {
             .environmentObject(viewModel.rulesViewModel)
         }
     }
-    
+
     // This function handles rendering the appropriate form control based on the field type
     @ViewBuilder
-    private func renderField(for field: ControlType) -> some View {
+    private func renderField(for field: FieldDTOEnum) -> some View {
 
         switch field {
         case .textBox(let controlEntity):
-            ControlFormBuilderView(titleControl: controlEntity.properties.placeholder ?? "Text Box") {
-                            TextBoxComponent(viewModel: viewModel.textBoxViewModel)
-                        }
+            ControlFormBuilderView(titleControl: controlEntity.properties.placeholder ) {
+                TextBoxComponent(viewModel: viewModel.textBoxViewModel)
+            }
         default:
             Text("Unsupported field type")
-                       .foregroundColor(.red)
+                .foregroundColor(.red)
         }
 
 
 
 
-//        switch field.type {
-//        case .DateTime:
-//            ControlFormBuilderView(titleControl: field.properties?.label ?? "Date Picker") {
-//                DateTimeView(viewModel: viewModel.dateFieldViewModel)
-//            }
-//        case .Checkbox:
-//            ControlFormBuilderView(titleControl: field.properties?.label ?? "Checkbox") {
-//                //                CheckBoxView(viewModel: viewModel.checkBoxViewModel)
-//            }
-//        case .Radio:
-//            ControlFormBuilderView(titleControl: field.properties?.label ?? "Radio Button") {
-//                //                RadioButtonView(viewModel: viewModel.radioButtonViewModel)
-//            }
-//        case .TextBox:
-//            ControlFormBuilderView(titleControl: field.properties?.label ?? "Text Box") {
-//                TextBoxComponent(viewModel: viewModel.textBoxViewModel)
-//            }
-//        case .DropDown:
-//            ControlFormBuilderView(titleControl: field.properties?.label ?? "Drop Down") {
-//                DropDownView(title: viewModel.dropdownViewModel.selectedCountry?.name ?? "Select Country", viewModel: viewModel.dropdownViewModel)
-//                    .listRowSeparator(.hidden)
-//                    .padding(.horizontal)
-//            }
-//        default:
-//            Text("Unsupported field type")
-//                .foregroundColor(.red)
-//        }
+        //        switch field.type {
+        //        case .DateTime:
+        //            ControlFormBuilderView(titleControl: field.properties?.label ?? "Date Picker") {
+        //                DateTimeView(viewModel: viewModel.dateFieldViewModel)
+        //            }
+        //        case .Checkbox:
+        //            ControlFormBuilderView(titleControl: field.properties?.label ?? "Checkbox") {
+        //                //                CheckBoxView(viewModel: viewModel.checkBoxViewModel)
+        //            }
+        //        case .Radio:
+        //            ControlFormBuilderView(titleControl: field.properties?.label ?? "Radio Button") {
+        //                //                RadioButtonView(viewModel: viewModel.radioButtonViewModel)
+        //            }
+        //        case .TextBox:
+        //            ControlFormBuilderView(titleControl: field.properties?.label ?? "Text Box") {
+        //                TextBoxComponent(viewModel: viewModel.textBoxViewModel)
+        //            }
+        //        case .DropDown:
+        //            ControlFormBuilderView(titleControl: field.properties?.label ?? "Drop Down") {
+        //                DropDownView(title: viewModel.dropdownViewModel.selectedCountry?.name ?? "Select Country", viewModel: viewModel.dropdownViewModel)
+        //                    .listRowSeparator(.hidden)
+        //                    .padding(.horizontal)
+        //            }
+        //        default:
+        //            Text("Unsupported field type")
+        //                .foregroundColor(.red)
+        //        }
     }
-    
-    
+
+
     // Loading view to be displayed while fetching the form data
     private func loadingView() -> some View {
         VStack {
