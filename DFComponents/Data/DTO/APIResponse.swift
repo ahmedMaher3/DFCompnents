@@ -85,7 +85,7 @@ struct Field: Codable {
     let id, templateQuestionId, parentId: String?
     let type: FieldType
     let order: String
-    let properties: FieldProperties
+    var properties: FieldProperties
     let rules: FieldRules?
 }
 
@@ -114,7 +114,7 @@ struct FieldProperties: Codable {
     let defaultAnswer: DefaultAnswer?
     let placeholder, attachmentType, attachmentExtensions: String?
     let maxAttachmentsNumber: Int?
-    let hidden, disabled: Bool?
+    var hidden, disabled: Bool?
 }
 
 struct Option: Codable,Hashable {

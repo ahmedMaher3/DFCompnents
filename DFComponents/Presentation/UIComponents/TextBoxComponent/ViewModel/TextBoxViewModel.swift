@@ -16,10 +16,13 @@ class TextBoxViewModel: ObservableObject {
     @Published var selectedSuffix: String?
     var mask: String = "9(999)-9999"  // Ex
     let config: TextBoxDTO
+    let control: TextBoxControlDTO
+
     var hasInteracted: Bool = false
 
-    init(config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
+    init(control: TextBoxControlDTO, config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
         self.config = config
+        self.control = control
 
         // Set default prefix and suffix if only one option is available
         selectedPrefix = config.prefixOptions.count == 1 ? config.prefixOptions.first : nil

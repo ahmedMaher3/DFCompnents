@@ -56,12 +56,6 @@ struct FormView: View {
                 }
 
                   }
-//            .onReceive((viewModel.fieldsViewModel[.radio(radioControl)] as! RadioButtonViewModel).objectWillChange) { _ in
-//                DispatchQueue.main.async {
-//                       let updatedOptions = (viewModel.fieldsViewModel[.radio(radioControl)] as! RadioButtonViewModel).control.properties.options
-//                       print("Updated options: \(updatedOptions)")
-//                   }
-//                   }
         case .textBox(let textBoxControl):
             ControlFormBuilderView(titleControl: textBoxControl.properties.label  ) {
                 TextBoxComponent(viewModel: viewModel.fieldsViewModel[.textBox(textBoxControl)] as! TextBoxViewModel, control: textBoxControl)

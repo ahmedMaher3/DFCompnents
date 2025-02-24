@@ -1,5 +1,12 @@
+//
+//  RuleEvaluator.swift
+//  DFComponents
+//
+//  Created by Eslam on 24/02/2025.
+//
+
 protocol RuleEvaluator {
-    func getRules(forControlId controlId: String, controls: [Field]) -> [String]
+    mutating func getAffectedRules(forControlId controlId: String)
     func evaluateRules(rules: [Rule]) -> (valid: Bool, doActions: [DoAction])
     func validateCondition(_ condition: IfCondition) -> Bool
 }
