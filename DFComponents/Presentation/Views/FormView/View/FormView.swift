@@ -58,6 +58,11 @@ struct FormView: View {
                      viewModels[fieldId] = DropDownViewModel
                      and so on.....
                      */
+
+                    // Usage:
+//                    let formBuilder = FormBuilderViewModel()
+
+                    //MARK: - First Approach
                     viewModel.viewModels.forEach { (key, viewModel) in
                         if let textBoxVM = viewModel as? TextBoxViewModel {
                             self.viewModel.updateControlByViewModel(controlId: key)
@@ -65,6 +70,11 @@ struct FormView: View {
                             print("Answer:\(textBoxVM.textBoxField?.answer) and text base please:\(textBoxVM.textBoxField?.textBase) and text:\(textBoxVM.text)")
                         }
                     }
+                    /*
+                    //MARK: - Second Approach by strategy pattern
+                    let processor = ViewModelProcessor()
+                    processor.process(viewModels: viewModel.viewModels, formBuilder: self.viewModel)
+                     */
                     print(viewModel)
                 } label: {
                     Text("Submit")

@@ -195,3 +195,5 @@ class FormViewModel: ObservableObject {
  //        }
  }
  */
+// Define the protocol for ViewModel strategy
+

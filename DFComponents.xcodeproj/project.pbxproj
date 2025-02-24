@@ -42,6 +42,9 @@
 		A9BF46A72D53992A003F2333 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF46A62D539921003F2333 /* CameraPicker.swift */; };
 		AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */; };
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
+		AAB857252D6C618A0013027A /* TextBoxViewModelStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857242D6C618A0013027A /* TextBoxViewModelStrategy.swift */; };
+		AAB857282D6C61A60013027A /* FormViewModelStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857272D6C61A60013027A /* FormViewModelStrategy.swift */; };
+		AAB8572C2D6C62280013027A /* FormViewModelImpStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8572B2D6C62280013027A /* FormViewModelImpStrategy.swift */; };
 		AABE5E152D653EB900B26A18 /* FormViewModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABE5E142D653EB800B26A18 /* FormViewModelContainer.swift */; };
 		AAD099692D5CC911007A6CE9 /* RulesControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099682D5CC911007A6CE9 /* RulesControlsView.swift */; };
 		AAD0996B2D5CCA23007A6CE9 /* RulesControlsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0996A2D5CCA23007A6CE9 /* RulesControlsViewModel.swift */; };
@@ -174,6 +177,9 @@
 		A9BF46A62D539921003F2333 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 		AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxDTO.swift; sourceTree = "<group>"; };
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
+		AAB857242D6C618A0013027A /* TextBoxViewModelStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxViewModelStrategy.swift; sourceTree = "<group>"; };
+		AAB857272D6C61A60013027A /* FormViewModelStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModelStrategy.swift; sourceTree = "<group>"; };
+		AAB8572B2D6C62280013027A /* FormViewModelImpStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModelImpStrategy.swift; sourceTree = "<group>"; };
 		AABE5E142D653EB800B26A18 /* FormViewModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModelContainer.swift; sourceTree = "<group>"; };
 		AAD099682D5CC911007A6CE9 /* RulesControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesControlsView.swift; sourceTree = "<group>"; };
 		AAD0996A2D5CCA23007A6CE9 /* RulesControlsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesControlsViewModel.swift; sourceTree = "<group>"; };
@@ -435,6 +441,39 @@
 			path = ComplicatedView;
 			sourceTree = "<group>";
 		};
+		AAB857222D6C615B0013027A /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				AAB857242D6C618A0013027A /* TextBoxViewModelStrategy.swift */,
+			);
+			path = Strategy;
+			sourceTree = "<group>";
+		};
+		AAB857262D6C61980013027A /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				AAB8572A2D6C61DF0013027A /* Implementation */,
+				AAB857292D6C61D90013027A /* Protocol */,
+				AAB857272D6C61A60013027A /* FormViewModelStrategy.swift */,
+			);
+			path = Strategy;
+			sourceTree = "<group>";
+		};
+		AAB857292D6C61D90013027A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		AAB8572A2D6C61DF0013027A /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				AAB8572B2D6C62280013027A /* FormViewModelImpStrategy.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
 		AAC2544C2D65C7F50010EF91 /* DC */ = {
 			isa = PBXGroup;
 			children = (
@@ -561,6 +600,7 @@
 		E44926C22D4B8AAB00EA5D5E /* FormView */ = {
 			isa = PBXGroup;
 			children = (
+				AAB857262D6C61980013027A /* Strategy */,
 				AAC2544C2D65C7F50010EF91 /* DC */,
 				E44926C62D4B8B0000EA5D5E /* ViewModel */,
 				E44926C52D4B8AF000EA5D5E /* View */,
@@ -587,6 +627,7 @@
 		E489E8122D4A3AFC007EA370 /* TextBoxComponent */ = {
 			isa = PBXGroup;
 			children = (
+				AAB857222D6C615B0013027A /* Strategy */,
 				E489E8192D4A3B96007EA370 /* ViewModel */,
 				E489E8182D4A3B8E007EA370 /* View */,
 			);
@@ -1342,10 +1383,12 @@
 				AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */,
 				E48CA01A2D537D7100A519ED /* SignatureComponent.swift in Sources */,
 				A9474D7E2D64AD7700031047 /* FieldRules.swift in Sources */,
+				AAB857282D6C61A60013027A /* FormViewModelStrategy.swift in Sources */,
 				E4A9019E2D5E01E9007080AC /* NetworkServiceImpl.swift in Sources */,
 				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
 				E4A901A42D5E01E9007080AC /* AuthorizationHandler.swift in Sources */,
 				A9474D8D2D64B4AC00031047 /* FormField.swift in Sources */,
+				AAB8572C2D6C62280013027A /* FormViewModelImpStrategy.swift in Sources */,
 				E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */,
 				E489E81E2D4A6A15007EA370 /* ColorExtension.swift in Sources */,
 				E48CA1192D5CC72300A519ED /* StyleManagerViewModel.swift in Sources */,
@@ -1354,6 +1397,7 @@
 				A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */,
 				A9474BCD2D5CE49C00031047 /* NetworkError.swift in Sources */,
 				E48CA1152D5CC72300A519ED /* AppFonts.swift in Sources */,
+				AAB857252D6C618A0013027A /* TextBoxViewModelStrategy.swift in Sources */,
 				E48CA1142D5CC72300A519ED /* AppColors.swift in Sources */,
 				A9474BC92D5CE42100031047 /* RequestModifier.swift in Sources */,
 				04C1DE322D5DFA120034B704 /* AppearanceManager.swift in Sources */,
