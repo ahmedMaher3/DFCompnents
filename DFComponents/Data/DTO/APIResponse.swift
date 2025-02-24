@@ -179,3 +179,39 @@ struct DoAction: Codable {
     let expression: String?
     let actionImpact: String
 }
+/*
+enum FieldDTOEnum: Decodable, Hashable {
+    case textBox(TextBoxControlDTO)
+    case radio(RadioControlDTO)
+
+    var id: String {
+        switch self {
+        case .textBox(let dto):
+            return dto.id
+        case .radio(let dto):
+            return dto.id
+        }
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let type = try container.decode(FieldType.self, forKey: .type)
+        switch type {
+        case .TextBox:
+            let dto = try TextBoxControlDTO(from: decoder)
+            self = .textBox(dto)
+        case.Radio:
+            let dto = try RadioControlDTO(from: decoder)
+            self = .radio(dto)
+        default:
+            let dto = try TextBoxControlDTO(from: decoder)
+            self = .textBox(dto)
+
+        }
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case type
+    }
+}
+*/
