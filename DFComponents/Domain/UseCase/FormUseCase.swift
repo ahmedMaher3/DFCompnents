@@ -8,7 +8,8 @@
 import Foundation
 
 protocol FormBuildUseCaseProtocol{
-    func excute() async throws -> [FieldDTOEnum]
+    func excute() async throws -> [FieldEntity]
+    func map(dto: FieldDTOEnum) -> FieldEntity
 }
 
 
@@ -24,15 +25,20 @@ class FormBuildUseCase: FormBuildUseCaseProtocol {
         self.mapper = mapper
     }
 
-    func excute() async throws -> [FieldDTOEnum] {
-        return try await repository.fetchForm()
+    func excute() async throws -> [FieldEntity] {
+        do {
+            let response = try await repository.fetchForm()
+            let controls = response.map { field in return self.map(dto: field) }
+            return controls
+        }
+        catch let error as NSError {
+            print(error.localizedDescription)
+            return []
+        }
     }
 
-
-//    func map(dto: Field) -> ControlType? {
-//        if let entityMapper = mapper as? FormMapper {
-//            return entityMapper.map(from: dto)
-//        }
-//        return nil
-//    }
+    func map(dto: FieldDTOEnum) -> FieldEntity {
+         let entityMapper = mapper as! FormMapper
+        return entityMapper.map(from: dto)!
+    }
 }

@@ -17,7 +17,6 @@ struct TextBoxComponent: View {
 //          properties: TextBoxPropertiesDTO( label: "", placeholder: "TextBox 9")
 //      )
 
-    var control: TextBoxControlDTO
 
 //    var control: TextBoxControlDTO
 

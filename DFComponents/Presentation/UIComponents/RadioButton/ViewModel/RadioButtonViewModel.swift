@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RadioButtonViewModel: ObservableObject {
+final class RadioButtonViewModel: FieldViewModelProtocol {
 
     @Published var control: RadioControlDTO
 
@@ -17,12 +17,10 @@ final class RadioButtonViewModel: ObservableObject {
 
      // When an option is selected, update all options:
      func selectOption(_ option: Option) {
-         //control.properties.options[1].isSelected = true
          control.properties.options =  control.properties.options.map{var item = $0; item.isSelected = false; return item}
          if let index = control.properties.options.firstIndex(where: {$0.id == option.id}) {
              control.properties.options[index].isSelected = true
          }
-
      }
 
 //    @Published var selectedItems: [String: String] = [:]  // Key: Question ID, Value: Selected item ID
