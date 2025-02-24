@@ -7,22 +7,22 @@
 
 import Foundation
 
-struct APIResponse: Decodable {
+struct APIResponse: Codable {
     let hasErrors: Bool
     let errors: String?
     let data: FormData
 }
 
-struct FormData: Decodable {
+struct FormData: Codable {
     let schema: Schema
 }
 
-struct Schema: Decodable {
+struct Schema: Codable {
     let id: String
     let lastAppliedEventId: String
     let properties: SchemaProperties
     let warnings: Warnings
-    let fields: [FieldDTOEnum]
+    let fields: [Field]
     let rules: [Rule]
 }
 
@@ -85,8 +85,43 @@ struct Field: Codable {
     let id, templateQuestionId, parentId: String?
     let type: FieldType
     let order: String
-    let properties: FieldProperties
+    let properties: BasePropertiesProtocol
     let rules: FieldRules?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, templateQuestionId, parentId, type, order, rules, properties
+    }
+    
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(String.self, forKey: .id)
+        self.templateQuestionId = try container.decodeIfPresent(String.self, forKey: .templateQuestionId)
+        self.parentId = try container.decodeIfPresent(String.self, forKey: .parentId)
+        self.type = try container.decode(FieldType.self, forKey: .type)
+        self.order = try container.decode(String.self, forKey: .order)
+        self.rules = try container.decodeIfPresent(FieldRules.self, forKey: .rules)
+        
+        switch self.type {
+        case .TextBox:
+            properties = try container.decode(TextBoxProperties.self, forKey: .properties)
+        case .Radio:
+            properties = try container.decode(RadioProperties.self, forKey: .properties)
+        default:
+            properties = try container.decode(BaseProperties.self, forKey: .properties)
+        }
+    }
+    
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(id, forKey: .id)
+        try container.encode(templateQuestionId, forKey: .templateQuestionId)
+        try container.encode(parentId, forKey: .parentId)
+        try container.encode(type, forKey: .type)
+        try container.encode(order, forKey: .order)
+        try container.encodeIfPresent(rules, forKey: .rules)
+        try container.encode(properties, forKey: .properties)
+    }
 }
 
 enum FieldType: String, Codable {
@@ -117,7 +152,7 @@ struct FieldProperties: Codable {
     let hidden, disabled: Bool?
 }
 
-struct Option: Codable,Hashable {
+struct Option: Codable, Identifiable {
     let id, name: String
     var isSelected: Bool? = false
 }
@@ -143,39 +178,4 @@ struct DoAction: Codable {
     let targetFieldsIds: [String]
     let expression: String?
     let actionImpact: String
-}
-
-enum FieldDTOEnum: Decodable,Hashable{
-    case textBox(TextBoxControlDTO)
-    case radio(RadioControlDTO)
-
-    var id: String {
-        switch self {
-        case .textBox(let dto):
-            return dto.id
-        case .radio(let dto):
-            return dto.id
-        }
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let type = try container.decode(FieldType.self, forKey: .type)
-        switch type {
-        case .TextBox:
-            let dto = try TextBoxControlDTO(from: decoder)
-            self = .textBox(dto)
-        case.Radio:
-            let dto = try RadioControlDTO(from: decoder)
-            self = .radio(dto)
-        default:
-            let dto = try TextBoxControlDTO(from: decoder)
-            self = .textBox(dto)
-
-        }
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case type
-    }
 }

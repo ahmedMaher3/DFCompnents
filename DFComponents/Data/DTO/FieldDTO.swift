@@ -6,6 +6,7 @@
 //
 
 import Foundation
+/*
 struct TextBoxControlDTO: Decodable,Hashable{
     let id: String
     let type: FieldType
@@ -42,3 +43,4 @@ struct RadioButtonRulesDTO: Decodable,Hashable {
     let effectIn: [String]
     let dependOn: [String]
 }
+*/

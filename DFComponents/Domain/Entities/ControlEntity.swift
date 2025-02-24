@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/*
 protocol FieldPropertiesProtocol {
     var placeholder: String? { get } 
 
@@ -43,7 +43,7 @@ struct ControlEntity<T: FieldPropertiesProtocol>: ControlEntityProtocol {
     let properties: T
 }
 
-
+*/
 //struct Field: Codable {
 //    let id, templateQuestionId, parentId: String?
 //    let type: FieldType
