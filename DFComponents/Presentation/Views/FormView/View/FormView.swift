@@ -50,7 +50,7 @@ struct FormView: View {
                     AppearanceSheetView()
                 }
                 Button {
-                    //MARK: - Approach 
+                    //MARK: - Approach
                     /*
                      key will be fieldId so
                      viewModels[fieldId] = TextBoxViewModel
@@ -58,18 +58,18 @@ struct FormView: View {
                      viewModels[fieldId] = DropDownViewModel
                      and so on.....
                      */
-                    viewModel.viewModels.forEach { (key: String, viewModel) in
+                    viewModel.viewModels.forEach { (key, viewModel) in
                         if let textBoxVM = viewModel as? TextBoxViewModel {
                             self.viewModel.updateControlByViewModel(controlId: key)
                             print("Display the key:\(key)")
-                           print("Answer:\(textBoxVM.textBoxField?.answer) and text base please:\(textBoxVM.textBoxField?.textBase) and text:\(textBoxVM.text)")
+                            print("Answer:\(textBoxVM.textBoxField?.answer) and text base please:\(textBoxVM.textBoxField?.textBase) and text:\(textBoxVM.text)")
                         }
                     }
                     print(viewModel)
                 } label: {
                     Text("Submit")
                 }
-//                FooterFormView()
+                //   FooterFormView()
             }
         }
         .navigationTitle(title)

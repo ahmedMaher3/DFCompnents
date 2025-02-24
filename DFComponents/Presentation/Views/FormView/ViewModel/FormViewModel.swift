@@ -42,21 +42,15 @@ class FormViewModel: ObservableObject {
                      */
                     formEntity.updateAnswer(for: controlId, with: textBoxViewModel)
                     formEntity.updateItem(formEntity.getItem(by: controlId))
-                    let getItem = formEntity.getItem(by: controlId)
+                    ////
                     textBoxViewModel.textBoxField = formEntity.getTextBoxItem(by: controlId)
-                    print("Get Item For this Entity:\(getItem)")
-                    if let answer = getItem?.answer {
-                        print("Updated answer: \(answer)")
-                    } else {
-                        print("Answer is nil")
-                    }
+
                     //MARK: - Check answer related to textBox
                     if let answerTextBoxControl = textBoxViewModel.textBoxField?.answer {
                         print("Contain answer for text field")
                     } else {
                         print("Not contain any answer")
                     }
-
                 } else {
                     // Handle the case where the view model couldn't be resolved
                     print("Failed to resolve view model for controlId: \(controlId)")
