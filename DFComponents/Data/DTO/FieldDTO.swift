@@ -6,39 +6,39 @@
 //
 
 import Foundation
-struct TextBoxxDTO: Decodable {
+struct TextBoxControlDTO: Decodable,Hashable{
     let id: String
     let type: FieldType
-    let properties: TextBoxPropertiesDTO
-    let rules: TextBoxRulesDTO
+    var properties: TextBoxPropertiesDTO
+//    let rules: TextBoxRulesDTO
 }
 
-struct TextBoxPropertiesDTO: Decodable {
-    let mask: String
-    let placeholder: String
+struct TextBoxPropertiesDTO: Decodable,Hashable {
+    let label: String
+    var placeholder: String
     // You can add more TextBox-specific properties here.
 }
 
-struct TextBoxRulesDTO: Decodable {
+struct TextBoxRulesDTO: Decodable,Hashable {
     let effectIn: [String]
     let dependOn: [String]
 }
 
 
-struct RadioDTO: Decodable {
+struct RadioControlDTO: Decodable,Hashable{
     let id: String
     let type: FieldType
-    let properties: RadioButtonPropertiesDTO
-    let rules: RadioButtonRulesDTO
+    var properties: RadioButtonPropertiesDTO
+   // let rules: RadioButtonRulesDTO
 }
 
-struct RadioButtonPropertiesDTO: Decodable {
-    let options: [String]
+struct RadioButtonPropertiesDTO: Decodable,Hashable {
     let label: String
+    var options:[Option]
     // Add any other RadioButton-specific properties here.
 }
 
-struct RadioButtonRulesDTO: Decodable {
+struct RadioButtonRulesDTO: Decodable,Hashable {
     let effectIn: [String]
     let dependOn: [String]
 }

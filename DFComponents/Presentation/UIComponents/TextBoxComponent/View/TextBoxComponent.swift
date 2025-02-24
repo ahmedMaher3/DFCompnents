@@ -11,22 +11,31 @@ struct TextBoxComponent: View {
     @ObservedObject var viewModel: TextBoxViewModel
     @EnvironmentObject var styleManagerVM: StyleManagerViewModel
     var isDisabled: Bool = false // Add this line
+//    @state var control = TextBoxControlDTO(
+//          id: "00000000-0000-0000-0000-000000000022",
+//          type: .TextBox,
+//          properties: TextBoxPropertiesDTO( label: "", placeholder: "TextBox 9")
+//      )
+
+    var control: TextBoxControlDTO
+
+//    var control: TextBoxControlDTO
 
     var body: some View {
         let styleManager = styleManagerVM.styleManager
 
         VStack(alignment: .leading, spacing: styleManager.innerPadding) {
             // Title and Subtitle
-            VStack(alignment: .leading, spacing: 2) {
-                Text(viewModel.title)
-                    .styledText(font: styleManager.titleFont, color: isDisabled ? styleManager.disabledTextColor : styleManager.primaryTextColor)
-
-                if let subtitle = viewModel.subtitle {
-                    Text(subtitle)
-                        .styledText(font: styleManager.subtitleFont, color: isDisabled ? styleManager.disabledTextColor.opacity(0.7) : styleManager.secondaryTextColor)
-                }
-            }
-            .padding(.bottom, styleManager.innerPadding)
+//            VStack(alignment: .leading, spacing: 2) {
+////                Text(viewModel.title)
+////                    .styledText(font: styleManager.titleFont, color: isDisabled ? styleManager.disabledTextColor : styleManager.primaryTextColor)
+//
+////                if let subtitle = viewModel.subtitle {
+////                    Text(subtitle)
+////                        .styledText(font: styleManager.subtitleFont, color: isDisabled ? styleManager.disabledTextColor.opacity(0.7) : styleManager.secondaryTextColor)
+////                }
+//            }
+           // .padding(.bottom, styleManager.innerPadding)
             let borderColor = viewModel.hasInteracted ? (viewModel.isValid ? styleManager.borderValidColor : styleManager.errorColor) : styleManager.borderColor
             // Input Field with Prefix and Suffix
             HStack {
@@ -57,7 +66,7 @@ struct TextBoxComponent: View {
                 .disabled(isDisabled) // Use isDisabled here
                 .opacity(isDisabled ? 0.6 : 1.0)
                 .keyboardType(viewModel.config.inputType == .numbersOnly ? .numberPad : .default)
-                .onChange(of: viewModel.text) { _ in
+                .onChange(of: viewModel.text) { (oldValue,newValue) in
                     if !isDisabled {
                         viewModel.validateInput()
                     }
@@ -90,20 +99,20 @@ struct TextBoxComponent: View {
     }
 }
 
-// MARK: - Preview
-#Preview {
-    let config = TextBoxDTO(
-        title: "Phone Number",
-        subtitle: "Enter a valid number",
-        placeholder: "XXX-XXX-XXXX",
-        inputType: .mixed,
-        minLength: 10,
-        prefixOptions: [],
-        suffixOptions: [],
-        requiresPrefix: true,
-        requiresSuffix: true
-    )
-    return TextBoxComponent(viewModel: TextBoxViewModel(config: config))
-}
+//// MARK: - Preview
+//#Preview {
+//    let config = TextBoxDTO(
+//        title: "Phone Number",
+//        subtitle: "Enter a valid number",
+//        placeholder: "XXX-XXX-XXXX",
+//        inputType: .mixed,
+//        minLength: 10,
+//        prefixOptions: [],
+//        suffixOptions: [],
+//        requiresPrefix: true,
+//        requiresSuffix: true
+//    )
+//    return TextBoxComponent(viewModel: TextBoxViewModel(config: config), control: TextBoxControlDTO())
+//}
 
 

@@ -28,18 +28,11 @@ class FormBuildUseCase: FormBuildUseCaseProtocol {
         return try await repository.fetchForm()
     }
 
-//    func excute(_ fields: [Field]) -> [ControlType] {
-//        return fields.compactMap { field -> ControlType? in
-//            return map(dto: field)
-//
+
+//    func map(dto: Field) -> ControlType? {
+//        if let entityMapper = mapper as? FormMapper {
+//            return entityMapper.map(from: dto)
 //        }
+//        return nil
 //    }
-
-
-    func map(dto: Field) -> ControlType? {
-        if let entityMapper = mapper as? FormMapper {
-            return entityMapper.map(from: dto)
-        }
-        return nil
-    }
 }

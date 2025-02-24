@@ -31,7 +31,7 @@ class TextBoxViewModel: ObservableObject {
         return TextBoxDTO(
             title: "Mobile Number",
             subtitle: nil,
-            placeholder: "Enter your mobile number",
+            placeholder: "What is your name",
             inputType: .mixed,
             minLength: 2,
             prefixOptions: [],

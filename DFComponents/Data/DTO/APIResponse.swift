@@ -117,8 +117,9 @@ struct FieldProperties: Codable {
     let hidden, disabled: Bool?
 }
 
-struct Option: Codable {
+struct Option: Codable,Hashable {
     let id, name: String
+    var isSelected: Bool? = false
 }
 
 struct Rule: Codable {
@@ -144,9 +145,9 @@ struct DoAction: Codable {
     let actionImpact: String
 }
 
-enum FieldDTOEnum: Decodable {
-    case textBox(TextBoxxDTO)
-    case radio(RadioDTO)
+enum FieldDTOEnum: Decodable,Hashable{
+    case textBox(TextBoxControlDTO)
+    case radio(RadioControlDTO)
 
     var id: String {
         switch self {
@@ -162,13 +163,13 @@ enum FieldDTOEnum: Decodable {
         let type = try container.decode(FieldType.self, forKey: .type)
         switch type {
         case .TextBox:
-            let dto = try TextBoxxDTO(from: decoder)
+            let dto = try TextBoxControlDTO(from: decoder)
             self = .textBox(dto)
         case.Radio:
-            let dto = try RadioDTO(from: decoder)
+            let dto = try RadioControlDTO(from: decoder)
             self = .radio(dto)
         default:
-            let dto = try TextBoxxDTO(from: decoder)
+            let dto = try TextBoxControlDTO(from: decoder)
             self = .textBox(dto)
 
         }

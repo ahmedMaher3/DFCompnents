@@ -16,7 +16,6 @@ protocol FieldPropertiesProtocol {
 struct TextBoxProperties: FieldPropertiesProtocol {
     var placeholder: String?
     var maxLength: Int
-
 }
 
 struct DropDownProperties: FieldPropertiesProtocol {

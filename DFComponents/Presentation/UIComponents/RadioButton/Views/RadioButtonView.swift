@@ -8,28 +8,27 @@
 import SwiftUI
 
 struct RadioButtonView: View {
+
     @ObservedObject var radioButtonVM: RadioButtonViewModel
-    let questionID: String
+
     var body: some View {
         VStack(alignment: .leading) {
-            ForEach(radioButtonVM.radioButtonModels[questionID] ?? [], id: \.id) { item in
-                Button {
-                    radioButtonVM.onTapRadioButton(questionID: questionID, item: item)
-                } label: {
-                    HStack {
-                        Image(systemName:
-                                radioButtonVM.selectedItem(for: questionID)?.id == item.id
-                              ? "largecircle.fill.circle"
-                              : "circle")
-                        .customizeImage(width: 24, height: 24,
-                                        type: radioButtonVM.selectedItem(
-                                            for: questionID)?.id == item.id ? .primaryBlue : .primaryGray,contentMode: .fit,  renderingMode: .original)
+            ForEach(radioButtonVM.control.properties.options, id: \.id) { item in
 
-                        Text(item.name)
-                            .fontWeight(.medium)
-                            .color(radioButtonVM.selectedItem(for: questionID)?.id == item.id ? .primaryBlue : .black)
+                HStack {
+                    Image(systemName:
+                            item.isSelected ?? false ? "largecircle.fill.circle" : "circle")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundColor(item.isSelected ?? false ? .blue : .gray)
+                    .onTapGesture {
+                        radioButtonVM.selectOption(item)
                     }
+                    Text(item.name)
+                        .fontWeight(.medium)
+                        .foregroundColor(item.isSelected ?? false ? .blue : .black)
                 }
+
                 .padding(8)
             }
         }

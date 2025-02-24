@@ -36,7 +36,7 @@ struct FormView: View {
             }
             .navigationBarTitle(title, displayMode: .inline)
             .environmentObject(styleManagerVM)
-            .environmentObject(viewModel.rulesViewModel)
+         //   .environmentObject(viewModel.rulesViewModel)
         }
     }
 
@@ -45,17 +45,29 @@ struct FormView: View {
     private func renderField(for field: FieldDTOEnum) -> some View {
 
         switch field {
-        case .textBox(let controlEntity):
-            ControlFormBuilderView(titleControl: controlEntity.properties.placeholder ) {
-                TextBoxComponent(viewModel: viewModel.textBoxViewModel)
+        case .radio (let radioControl):
+           let radioVM =  viewModel.fieldsViewModel[.radio(radioControl)] as! RadioButtonViewModel
+            ControlFormBuilderView(titleControl: radioControl.properties.label ) {
+                RadioButtonView(radioButtonVM: viewModel.fieldsViewModel[.radio(radioControl)] as! RadioButtonViewModel)
             }
-        default:
-            Text("Unsupported field type")
-                .foregroundColor(.red)
+            .onReceive(radioVM.$control.removeDuplicates()) { newOptions in
+                DispatchQueue.main.async {
+                    print("Updated options: \(newOptions)")
+                }
+
+                  }
+//            .onReceive((viewModel.fieldsViewModel[.radio(radioControl)] as! RadioButtonViewModel).objectWillChange) { _ in
+//                DispatchQueue.main.async {
+//                       let updatedOptions = (viewModel.fieldsViewModel[.radio(radioControl)] as! RadioButtonViewModel).control.properties.options
+//                       print("Updated options: \(updatedOptions)")
+//                   }
+//                   }
+        case .textBox(let textBoxControl):
+            ControlFormBuilderView(titleControl: textBoxControl.properties.label  ) {
+                TextBoxComponent(viewModel: viewModel.fieldsViewModel[.textBox(textBoxControl)] as! TextBoxViewModel, control: textBoxControl)
+            }
+
         }
-
-
-
 
         //        switch field.type {
         //        case .DateTime:
