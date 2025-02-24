@@ -50,6 +50,14 @@ struct FormView: View {
                     AppearanceSheetView()
                 }
                 Button {
+                    //MARK: - Approach 
+                    /*
+                     key will be fieldId so
+                     viewModels[fieldId] = TextBoxViewModel
+                     viewModels[fieldId] = RadioButtonViewModel
+                     viewModels[fieldId] = DropDownViewModel
+                     and so on.....
+                     */
                     viewModel.viewModels.forEach { (key: String, viewModel) in
                         if let textBoxVM = viewModel as? TextBoxViewModel {
                             self.viewModel.updateControlByViewModel(controlId: key)
