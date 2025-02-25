@@ -12,16 +12,16 @@ import Foundation
  */
 struct RuleImp: RuleEvaluator, RuleExecuterProtocol {
 
-    var controls: [Field]
+    var controls: [BaseFieldProtocol]
     let rules: [Rule]
 
-    private var controlDictionary: [String: Field] = [:]
+    private var controlDictionary: [String: BaseFieldProtocol] = [:]
 
-    init(controls: [Field], rules: [Rule]) {
+    init(controls: [BaseFieldProtocol], rules: [Rule]) {
         self.controls = controls
         self.rules = rules
         self.controls.forEach { control in
-            self.controlDictionary[control.id ?? ""] = control
+            self.controlDictionary[control.fieldId ?? ""] = control
         }
     }
 
@@ -32,7 +32,7 @@ struct RuleImp: RuleEvaluator, RuleExecuterProtocol {
                             controls: &controls)
     }
 
-    mutating func getAffectedRules(forControlId controlId: String){
+    mutating func getAffectedRules(forControlId controlId: String) {
         guard let control = self.controlDictionary[controlId] else {
             return print("affected rules not included into control")
         }
@@ -62,6 +62,8 @@ struct RuleImp: RuleEvaluator, RuleExecuterProtocol {
             }
             if areConditionsValid {
                 return (true, rule.doActions)
+            } else {
+                return (false, rule.doActions)
             }
         }
         return (false, [])
@@ -94,28 +96,19 @@ struct RuleImp: RuleEvaluator, RuleExecuterProtocol {
                break
         }
     }
-    //MARK: - <#placeholder#>
-    func getItemValue(_ item: Field, _ value: inout [String]?) {
-
-        /*
-         if let val = (item.answer as? BaseAnswerNumber)?.value {
-         value = getNumberValue(val: [val])
-         }
-         if let val = (item.answer as? SliderAnswer)?.value {
-         value = getNumberValue(val: val)
-         }
-         if let val = (item.answer as? DateTimeAnswer)?.value {
-         value = val
-         }
-         if let val = (item.answer as? BaseAnswerMCQ)?.value {
-         value = val
-         }
-         if let val = (item.answer as? LocationAnswer)?.value {
-         value = [val.toJSONString() ?? ""]
-         }
-         */
+    
+    //MARK: - placeholder
+    func getItemValue(_ item: BaseFieldProtocol, _ value: inout [String]?) {
+        if let val = (item.answer as? BaseAnswerText)?.value {
+            value = [val]
+        }
+        if let val = (item.answer as? BaseAnswerMCQ)?.value {
+            value = val
+        }
+        if let val = item.answer as? String {
+            value = [val]
+        }
     }
-
 
     func handleIncludeState(
         _ value: [String]?, _ valueValidator: [String]?, valid: inout Bool,
@@ -139,18 +132,19 @@ struct RuleImp: RuleEvaluator, RuleExecuterProtocol {
 
         }
     }
-    func executeActions(valid: Bool, doActions: [DoAction], controls: inout [Field]) {
+    
+    func executeActions(valid: Bool, doActions: [DoAction], controls: inout [BaseFieldProtocol]) {
         for action in doActions {
             /// targetFieldsIds for every child control not parent control 
             for targetFieldId in action.targetFieldsIds {
-                guard let targetControlIndex = controls.firstIndex(where: { $0.id == targetFieldId }) else {
+                guard let targetControlIndex = controls.firstIndex(where: { $0.fieldId == targetFieldId }) else {
                     continue
                 }
                 switch action.type {
                     case "Show":
-                        controls[targetControlIndex].properties.hidden = valid
+                        controls[targetControlIndex].hidden = !valid
                     case "Hide":
-                        controls[targetControlIndex].properties.hidden = !valid
+                        controls[targetControlIndex].hidden = valid
                     default:
                         break
                 }

@@ -45,7 +45,7 @@ struct FormView: View {
     private func renderField(for field: FieldEntity) -> some View {
 
         switch field {
-        case .radio (let radioViewModel):
+        case .radio ((_, let radioViewModel)):
             ControlFormBuilderView(titleControl: radioViewModel.control.label) {
                 RadioButtonView(radioButtonVM: radioViewModel)
             }
@@ -53,12 +53,14 @@ struct FormView: View {
                 radioViewModel.$control
                     .debounce(for: .milliseconds(400), scheduler: DispatchQueue.main)
                     .dropFirst()
-                    .removeDuplicates()
+//                    .removeDuplicates()
             ) { newOptions in
                 print("Updated options: \(newOptions.options)")
+                // call update in viewmodel to notify change and apply rules
+                viewModel.applyFieldRules(by: "cf6c2b5c-3dec-4222-9ceb-ac958c5bb24f")
             }
 
-        case .textBox(let textBoxViewModel):
+        case .textBox((_, let textBoxViewModel)):
             ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
                 TextBoxComponent(viewModel: textBoxViewModel)
             }

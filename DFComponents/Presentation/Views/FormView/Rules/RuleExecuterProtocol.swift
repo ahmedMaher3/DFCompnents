@@ -7,5 +7,5 @@
 
 
 protocol RuleExecuterProtocol {
-    func executeActions(valid: Bool, doActions: [DoAction], controls: inout [Field])
+    func executeActions(valid: Bool, doActions: [DoAction], controls: inout [BaseFieldProtocol])
 }

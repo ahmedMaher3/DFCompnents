@@ -21,6 +21,7 @@ final class RadioButtonViewModel: FieldViewModelProtocol {
 
          if let index = control.options.firstIndex(where: {$0.id == option.id}) {
              control.options[index].isSelected = true
+             control.answer = option.id
          }
      }
 

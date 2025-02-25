@@ -19,12 +19,12 @@ class TextBoxViewModel: FieldViewModelProtocol {
 
     var hasInteracted: Bool = false
 
-    var control: BaseFieldProtocol
+    var control: TextBoxField
 
    // @Published var control: TextBoxControlDTO
 
  
-    init(control: BaseFieldProtocol ,config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
+    init(control: TextBoxField ,config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
         self.control = control
         self.config = config
         // Set default prefix and suffix if only one option is available

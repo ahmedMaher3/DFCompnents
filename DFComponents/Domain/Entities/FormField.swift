@@ -41,7 +41,7 @@ protocol InteractiveFieldProtocol: BaseFieldProtocol {
 }
 
 // 2. Base implementation
-struct InteractiveField:  InteractiveFieldProtocol {
+struct InteractiveField: InteractiveFieldProtocol {
     // All the required properties
     var type: FieldType!
     var fieldId: String!
@@ -166,7 +166,7 @@ extension InteractiveFieldDelegate {
     func isAnswered() -> Bool { base.isAnswered() }
 }
 
-struct TextBase: InteractiveFieldDelegate {
+class TextBase: InteractiveFieldDelegate {
     var base: InteractiveField
 
     let allowSpellCheck: Bool?
@@ -209,7 +209,7 @@ extension TextBaseDelegate {
 
 
 // 5. Implementation of specific field types becomes very clean
-struct TextBoxField: TextBaseDelegate {
+class TextBoxField: TextBaseDelegate {
     var textBase: TextBase
     
     // TextBox specific properties only
@@ -251,7 +251,7 @@ struct TextBoxField: TextBaseDelegate {
     }
 }
 
-struct TextAreaField: TextBaseDelegate {
+class TextAreaField: TextBaseDelegate {
     var textBase: TextBase
     var fullScreen: Bool?
     var autoExpand: Bool?
@@ -269,7 +269,7 @@ struct TextAreaField: TextBaseDelegate {
     }
 }
 
-struct MCQBase: InteractiveFieldDelegate {
+class MCQBase: InteractiveFieldDelegate {
     var base: InteractiveField
     
     var options: [MCQOption]
@@ -330,7 +330,7 @@ extension MCQBaseDelegate {
     }
 }
 
-struct RadioButtonField: MCQBaseDelegate,Equatable {
+class RadioButtonField: MCQBaseDelegate,Equatable {
     var mcqBase: MCQBase
     
     init(field: Field?) {

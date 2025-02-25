@@ -25,10 +25,10 @@ class FormMapper: EntityMapper {
             switch field.type {
             case .TextBox:
                 let control = TextBoxField(field: field)
-                return .textBox(TextBoxViewModel(control: control))
+                return .textBox((control, TextBoxViewModel(control: control)))
             case .Radio:
                 let control = RadioButtonField(field: field)
-                return .radio(RadioButtonViewModel(control: control))
+                return .radio((control, RadioButtonViewModel(control: control)))
 
             default:
                 return nil 
@@ -45,14 +45,14 @@ class FormMapper: EntityMapper {
 //}
 
 enum FieldEntity: Identifiable {
-    case textBox(TextBoxViewModel)
-    case radio(RadioButtonViewModel)
+    case textBox((BaseFieldProtocol, TextBoxViewModel))
+    case radio((BaseFieldProtocol, RadioButtonViewModel))
 
     var id: UUID {
         switch self {
-        case .textBox(let vm):
+        case .textBox(( _, let vm)):
             return vm.id
-        case .radio(let vm):
+        case .radio(( _, let vm)):
             return vm.id
         }
     }
