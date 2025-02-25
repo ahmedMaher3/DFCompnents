@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol FormBuildUseCaseProtocol{
+protocol FormBuildUseCaseProtocol {
     func excute() async throws -> FormEntity
-     func map(dto: Schema) -> [FieldEntity]
+    func map(dto: Schema) -> [FieldEntity]
 }
 
 

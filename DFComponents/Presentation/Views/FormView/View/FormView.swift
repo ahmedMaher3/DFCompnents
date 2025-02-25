@@ -65,34 +65,6 @@ struct FormView: View {
                 TextBoxComponent(viewModel: textBoxViewModel)
             }
         }
-
-        //        switch field.type {
-        //        case .DateTime:
-        //            ControlFormBuilderView(titleControl: field.properties?.label ?? "Date Picker") {
-        //                DateTimeView(viewModel: viewModel.dateFieldViewModel)
-        //            }
-        //        case .Checkbox:
-        //            ControlFormBuilderView(titleControl: field.properties?.label ?? "Checkbox") {
-        //                //                CheckBoxView(viewModel: viewModel.checkBoxViewModel)
-        //            }
-        //        case .Radio:
-        //            ControlFormBuilderView(titleControl: field.properties?.label ?? "Radio Button") {
-        //                //                RadioButtonView(viewModel: viewModel.radioButtonViewModel)
-        //            }
-        //        case .TextBox:
-        //            ControlFormBuilderView(titleControl: field.properties?.label ?? "Text Box") {
-        //                TextBoxComponent(viewModel: viewModel.textBoxViewModel)
-        //            }
-        //        case .DropDown:
-        //            ControlFormBuilderView(titleControl: field.properties?.label ?? "Drop Down") {
-        //                DropDownView(title: viewModel.dropdownViewModel.selectedCountry?.name ?? "Select Country", viewModel: viewModel.dropdownViewModel)
-        //                    .listRowSeparator(.hidden)
-        //                    .padding(.horizontal)
-        //            }
-        //        default:
-        //            Text("Unsupported field type")
-        //                .foregroundColor(.red)
-        //        }
     }
 
 
