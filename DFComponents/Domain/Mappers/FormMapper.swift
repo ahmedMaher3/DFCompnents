@@ -10,29 +10,52 @@ import Foundation
 protocol EntityMapper {
     associatedtype DTO
     associatedtype Entity
-    func map (from dto: DTO) -> ControlType?
+    func map (from dto: DTO) -> [FieldEntity]
 }
 
 class FormMapper: EntityMapper {
-    typealias DTO = Field
-    typealias Entity = ControlType
 
-    func map(from dto: Field) -> Entity? {
-        switch dto.type {
-        case .DropDown:
-            let properties = DropDownProperties(placeholder: dto.properties.placeholder)
-            return .dropDown(ControlEntity(id: dto.id ?? "", properties: properties))
+    typealias DTO = Schema
+    typealias Entity = FieldEntity
 
-        case .TextBox:
-            let properties = TextBoxProperties(placeholder: dto.properties.placeholder, maxLength: dto.properties.maxAttachmentsNumber ?? 100)
-            return .textBox(ControlEntity(id: dto.id ?? "", properties: properties))
 
-        default:
-            return nil
+    func map(from dto: Schema) -> [FieldEntity] {
+
+        return dto.fields.compactMap { field in
+            switch field.type {
+            case .TextBox:
+                let control = TextBoxField(field: field)
+                return .textBox(TextBoxViewModel(control: control))
+            case .Radio:
+                let control = RadioButtonField(field: field)
+                return .radio(RadioButtonViewModel(control: control))
+
+            default:
+                return nil 
+            }
         }
-
-
     }
 
 
 }
+
+//struct Form {
+//    var items: [FieldEntity]
+//    var rules: [Rule]
+//}
+
+enum FieldEntity: Identifiable {
+    case textBox(TextBoxViewModel)
+    case radio(RadioButtonViewModel)
+
+    var id: UUID {
+        switch self {
+        case .textBox(let vm):
+            return vm.id
+        case .radio(let vm):
+            return vm.id
+        }
+    }
+}
+
+

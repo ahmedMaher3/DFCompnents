@@ -17,9 +17,9 @@ struct FormView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                if !viewModel.formFields.isEmpty {
+                if !viewModel.fields.isEmpty {
                     Form {
-                        ForEach(viewModel.formFields , id: \.id) { field in
+                        ForEach(viewModel.fields , id: \.id) { field in
                             renderField(for: field)
                         }
                     }
@@ -36,31 +36,32 @@ struct FormView: View {
             }
             .navigationBarTitle(title, displayMode: .inline)
             .environmentObject(styleManagerVM)
-         //   .environmentObject(viewModel.rulesViewModel)
+            //   .environmentObject(viewModel.rulesViewModel)
         }
     }
 
     // This function handles rendering the appropriate form control based on the field type
     @ViewBuilder
-    private func renderField(for field: FieldDTOEnum) -> some View {
+    private func renderField(for field: FieldEntity) -> some View {
 
         switch field {
-        case .radio (let radioControl):
-           let radioVM =  viewModel.fieldsViewModel[.radio(radioControl)] as! RadioButtonViewModel
-            ControlFormBuilderView(titleControl: radioControl.properties.label ) {
-                RadioButtonView(radioButtonVM: viewModel.fieldsViewModel[.radio(radioControl)] as! RadioButtonViewModel)
+        case .radio (let radioViewModel):
+            ControlFormBuilderView(titleControl: radioViewModel.control.label) {
+                RadioButtonView(radioButtonVM: radioViewModel)
             }
-            .onReceive(radioVM.$control.removeDuplicates()) { newOptions in
-                DispatchQueue.main.async {
-                    print("Updated options: \(newOptions)")
-                }
-
-                  }
-        case .textBox(let textBoxControl):
-            ControlFormBuilderView(titleControl: textBoxControl.properties.label  ) {
-                TextBoxComponent(viewModel: viewModel.fieldsViewModel[.textBox(textBoxControl)] as! TextBoxViewModel, control: textBoxControl)
+            .onReceive(
+                radioViewModel.$control
+                    .debounce(for: .milliseconds(400), scheduler: DispatchQueue.main)
+                    .dropFirst()
+                    .removeDuplicates()
+            ) { newOptions in
+                print("Updated options: \(newOptions.options)")
             }
 
+        case .textBox(let textBoxViewModel):
+            ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
+                TextBoxComponent(viewModel: textBoxViewModel)
+            }
         }
 
         //        switch field.type {

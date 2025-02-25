@@ -39,6 +39,8 @@
 		A9BF46A22D538896003F2333 /* ImageFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF469F2D538896003F2333 /* ImageFileView.swift */; };
 		A9BF46A52D538EC9003F2333 /* ComplicatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF46A42D538EC5003F2333 /* ComplicatedView.swift */; };
 		A9BF46A72D53992A003F2333 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF46A62D539921003F2333 /* CameraPicker.swift */; };
+		A9EA54302D6C891D00C2A9E2 /* FieldProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EA542F2D6C891600C2A9E2 /* FieldProperties.swift */; };
+		A9EA54322D6C899500C2A9E2 /* FormEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EA54312D6C899500C2A9E2 /* FormEntity.swift */; };
 		AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */; };
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
 		AAB8572F2D6CA1A60013027A /* RuleFormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */; };
@@ -106,7 +108,6 @@
 		E4A901A52D5E01E9007080AC /* GuestAuthorizationImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9019C2D5E01E9007080AC /* GuestAuthorizationImpl.swift */; };
 		E4A901A82D5E02D3007080AC /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E4A901A72D5E02D3007080AC /* KeychainSwift */; };
 		E4A901AE2D61CF07007080AC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E4A901AD2D61CF07007080AC /* Alamofire */; };
-		E4A901C62D65E5F8007080AC /* ControlEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901C52D65E5F8007080AC /* ControlEntity.swift */; };
 		E4A901C82D65E84B007080AC /* FormUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901C72D65E84B007080AC /* FormUseCase.swift */; };
 		E4A901CA2D65E873007080AC /* FormMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901C92D65E873007080AC /* FormMapper.swift */; };
 		E4A901CD2D6B450D007080AC /* FieldDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901CC2D6B450D007080AC /* FieldDTO.swift */; };
@@ -177,6 +178,8 @@
 		A9BF469F2D538896003F2333 /* ImageFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileView.swift; sourceTree = "<group>"; };
 		A9BF46A42D538EC5003F2333 /* ComplicatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicatedView.swift; sourceTree = "<group>"; };
 		A9BF46A62D539921003F2333 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
+		A9EA542F2D6C891600C2A9E2 /* FieldProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldProperties.swift; sourceTree = "<group>"; };
+		A9EA54312D6C899500C2A9E2 /* FormEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormEntity.swift; sourceTree = "<group>"; };
 		AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxDTO.swift; sourceTree = "<group>"; };
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleFormBuilder.swift; sourceTree = "<group>"; };
@@ -242,7 +245,6 @@
 		E4A9019A2D5E01E9007080AC /* UserAuthoriationHandlerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthoriationHandlerImpl.swift; sourceTree = "<group>"; };
 		E4A9019B2D5E01E9007080AC /* AuthorizationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationHandler.swift; sourceTree = "<group>"; };
 		E4A9019C2D5E01E9007080AC /* GuestAuthorizationImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestAuthorizationImpl.swift; sourceTree = "<group>"; };
-		E4A901C52D65E5F8007080AC /* ControlEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlEntity.swift; sourceTree = "<group>"; };
 		E4A901C72D65E84B007080AC /* FormUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormUseCase.swift; sourceTree = "<group>"; };
 		E4A901C92D65E873007080AC /* FormMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormMapper.swift; sourceTree = "<group>"; };
 		E4A901CC2D6B450D007080AC /* FieldDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldDTO.swift; sourceTree = "<group>"; };
@@ -345,7 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				A9474D8C2D64B4A800031047 /* FormField.swift */,
-				E4A901C52D65E5F8007080AC /* ControlEntity.swift */,
+				A9EA54312D6C899500C2A9E2 /* FormEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1109,6 +1111,7 @@
 				A95D7A242D4B8127004FB6CA /* DateDTO.swift */,
 				A9474D7B2D64ACBB00031047 /* APIResponse.swift */,
 				A9474D7F2D64AD8700031047 /* DefaultAnswer.swift */,
+				A9EA542F2D6C891600C2A9E2 /* FieldProperties.swift */,
 				A9BF45D42D50DB0D003F2333 /* SliderDTO.swift */,
 				E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */,
 				E4BBD0262D4A4A7F004AA735 /* CountryDTO.swift */,
@@ -1284,6 +1287,7 @@
 				E48CA0052D5374D300A519ED /* AKMaskFieldStatus.swift in Sources */,
 				A9474D802D64AD8700031047 /* DefaultAnswer.swift in Sources */,
 				A9BF46A72D53992A003F2333 /* CameraPicker.swift in Sources */,
+				A9EA54302D6C891D00C2A9E2 /* FieldProperties.swift in Sources */,
 				A9BF46A52D538EC9003F2333 /* ComplicatedView.swift in Sources */,
 				E4A9019F2D5E01E9007080AC /* Network.swift in Sources */,
 				E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */,
@@ -1372,9 +1376,9 @@
 				AAB857332D6CA2080013027A /* RuleEvaluator.swift in Sources */,
 				A9BF46972D53887B003F2333 /* DateRangePickerView.swift in Sources */,
 				E4A901CA2D65E873007080AC /* FormMapper.swift in Sources */,
+				A9EA54322D6C899500C2A9E2 /* FormEntity.swift in Sources */,
 				AAE5CAC62D4A61FD00FDA699 /* QuestionsRadioButton.swift in Sources */,
 				A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */,
-				E4A901C62D65E5F8007080AC /* ControlEntity.swift in Sources */,
 				A9474BCD2D5CE49C00031047 /* NetworkError.swift in Sources */,
 				E48CA1152D5CC72300A519ED /* AppFonts.swift in Sources */,
 				E4A901C82D65E84B007080AC /* FormUseCase.swift in Sources */,
