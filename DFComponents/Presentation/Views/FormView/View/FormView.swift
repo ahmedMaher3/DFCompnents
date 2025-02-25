@@ -49,6 +49,7 @@ struct FormView: View {
             ControlFormBuilderView(titleControl: radioViewModel.control.label) {
                 RadioButtonView(radioButtonVM: radioViewModel)
             }
+            .opacity(radioViewModel.control.hidden ? 0 : 1)
             .onReceive(
                 radioViewModel.$control
                     .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
@@ -64,6 +65,7 @@ struct FormView: View {
             ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
                 TextBoxComponent(viewModel: textBoxViewModel)
             }
+            .opacity(textBoxViewModel.control.hidden ? 0 : 1)
         }
     }
 
