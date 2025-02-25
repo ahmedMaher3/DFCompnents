@@ -85,7 +85,7 @@ struct Field: Codable {
     let id, templateQuestionId, parentId: String?
     let type: FieldType
     let order: String
-    let properties: BasePropertiesProtocol
+    var properties: BasePropertiesProtocol
     let rules: FieldRules?
     
     enum CodingKeys: String, CodingKey {
@@ -136,21 +136,21 @@ enum FieldType: String, Codable {
     case Location = "location"
 }
 
-struct FieldProperties: Codable {
-    let submit, next, back: String?
-    let backVisibility: Bool?
-    let label: String
-    let labelPosition, sublabel, tooltip: String?
-    let localization: [String: String]?
-    let options: [Option]?
-    let predefinedOptionsId: String?
-    let shuffleOptions, otherOption, naOption, required: Bool?
-    let unique, addAttachment, addNote: Bool?
-    let defaultAnswer: DefaultAnswer?
-    let placeholder, attachmentType, attachmentExtensions: String?
-    let maxAttachmentsNumber: Int?
-    var hidden, disabled: Bool?
-}
+//struct FieldProperties: Codable {
+//    let submit, next, back: String?
+//    let backVisibility: Bool?
+//    let label: String
+//    let labelPosition, sublabel, tooltip: String?
+//    let localization: [String: String]?
+//    let options: [Option]?
+//    let predefinedOptionsId: String?
+//    let shuffleOptions, otherOption, naOption, required: Bool?
+//    let unique, addAttachment, addNote: Bool?
+//    let defaultAnswer: DefaultAnswer?
+//    let placeholder, attachmentType, attachmentExtensions: String?
+//    let maxAttachmentsNumber: Int?
+//    var hidden, disabled: Bool?
+//}
 
 struct Option: Decodable, Identifiable {
     let id, name: String

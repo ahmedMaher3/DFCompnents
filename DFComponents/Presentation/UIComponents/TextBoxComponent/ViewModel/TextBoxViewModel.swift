@@ -16,7 +16,6 @@ class TextBoxViewModel: FieldViewModelProtocol {
     @Published var selectedSuffix: String?
     var mask: String = "9(999)-9999"  // Ex
     let config: TextBoxDTO
-    let control: TextBoxControlDTO
 
     var hasInteracted: Bool = false
 

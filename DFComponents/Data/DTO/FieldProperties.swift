@@ -12,7 +12,7 @@ protocol BasePropertiesProtocol: Codable {
     var subLabel: String? { get }
     var labelPosition: String? { get }
     var tooltip: String? { get }
-    var hidden: Bool? { get }
+    var hidden: Bool? { get set }
 }
 
 struct BaseProperties: BasePropertiesProtocol {
@@ -77,7 +77,7 @@ struct TextBoxProperties: TextBaseProperties {
     let subLabel: String?
     let labelPosition: String?
     let tooltip: String?
-    let hidden: Bool?
+    var hidden: Bool?
     
     let defaultAnswer: TextboxAnswer?
     let mask: String?
@@ -107,7 +107,7 @@ struct RadioProperties: MCQPropertiesProtocol {
     let subLabel: String?
     let labelPosition: String?
     let tooltip: String?
-    let hidden: Bool?
+    var hidden: Bool?
 }
 
 struct MCQOption: Codable,Equatable {
