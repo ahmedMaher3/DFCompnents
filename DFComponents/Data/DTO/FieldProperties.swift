@@ -49,7 +49,7 @@ protocol TextBaseProperties: InteractivePropertiesProtocol {
 }
 
 protocol MCQPropertiesProtocol: InteractivePropertiesProtocol {
-    var options: [MCQOption]? { get }
+    var options: [MCQOption] { get }
     var defaultAnswer: BaseAnswerMCQ? { get }
     var predefinedOptions: String? { get }
     var shuffleOptions: Bool? { get }
@@ -88,7 +88,7 @@ struct TextBoxProperties: TextBaseProperties {
 }
 
 struct RadioProperties: MCQPropertiesProtocol {
-    let options: [MCQOption]?
+    let options: [MCQOption]
     let defaultAnswer: BaseAnswerMCQ?
     let predefinedOptions: String?
     let shuffleOptions: Bool?
@@ -110,17 +110,24 @@ struct RadioProperties: MCQPropertiesProtocol {
     let hidden: Bool?
 }
 
-struct MCQOption: Codable {
-    let id: String?
-    let name: String?
-    
+struct MCQOption: Codable,Equatable {
+    let id: String
+    let name: String
+    var isSelected: Bool? = false
+
     init(other: Bool, name: String?) {
         if other {
             id = "00000000-0000-0000-0000-000000000000"
         } else {
             id = "00000000-0000-0000-0000-000000000001"
         }
-        self.name = name
+        self.name = name ?? ""
+    }
+
+    static func == (lhs: MCQOption, rhs: MCQOption) -> Bool {
+           return lhs.id == rhs.id &&
+                  lhs.name == rhs.name &&
+              (lhs.isSelected ?? false) == (rhs.isSelected ?? false)
     }
 }
 

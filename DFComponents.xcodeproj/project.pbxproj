@@ -104,7 +104,6 @@
 		E4A901A52D5E01E9007080AC /* GuestAuthorizationImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9019C2D5E01E9007080AC /* GuestAuthorizationImpl.swift */; };
 		E4A901A82D5E02D3007080AC /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E4A901A72D5E02D3007080AC /* KeychainSwift */; };
 		E4A901AE2D61CF07007080AC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E4A901AD2D61CF07007080AC /* Alamofire */; };
-		E4A901C62D65E5F8007080AC /* ControlEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901C52D65E5F8007080AC /* ControlEntity.swift */; };
 		E4A901C82D65E84B007080AC /* FormUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901C72D65E84B007080AC /* FormUseCase.swift */; };
 		E4A901CA2D65E873007080AC /* FormMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901C92D65E873007080AC /* FormMapper.swift */; };
 		E4A901CD2D6B450D007080AC /* FieldDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A901CC2D6B450D007080AC /* FieldDTO.swift */; };
@@ -238,7 +237,6 @@
 		E4A9019A2D5E01E9007080AC /* UserAuthoriationHandlerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthoriationHandlerImpl.swift; sourceTree = "<group>"; };
 		E4A9019B2D5E01E9007080AC /* AuthorizationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationHandler.swift; sourceTree = "<group>"; };
 		E4A9019C2D5E01E9007080AC /* GuestAuthorizationImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestAuthorizationImpl.swift; sourceTree = "<group>"; };
-		E4A901C52D65E5F8007080AC /* ControlEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlEntity.swift; sourceTree = "<group>"; };
 		E4A901C72D65E84B007080AC /* FormUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormUseCase.swift; sourceTree = "<group>"; };
 		E4A901C92D65E873007080AC /* FormMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormMapper.swift; sourceTree = "<group>"; };
 		E4A901CC2D6B450D007080AC /* FieldDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldDTO.swift; sourceTree = "<group>"; };
@@ -342,7 +340,6 @@
 			children = (
 				A9474D8C2D64B4A800031047 /* FormField.swift */,
 				A9EA54312D6C899500C2A9E2 /* FormEntity.swift */,
-				E4A901C52D65E5F8007080AC /* ControlEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1360,7 +1357,6 @@
 				A9EA54322D6C899500C2A9E2 /* FormEntity.swift in Sources */,
 				AAE5CAC62D4A61FD00FDA699 /* QuestionsRadioButton.swift in Sources */,
 				A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */,
-				E4A901C62D65E5F8007080AC /* ControlEntity.swift in Sources */,
 				A9474BCD2D5CE49C00031047 /* NetworkError.swift in Sources */,
 				E48CA1152D5CC72300A519ED /* AppFonts.swift in Sources */,
 				E4A901C82D65E84B007080AC /* FormUseCase.swift in Sources */,

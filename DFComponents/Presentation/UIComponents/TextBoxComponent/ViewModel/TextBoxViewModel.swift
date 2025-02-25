@@ -18,12 +18,14 @@ class TextBoxViewModel: FieldViewModelProtocol {
     let config: TextBoxDTO
     var hasInteracted: Bool = false
 
-    @Published var control: TextBoxControlDTO
+    var control: BaseFieldProtocol
+
+   // @Published var control: TextBoxControlDTO
 
  
-    init(control: TextBoxControlDTO,config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
-        self.config = config
+    init(control: BaseFieldProtocol ,config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
         self.control = control
+        self.config = config
         // Set default prefix and suffix if only one option is available
         selectedPrefix = config.prefixOptions.count == 1 ? config.prefixOptions.first : nil
         selectedSuffix = config.suffixOptions.count == 1 ? config.suffixOptions.first : nil

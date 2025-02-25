@@ -10,25 +10,39 @@ import Foundation
 protocol EntityMapper {
     associatedtype DTO
     associatedtype Entity
-    func map (from dto: DTO) -> FieldEntity?
+    func map (from dto: DTO) -> [FieldEntity]
 }
 
 class FormMapper: EntityMapper {
 
-    typealias DTO = FieldDTOEnum
+    typealias DTO = Schema
     typealias Entity = FieldEntity
 
 
-    func map(from dto: FieldDTOEnum) -> FieldEntity? {
-        switch dto {
-        case .textBox(let textBoxField):
-            return .textBox(TextBoxViewModel(control: textBoxField))
-        case .radio(let radioField):
-            return .radio(RadioButtonViewModel(control: radioField))
+    func map(from dto: Schema) -> [FieldEntity] {
+
+        return dto.fields.compactMap { field in
+            switch field.type {
+            case .TextBox:
+                let control = TextBoxField(field: field)
+                return .textBox(TextBoxViewModel(control: control))
+            case .Radio:
+                let control = RadioButtonField(field: field)
+                return .radio(RadioButtonViewModel(control: control))
+
+            default:
+                return nil 
+            }
         }
     }
 
+
 }
+
+//struct Form {
+//    var items: [FieldEntity]
+//    var rules: [Rule]
+//}
 
 enum FieldEntity: Identifiable {
     case textBox(TextBoxViewModel)

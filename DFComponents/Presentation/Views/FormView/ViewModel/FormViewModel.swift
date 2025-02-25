@@ -8,11 +8,11 @@
 import SwiftUI
 
 protocol FieldViewModelProtocol: ObservableObject, Identifiable {
-
+    
 }
 
 extension FieldViewModelProtocol {
-    var id: UUID { UUID() }  // or require each conforming type to provide its own unique ID
+    var id: UUID { UUID() }  
 }
 
 @MainActor
@@ -24,7 +24,8 @@ class FormViewModel: ObservableObject {
 
     func fetchForm() async {
         do {
-            fields =  try await formBuildUseCase.excute()
+            let response =  try await formBuildUseCase.excute()
+            fields = response.fields
         }
         catch let error as NSError {
             print(error.localizedDescription)

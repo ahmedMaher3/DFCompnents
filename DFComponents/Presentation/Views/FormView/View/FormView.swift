@@ -46,20 +46,20 @@ struct FormView: View {
 
         switch field {
         case .radio (let radioViewModel):
-            ControlFormBuilderView(titleControl: radioViewModel.control.properties.label ) {
+            ControlFormBuilderView(titleControl: radioViewModel.control.label) {
                 RadioButtonView(radioButtonVM: radioViewModel)
             }
             .onReceive(
                 radioViewModel.$control
-                    .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
+                    .debounce(for: .milliseconds(400), scheduler: DispatchQueue.main)
                     .dropFirst()
                     .removeDuplicates()
             ) { newOptions in
-                print("Updated options: \(newOptions)")
+                print("Updated options: \(newOptions.options)")
             }
 
         case .textBox(let textBoxViewModel):
-            ControlFormBuilderView(titleControl: textBoxViewModel.control.properties.label  ) {
+            ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
                 TextBoxComponent(viewModel: textBoxViewModel)
             }
         }

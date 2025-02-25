@@ -8,7 +8,7 @@
 import Foundation
 
 // Base protocols
-protocol FormViewModelItemProtocol {
+protocol BaseFieldProtocol {
     var type: FieldType! { get }
     var fieldId: String! { get }
     var label: String! { get }
@@ -24,7 +24,7 @@ protocol FormViewModelItemProtocol {
     func getAnswerString() -> String
 }
 
-protocol InteractiveItemProtocol: FormViewModelItemProtocol {
+protocol InteractiveFieldProtocol: BaseFieldProtocol {
     var required: Bool! { get }
     var placeHolder: String! { get }
     var note: String? { get set }
@@ -36,12 +36,12 @@ protocol InteractiveItemProtocol: FormViewModelItemProtocol {
     var addAttachment: Bool! { get set }
     var attachmentType: AttachmentType! { get }
     var attachmentExtensions: String! { get }
-    
+
     func isAnswered() -> Bool
 }
 
 // 2. Base implementation
-struct InteractiveFieldBase: FormViewModelItemProtocol, InteractiveItemProtocol {
+struct InteractiveField:  InteractiveFieldProtocol {
     // All the required properties
     var type: FieldType!
     var fieldId: String!
@@ -103,8 +103,8 @@ struct InteractiveFieldBase: FormViewModelItemProtocol, InteractiveItemProtocol 
 }
 
 // 3. Delegation protocol
-protocol InteractiveFieldDelegate: FormViewModelItemProtocol, InteractiveItemProtocol {
-    var base: InteractiveFieldBase { get set }
+protocol InteractiveFieldDelegate:  InteractiveFieldProtocol {
+    var base: InteractiveField { get set }
 }
 
 // 4. Default implementations through protocol extension
@@ -166,17 +166,17 @@ extension InteractiveFieldDelegate {
     func isAnswered() -> Bool { base.isAnswered() }
 }
 
-struct TextBaseItem: InteractiveFieldDelegate {
-    var base: InteractiveFieldBase
-    
+struct TextBase: InteractiveFieldDelegate {
+    var base: InteractiveField
+
     let allowSpellCheck: Bool?
     let maximumLength: Int?
     let minimumLength: Int?
     let entryLimit: EntryLimit?
     
     init(field: Field?) {
-        base = InteractiveFieldBase(field: field)
-        
+        base = InteractiveField(field: field)
+
         if let properties = field?.properties as? TextBaseProperties {
             allowSpellCheck = properties.allowSpellcheck
             maximumLength = properties.maximumLength
@@ -191,25 +191,26 @@ struct TextBaseItem: InteractiveFieldDelegate {
     }
 }
 
-protocol TextBaseItemDelegate: InteractiveFieldDelegate {
-    var textBase: TextBaseItem { get set }
+protocol TextBaseDelegate: InteractiveFieldDelegate {
+    var textBase: TextBase { get set }
 }
 
-extension TextBaseItemDelegate {
+extension TextBaseDelegate {
     var allowSpellCheck: Bool? { textBase.allowSpellCheck }
     var maximumLength: Int? { textBase.maximumLength }
     var minimumLength: Int? { textBase.minimumLength }
     var entryLimit: EntryLimit? { textBase.entryLimit }
     
-    var base: InteractiveFieldBase {
+    var base: InteractiveField {
         get { textBase.base }
         set { textBase.base = newValue }
     }
 }
 
+
 // 5. Implementation of specific field types becomes very clean
-struct FormViewModelTextBoxItem: TextBaseItemDelegate {
-    var textBase: TextBaseItem
+struct TextBoxField: TextBaseDelegate {
+    var textBase: TextBase
     
     // TextBox specific properties only
     let regex: String?
@@ -218,8 +219,7 @@ struct FormViewModelTextBoxItem: TextBaseItemDelegate {
     let subType: TextBoxSubType?
     
     init(field: Field?) {
-        textBase = TextBaseItem(field: field)
-        
+        textBase = TextBase(field: field)
         if let properties = field?.properties as? TextBoxProperties {
             regex = properties.regex
             mask = properties.mask
@@ -235,8 +235,6 @@ struct FormViewModelTextBoxItem: TextBaseItemDelegate {
     
     // Override only what needs custom implementation
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
-//        guard let valueObject = sAnswer as? TextboxAnswer else { return nil }
-//        return valueObject
         return nil
     }
     
@@ -253,16 +251,14 @@ struct FormViewModelTextBoxItem: TextBaseItemDelegate {
     }
 }
 
-struct FormViewModelTextAreaItem: TextBaseItemDelegate {
-    var textBase: TextBaseItem
-    
+struct TextAreaField: TextBaseDelegate {
+    var textBase: TextBase
     var fullScreen: Bool?
     var autoExpand: Bool?
-//    var editorType: EditorType!
     var defaultAnswer: TextAreaAnswer?
     
     init(field: Field?) {
-        textBase = TextBaseItem(field: field)
+        textBase = TextBase(field: field)
         
 //        if let properties = field.properties as? TextAreaProperties {
 //
@@ -273,10 +269,10 @@ struct FormViewModelTextAreaItem: TextBaseItemDelegate {
     }
 }
 
-struct MCQBaseItem: InteractiveFieldDelegate {
-    var base: InteractiveFieldBase
+struct MCQBase: InteractiveFieldDelegate {
+    var base: InteractiveField
     
-    var options: [MCQOption]?
+    var options: [MCQOption]
     var defaultAnswer: BaseAnswerMCQ?
     var predefinedOptions: String?
     var shuffleOptions: Bool?
@@ -286,8 +282,8 @@ struct MCQBaseItem: InteractiveFieldDelegate {
     var naOptionText: String?
     
     init(field: Field?) {
-        base = InteractiveFieldBase(field: field)
-        
+        base = InteractiveField(field: field)
+
         if let properties = field?.properties as? MCQPropertiesProtocol {
             options = properties.options
             defaultAnswer = properties.defaultAnswer
@@ -298,7 +294,7 @@ struct MCQBaseItem: InteractiveFieldDelegate {
             naOption = properties.naOption
             naOptionText = properties.naOptionText
         } else {
-            options = nil
+            options = []
             defaultAnswer = nil
             predefinedOptions = nil
             shuffleOptions = nil
@@ -310,12 +306,11 @@ struct MCQBaseItem: InteractiveFieldDelegate {
     }
 }
 
-protocol MCQBaseItemDelegate: InteractiveFieldDelegate {
-    var mcqBase: MCQBaseItem { get set }
+protocol MCQBaseDelegate: InteractiveFieldDelegate {
+    var mcqBase: MCQBase { get set }
 }
 
-extension MCQBaseItemDelegate {
-    var options: [MCQOption]? { mcqBase.options }
+extension MCQBaseDelegate {
     var defaultAnswer: BaseAnswerMCQ? { mcqBase.defaultAnswer }
     var predefinedOptions: String? { mcqBase.predefinedOptions }
     var shuffleOptions: Bool? { mcqBase.shuffleOptions }
@@ -324,16 +319,24 @@ extension MCQBaseItemDelegate {
     var naOption: Bool? { mcqBase.naOption }
     var naOptionText: String? { mcqBase.naOptionText }
     
-    var base: InteractiveFieldBase {
+    var options: [MCQOption] {
+          get { mcqBase.options }
+          set { mcqBase.options = newValue }
+      }
+
+    var base: InteractiveField {
         get { mcqBase.base }
         set { mcqBase.base = newValue }
     }
 }
 
-struct RadioButtonItem: MCQBaseItemDelegate {
-    var mcqBase: MCQBaseItem
+struct RadioButtonField: MCQBaseDelegate,Equatable {
+    var mcqBase: MCQBase
     
     init(field: Field?) {
-        mcqBase = MCQBaseItem(field: field)
+        mcqBase = MCQBase(field: field)
     }
+    static func == (lhs: RadioButtonField, rhs: RadioButtonField) -> Bool {
+        return lhs.options.elementsEqual(rhs.options) { $0 == $1 }
+       }
 }

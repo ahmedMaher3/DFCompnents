@@ -5,29 +5,31 @@
 //  Created by Yasser Osama on 2/24/25.
 //
 
-
 struct FormEntity {
-    var items = [FormViewModelItemProtocol]()
-    var rules: [Rule]?
-//    var warnings: Warning?
-    
-    init(_ form: Schema) {
-        for field in form.fields {
-            switch field.type {
-            case .TextBox:
-                let item = FormViewModelTextBoxItem(field: field)
-                items.append(item)
-            case .Radio:
-                let item = RadioButtonItem(field: field)
-                items.append(item)
-            // ... handle other cases similarly
-            default:
-                break
-            }
-        }
-        self.rules = form.rules
-//        self.warnings = form.warnings
-    }
+    var items = [BaseFieldProtocol]()
+    var fields: [FieldEntity]
+    var rules: [Rule]
+//    var items = [BaseFieldProtocol]()
+//    var rules: [Rule]?
+////    var warnings: Warning?
+//    
+//    init(_ form: Schema) {
+//        for field in form.fields {
+//            switch field.type {
+//            case .TextBox:
+//                let item = TextBoxField(field: field)
+//                items.append(item)
+//            case .Radio:
+//                let item = RadioButtonField(field: field)
+//                items.append(item)
+//            // ... handle other cases similarly
+//            default:
+//                break
+//            }
+//        }
+//        self.rules = form.rules
+////        self.warnings = form.warnings
+//    }
     
     mutating func appendSubmitItem() {
 //        let item = FormViewModelItem(field: nil)
@@ -35,17 +37,17 @@ struct FormEntity {
     }
     
     // Helper methods for managing form items
-    func getItem(by id: String) -> FormViewModelItemProtocol? {
+    func getItem(by id: String) -> BaseFieldProtocol? {
         return items.first { $0.fieldId == id }
     }
     
-    mutating func updateItem(_ item: FormViewModelItemProtocol?) {
+    mutating func updateItem(_ item: BaseFieldProtocol?) {
         guard let item else { return }
         guard let index = items.firstIndex(where: { $0.fieldId == item.fieldId }) else { return }
         updateItem(at: index, with: item)
     }
     
-    mutating func updateItem(at index: Int, with item: FormViewModelItemProtocol) {
+    mutating func updateItem(at index: Int, with item: BaseFieldProtocol) {
         guard index < items.count else { return }
         items[index] = item
     }
@@ -53,7 +55,7 @@ struct FormEntity {
     func validateAll() -> Bool {
         return items.allSatisfy { item in
             // Add your validation logic here
-            guard let interactive = item as? InteractiveItemProtocol else { return true }
+            guard let interactive = item as? InteractiveField else { return true }
             return !interactive.required || interactive.isAnswered()
         }
     }
@@ -61,21 +63,20 @@ struct FormEntity {
 
 extension FormEntity {
     // Helper method to get typed items
-    func getTextBoxItem(by id: String) -> FormViewModelTextBoxItem? {
-        return getItem(by: id) as? FormViewModelTextBoxItem
+    func getTextBoxField(by id: String) -> TextBoxField? {
+        return getItem(by: id) as? TextBoxField
     }
     
     // Add more helper methods for other types
-//    func getDropdownItem(by id: String) -> FormViewModelDropdownItem? {
-//        return getItem(by: id) as? FormViewModelDropdownItem
-//    }
+    func getRadioButtonField(by id: String) -> RadioButtonField? {
+        return getItem(by: id) as? RadioButtonField
+    }
 }
 
 extension FormEntity {
     mutating func updateAnswer(for id: String, with answer: Any) {
         if let index = items.firstIndex(where: { $0.fieldId == id }) {
             items[index].answer = answer
-            print("Display the answer please!!!:\(items[index].answer)")
         }
     }
     
