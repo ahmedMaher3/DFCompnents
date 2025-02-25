@@ -22,7 +22,7 @@ class FormViewModel: ObservableObject {
 
     var formBuildUseCase: FormBuildUseCase = FormBuildUseCase()
     var rules = [Rule]()
-    var rulesImp: RuleImp!
+    @Published var rulesImp: RuleImp!
 
     func fetchForm() async {
         do {
@@ -54,7 +54,5 @@ class FormViewModel: ObservableObject {
     func applyFieldRules(by id: String) {
         
         rulesImp.getAffectedRules(forControlId: id)
-        
-        self.objectWillChange.send()
     }
 }

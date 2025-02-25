@@ -51,7 +51,7 @@ struct FormView: View {
             }
             .onReceive(
                 radioViewModel.$control
-                    .debounce(for: .milliseconds(400), scheduler: DispatchQueue.main)
+                    .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
                     .dropFirst()
 //                    .removeDuplicates()
             ) { newOptions in
