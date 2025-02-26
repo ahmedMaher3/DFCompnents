@@ -1,0 +1,162 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld/%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld"
+          }
+        }
+      }
+    },
+    "0" : {
+
+    },
+    "100" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Capital: %@" : {
+
+    },
+    "Close" : {
+
+    },
+    "Confirm Email: %@" : {
+
+    },
+    "dark" : {
+
+    },
+    "Dates Available" : {
+
+    },
+    "Done" : {
+
+    },
+    "Email: %@" : {
+
+    },
+    "Enter text" : {
+
+    },
+    "File Name: %@" : {
+
+    },
+    "File Size: %@" : {
+
+    },
+    "File Type: %@" : {
+
+    },
+    "First Name: %@" : {
+
+    },
+    "Forms Search" : {
+
+    },
+    "FormView" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Form View Ar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Form View En"
+          }
+        }
+      }
+    },
+    "Full Name: %@" : {
+
+    },
+    "Huge List" : {
+
+    },
+    "Item %lld" : {
+
+    },
+    "Last Name: %@" : {
+
+    },
+    "light" : {
+
+    },
+    "Loading form data..." : {
+
+    },
+    "Lower: %.2f" : {
+
+    },
+    "Pick a File" : {
+
+    },
+    "Search countries" : {
+
+    },
+    "Select date" : {
+
+    },
+    "Select Image" : {
+
+    },
+    "Services" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Show Less" : {
+
+    },
+    "Show More" : {
+
+    },
+    "Sign Here" : {
+
+    },
+    "Speed" : {
+
+    },
+    "Submit" : {
+
+    },
+    "Switch to Arabic" : {
+
+    },
+    "Switch to English" : {
+
+    },
+    "system" : {
+
+    },
+    "Tap to select an image" : {
+
+    },
+    "Upper: %.2f" : {
+
+    },
+    "What is your name?" : {
+
+    },
+    "Where do you live " : {
+
+    }
+  },
+  "version" : "1.0"
+}
