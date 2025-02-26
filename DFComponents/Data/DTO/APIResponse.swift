@@ -102,9 +102,9 @@ struct Field: Codable {
         self.rules = try container.decodeIfPresent(FieldRules.self, forKey: .rules)
         
         switch self.type {
-        case .TextBox:
+        case .textBox:
             properties = try container.decode(TextBoxProperties.self, forKey: .properties)
-        case .Radio:
+        case .radio:
             properties = try container.decode(RadioProperties.self, forKey: .properties)
         default:
             properties = try container.decode(BaseProperties.self, forKey: .properties)
@@ -125,32 +125,16 @@ struct Field: Codable {
 }
 
 enum FieldType: String, Codable {
-    case Page = "Page"
-    case TextBox = "TextBox"
-    case Number = "number"
-    case DateTime = "datetime"
-    case DropDown = "dropdown"
-    case Radio = "Radio"
-    case Checkbox = "checkbox"
-    case FileUpload = "fileupload"
-    case Location = "location"
+    case page = "Page"
+    case textBox = "TextBox"
+    case number = "number"
+    case dateTime = "datetime"
+    case dropDown = "dropdown"
+    case radio = "Radio"
+    case checkbox = "checkbox"
+    case fileUpload = "fileupload"
+    case location = "location"
 }
-
-//struct FieldProperties: Codable {
-//    let submit, next, back: String?
-//    let backVisibility: Bool?
-//    let label: String
-//    let labelPosition, sublabel, tooltip: String?
-//    let localization: [String: String]?
-//    let options: [Option]?
-//    let predefinedOptionsId: String?
-//    let shuffleOptions, otherOption, naOption, required: Bool?
-//    let unique, addAttachment, addNote: Bool?
-//    let defaultAnswer: DefaultAnswer?
-//    let placeholder, attachmentType, attachmentExtensions: String?
-//    let maxAttachmentsNumber: Int?
-//    var hidden, disabled: Bool?
-//}
 
 struct Option: Decodable, Identifiable {
     let id, name: String
@@ -160,7 +144,7 @@ struct Option: Decodable, Identifiable {
 struct Rule: Codable {
     let id: String
     let disabled: Bool
-    let operation: String
+    let operation: RuleOperation
     let ifConditions: [IfCondition]
     let doActions: [DoAction]
     let actionsCategory: String
@@ -168,184 +152,57 @@ struct Rule: Codable {
 }
 
 struct IfCondition: Codable {
-    let fieldId, fieldState, target, value: String
+    let fieldId, target, value: String
+    let fieldState: FieldState
     let quota: Int
 }
 
 struct DoAction: Codable {
-    let type: String
+    let type: ActionType
     let sourceFieldsIds: [String]?
     let targetFieldsIds: [String]
     let expression: String?
     let actionImpact: String
 }
 
-//enum FieldDTOEnum: Decodable {
-//    case textBox(TextBoxControlDTO)
-//    case radio(RadioControlDTO)
-//
-//    var id: String {
-//        switch self {
-//        case .textBox(let dto):
-//            return dto.id
-//        case .radio(let dto):
-//            return dto.id
-//        }
-//    }
-//
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        let type = try container.decode(FieldType.self, forKey: .type)
-//        switch type {
-//        case .TextBox:
-//            let dto = try TextBoxControlDTO(from: decoder)
-//            self = .textBox(dto)
-//        case.Radio:
-//            let dto = try RadioControlDTO(from: decoder)
-//            self = .radio(dto)
-//        default:
-//            let dto = try TextBoxControlDTO(from: decoder)
-//            self = .textBox(dto)
-//
-//        }
-//    }
-//
-//    private enum CodingKeys: String, CodingKey {
-//        case type
-//    }
-//}
+enum RuleOperation: String, Codable {
+    case any = "Any"
+    case all = "All"
+}
 
+enum FieldState: String, Codable {
+    case filled = "Filled"
+    case empty = "Empty"
+    case equal = "Equal"
+    case notEqual = "NotEqual"
+    case contains = "Contains"
+    case notContain = "NotContain"
+    case startsWith = "StartsWith"
+    case notStartWith = "NotStartWith"
+    case endsWith = "EndsWith"
+    case notEndWith = "NotEndWith"
+    case lessThan = "LessThan"
+    case greaterThan = "GreaterThan"
+    case after = "After"
+    case before = "Before"
+    case equalToDate = "EqualToDate"
+    case notEqualToDate = "NotEqualToDate"
+    case equalToTime = "EqualToTime"
+    case notEqualToTime = "NotEqualToTime"
+    case equalToDay = "EqualToDay"
+    case notEqualToDay = "NotEqualToDay"
+    case include = "Include"
+    case notInclude = "NotInclude"
+}
 
-//protocol RuleExecuterProtocol {
-//    func executeActions(valid: Bool, doActions: [DoAction], controls: inout [Field])
-//}
-//
-//protocol RuleEvaluator {
-//    func getRules(forControlId controlId: String, controls: [Field]) -> [String]
-//    func evaluateRules(rules: [Rule]) -> (valid: Bool, doActions: [DoAction])
-//    func validateCondition(_ condition: IfCondition) -> Bool
-//}
-
-//protocol DefaultVal {
-//
-//}
-//
-//struct RuleImp: RuleEvaluator, RuleExecuterProtocol {
-//
-//    var controls: [Field]
-//
-//    init(controls: [Field]) {
-//        self.controls = controls
-//    }
-//
-//    func getRules(forControlId controlId: String, controls: [Field]) -> [String] {
-//        guard let control = controls.first(where: { $0.id == controlId }) else {
-//            return []
-//        }
-//        return control.rules?.effectIn ?? [] // get affected rules ids
-//    }
-//
-//    func evaluateRules(rules: [Rule]) -> (valid: Bool, doActions: [DoAction]) {
-//        for rule in rules {
-//            guard !rule.disabled else { continue } // Skip disabled rules
-//
-//            let areConditionsValid: Bool
-//            switch rule.operation {
-//            case "All":
-//                areConditionsValid = rule.ifConditions.allSatisfy { validateCondition($0) }
-//            case "Any":
-//                areConditionsValid = rule.ifConditions.contains { validateCondition($0) }
-//            default:
-//                areConditionsValid = false
-//            }
-//
-//            if areConditionsValid {
-//                return (true, rule.doActions)
-//            }
-//        }
-//        return (false, [])
-//    }
-//
-//    func validateCondition(_ condition: IfCondition) -> Bool { // Ongoing function
-//
-//        var defVal: DefaultVal?
-//        var conditionIsValid: Bool = false
-//
-//        if condition.target == "Value" { // target
-//            let checkedFieldID = condition.fieldId // fieldId
-//            if let control = controls.first(where: {
-//                $0.id == checkedFieldID
-//            }) {
-//                // get value from control
-//                defVal = control.properties.defaultAnswer as? DefaultVal
-//            }
-//        }
-//
-//    //    switch condition.fieldState {
-//    //
-//    //    case "Include", "NotInclude":
-//    //        handleIncludeState(
-//    //            value, valueValidator, valid: &conditionIsValid,
-//    //            include: condition.fieldState == "Include")
-//    //    default:
-//    //        return false
-//    //    }
-//
-//        return conditionIsValid
-//    }
-//
-//    func getItemValue(control: Field) -> DefaultVal? {
-//        switch control.type {
-//        case .Radio:
-//    //        return control.properties.defaultAnswer as! RadioAnswer
-//            return nil
-//        default:
-//            return nil
-//        }
-//    }
-//
-//    func handleIncludeState(
-//        _ value: [String]?, _ valueValidator: [String]?, valid: inout Bool,
-//        include: Bool
-//    ) {
-//        guard let validatorValue = valueValidator, let itemValue = value else {
-//            return
-//        }
-//        for value in validatorValue {
-//            if include {
-//                if itemValue.contains(where: {
-//                    $0.lowercased() == value.lowercased()
-//                }) {
-//                    valid = true
-//                }
-//            } else {
-//                if !itemValue.contains(where: { $0 == value }) {
-//                    valid = true
-//                }
-//            }
-//
-//        }
-//    }
-//
-//    func executeActions(valid: Bool, doActions: [DoAction], controls: inout [Field]) {
-//        guard valid else { return }
-//
-//        for action in doActions {
-//            for targetFieldId in action.targetFieldsIds {
-//                guard let targetControlIndex = controls.firstIndex(where: { $0.id == targetFieldId }) else {
-//                    continue
-//                }
-//
-////                switch action.type {
-////                case "Show":
-////                    controls[targetControlIndex].properties.hidden = valid
-////                case "Hide":
-////                    controls[targetControlIndex].properties.hidden = !valid
-////                default:
-////                    break
-////                }
-//            }
-//        }
-//    }
-//
-//}
+enum ActionType: String, Codable {
+    case show = "Show"
+    case enable = "Enable"
+    case hide = "Hide"
+    case disable = "Disable"
+    case require = "Require"
+    case unRequire = "UnRequire"
+    case calculate = "Calculate"
+    case copy = "Copy"
+    case skipToPage = "SkipToPage"
+}

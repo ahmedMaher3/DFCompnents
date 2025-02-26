@@ -34,6 +34,4 @@ final class RadioButtonViewModel: ObservableObject {
              control.answer = option.id
          }
      }
-
 }
-

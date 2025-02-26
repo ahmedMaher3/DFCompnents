@@ -14,29 +14,25 @@ protocol EntityMapper {
 }
 
 class FormMapper: EntityMapper {
-
+    
     typealias DTO = Schema
     typealias Entity = FieldEntity
-
-
+    
     func map(from dto: Schema) -> [FieldEntity] {
-
         return dto.fields.compactMap { field in
             switch field.type {
-            case .TextBox:
+            case .textBox:
                 let control = TextBoxField(field: field)
                 return .textBox((control, TextBoxViewModel(control: control)))
-            case .Radio:
+            case .radio:
                 let control = RadioButtonField(field: field)
                 return .radio((control, RadioButtonViewModel(control: control)))
-
+                
             default:
-                return nil 
+                return nil
             }
         }
     }
-
-
 }
 
 //struct Form {
@@ -50,12 +46,10 @@ enum FieldEntity: Identifiable {
 
     var id: String {
         switch self {
-        case .textBox(( let field, let vm)):
+        case .textBox(( let field, _)):
             return field.fieldId
-        case .radio(( let field, let vm)):
+        case .radio(( let field, _)):
             return field.fieldId
         }
     }
 }
-
-

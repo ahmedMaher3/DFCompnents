@@ -11,7 +11,6 @@ import Foundation
   - Main Rule
  */
 struct RuleImp: RuleEvaluator, RuleExecuterProtocol {
-
     var controls: [BaseFieldProtocol]
     let rules: [Rule]
 
@@ -52,13 +51,11 @@ struct RuleImp: RuleEvaluator, RuleExecuterProtocol {
             guard !rule.disabled else { continue } // Skip disabled rules
             let areConditionsValid: Bool
             switch rule.operation {
-                case "All":
-                    /// All be true
-                    areConditionsValid = rule.ifConditions.allSatisfy { validateCondition($0) }
-                case "Any":
-                    areConditionsValid = rule.ifConditions.contains { validateCondition($0) }
-                default:
-                    areConditionsValid = false
+            case .all:
+                /// All be true
+                areConditionsValid = rule.ifConditions.allSatisfy { validateCondition($0) }
+            case .any:
+                areConditionsValid = rule.ifConditions.contains { validateCondition($0) }
             }
             if areConditionsValid {
                 return (true, rule.doActions)
@@ -88,10 +85,10 @@ struct RuleImp: RuleEvaluator, RuleExecuterProtocol {
 
     func handleFieldState(_ condition: IfCondition,value: [String]?,valid: inout Bool) {
         switch condition.fieldState {
-            case "Include", "NotInclude":
+        case .include, .notInclude:
                 handleIncludeState(
                     value, [condition.value], valid: &valid,
-                    include: condition.fieldState == "Include")
+                    include: condition.fieldState == .include)
             default:
                break
         }
@@ -141,12 +138,12 @@ struct RuleImp: RuleEvaluator, RuleExecuterProtocol {
                     continue
                 }
                 switch action.type {
-                    case "Show":
-                        controls[targetControlIndex].hidden = !valid
-                    case "Hide":
-                        controls[targetControlIndex].hidden = valid
-                    default:
-                        break
+                case .show:
+                    controls[targetControlIndex].hidden = !valid
+                case .hide:
+                    controls[targetControlIndex].hidden = valid
+                default:
+                    break
                 }
             }
         }

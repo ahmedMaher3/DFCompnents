@@ -13,27 +13,22 @@ struct RadioButtonView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-           // if let options = radioButtonVM.control.options {
-                ForEach(radioButtonVM.control.options, id: \.id) { item in
-                    HStack {
-                        Image(systemName:
-                                item.isSelected ?? false ? "largecircle.fill.circle" : "circle")
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .foregroundColor(item.isSelected ?? false ? .blue : .gray)
-                        .onTapGesture {
-                            radioButtonVM.selectOption(item)
-                        }
-                        Text(item.name ?? "")
-                            .fontWeight(.medium)
-                            .foregroundColor(item.isSelected ?? false ? .blue : .black)
+            ForEach(radioButtonVM.control.options, id: \.id) { item in
+                HStack {
+                    Image(systemName:
+                            item.isSelected ?? false ? "largecircle.fill.circle" : "circle")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundColor(item.isSelected ?? false ? .blue : .gray)
+                    .onTapGesture {
+                        radioButtonVM.selectOption(item)
                     }
-
-                    .padding(8)
+                    Text(item.name)
+                        .fontWeight(.medium)
+                        .foregroundColor(item.isSelected ?? false ? .blue : .black)
                 }
-          //  }
-
+                .padding(8)
+            }
         }
     }
 }
-

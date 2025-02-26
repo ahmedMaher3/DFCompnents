@@ -12,15 +12,14 @@ struct FormView: View {
 
     @State private var showingAppearanceSheet = false
 
-    var title: String = ""
+    var title: String = "Form View"
 
     var body: some View {
         NavigationStack {
             VStack {
                 if !viewModel.fields.isEmpty {
                     Form {
-                        FieldsListView(viewModel: viewModel)
-
+                        fieldsListView(viewModel: viewModel)
                     }
                     .padding()
                 } else {
@@ -35,12 +34,8 @@ struct FormView: View {
             }
             .navigationBarTitle(title, displayMode: .inline)
             .environmentObject(styleManagerVM)
-
         }
-
     }
-
-
 
     // Loading view to be displayed while fetching the form data
     private func loadingView() -> some View {
@@ -53,19 +48,17 @@ struct FormView: View {
     }
 }
 
-struct FieldsListView: View {
+struct fieldsListView: View {
     @ObservedObject var viewModel: FormViewModel  // ObservedObject prevents unnecessary re-renders
 
     var body: some View {
         ForEach(viewModel.fields, id: \.id) { field in
             renderField(for: field)
-
         }
     }
 
     @ViewBuilder
     private func renderField(for field: FieldEntity) -> some View {
-
         switch field {
         case .radio ((_, let radioViewModel)):
             ControlFormBuilderView(titleControl: radioViewModel.control.label) {
@@ -81,10 +74,8 @@ struct FieldsListView: View {
             ) { newOptions in
                 print("Updated options: \(newOptions)")
                 // Call update in ViewModel to apply rules
-                viewModel.applyFieldRules(by: "cf6c2b5c-3dec-4222-9ceb-ac958c5bb24f")
+                viewModel.applyFieldRules(by: field.id)
             }
-
-
         case .textBox((_, let textBoxViewModel)):
             ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
                 TextBoxComponent(viewModel: textBoxViewModel)
@@ -92,6 +83,4 @@ struct FieldsListView: View {
             .opacity(textBoxViewModel.control.hidden ? 0 : 1)
         }
     }
-
-
 }
