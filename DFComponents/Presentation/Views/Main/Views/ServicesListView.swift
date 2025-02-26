@@ -20,7 +20,7 @@ struct ServicesListView: View {
                     List {
                         ForEach(filteredForms) { form in
                             NavigationLink(destination: FormView(title: form.name)) {
-                                FormRow(form: form)
+                               // FormRow(form: form)
                             }
                             .buttonStyle(PlainButtonStyle()) 
                              .listRowBackground(Color.clear)

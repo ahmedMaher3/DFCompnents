@@ -48,12 +48,12 @@ enum FieldEntity: Identifiable {
     case textBox((BaseFieldProtocol, TextBoxViewModel))
     case radio((BaseFieldProtocol, RadioButtonViewModel))
 
-    var id: UUID {
+    var id: String {
         switch self {
-        case .textBox(( _, let vm)):
-            return vm.id
-        case .radio(( _, let vm)):
-            return vm.id
+        case .textBox(( let field, let vm)):
+            return field.fieldId
+        case .radio(( let field, let vm)):
+            return field.fieldId
         }
     }
 }

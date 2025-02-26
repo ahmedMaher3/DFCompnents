@@ -2,7 +2,7 @@
 //  FormView.swift
 //  DFComponents
 //
-//  Created by hassan elshaer on 30/01/2025.
+//  Created by Ahmed Maher on 26/02/2025.
 //
 import SwiftUI
 
@@ -19,9 +19,8 @@ struct FormView: View {
             VStack {
                 if !viewModel.fields.isEmpty {
                     Form {
-                        ForEach(viewModel.fields , id: \.id) { field in
-                            renderField(for: field)
-                        }
+                        FieldsListView(viewModel: viewModel)
+
                     }
                     .padding()
                 } else {
@@ -36,38 +35,11 @@ struct FormView: View {
             }
             .navigationBarTitle(title, displayMode: .inline)
             .environmentObject(styleManagerVM)
-            //   .environmentObject(viewModel.rulesViewModel)
+
         }
+
     }
 
-    // This function handles rendering the appropriate form control based on the field type
-    @ViewBuilder
-    private func renderField(for field: FieldEntity) -> some View {
-
-        switch field {
-        case .radio ((_, let radioViewModel)):
-            ControlFormBuilderView(titleControl: radioViewModel.control.label) {
-                RadioButtonView(radioButtonVM: radioViewModel)
-            }
-            .opacity(radioViewModel.control.hidden ? 0 : 1)
-            .onReceive(
-                radioViewModel.$control
-                    .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
-                    .dropFirst()
-//                    .removeDuplicates()
-            ) { newOptions in
-                print("Updated options: \(newOptions.options)")
-                // call update in viewmodel to notify change and apply rules
-                viewModel.applyFieldRules(by: "cf6c2b5c-3dec-4222-9ceb-ac958c5bb24f")
-            }
-
-        case .textBox((_, let textBoxViewModel)):
-            ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
-                TextBoxComponent(viewModel: textBoxViewModel)
-            }
-            .opacity(textBoxViewModel.control.hidden ? 0 : 1)
-        }
-    }
 
 
     // Loading view to be displayed while fetching the form data
@@ -79,4 +51,47 @@ struct FormView: View {
                 .progressViewStyle(CircularProgressViewStyle())
         }
     }
+}
+
+struct FieldsListView: View {
+    @ObservedObject var viewModel: FormViewModel  // ObservedObject prevents unnecessary re-renders
+
+    var body: some View {
+        ForEach(viewModel.fields, id: \.id) { field in
+            renderField(for: field)
+
+        }
+    }
+
+    @ViewBuilder
+    private func renderField(for field: FieldEntity) -> some View {
+
+        switch field {
+        case .radio ((_, let radioViewModel)):
+            ControlFormBuilderView(titleControl: radioViewModel.control.label) {
+                RadioButtonView(radioButtonVM: radioViewModel)
+            }
+            .opacity(radioViewModel.control.hidden ? 0 : 1)
+            .onReceive(
+                radioViewModel.$control
+                    .map { $0.options }
+                    .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+                    .dropFirst()
+                    .removeDuplicates()
+            ) { newOptions in
+                print("Updated options: \(newOptions)")
+                // Call update in ViewModel to apply rules
+                viewModel.applyFieldRules(by: "cf6c2b5c-3dec-4222-9ceb-ac958c5bb24f")
+            }
+
+
+        case .textBox((_, let textBoxViewModel)):
+            ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
+                TextBoxComponent(viewModel: textBoxViewModel)
+            }
+            .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+        }
+    }
+
+
 }

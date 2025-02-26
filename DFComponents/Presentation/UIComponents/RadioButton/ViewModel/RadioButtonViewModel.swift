@@ -7,12 +7,22 @@
 
 import Foundation
 
-final class RadioButtonViewModel: FieldViewModelProtocol {
+final class RadioButtonViewModel: ObservableObject {
 
     @Published var control: RadioButtonField
+    let id: String
 
      init(control: RadioButtonField) {
          self.control = control
+         self.id = "2"
+//         $control
+//                   .map { $0.options }
+//                   .removeDuplicates()
+//                   .sink { [weak self] updatedOptions in
+//                       print("Options changed in ViewModel: \(updatedOptions)")
+//                      // self?.notifyParent()
+//                   }
+//                  // .store(in: &cancellables)
      }
 
      // When an option is selected, update all options:

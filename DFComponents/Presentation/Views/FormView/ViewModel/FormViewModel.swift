@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-protocol FieldViewModelProtocol: ObservableObject, Identifiable {
-    
-}
-
-extension FieldViewModelProtocol {
-    var id: UUID { UUID() }  
-}
 
 @MainActor
 class FormViewModel: ObservableObject {
@@ -27,7 +20,7 @@ class FormViewModel: ObservableObject {
     func fetchForm() async {
         do {
             let response =  try await formBuildUseCase.excute()
-            fields = response.fields
+           fields = response.fields
             rules = response.rules
             self.doRules()
         }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - TextBoxViewModel
-class TextBoxViewModel: FieldViewModelProtocol {
+class TextBoxViewModel: ObservableObject {
     @Published var text: String = ""
     @Published var errorMessage: String?
     @Published var isValid: Bool = false
@@ -16,7 +16,7 @@ class TextBoxViewModel: FieldViewModelProtocol {
     @Published var selectedSuffix: String?
     var mask: String = "9(999)-9999"  // Ex
     let config: TextBoxDTO
-
+    let id: String
     var hasInteracted: Bool = false
 
     var control: TextBoxField
@@ -27,6 +27,7 @@ class TextBoxViewModel: FieldViewModelProtocol {
     init(control: TextBoxField ,config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
         self.control = control
         self.config = config
+        self.id = "1"
         // Set default prefix and suffix if only one option is available
         selectedPrefix = config.prefixOptions.count == 1 ? config.prefixOptions.first : nil
         selectedSuffix = config.suffixOptions.count == 1 ? config.suffixOptions.first : nil
