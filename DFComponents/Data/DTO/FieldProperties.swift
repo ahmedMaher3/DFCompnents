@@ -28,7 +28,6 @@ struct BaseProperties: BasePropertiesProtocol {
         case labelPosition
     }
 }
-
 protocol InteractivePropertiesProtocol: BasePropertiesProtocol {
     var required: Bool? { get }
     var placeholder: String? { get }
@@ -37,6 +36,14 @@ protocol InteractivePropertiesProtocol: BasePropertiesProtocol {
     var attachmentExtensions: String? { get }
     var attachmentType: AttachmentType? { get }
     var disabled: Bool? { get }
+}
+
+//MARK: - Properties related to number
+protocol NumberBaseProperties: InteractivePropertiesProtocol {
+    ///stepper
+    var step: Int? { get }
+    ///DecimalPlaceValue
+    var decimalPlaces: Int? { get }
 }
 
 protocol TextBaseProperties: InteractivePropertiesProtocol {

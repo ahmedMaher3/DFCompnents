@@ -19,7 +19,7 @@ protocol BaseFieldProtocol {
     var rules: FieldRules? { get }
     var hidden: Bool! { get set }
     var disabled: Bool! { get set }
-    
+
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer?
     func getAnswerString() -> String
 }
@@ -53,7 +53,7 @@ struct InteractiveField: InteractiveFieldProtocol {
     var rules: FieldRules?
     var hidden: Bool!
     var disabled: Bool!
-    
+
     var required: Bool!
     var placeHolder: String!
     var note: String?
@@ -65,10 +65,10 @@ struct InteractiveField: InteractiveFieldProtocol {
     var addAttachment: Bool!
     var attachmentType: AttachmentType!
     var attachmentExtensions: String!
-    
+
     init(field: Field?) {
         guard let field = field else { return }
-        
+
         // Initialize base properties
         self.type = field.type
         self.fieldId = field.id
@@ -79,7 +79,7 @@ struct InteractiveField: InteractiveFieldProtocol {
         self.rules = field.rules
         self.hidden = false
         self.disabled = false
-        
+
         // Initialize interactive properties
         if let properties = field.properties as? InteractivePropertiesProtocol {
             self.required = properties.required
@@ -91,12 +91,12 @@ struct InteractiveField: InteractiveFieldProtocol {
             self.attachmentType = properties.attachmentType ?? .both
             self.attachmentExtensions = properties.attachmentExtensions ?? ""
         }
-        
+
         self.attachmentImages = []
         self.attachmentFiles = []
         self.note = nil
     }
-    
+
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? { nil }
     func getAnswerString() -> String { "" }
     func isAnswered() -> Bool { false }
@@ -121,7 +121,7 @@ extension InteractiveFieldDelegate {
     var tooltip: String? { base.tooltip }
     var attachmentType: AttachmentType! { base.attachmentType }
     var attachmentExtensions: String! { base.attachmentExtensions }
-    
+
     // Mutable properties
     var answer: Any? {
         get { base.answer }
@@ -159,7 +159,7 @@ extension InteractiveFieldDelegate {
         get { base.addAttachment }
         set { base.addAttachment = newValue }
     }
-    
+
     // Default implementations for methods
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? { base.handleSavedAnswer(sAnswer) }
     func getAnswerString() -> String { base.getAnswerString() }
@@ -173,7 +173,7 @@ class TextBase: InteractiveFieldDelegate {
     let maximumLength: Int?
     let minimumLength: Int?
     let entryLimit: EntryLimit?
-    
+
     init(field: Field?) {
         base = InteractiveField(field: field)
 
@@ -191,6 +191,7 @@ class TextBase: InteractiveFieldDelegate {
     }
 }
 
+
 protocol TextBaseDelegate: InteractiveFieldDelegate {
     var textBase: TextBase { get set }
 }
@@ -200,7 +201,7 @@ extension TextBaseDelegate {
     var maximumLength: Int? { textBase.maximumLength }
     var minimumLength: Int? { textBase.minimumLength }
     var entryLimit: EntryLimit? { textBase.entryLimit }
-    
+
     var base: InteractiveField {
         get { textBase.base }
         set { textBase.base = newValue }
@@ -211,13 +212,13 @@ extension TextBaseDelegate {
 // 5. Implementation of specific field types becomes very clean
 class TextBoxField: TextBaseDelegate {
     var textBase: TextBase
-    
+
     // TextBox specific properties only
     let regex: String?
     let mask: String?
     let defaultAnswer: TextboxAnswer?
     let subType: TextBoxSubType?
-    
+
     init(field: Field?) {
         textBase = TextBase(field: field)
         if let properties = field?.properties as? TextBoxProperties {
@@ -232,17 +233,17 @@ class TextBoxField: TextBaseDelegate {
             subType = nil
         }
     }
-    
+
     // Override only what needs custom implementation
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
         return nil
     }
-    
+
     func getAnswerString() -> String {
         guard let answerValue = (answer as? TextboxAnswer)?.value else { return "" }
         return answerValue
     }
-    
+
     func isAnswered() -> Bool {
         if let textValue = (answer as? BaseAnswerText)?.value, !textValue.isEmpty {
             return true
@@ -256,13 +257,13 @@ class TextAreaField: TextBaseDelegate {
     var fullScreen: Bool?
     var autoExpand: Bool?
     var defaultAnswer: TextAreaAnswer?
-    
+
     init(field: Field?) {
         textBase = TextBase(field: field)
-        
-//        if let properties = field.properties as? TextAreaProperties {
-//
-//        }
+
+        //        if let properties = field.properties as? TextAreaProperties {
+        //
+        //        }
         fullScreen = nil
         autoExpand = nil
         defaultAnswer = nil
@@ -271,7 +272,7 @@ class TextAreaField: TextBaseDelegate {
 
 class MCQBase: InteractiveFieldDelegate {
     var base: InteractiveField
-    
+
     var options: [MCQOption]
     var defaultAnswer: BaseAnswerMCQ?
     var predefinedOptions: String?
@@ -280,7 +281,7 @@ class MCQBase: InteractiveFieldDelegate {
     var otherOptionText: String?
     var naOption: Bool?
     var naOptionText: String?
-    
+
     init(field: Field?) {
         base = InteractiveField(field: field)
 
@@ -318,11 +319,11 @@ extension MCQBaseDelegate {
     var otherOptionText: String? { mcqBase.otherOptionText }
     var naOption: Bool? { mcqBase.naOption }
     var naOptionText: String? { mcqBase.naOptionText }
-    
+
     var options: [MCQOption] {
-          get { mcqBase.options }
-          set { mcqBase.options = newValue }
-      }
+        get { mcqBase.options }
+        set { mcqBase.options = newValue }
+    }
 
     var base: InteractiveField {
         get { mcqBase.base }
@@ -332,11 +333,11 @@ extension MCQBaseDelegate {
 
 class RadioButtonField: MCQBaseDelegate,Equatable {
     var mcqBase: MCQBase
-    
+
     init(field: Field?) {
         mcqBase = MCQBase(field: field)
     }
     static func == (lhs: RadioButtonField, rhs: RadioButtonField) -> Bool {
         return lhs.options.elementsEqual(rhs.options) { $0 == $1 }
-       }
+    }
 }

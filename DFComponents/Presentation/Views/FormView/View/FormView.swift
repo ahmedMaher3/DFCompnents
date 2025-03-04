@@ -9,7 +9,7 @@ import SwiftUI
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
-    
+
     @Environment(\.locale) private var locale
     @State private var currentLocale: Locale = .current
 
@@ -30,7 +30,7 @@ struct FormView: View {
                     Button("Switch to Arabic") {
                         switchLanguage(to: "ar")
                     }
-                    
+
                     Button("Switch to English") {
                         switchLanguage(to: "en")
                     }
@@ -49,19 +49,19 @@ struct FormView: View {
             }
             .navigationTitle(title.localizedKey)
             .navigationBarTitleDisplayMode(.inline)
-//            .navigationBarTitle(LocalizedStringKey(title), displayMode: .inline)
+            //            .navigationBarTitle(LocalizedStringKey(title), displayMode: .inline)
             .environmentObject(styleManagerVM)
             .onAppear {
                 currentLocale = locale
             }
         }
     }
-    
+
     func switchLanguage(to localeIdentifier: String) {
         currentLocale = Locale(identifier: localeIdentifier)
         UserDefaults.standard.set(localeIdentifier, forKey: "selectedLocale")
-//        
-//        // Restart the app for full effect
+        //
+        //        // Restart the app for full effect
         if let window = UIApplication.shared.windows.first {
             window.rootViewController = UIHostingController(rootView: SplashView().environment(\.locale, currentLocale))
             window.makeKeyAndVisible()
@@ -91,27 +91,27 @@ struct fieldsListView: View {
     @ViewBuilder
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
-        case .radio ((_, let radioViewModel)):
-            ControlFormBuilderView(titleControl: radioViewModel.control.label) {
-                RadioButtonView(radioButtonVM: radioViewModel)
-            }
-            .opacity(radioViewModel.control.hidden ? 0 : 1)
-            .onReceive(
-                radioViewModel.$control
-                    .map { $0.options }
-                    .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
-                    .dropFirst()
-                    .removeDuplicates()
-            ) { newOptions in
-                print("Updated options: \(newOptions)")
-                // Call update in ViewModel to apply rules
-                viewModel.applyFieldRules(by: field.id)
-            }
-        case .textBox((_, let textBoxViewModel)):
-            ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
-                TextBoxComponent(viewModel: textBoxViewModel)
-            }
-            .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+            case .radio ((_, let radioViewModel)):
+                ControlFormBuilderView(titleControl: radioViewModel.control.label) {
+                    RadioButtonView(radioButtonVM: radioViewModel)
+                }
+                .opacity(radioViewModel.control.hidden ? 0 : 1)
+                .onReceive(
+                    radioViewModel.$control
+                        .map { $0.options }
+                        .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+                        .dropFirst()
+                        .removeDuplicates()
+                ) { newOptions in
+                    print("Updated options: \(newOptions)")
+                    // Call update in ViewModel to apply rules
+                    viewModel.applyFieldRules(by: field.id)
+                }
+            case .textBox((_, let textBoxViewModel)):
+                ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
+                    TextBoxComponent(viewModel: textBoxViewModel)
+                }
+                .opacity(textBoxViewModel.control.hidden ? 0 : 1)
         }
     }
 }
@@ -120,7 +120,7 @@ extension String {
     var localized: String {
         NSLocalizedString(self, comment: "")
     }
-    
+
     var localizedKey: LocalizedStringKey {
         LocalizedStringKey(self)
     }
