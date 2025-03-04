@@ -22,7 +22,7 @@ class FormViewModel: ObservableObject {
         do {
             let response =  try await formBuildUseCase.excute()
             fields = response.fields
-            rules = response.rules
+            rules = response.rules 
             warnings = response.warnings
             self.doRules()
         }
@@ -30,24 +30,26 @@ class FormViewModel: ObservableObject {
             print(error.localizedDescription)
         }
     }
-    
+
     func doRules() {
         let fields: [BaseFieldProtocol] = fields.map { fieldEntity in
             switch fieldEntity {
-            case .textBox((let field, _)):
-                return field
-            case .radio((let field, _)):
-                return field
+                case .textBox((let field, _)):
+                    return field
+                case .radio((let field, _)):
+                    return field
+                case .number((let field, _)):
+                    return field
             }
         }
-        
+
         rulesImp = RuleImp(controls: fields, rules: rules)
-        
+
         rulesImp.handleAllRules()
     }
-    
+
     func applyFieldRules(by id: String) {
-        
+
         rulesImp.getAffectedRules(forControlId: id)
     }
 }

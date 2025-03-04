@@ -41,9 +41,6 @@
     "Dates Available" : {
 
     },
-    "Decimal Value%lld" : {
-
-    },
     "Done" : {
 
     },
@@ -51,6 +48,9 @@
 
     },
     "Enter text" : {
+
+    },
+    "Ex 123" : {
 
     },
     "File Name: %@" : {
@@ -140,9 +140,6 @@
 
     },
     "Speed" : {
-
-    },
-    "Stepper Value%lld" : {
 
     },
     "Submit" : {

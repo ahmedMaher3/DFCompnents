@@ -7,6 +7,7 @@
 protocol NumberBaseDelegate: InteractiveFieldDelegate {
     var numberBase: NumberBase { get set }
 }
+
 class NumberBase: InteractiveFieldDelegate {
     var base: InteractiveField
     let step: Int?
@@ -23,6 +24,7 @@ class NumberBase: InteractiveFieldDelegate {
         }
     }
 }
+
 extension NumberBaseDelegate {
     var base: InteractiveField {
         get { numberBase.base }

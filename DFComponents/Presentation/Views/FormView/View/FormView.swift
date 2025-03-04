@@ -83,9 +83,11 @@ struct fieldsListView: View {
     @ObservedObject var viewModel: FormViewModel  // ObservedObject prevents unnecessary re-renders
 
     var body: some View {
-        ForEach(viewModel.fields, id: \.id) { field in
-            renderField(for: field)
-        }
+//        ForEach(viewModel.fields, id: \.id) { field in
+//            renderField(for: field)
+//        }
+//        NumberComponent()
+         NumberComponent()
     }
 
     @ViewBuilder
@@ -112,6 +114,10 @@ struct fieldsListView: View {
                     TextBoxComponent(viewModel: textBoxViewModel)
                 }
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+            case .number((_, let numberViewModel)):
+                ControlFormBuilderView(titleControl: numberViewModel.numberFieldModel.label) {
+                    NumberFieldComponent(viewModel: numberViewModel)
+                }
         }
     }
 }

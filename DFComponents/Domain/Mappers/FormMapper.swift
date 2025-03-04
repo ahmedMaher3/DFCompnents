@@ -102,12 +102,15 @@ class FormMapper: EntityMapper {
 enum FieldEntity: Identifiable {
     case textBox((BaseFieldProtocol, TextBoxViewModel))
     case radio((BaseFieldProtocol, RadioButtonViewModel))
+    case number((BaseFieldProtocol, NumberFieldViewModel))
 
     var id: String {
         switch self {
             case .textBox(( let field, _)):
                 return field.fieldId
             case .radio(( let field, _)):
+                return field.fieldId
+            case .number(( let field, _)):
                 return field.fieldId
         }
     }
