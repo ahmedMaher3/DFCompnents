@@ -40,6 +40,9 @@ struct FormView: View {
                         .onAppear {
                             Task {
                                 await viewModel.fetchForm()
+                                viewModel.warnings.map { entity in
+                                    print(entity)
+                                }
                             }
                         }
                 }

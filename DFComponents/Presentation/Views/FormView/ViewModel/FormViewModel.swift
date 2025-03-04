@@ -15,6 +15,7 @@ class FormViewModel: ObservableObject {
 
     var formBuildUseCase: FormBuildUseCase = FormBuildUseCase()
     var rules = [Rule]()
+    var warnings: WarningsEntity?
     @Published var rulesImp: RuleImp!
 
     func fetchForm() async {
@@ -22,6 +23,7 @@ class FormViewModel: ObservableObject {
             let response =  try await formBuildUseCase.excute()
             fields = response.fields
             rules = response.rules
+            warnings = response.warnings
             self.doRules()
         }
         catch let error as NSError {

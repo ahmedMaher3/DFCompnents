@@ -24,53 +24,53 @@
             "warnings": {
                 "formWarning": {
                     "formValidation": {
-                        "expired": "",
-                        "notAvailable": "",
-                        "multipleSubmission": "",
-                        "notStarted": ""
+                        "expired": "This form has been expired.",
+                        "notAvailable": "This form is not available for submission.",
+                        "multipleSubmission": "You submitted this form before. Multiple submissions are not supported.",
+                        "notStarted": "This form has not started yet."
                     },
                     "fieldValidation": {
-                        "emptyForm": "",
-                        "required": "",
-                        "maxAttachment": "",
+                        "emptyForm": "Please answer at least one question to be able to submit the form.",
+                        "required": "This field is required.",
+                        "maxAttachment": "Some files were not uploaded as you exceeded the max number of files. {0} is allowed",
                         "input": {
-                            "minimumCharacterLength": "",
-                            "maximumCharacterLength": "",
-                            "minimumWordLength": "",
-                            "maximumWordLength": "",
-                            "email": "",
-                            "url": "",
-                            "numeric": "",
-                            "alphabetic": "",
-                            "alphanumeric": "",
-                            "custom": ""
+                            "minimumCharacterLength": "Minimum Character Length is {0}",
+                            "maximumCharacterLength": "Maximum Character Length is {0}",
+                            "minimumWordLength": "Minimum Words Length is {0}",
+                            "maximumWordLength": "Maximum Words Length is {0}",
+                            "email": "Not A Valid Email",
+                            "url": "Not A Valid URL",
+                            "numeric": "Please Insert Only Number",
+                            "alphabetic": "Alphabetic Only",
+                            "alphanumeric": "Alphanumeric And Numeric Only",
+                            "custom": "value does not match the pattern {0}"
                         },
                         "number": {
-                            "minimumValue": "",
-                            "maximumValue": "",
-                            "minimumDigits": "",
-                            "maximumDigits": ""
+                            "minimumValue": "Minimum Value is {0}",
+                            "maximumValue": "Maximum Value is {0}",
+                            "minimumDigits": "1",
+                            "maximumDigits": "10"
                         },
                         "dateTime": {
-                            "dateTime": "",
-                            "dateRange": ""
+                            "dateTime": "Enter date and time.",
+                            "dateRange": "Enter date range."
                         },
                         "mcq": {
-                            "minimumNumberOfSelectedOptions": "",
-                            "maximumNumberOfSelectedOptions": ""
+                            "minimumNumberOfSelectedOptions": "Minimum number of selections is {0}",
+                            "maximumNumberOfSelectedOptions": "Maximum number of selections is {0}"
                         },
                         "fileUpload": {
-                            "maxFilesSize": "",
-                            "maxSizePerFile": "",
-                            "minNumberOfFiles": "",
-                            "maxNumberOfFiles": "",
-                            "allowedExtensions": "",
-                            "invalidLink": ""
+                            "maxFilesSize": "Maximum total files size is {0} MB",
+                            "maxSizePerFile": "Maximum file size is {0} MB",
+                            "minNumberOfFiles": "Minimum number of files is {0}",
+                            "maxNumberOfFiles": "Maximum number of files is {0}",
+                            "allowedExtensions": "This file does not match the allowed extensions.",
+                            "invalidLink": "The file link is invalid , please upload file manually"
                         },
                         "location": {
-                            "maximumLocations": "",
-                            "minimumLocations": "",
-                            "notInRange": ""
+                            "maximumLocations": "Maximum number of locations is {0}",
+                            "minimumLocations": "Minimum number of locations is {0}",
+                            "notInRange": "Please select a location within the highlighted area."
                         }
                     }
                 },

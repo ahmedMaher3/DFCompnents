@@ -11,8 +11,8 @@ struct FormEntity {
     var rules: [Rule]
 //    var items = [BaseFieldProtocol]()
 //    var rules: [Rule]?
-////    var warnings: Warning?
-//    
+    let warnings: WarningsEntity? 
+//
 //    init(_ form: Schema) {
 //        for field in form.fields {
 //            switch field.type {

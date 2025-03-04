@@ -23,7 +23,6 @@ final class LocalFormRepository: FormBuildRepository {
                     continuation.resume(throwing: FormRepositoryError.fileNotFound)
                     return
                 }
-                
                 do {
                     let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
                     let apiResponse = try JSONDecoder().decode(APIResponse.self, from: data)
