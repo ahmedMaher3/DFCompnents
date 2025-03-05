@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentNumberControlView: View {
-    @ObservedObject var viewModel: NumberFieldViewModel
+    @StateObject var viewModel: NumberFieldViewModel
     @FocusState private var isTextFieldFocused: Bool
     @State private var text: String = ""
 
