@@ -105,7 +105,7 @@
                 "identifier": "N5DsWvjD/rxSnR2ozqx"
             },
             "settings": {
-                "format": "Card",
+                "format": "Classic",
                 "enableScoreCalculation": true,
                 "enableViewResults": true,
                 "enablePageValidation": true,
@@ -393,52 +393,7 @@
                     },
                     "rules": null
                 },
-                {
-                    "weight": {
-                        "criteria": null,
-                        "value": 2
-                    },
-                    "id": "c0a1aa7b-6283-4627-b521-5baceaa116d5",
-                    "templateQuestionId": null,
-                    "type": "TextArea",
-                    "parentId": "ef31f124-476c-4b81-ad60-639f16df07fb",
-                    "order": "a0",
-                    "properties": {
-                        "autoExpand": false,
-                        "editor": "PlainText",
-                        "fullScreen": false,
-                        "autoComplete": true,
-                        "allowSpellCheck": true,
-                        "textCase": "Mixed",
-                        "entryLimit": "Character",
-                        "minimumLength": null,
-                        "maximumLength": null,
-                        "required": false,
-                        "unique": null,
-                        "addAttachment": false,
-                        "addNote": false,
-                        "defaultAnswer": {
-                            "htmlValue": null,
-                            "value": null,
-                            "type": "TextArea",
-                            "note": "",
-                            "score": null,
-                            "attachments": null
-                        },
-                        "placeholder": "placeholder",
-                        "attachmentType": null,
-                        "attachmentExtensions": null,
-                        "maxAttachmentsNumber": null,
-                        "hidden": false,
-                        "disabled": false,
-                        "labelPosition": "Top",
-                        "label": "text question",
-                        "sublabel": "sublabel",
-                        "tooltip": "",
-                        "localization": {}
-                    },
-                    "rules": null
-                },
+
                 {
                     "weight": {
                         "criteria": null,

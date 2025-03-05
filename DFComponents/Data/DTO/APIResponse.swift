@@ -136,8 +136,9 @@ struct Field: Codable {
 
 enum FieldType: String, Codable {
     case page = "Page"
+    case textArea = "TextArea"
     case textBox = "TextBox"
-    case number = "number"
+    case number = "Number"
     case dateTime = "datetime"
     case dropDown = "dropdown"
     case radio = "Radio"

@@ -10,27 +10,7 @@ struct FormEntity {
     var fields: [FieldEntity]
     var rules: [Rule]
     var mode: FormType?
-//    var items = [BaseFieldProtocol]()
-//    var rules: [Rule]?
-////    var warnings: Warning?
-//    
-//    init(_ form: Schema) {
-//        for field in form.fields {
-//            switch field.type {
-//            case .TextBox:
-//                let item = TextBoxField(field: field)
-//                items.append(item)
-//            case .Radio:
-//                let item = RadioButtonField(field: field)
-//                items.append(item)
-//            // ... handle other cases similarly
-//            default:
-//                break
-//            }
-//        }
-//        self.rules = form.rules
-////        self.warnings = form.warnings
-//    }
+
     
     mutating func appendSubmitItem() {
 //        let item = FormViewModelItem(field: nil)
