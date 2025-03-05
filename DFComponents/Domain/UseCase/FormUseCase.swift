@@ -29,11 +29,11 @@ class FormBuildUseCase: FormBuildUseCaseProtocol {
         do {
             let response = try await repository.fetchForm()
             let controls = map(dto: response)
-            return FormEntity(fields: controls, rules: response.rules)
+            return FormEntity(fields: controls, rules: response.rules, mode: response.settings.format)
         }
         catch let error as NSError {
             print(error.localizedDescription)
-            return FormEntity(fields: [], rules: [])
+            return FormEntity(fields: [], rules: [], mode: nil)
         }
     }
 

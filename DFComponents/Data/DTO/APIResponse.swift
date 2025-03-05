@@ -24,6 +24,16 @@ struct Schema: Decodable {
     let warnings: Warnings
     let fields: [Field]
     let rules: [Rule]
+    let settings: Settings
+}
+
+struct Settings: Decodable {
+    let format: FormType
+}
+
+enum FormType: String, Codable {
+    case card = "Card"
+    case classic = "Classic"
 }
 
 struct SchemaProperties: Codable {
@@ -134,6 +144,7 @@ enum FieldType: String, Codable {
     case checkbox = "checkbox"
     case fileUpload = "fileupload"
     case location = "location"
+    case section = "section"
 }
 
 struct Option: Decodable, Identifiable {

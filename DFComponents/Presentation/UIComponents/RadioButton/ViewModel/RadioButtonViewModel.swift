@@ -35,3 +35,7 @@ final class RadioButtonViewModel: ObservableObject {
          }
      }
 }
+
+final class PageViewModel: ObservableObject {
+    
+}

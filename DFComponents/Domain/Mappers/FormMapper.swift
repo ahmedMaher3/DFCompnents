@@ -27,7 +27,10 @@ class FormMapper: EntityMapper {
             case .radio:
                 let control = RadioButtonField(field: field)
                 return .radio((control, RadioButtonViewModel(control: control)))
-                
+            case .page:
+                let control = PageField()
+                return .page((control, PageViewModel()))
+
             default:
                 return nil
             }
@@ -43,13 +46,35 @@ class FormMapper: EntityMapper {
 enum FieldEntity: Identifiable {
     case textBox((BaseFieldProtocol, TextBoxViewModel))
     case radio((BaseFieldProtocol, RadioButtonViewModel))
-
+    case page((BaseFieldProtocol, PageViewModel))
+    
     var id: String {
         switch self {
-        case .textBox(( let field, _)):
+        case .page((let field, _)):
             return field.fieldId
-        case .radio(( let field, _)):
+        case .textBox((let field, _)):
+            return field.fieldId
+        case .radio((let field, _)):
             return field.fieldId
         }
     }
+    
+    var parentId: String? {
+        switch self {
+        case .textBox((let field, _)):
+            return field.parentId
+        case .radio((let field, _)):
+            return field.parentId
+        case .page((let field, _)):
+            return field.parentId
+        }
+    }
+    
+    var type: FieldType {
+        switch self {
+        case .textBox((let field, _)), .radio((let field, _)), .page((let field, _)):
+            return field.type
+        }
+    }
+
 }

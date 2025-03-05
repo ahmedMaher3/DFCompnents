@@ -17,11 +17,22 @@ struct FormView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                if !viewModel.fields.isEmpty {
-                    Form {
-                        fieldsListView(viewModel: viewModel)
+                if !viewModel.pages.isEmpty {
+                    //                    Form {
+                    //                        fieldsListView(viewModel: viewModel)
+                    //                    }
+                    //                    .padding()
+                    
+                    TabView {
+                        ForEach(self.viewModel.pages.keys.sorted(), id: \.self) { pageId in
+                            if let controls = self.viewModel.pages[pageId] {
+                                PageView(controls: controls, viewModel: self.viewModel)
+                            }
+                        }
                     }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                     .padding()
+                    
                 } else {
                     // Show loading state while form data is being fetched
                     loadingView()
@@ -44,6 +55,63 @@ struct FormView: View {
                 .padding()
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle())
+        }
+    }
+}
+
+struct PageView: View {
+    var controls: [FieldEntity]
+
+    @ObservedObject var viewModel: FormViewModel
+
+    var body: some View {
+        ForEach(viewModel.fields, id: \.id) { field in
+            renderField(for: field)
+        }
+    }
+
+    @ViewBuilder
+    private func renderField(for field: FieldEntity) -> some View {
+        switch field {
+        case .radio ((_, let radioViewModel)):
+            ControlFormBuilderView(titleControl: radioViewModel.control.label) {
+                RadioButtonView(radioButtonVM: radioViewModel)
+            }
+            .opacity(radioViewModel.control.hidden ? 0 : 1)
+            .onReceive(
+                radioViewModel.$control
+                    .map { $0.options }
+                    .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+                    .dropFirst()
+                    .removeDuplicates()
+            ) { newOptions in
+                print("Updated options: \(newOptions)")
+                // Call update in ViewModel to apply rules
+//                viewModel.applyFieldRules(by: field.id)
+            }
+        case .textBox((_, let textBoxViewModel)):
+            ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
+                TextBoxComponent(viewModel: textBoxViewModel)
+            }
+            .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+        case .page((_, let pageViewModel)):
+            EmptyView()
+        }
+    }
+
+}
+
+struct BaseComponentView: View {
+    var entity: FieldEntity
+    
+    var body: some View {
+        switch entity {
+        case .textBox(let (field, _)):
+            Text("TextBox: \(field.label ?? "No Label")")
+        case .radio(let (field, _)):
+            Text("RadioButton: \(field.label ?? "No Label")")
+        case .page(let (field, _)):
+            Text("Page: \(field.label ?? "No Label")")
         }
     }
 }
@@ -81,6 +149,8 @@ struct fieldsListView: View {
                 TextBoxComponent(viewModel: textBoxViewModel)
             }
             .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+        case .page((_, _)):
+            EmptyView()
         }
     }
 }

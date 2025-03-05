@@ -9,6 +9,7 @@ struct FormEntity {
     var items = [BaseFieldProtocol]()
     var fields: [FieldEntity]
     var rules: [Rule]
+    var mode: FormType?
 //    var items = [BaseFieldProtocol]()
 //    var rules: [Rule]?
 ////    var warnings: Warning?

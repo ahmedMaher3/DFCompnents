@@ -3,8 +3,136 @@
     "errors": null,
     "data": {
         "schema": {
-            "id": "76e7e79e-16be-42b1-9d54-59608c5516d2",
-            "lastAppliedEventId": "5a998930-fbfb-4bae-87b6-d5325d9af4de",
+            "id": "44742e0e-036c-482d-9172-425ad7fa3563",
+            "lastAppliedEventId": "74d2c692-545f-49ab-9a4b-09ac8954607b",
+            "theme": {
+                "id": "1860dc6d-e725-4829-a3a1-82d09d89213d",
+                "name": "Default Theme",
+                "style": {
+                    "form": {
+                        "backgroundColor": "#FAFBFC",
+                        "backgroundImage": "",
+                        "fontFamily": "Rubik"
+                    },
+                    "campaign": {
+                        "style": {
+                            "borderColor": "#EFF3F6",
+                            "backgroundColor": "#FFFFFF"
+                        },
+                        "headText": {
+                            "color": "#173E67",
+                            "fontSize": "24px",
+                            "fontWeight": "Medium"
+                        },
+                        "description": {
+                            "color": "#9EB3C2",
+                            "fontSize": "14px",
+                            "fontWeight": "Normal"
+                        },
+                        "actionColor": "#5989EF"
+                    },
+                    "page": {
+                        "backgroundImage": "",
+                        "backgroundColor": "#F5F9FE",
+                        "borderColor": "#EFF3F6"
+                    },
+                    "section": {
+                        "header": {
+                            "borderColor": "#D0D9E2",
+                            "backgroundColor": "#FFFFFF"
+                        },
+                        "body": {
+                            "borderColor": "#D0D9E2",
+                            "backgroundColor": "#EEF4FC"
+                        },
+                        "text": {
+                            "color": "#173E67",
+                            "fontSize": "16px",
+                            "fontWeight": "Medium"
+                        }
+                    },
+                    "question": {
+                        "style": {
+                            "borderColor": "#D0D9E2",
+                            "backgroundColor": "#FFFFFF"
+                        },
+                        "questionText": {
+                            "color": "#173E67",
+                            "fontSize": "16px",
+                            "fontWeight": "Medium"
+                        },
+                        "subLabelText": {
+                            "color": "#173E67",
+                            "fontSize": "12px",
+                            "fontWeight": "Normal"
+                        },
+                        "input": {
+                            "color": "#173E67",
+                            "fontSize": "14px",
+                            "fontWeight": "Normal",
+                            "borderColor": "#D0D9E2",
+                            "backgroundColor": "#FFFFFF"
+                        },
+                        "actionColor": "#5989EF"
+                    },
+                    "buttonsCard": {
+                        "card": {
+                            "borderColor": "#EFF3F6",
+                            "backgroundColor": "#FFFFFF"
+                        },
+                        "primaryButton": {
+                            "color": "#FFFFFF",
+                            "fontSize": "14px",
+                            "fontWeight": "Medium",
+                            "borderColor": null,
+                            "backgroundColor": "#29CC8B"
+                        },
+                        "secondaryButton": {
+                            "color": "#173E67",
+                            "fontSize": "14px",
+                            "fontWeight": "Medium",
+                            "borderColor": null,
+                            "backgroundColor": "#A2B2C2"
+                        }
+                    }
+                }
+            },
+            "metadata": {
+                "title": "Omar's Survey",
+                "type": "Survey",
+                "status": "Active",
+                "templateId": null,
+                "identifier": "N5DsWvjD/rxSnR2ozqx"
+            },
+            "settings": {
+                "format": "Card",
+                "enableScoreCalculation": true,
+                "enableViewResults": true,
+                "enablePageValidation": true,
+                "enableFormExpiration": false,
+                "formExpirationType": "DisableOnDate",
+                "expirationDate": null,
+                "expirationSubmissionLimit": null,
+                "defaultLanguage": null,
+                "languages": null,
+                "enableMultipleSubmissions": true,
+                "enableAnonymousResponses": false,
+                "sessionDuration": null,
+                "enableFormStartDate": false,
+                "startDate": null,
+                "sessionType": "MultipleSession",
+                "advancedSettings": {
+                    "password": null,
+                    "enableCaptcha": false
+                }
+            },
+            "accessSettings": {
+                "submissionAccessType": "PublicAccess",
+                "submissionActionType": "SubmitAndViewLater",
+                "allowedUsers": null,
+                "allowedDomains": null,
+                "privateAccessSettings": null
+            },
             "properties": {
                 "localization": {},
                 "submit": "",
@@ -76,26 +204,137 @@
                 },
                 "localization": {}
             },
+            "campaign": {
+                "header": {
+                    "logo": "03aacf84-f599-484e-99a1-d5d65d7198a2",
+                    "title": "Title",
+                    "description": "Omar's Page Desc",
+                    "showQuestionsCount": false,
+                    "localization": {}
+                },
+                "footer": {
+                    "logo": "c9c5e1eb-29a7-4552-8db0-41511f8e05cc",
+                    "title": "footer title",
+                    "description": "footer desc",
+                    "showQuestionsCount": false,
+                    "localization": {}
+                },
+                "welcome": {
+                    "logo": "f375a403-1d90-4779-b6d3-7e48dd0833e9",
+                    "title": "welcome title",
+                    "description": "welcome desc",
+                    "showQuestionsCount": false,
+                    "localization": {}
+                },
+                "submission": {
+                    "submissionType": "SubmissionMessage",
+                    "submissionUrl": "",
+                    "logo": "",
+                    "title": "",
+                    "description": "",
+                    "showQuestionsCount": false,
+                    "localization": {}
+                }
+            },
             "fields": [
                 {
-                    "weight": {
-                        "options": null,
-                        "value": 0
+                    "id": "e686a84f-481d-46cc-8bdc-597c8f6aaf93",
+                    "templateQuestionId": null,
+                    "type": "Page",
+                    "parentId": null,
+                    "order": "a1",
+                    "properties": {
+                        "submit": "submit",
+                        "next": "lma 3m el 7ag",
+                        "back": "back",
+                        "backVisibility": true,
+                        "labelPosition": "Top",
+                        "label": "first page",
+                        "sublabel": "",
+                        "tooltip": "",
+                        "localization": {}
                     },
-                    "id": "cf6c2b5c-3dec-4222-9ceb-ac958c5bb24f",
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "criteria": [
+                            {
+                                "state": "Equal",
+                                "value": "10"
+                            }
+                        ],
+                        "value": 5
+                    },
+                    "id": "0d6eff6f-a25a-4e9b-9998-f043df18347a",
+                    "templateQuestionId": null,
+                    "type": "Number",
+                    "parentId": "e686a84f-481d-46cc-8bdc-597c8f6aaf93",
+                    "order": "a0",
+                    "properties": {
+                        "decimalPlaces": 0,
+                        "step": 1,
+                        "minimumValue": null,
+                        "maximumValue": null,
+                        "minimumDigits": null,
+                        "maximumDigits": null,
+                        "required": false,
+                        "unique": null,
+                        "addAttachment": false,
+                        "addNote": false,
+                        "defaultAnswer": {
+                            "value": null,
+                            "type": "Number",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "Number",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "Number Question",
+                        "sublabel": "Sublabel",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "options": {
+                            "818b750a-c00f-4539-a395-839637a5f0c9": 5,
+                            "abd6e6f4-9113-4b3e-aceb-5b8ce08fc818": 5,
+                            "2b002edb-f31d-496e-bac9-843ea8a4db0a": 5,
+                            "aa440d68-5f75-4f42-afa2-8f0a990d9dd9": 5
+                        },
+                        "value": 5
+                    },
+                    "id": "6e09ee1f-488d-4f77-a190-5d6d3724f09f",
                     "templateQuestionId": null,
                     "type": "Radio",
-                    "parentId": "c9477141-cb5e-494b-9434-a2b1a6b0b3f1",
-                    "order": "Zz",
+                    "parentId": "e686a84f-481d-46cc-8bdc-597c8f6aaf93",
+                    "order": "a1",
                     "properties": {
                         "options": [
                             {
-                                "id": "ef3aeae1-4710-49fa-9a3a-5648f3de1e35",
-                                "name": "Show"
+                                "id": "abd6e6f4-9113-4b3e-aceb-5b8ce08fc818",
+                                "name": "Maher"
                             },
                             {
-                                "id": "40be73a5-ae69-4480-af83-fdca85c08152",
-                                "name": "Hide"
+                                "id": "818b750a-c00f-4539-a395-839637a5f0c9",
+                                "name": "Omar"
+                            },
+                            {
+                                "id": "aa440d68-5f75-4f42-afa2-8f0a990d9dd9",
+                                "name": "Yasser"
+                            },
+                            {
+                                "id": "2b002edb-f31d-496e-bac9-843ea8a4db0a",
+                                "name": "Eslam Ramadan"
                             }
                         ],
                         "predefinedOptionsId": null,
@@ -123,28 +362,93 @@
                         "hidden": false,
                         "disabled": false,
                         "labelPosition": "Top",
-                        "label": "Do you want to show or hide Textbox?",
-                        "sublabel": "This is a sub label for the MCQ",
+                        "label": "Who let the dogs out",
+                        "sublabel": "",
                         "tooltip": "",
                         "localization": {}
                     },
                     "rules": {
                         "effectIn": [
-                            "39f2c380-de28-4ae8-886c-db85185736b3"
+                            "6f7bb492-4f34-4543-afbf-e15fe5b700d5"
                         ],
                         "dependOn": []
                     }
                 },
                 {
+                    "id": "ef31f124-476c-4b81-ad60-639f16df07fb",
+                    "templateQuestionId": null,
+                    "type": "Page",
+                    "parentId": null,
+                    "order": "a2",
+                    "properties": {
+                        "submit": "verify",
+                        "next": "next",
+                        "back": "back",
+                        "backVisibility": true,
+                        "labelPosition": "Top",
+                        "label": "second page",
+                        "sublabel": "",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
+                {
                     "weight": {
                         "criteria": null,
-                        "value": 0
+                        "value": 2
                     },
-                    "id": "3fc04705-996f-44cc-82fc-60cb16d53a63",
+                    "id": "c0a1aa7b-6283-4627-b521-5baceaa116d5",
+                    "templateQuestionId": null,
+                    "type": "TextArea",
+                    "parentId": "ef31f124-476c-4b81-ad60-639f16df07fb",
+                    "order": "a0",
+                    "properties": {
+                        "autoExpand": false,
+                        "editor": "PlainText",
+                        "fullScreen": false,
+                        "autoComplete": true,
+                        "allowSpellCheck": true,
+                        "textCase": "Mixed",
+                        "entryLimit": "Character",
+                        "minimumLength": null,
+                        "maximumLength": null,
+                        "required": false,
+                        "unique": null,
+                        "addAttachment": false,
+                        "addNote": false,
+                        "defaultAnswer": {
+                            "htmlValue": null,
+                            "value": null,
+                            "type": "TextArea",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "placeholder",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "text question",
+                        "sublabel": "sublabel",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "criteria": null,
+                        "value": 5
+                    },
+                    "id": "91975fe4-40cc-4a4b-9c81-3eb0bed3ddb5",
                     "templateQuestionId": null,
                     "type": "TextBox",
-                    "parentId": "c9477141-cb5e-494b-9434-a2b1a6b0b3f1",
-                    "order": "a0",
+                    "parentId": "ef31f124-476c-4b81-ad60-639f16df07fb",
+                    "order": "a1",
                     "properties": {
                         "mask": "",
                         "regex": "",
@@ -160,9 +464,9 @@
                         "autoComplete": true,
                         "allowSpellCheck": true,
                         "textCase": "Mixed",
-                        "entryLimit": "Word",
-                        "minimumLength": 2,
-                        "maximumLength": 5,
+                        "entryLimit": "Character",
+                        "minimumLength": null,
+                        "maximumLength": null,
                         "required": false,
                         "unique": null,
                         "addAttachment": false,
@@ -170,43 +474,43 @@
                         "defaultAnswer": {
                             "prefix": null,
                             "suffix": null,
-                            "value": "default answwer for input field",
+                            "value": null,
                             "type": "TextBox",
                             "note": "",
                             "score": null,
                             "attachments": null
                         },
-                        "placeholder": "Name placeholder",
+                        "placeholder": "Ramadan Karim",
                         "attachmentType": null,
                         "attachmentExtensions": null,
                         "maxAttachmentsNumber": null,
                         "hidden": false,
                         "disabled": false,
                         "labelPosition": "Top",
-                        "label": "What is your name?",
-                        "sublabel": "Sublabel for Textbox",
+                        "label": "Ramadan Gana ?",
+                        "sublabel": "",
                         "tooltip": "",
                         "localization": {}
                     },
                     "rules": {
                         "effectIn": [],
                         "dependOn": [
-                            "39f2c380-de28-4ae8-886c-db85185736b3"
+                            "6f7bb492-4f34-4543-afbf-e15fe5b700d5"
                         ]
                     }
                 }
             ],
             "rules": [
                 {
-                    "id": "39f2c380-de28-4ae8-886c-db85185736b3",
+                    "id": "6f7bb492-4f34-4543-afbf-e15fe5b700d5",
                     "disabled": false,
                     "operation": "Any",
                     "ifConditions": [
                         {
-                            "fieldId": "cf6c2b5c-3dec-4222-9ceb-ac958c5bb24f",
+                            "fieldId": "6e09ee1f-488d-4f77-a190-5d6d3724f09f",
                             "fieldState": "Include",
                             "target": "Value",
-                            "value": "ef3aeae1-4710-49fa-9a3a-5648f3de1e35",
+                            "value": "818b750a-c00f-4539-a395-839637a5f0c9",
                             "quota": 0
                         }
                     ],
@@ -215,7 +519,7 @@
                             "type": "Show",
                             "sourceFieldsIds": null,
                             "targetFieldsIds": [
-                                "3fc04705-996f-44cc-82fc-60cb16d53a63"
+                                "91975fe4-40cc-4a4b-9c81-3eb0bed3ddb5"
                             ],
                             "expression": null,
                             "actionImpact": "Field"
@@ -224,7 +528,29 @@
                     "actionsCategory": "Show",
                     "isValid": true
                 }
-            ]
+            ],
+            "emailSettings": {
+                "notifications": null,
+                "autoResponders": null,
+                "senderEmails": [
+                    {
+                        "id": "00000000-0000-0000-0000-000000000001",
+                        "emailAddress": " check@youxel.com",
+                        "hostName": null,
+                        "userName": "Check",
+                        "password": null,
+                        "port": 0,
+                        "securityType": 0
+                    }
+                ]
+            }
+        },
+        "publishInfo": {
+            "lastPublishedVersionId": null,
+            "publishedEventId": null,
+            "pendingVersionId": null,
+            "pendingEventId": null,
+            "isPublished": false
         }
     }
 }
