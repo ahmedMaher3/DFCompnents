@@ -279,7 +279,12 @@ class PageField: BaseFieldProtocol {
     func getAnswerString() -> String {
         return ""
     }
-    
+
+    init(field: Field?) {
+        self.type = field?.type
+        self.fieldId = field?.id ?? ""
+    }
+
 }
 
 class TextAreaField: TextBaseDelegate {

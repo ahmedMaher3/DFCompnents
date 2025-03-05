@@ -28,7 +28,7 @@ class FormMapper: EntityMapper {
                 let control = RadioButtonField(field: field)
                 return .radio((control, RadioButtonViewModel(control: control)))
             case .page:
-                let control = PageField()
+                let control = PageField(field: field)
                 return .page((control, PageViewModel()))
 
             default:

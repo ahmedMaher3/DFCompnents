@@ -112,6 +112,7 @@ struct Field: Codable {
         self.rules = try container.decodeIfPresent(FieldRules.self, forKey: .rules)
         
         switch self.type {
+            
         case .textBox:
             properties = try container.decode(TextBoxProperties.self, forKey: .properties)
         case .radio:
