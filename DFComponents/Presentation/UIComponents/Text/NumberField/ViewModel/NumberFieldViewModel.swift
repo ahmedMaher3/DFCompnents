@@ -23,17 +23,13 @@ final class NumberFieldViewModel: ObservableObject {
             subLabel: numberFieldModel.sublabel,
             labelPosition: "", // Default or dynamic value
             tooltip: numberFieldModel.tooltip,
-            hidden: numberFieldModel.hidden
-        )
-        if let properties = numberFieldModel.interactiveProperties {
-            self.interactiveProperties = numberFieldModel.numberBase
-        }
+            hidden: numberFieldModel.hidden)
+        self.interactiveProperties = numberFieldModel.numberBase
     }
 
     func incrementStepper() {
         guard let step = numberFieldModel.step else { return }
-       currentValue += step
-        objectWillChange.send()  // Notify SwiftUI to update the UI
+        currentValue += step
         print("Incremented: \(currentValue)")
     }
 
@@ -41,10 +37,8 @@ final class NumberFieldViewModel: ObservableObject {
         guard let step = numberFieldModel.step else { return }
         let newValue = currentValue - step
         if newValue >= 0 { // Prevent going negative
-           currentValue = newValue
-            objectWillChange.send()  // Notify SwiftUI to update the UI
+            currentValue = newValue
             print("Decremented: \(currentValue)")
         }
     }
-
 }

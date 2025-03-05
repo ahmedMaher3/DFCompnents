@@ -84,6 +84,7 @@
 		AAF1B1832D76490500DC44B4 /* LocationValidationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1B1822D76490500DC44B4 /* LocationValidationEntity.swift */; };
 		AAF1B1852D76490900DC44B4 /* InputValidationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1B1842D76490900DC44B4 /* InputValidationEntity.swift */; };
 		AAF1B1872D76490D00DC44B4 /* NumberValidationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1B1862D76490D00DC44B4 /* NumberValidationEntity.swift */; };
+		AAF8308A2D78C84F001B0CAC /* fieldsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF830892D78C84F001B0CAC /* fieldsListView.swift */; };
 		E44926C42D4B8AD200EA5D5E /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44926C32D4B8AD200EA5D5E /* FormView.swift */; };
 		E44926C82D4B8B0D00EA5D5E /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44926C72D4B8B0D00EA5D5E /* FormViewModel.swift */; };
 		E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */; };
@@ -245,6 +246,7 @@
 		AAF1B1822D76490500DC44B4 /* LocationValidationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationValidationEntity.swift; sourceTree = "<group>"; };
 		AAF1B1842D76490900DC44B4 /* InputValidationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidationEntity.swift; sourceTree = "<group>"; };
 		AAF1B1862D76490D00DC44B4 /* NumberValidationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberValidationEntity.swift; sourceTree = "<group>"; };
+		AAF830892D78C84F001B0CAC /* fieldsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fieldsListView.swift; sourceTree = "<group>"; };
 		E44926C32D4B8AD200EA5D5E /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		E44926C72D4B8B0D00EA5D5E /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
 		E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxComponent.swift; sourceTree = "<group>"; };
@@ -749,6 +751,7 @@
 		E44926C52D4B8AF000EA5D5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AAF830892D78C84F001B0CAC /* fieldsListView.swift */,
 				E44926C32D4B8AD200EA5D5E /* FormView.swift */,
 			);
 			path = View;
@@ -1498,6 +1501,7 @@
 				A9474BC52D5CE3CC00031047 /* NetworkClient.swift in Sources */,
 				E48C9FEF2D5374A900A519ED /* MaskedTextField.swift in Sources */,
 				AAD1E7C02D4B7F9400442BA4 /* RadioButtonDTO.swift in Sources */,
+				AAF8308A2D78C84F001B0CAC /* fieldsListView.swift in Sources */,
 				E4A9015C2D52CD73007080AC /* SectionViewModel.swift in Sources */,
 				E48CA0022D5374D300A519ED /* AKMaskFieldUtility.swift in Sources */,
 				A9474D7C2D64ACC200031047 /* APIResponse.swift in Sources */,

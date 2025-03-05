@@ -36,24 +36,6 @@ struct ContentNumberControlView: View {
                 .onAppear {
                     text = "\(viewModel.currentValue)"
                 }
-            /*
-             TextField(viewModel.numberFieldModel.placeHolder, text: Binding(
-             get: { "\(viewModel.currentValue)" },
-             set: { newValue in
-             if let intValue = Int(newValue) {
-             viewModel.currentValue = intValue
-             }
-             }
-             ))
-             .padding(8)
-             .frame(height: 45)
-             .background(Color(.systemGray6))
-             .cornerRadius(10)
-             .keyboardType(.numberPad)
-             .focused($isTextFieldFocused)
-
-             .padding(.horizontal)
-             */
             /// Stepper
             if viewModel.numberFieldModel.step! != 0 {
                 StepperNumberFieldView(viewModel: viewModel, isTextFieldFocused: $isTextFieldFocused)
