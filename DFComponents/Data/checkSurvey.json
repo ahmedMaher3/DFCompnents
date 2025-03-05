@@ -327,7 +327,7 @@
                         "hidden": false,
                         "disabled": false,
                         "labelPosition": "Top",
-                        "label": "What's your age ?",
+                        "label": "What's your age?",
                         "sublabel": "Number",
                         "tooltip": "",
                         "localization": {}

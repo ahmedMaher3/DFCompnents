@@ -83,14 +83,9 @@ struct FooterComponentView<ContentFooter: View>: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            if let note = footerControlBaseProperties().addNote,
-               note == true {
-                Text("AddNote")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-            }
+        HStack(spacing: 4) {
             content()
         }
+        .padding(4)
     }
 }

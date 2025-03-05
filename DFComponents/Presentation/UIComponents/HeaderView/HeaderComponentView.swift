@@ -50,7 +50,7 @@ struct HeaderComponentView<BaseComponentProperties: BasePropertiesProtocol>: Vie
                                .foregroundStyle(.gray)
 
                            Text(tooltip)
-                               .font(.system(size: 18))
+                               .font(.system(size: 20))
                                .foregroundStyle(.gray)
                                .offset(y: 5) // Moves only the tooltip text downward
                        }

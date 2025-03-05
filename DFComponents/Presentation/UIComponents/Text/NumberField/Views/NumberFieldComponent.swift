@@ -34,6 +34,7 @@ struct NumberFieldComponent: View {
                    footerControlBaseProperties: { interactiveProperties },
                     content: {
                         Text(interactiveProperties.addNote == true ? "Note": "")
+                        Text(interactiveProperties.addAttachment == true ? "|| Attachment": "")
                     }
                 )
             }

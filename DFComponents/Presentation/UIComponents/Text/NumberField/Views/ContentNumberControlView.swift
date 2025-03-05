@@ -16,9 +16,13 @@ struct ContentNumberControlView: View {
         ZStack {
             TextField(viewModel.numberFieldModel.placeHolder, text: $text)
                 .padding(8)
-                .frame(height: 40)
-                .background(Color(.systemGray6))
-                .cornerRadius(10)
+                .frame(height: 48)
+                .cornerRadius(4)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(Color.gray, lineWidth: 0.5)
+                )
+                .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))
                 .keyboardType(.numberPad)
                 .focused($isTextFieldFocused)
                 .onChange(of: text) { _, newValue in
