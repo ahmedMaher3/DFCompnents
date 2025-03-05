@@ -73,6 +73,7 @@ struct InteractiveField: InteractiveFieldProtocol {
         self.type = field.type
         self.fieldId = field.id
         self.label = field.properties.label
+        self.sublabel = field.properties.subLabel
         self.parentId = field.parentId
         self.index = 0
         self.isError = false

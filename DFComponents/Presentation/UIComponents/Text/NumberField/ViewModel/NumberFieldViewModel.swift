@@ -21,9 +21,10 @@ final class NumberFieldViewModel: ObservableObject {
         self.baseProperties = BaseProperties(
             label: numberFieldModel.label,
             subLabel: numberFieldModel.sublabel,
-            labelPosition: "", // Default or dynamic value
+            labelPosition: numberFieldModel.interactiveProperties?.labelPosition,
             tooltip: numberFieldModel.tooltip,
-            hidden: numberFieldModel.hidden)
+            hidden: numberFieldModel.hidden,
+            required: numberFieldModel.required)
         self.interactiveProperties = numberFieldModel.numberBase
     }
 

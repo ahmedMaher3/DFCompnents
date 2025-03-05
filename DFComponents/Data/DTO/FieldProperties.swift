@@ -13,6 +13,7 @@ protocol BasePropertiesProtocol: Codable {
     var labelPosition: String? { get }
     var tooltip: String? { get }
     var hidden: Bool? { get set }
+    var required: Bool? { get }
 }
 
 struct BaseProperties: BasePropertiesProtocol {
@@ -21,9 +22,11 @@ struct BaseProperties: BasePropertiesProtocol {
     var labelPosition: String?
     var tooltip: String?
     var hidden: Bool?
-    
+    var required: Bool?
+
     enum CodingKeys: String, CodingKey {
-        case label, tooltip, hidden
+        //label,
+        case  tooltip, hidden, required
         case subLabel = "sublabel"
         case labelPosition
     }
