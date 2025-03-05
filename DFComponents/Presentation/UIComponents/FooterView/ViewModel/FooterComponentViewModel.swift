@@ -14,10 +14,17 @@ import Foundation
  }
  }
  */
-final class FooterComponentViewModel<T: InteractivePropertiesProtocol>: ObservableObject {
-    @Published var interactiveBaseProperties: T
+//final class FooterComponentViewModel<T: InteractivePropertiesProtocol>: ObservableObject {
+//    @Published var interactiveBaseProperties: T
+//
+//    init(interactiveBaseProperties: T) {
+//        self.interactiveBaseProperties = interactiveBaseProperties
+//    }
+//}
+final class FooterComponentViewModel: ObservableObject {
+    @Published var interactiveBaseProperties: InteractiveField
 
-    init(interactiveBaseProperties: T) {
+    init(interactiveBaseProperties: InteractiveField) {
         self.interactiveBaseProperties = interactiveBaseProperties
     }
 }

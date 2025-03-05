@@ -13,7 +13,7 @@ final class NumberFieldViewModel: ObservableObject {
     @Published var currentValue: Int
 
     var baseProperties: BaseProperties?
-    var interactiveProperties: NumberBaseProperties?
+    var interactiveProperties: NumberBase?
 
     init(numberFieldModel: NumberFieldModel) {
         self.numberFieldModel = numberFieldModel
@@ -26,7 +26,7 @@ final class NumberFieldViewModel: ObservableObject {
             hidden: numberFieldModel.hidden
         )
         if let properties = numberFieldModel.interactiveProperties {
-            self.interactiveProperties = properties
+            self.interactiveProperties = numberFieldModel.numberBase
         }
     }
 
