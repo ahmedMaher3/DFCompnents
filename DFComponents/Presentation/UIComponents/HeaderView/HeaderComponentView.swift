@@ -6,22 +6,6 @@
 //
 
 import SwiftUI
-/*
- struct HeaderComponentView: View {
- /// BaseProperties
- @StateObject var viewModel: HeaderComponentViewModel
- init(viewModel: HeaderComponentViewModel) {
- _viewModel = StateObject(wrappedValue: viewModel)
- }
- var body: some View {
- Text("Hello, World!")
- }
- }
-
- #Preview {
- HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: BaseProperties()))
- }
- */
 struct HeaderComponentView<BaseComponentProperties: BasePropertiesProtocol>: View {
     /// BaseProperties
     @ObservedObject var viewModel: HeaderComponentViewModel<BaseComponentProperties>
