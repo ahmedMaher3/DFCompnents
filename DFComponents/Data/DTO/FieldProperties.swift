@@ -93,7 +93,22 @@ struct TextBoxProperties: TextBaseProperties {
     let regex: String?
     let subType: TextBoxSubType?
 }
-
+struct NumberComponentProperties: NumberBaseProperties {
+    var step: Int?
+    var decimalPlaces: Int?
+    var required: Bool?
+    var placeholder: String?
+    var addAttachment: Bool?
+    var addNote: Bool?
+    var attachmentExtensions: String?
+    var attachmentType: AttachmentType?
+    var disabled: Bool?
+    var label: String?
+    var subLabel: String?
+    var labelPosition: String?
+    var tooltip: String?
+    var hidden: Bool?
+}
 struct RadioProperties: MCQPropertiesProtocol {
     let options: [MCQOption]
     let defaultAnswer: BaseAnswerMCQ?

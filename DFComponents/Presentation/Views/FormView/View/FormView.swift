@@ -83,11 +83,9 @@ struct fieldsListView: View {
     @ObservedObject var viewModel: FormViewModel  // ObservedObject prevents unnecessary re-renders
 
     var body: some View {
-//        ForEach(viewModel.fields, id: \.id) { field in
-//            renderField(for: field)
-//        }
-//        NumberComponent()
-         NumberComponent()
+        ForEach(viewModel.fields, id: \.id) { field in
+            renderField(for: field)
+        }
     }
 
     @ViewBuilder
@@ -106,16 +104,16 @@ struct fieldsListView: View {
                         .removeDuplicates()
                 ) { newOptions in
                     print("Updated options: \(newOptions)")
-                    // Call update in ViewModel to apply rules
+                    // Call update in ViewModel to apply rule
                     viewModel.applyFieldRules(by: field.id)
                 }
             case .textBox((_, let textBoxViewModel)):
-                ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
+                ControlFormBuilderView(titleControl: textBoxViewModel.control.label) {
                     TextBoxComponent(viewModel: textBoxViewModel)
                 }
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
             case .number((_, let numberViewModel)):
-                ControlFormBuilderView(titleControl: numberViewModel.numberFieldModel.label) {
+                ControlFormBuilderView(titleControl: numberViewModel.numberFieldModel.type.rawValue) {
                     NumberFieldComponent(viewModel: numberViewModel)
                 }
         }

@@ -30,6 +30,7 @@ final class LocalFormRepository: FormBuildRepository {
                    // let formEntity = FormEntity(apiResponse.data.schema)
                     continuation.resume(returning: schema)
                 } catch {
+                    print("bi7asl ah hana:\(error)")
                     continuation.resume(throwing: error)
                 }
             }

@@ -36,7 +36,7 @@ struct StepperNumberFieldView: View {
                         isTextFieldFocused = false
                     }
             }
-            .padding(.trailing, 10)
+            .padding(8)
             .background(Color.clear)
         }
         .frame(maxWidth: .infinity, alignment: .trailing)

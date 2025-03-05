@@ -16,10 +16,29 @@ struct NumberFieldComponent: View {
     }
 
     var body: some View {
-        ///HeaderView
-        ///Content Control
-        ContentNumberControlView(viewModel: viewModel)
-        ///FooterView
+        VStack(alignment: .leading, spacing: 0) {
+            /// Header View
+            HeaderComponentView(
+                viewModel: HeaderComponentViewModel(
+                    baseProperties: viewModel.baseProperties!
+                )
+            )
+            .padding(.bottom, 8)
+            
+            ///Content Control & Contain Warning
+            ContentNumberControlView(viewModel: viewModel)
+
+            /// Footer View
+            if let interactiveProperties = viewModel.interactiveProperties {
+                FooterComponentView(
+                   footerControlBaseProperties: { interactiveProperties },
+                    content: {
+                        Text(interactiveProperties.addNote == true ? "Note": "")
+                    }
+                )
+            }
+        }
+
+
     }
 }
-

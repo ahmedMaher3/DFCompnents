@@ -7,7 +7,6 @@
 
 import SwiftUI
 struct ControlFormBuilderView<Control: View>: View  {
-
     let titleControl: String
     let control: () -> Control
 

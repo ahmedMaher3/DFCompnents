@@ -15,24 +15,49 @@ struct ContentNumberControlView: View {
     var body: some View {
         ZStack {
             TextField(viewModel.numberFieldModel.placeHolder, text: $text)
-                .padding(.leading, 10)
+                .padding(8)
                 .frame(height: 40)
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .keyboardType(.numberPad)
-                .focused($isTextFieldFocused) // Attach focus state
-                .onChange(of: viewModel.numberFieldModel.step) { _, newValue in
-                    text = "\(newValue ?? 0)"
+                .focused($isTextFieldFocused)
+                .onChange(of: text) { _, newValue in
+                    if let intValue = Int(newValue) {
+                        viewModel.currentValue = intValue
+                    }
                 }
-                .padding(.horizontal)
+                .onChange(of: viewModel.currentValue) { _, newValue in
+                    text = "\(newValue)"
+                }
+                .onAppear {
+                    text = "\(viewModel.currentValue)"
+                }
+            /*
+             TextField(viewModel.numberFieldModel.placeHolder, text: Binding(
+             get: { "\(viewModel.currentValue)" },
+             set: { newValue in
+             if let intValue = Int(newValue) {
+             viewModel.currentValue = intValue
+             }
+             }
+             ))
+             .padding(8)
+             .frame(height: 45)
+             .background(Color(.systemGray6))
+             .cornerRadius(10)
+             .keyboardType(.numberPad)
+             .focused($isTextFieldFocused)
+
+             .padding(.horizontal)
+             */
             /// Stepper
             if viewModel.numberFieldModel.step! != 0 {
                 StepperNumberFieldView(viewModel: viewModel, isTextFieldFocused: $isTextFieldFocused)
-                    .allowsHitTesting(true)
             } else {
                 EmptyView()
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

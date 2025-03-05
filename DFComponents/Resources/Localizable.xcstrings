@@ -23,6 +23,9 @@
     "100" : {
 
     },
+    "AddNote" : {
+
+    },
     "Cancel" : {
 
     },
@@ -48,9 +51,6 @@
 
     },
     "Enter text" : {
-
-    },
-    "Ex 123" : {
 
     },
     "File Name: %@" : {
@@ -91,7 +91,7 @@
     "Huge List" : {
 
     },
-    "Increase Stepper" : {
+    "ⓘ" : {
 
     },
     "InputFieldComponent" : {
@@ -110,6 +110,9 @@
 
     },
     "Lower: %.2f" : {
+
+    },
+    "Note" : {
 
     },
     "Pick a File" : {

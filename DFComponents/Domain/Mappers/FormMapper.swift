@@ -31,7 +31,10 @@ class FormMapper: EntityMapper {
                 case .radio:
                     let control = RadioButtonField(field: field)
                     return .radio((control, RadioButtonViewModel(control: control)))
+                case .number:
+                    let control = NumberFieldModel(field: field)
 
+                    return .number((control, NumberFieldViewModel(numberFieldModel: control)))
                 default:
                     return nil
             }

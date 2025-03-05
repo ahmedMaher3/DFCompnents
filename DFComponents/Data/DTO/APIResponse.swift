@@ -23,7 +23,7 @@ struct Schema: Decodable {
     let properties: SchemaProperties
     let warnings: Warnings
     let fields: [Field]
-    let rules: [Rule]
+    let rules: [Rule]?
 }
 
 struct SchemaProperties: Codable {
@@ -87,11 +87,11 @@ struct Field: Codable {
     let order: String
     var properties: BasePropertiesProtocol
     let rules: FieldRules?
-    
+
     enum CodingKeys: String, CodingKey {
         case id, templateQuestionId, parentId, type, order, rules, properties
     }
-    
+
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(String.self, forKey: .id)
@@ -100,20 +100,22 @@ struct Field: Codable {
         self.type = try container.decode(FieldType.self, forKey: .type)
         self.order = try container.decode(String.self, forKey: .order)
         self.rules = try container.decodeIfPresent(FieldRules.self, forKey: .rules)
-        
+
         switch self.type {
-        case .textBox:
-            properties = try container.decode(TextBoxProperties.self, forKey: .properties)
-        case .radio:
-            properties = try container.decode(RadioProperties.self, forKey: .properties)
-        default:
-            properties = try container.decode(BaseProperties.self, forKey: .properties)
+            case .textBox:
+                properties = try container.decode(TextBoxProperties.self, forKey: .properties)
+            case .radio:
+                properties = try container.decode(RadioProperties.self, forKey: .properties)
+            case .number:
+                properties = try container.decode(NumberComponentProperties.self, forKey: .properties)
+            default:
+                properties = try container.decode(BaseProperties.self, forKey: .properties)
         }
     }
-    
+
     func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         try container.encode(id, forKey: .id)
         try container.encode(templateQuestionId, forKey: .templateQuestionId)
         try container.encode(parentId, forKey: .parentId)
@@ -127,7 +129,7 @@ struct Field: Codable {
 enum FieldType: String, Codable {
     case page = "Page"
     case textBox = "TextBox"
-    case number = "number"
+    case number = "Number"
     case dateTime = "datetime"
     case dropDown = "dropdown"
     case radio = "Radio"

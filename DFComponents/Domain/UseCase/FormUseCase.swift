@@ -30,7 +30,7 @@ class FormBuildUseCase: FormBuildUseCaseProtocol {
             let response = try await repository.fetchForm()
             let controls = map(dto: response)
             let warnings = map(dto: response.warnings) // Map warnings
-            return FormEntity(fields: controls, rules: response.rules, warnings: warnings)
+            return FormEntity(fields: controls, rules: response.rules ?? [], warnings: warnings)
             //            return FormEntity(fields: controls, rules: response.rules)
         }
         catch let error as NSError {

@@ -3,8 +3,136 @@
     "errors": null,
     "data": {
         "schema": {
-            "id": "76e7e79e-16be-42b1-9d54-59608c5516d2",
-            "lastAppliedEventId": "5a998930-fbfb-4bae-87b6-d5325d9af4de",
+            "id": "0b58a4bd-ae01-430d-987e-208225a2cfe5",
+            "lastAppliedEventId": "2e4c239c-7c34-4cac-a83e-71380c7f560e",
+            "theme": {
+                "id": "1860dc6d-e725-4829-a3a1-82d09d89213d",
+                "name": "Default Theme",
+                "style": {
+                    "form": {
+                        "backgroundColor": "#FAFBFC",
+                        "backgroundImage": "",
+                        "fontFamily": "Rubik"
+                    },
+                    "campaign": {
+                        "style": {
+                            "borderColor": "#EFF3F6",
+                            "backgroundColor": "#FFFFFF"
+                        },
+                        "headText": {
+                            "color": "#173E67",
+                            "fontSize": "24px",
+                            "fontWeight": "Medium"
+                        },
+                        "description": {
+                            "color": "#9EB3C2",
+                            "fontSize": "14px",
+                            "fontWeight": "Normal"
+                        },
+                        "actionColor": "#5989EF"
+                    },
+                    "page": {
+                        "backgroundImage": "",
+                        "backgroundColor": "#F5F9FE",
+                        "borderColor": "#EFF3F6"
+                    },
+                    "section": {
+                        "header": {
+                            "borderColor": "#D0D9E2",
+                            "backgroundColor": "#FFFFFF"
+                        },
+                        "body": {
+                            "borderColor": "#D0D9E2",
+                            "backgroundColor": "#EEF4FC"
+                        },
+                        "text": {
+                            "color": "#173E67",
+                            "fontSize": "16px",
+                            "fontWeight": "Medium"
+                        }
+                    },
+                    "question": {
+                        "style": {
+                            "borderColor": "#D0D9E2",
+                            "backgroundColor": "#FFFFFF"
+                        },
+                        "questionText": {
+                            "color": "#173E67",
+                            "fontSize": "16px",
+                            "fontWeight": "Medium"
+                        },
+                        "subLabelText": {
+                            "color": "#173E67",
+                            "fontSize": "12px",
+                            "fontWeight": "Normal"
+                        },
+                        "input": {
+                            "color": "#173E67",
+                            "fontSize": "14px",
+                            "fontWeight": "Normal",
+                            "borderColor": "#D0D9E2",
+                            "backgroundColor": "#FFFFFF"
+                        },
+                        "actionColor": "#5989EF"
+                    },
+                    "buttonsCard": {
+                        "card": {
+                            "borderColor": "#EFF3F6",
+                            "backgroundColor": "#FFFFFF"
+                        },
+                        "primaryButton": {
+                            "color": "#FFFFFF",
+                            "fontSize": "14px",
+                            "fontWeight": "Medium",
+                            "borderColor": null,
+                            "backgroundColor": "#29CC8B"
+                        },
+                        "secondaryButton": {
+                            "color": "#173E67",
+                            "fontSize": "14px",
+                            "fontWeight": "Medium",
+                            "borderColor": null,
+                            "backgroundColor": "#A2B2C2"
+                        }
+                    }
+                }
+            },
+            "metadata": {
+                "title": "Numeric Control ES",
+                "type": "Survey",
+                "status": "Active",
+                "templateId": null,
+                "identifier": "dy7mypGX/COyY7DgqO7"
+            },
+            "settings": {
+                "format": "Classic",
+                "enableScoreCalculation": true,
+                "enableViewResults": true,
+                "enablePageValidation": true,
+                "enableFormExpiration": false,
+                "formExpirationType": "DisableOnDate",
+                "expirationDate": null,
+                "expirationSubmissionLimit": null,
+                "defaultLanguage": null,
+                "languages": null,
+                "enableMultipleSubmissions": true,
+                "enableAnonymousResponses": false,
+                "sessionDuration": null,
+                "enableFormStartDate": false,
+                "startDate": null,
+                "sessionType": "MultipleSession",
+                "advancedSettings": {
+                    "password": null,
+                    "enableCaptcha": false
+                }
+            },
+            "accessSettings": {
+                "submissionAccessType": "PublicAccess",
+                "submissionActionType": "SubmitAndViewLater",
+                "allowedUsers": null,
+                "allowedDomains": null,
+                "privateAccessSettings": null
+            },
             "properties": {
                 "localization": {},
                 "submit": "",
@@ -76,42 +204,118 @@
                 },
                 "localization": {}
             },
+            "campaign": {
+                "header": {
+                    "logo": "",
+                    "title": "",
+                    "description": "",
+                    "showQuestionsCount": false,
+                    "localization": {}
+                },
+                "footer": {
+                    "logo": "",
+                    "title": "",
+                    "description": "",
+                    "showQuestionsCount": false,
+                    "localization": {}
+                },
+                "welcome": {
+                    "logo": "",
+                    "title": "",
+                    "description": "",
+                    "showQuestionsCount": false,
+                    "localization": {}
+                },
+                "submission": {
+                    "submissionType": "SubmissionMessage",
+                    "submissionUrl": "",
+                    "logo": "",
+                    "title": "",
+                    "description": "",
+                    "showQuestionsCount": false,
+                    "localization": {}
+                }
+            },
             "fields": [
                 {
                     "weight": {
-                        "options": null,
+                        "criteria": null,
                         "value": 0
                     },
-                    "id": "cf6c2b5c-3dec-4222-9ceb-ac958c5bb24f",
+                    "id": "7d1f5868-1250-4842-a074-e327812b954c",
                     "templateQuestionId": null,
-                    "type": "Radio",
-                    "parentId": "c9477141-cb5e-494b-9434-a2b1a6b0b3f1",
-                    "order": "Zz",
+                    "type": "TextBox",
+                    "parentId": "c985a6d4-3a4e-4fa8-b949-cf9560c3ed6f",
+                    "order": "a0",
                     "properties": {
-                        "options": [
-                            {
-                                "id": "ef3aeae1-4710-49fa-9a3a-5648f3de1e35",
-                                "name": "Show"
-                            },
-                            {
-                                "id": "40be73a5-ae69-4480-af83-fdca85c08152",
-                                "name": "Hide"
-                            }
-                        ],
-                        "predefinedOptionsId": null,
-                        "shuffleOptions": false,
-                        "otherOption": false,
-                        "otherOptionText": null,
-                        "naOption": false,
-                        "naOptionText": null,
-                        "required": false,
+                        "mask": "",
+                        "regex": "",
+                        "subType": "Numeric",
+                        "prefix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "suffix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "autoComplete": false,
+                        "allowSpellCheck": false,
+                        "textCase": "Mixed",
+                        "entryLimit": "Character",
+                        "minimumLength": null,
+                        "maximumLength": null,
+                        "required": true,
                         "unique": null,
                         "addAttachment": false,
                         "addNote": false,
                         "defaultAnswer": {
-                            "value": null,
-                            "otherAnswer": null,
-                            "type": "Radio",
+                            "prefix": null,
+                            "suffix": null,
+                            "value": "",
+                            "type": "TextBox",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "age",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "What's your age ?",
+                        "sublabel": "Input Field SubType (Numeric)",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "criteria": null,
+                        "value": 0
+                    },
+                    "id": "66742560-71f6-427c-a04d-8a570ca8c2e1",
+                    "templateQuestionId": null,
+                    "type": "Number",
+                    "parentId": "c985a6d4-3a4e-4fa8-b949-cf9560c3ed6f",
+                    "order": "a1",
+                    "properties": {
+                        "decimalPlaces": 3,
+                        "step": 4,
+                        "minimumValue": null,
+                        "maximumValue": 100.0,
+                        "minimumDigits": null,
+                        "maximumDigits": null,
+                        "required": true,
+                        "unique": null,
+                        "addAttachment": false,
+                        "addNote": false,
+                        "defaultAnswer": {
+                            "value": 1.0,
+                            "type": "Number",
                             "note": "",
                             "score": null,
                             "attachments": null
@@ -123,108 +327,38 @@
                         "hidden": false,
                         "disabled": false,
                         "labelPosition": "Top",
-                        "label": "Do you want to show or hide Textbox?",
-                        "sublabel": "This is a sub label for the MCQ",
+                        "label": "What's your age ?",
+                        "sublabel": "Number",
                         "tooltip": "",
                         "localization": {}
                     },
-                    "rules": {
-                        "effectIn": [
-                            "39f2c380-de28-4ae8-886c-db85185736b3"
-                        ],
-                        "dependOn": []
-                    }
-                },
-                {
-                    "weight": {
-                        "criteria": null,
-                        "value": 0
-                    },
-                    "id": "3fc04705-996f-44cc-82fc-60cb16d53a63",
-                    "templateQuestionId": null,
-                    "type": "TextBox",
-                    "parentId": "c9477141-cb5e-494b-9434-a2b1a6b0b3f1",
-                    "order": "a0",
-                    "properties": {
-                        "mask": "",
-                        "regex": "",
-                        "subType": "Any",
-                        "prefix": {
-                            "display": "None",
-                            "value": ""
-                        },
-                        "suffix": {
-                            "display": "None",
-                            "value": ""
-                        },
-                        "autoComplete": true,
-                        "allowSpellCheck": true,
-                        "textCase": "Mixed",
-                        "entryLimit": "Word",
-                        "minimumLength": 2,
-                        "maximumLength": 5,
-                        "required": false,
-                        "unique": null,
-                        "addAttachment": false,
-                        "addNote": false,
-                        "defaultAnswer": {
-                            "prefix": null,
-                            "suffix": null,
-                            "value": "default answwer for input field",
-                            "type": "TextBox",
-                            "note": "",
-                            "score": null,
-                            "attachments": null
-                        },
-                        "placeholder": "Name placeholder",
-                        "attachmentType": null,
-                        "attachmentExtensions": null,
-                        "maxAttachmentsNumber": null,
-                        "hidden": false,
-                        "disabled": false,
-                        "labelPosition": "Top",
-                        "label": "What is your name?",
-                        "sublabel": "Sublabel for Textbox",
-                        "tooltip": "",
-                        "localization": {}
-                    },
-                    "rules": {
-                        "effectIn": [],
-                        "dependOn": [
-                            "39f2c380-de28-4ae8-886c-db85185736b3"
-                        ]
-                    }
+                    "rules": null
                 }
             ],
-            "rules": [
-                {
-                    "id": "39f2c380-de28-4ae8-886c-db85185736b3",
-                    "disabled": false,
-                    "operation": "Any",
-                    "ifConditions": [
-                        {
-                            "fieldId": "cf6c2b5c-3dec-4222-9ceb-ac958c5bb24f",
-                            "fieldState": "Include",
-                            "target": "Value",
-                            "value": "ef3aeae1-4710-49fa-9a3a-5648f3de1e35",
-                            "quota": 0
-                        }
-                    ],
-                    "doActions": [
-                        {
-                            "type": "Show",
-                            "sourceFieldsIds": null,
-                            "targetFieldsIds": [
-                                "3fc04705-996f-44cc-82fc-60cb16d53a63"
-                            ],
-                            "expression": null,
-                            "actionImpact": "Field"
-                        }
-                    ],
-                    "actionsCategory": "Show",
-                    "isValid": true
-                }
-            ]
+            "rules": null,
+            "emailSettings": {
+                "notifications": null,
+                "autoResponders": null,
+                "senderEmails": [
+                    {
+                        "id": "00000000-0000-0000-0000-000000000001",
+                        "emailAddress": " check@youxel.com",
+                        "hostName": null,
+                        "userName": "Check",
+                        "password": null,
+                        "port": 0,
+                        "securityType": 0
+                    }
+                ]
+            }
+        },
+        "publishInfo": {
+            "lastPublishedVersionId": null,
+            "publishedEventId": null,
+            "pendingVersionId": null,
+            "pendingEventId": null,
+            "isPublished": false
         }
     }
 }
+
