@@ -17,9 +17,7 @@ struct FooterComponentView<ContentFooter: View>: View {
     }
 
     var body: some View {
-        HStack(spacing: 4) {
-            content()
-        }
-        .padding(4)
+        content()
+            .padding(4)
     }
 }
