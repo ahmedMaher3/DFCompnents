@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+/*
 struct RulesControlsView: View {
     @EnvironmentObject var viewModel: RulesControlsViewModel
     @EnvironmentObject var styleManagerVM: StyleManagerViewModel
@@ -67,3 +67,4 @@ struct RulesControlsView: View {
         .environmentObject(RulesControlsViewModel())
 }
 
+*/

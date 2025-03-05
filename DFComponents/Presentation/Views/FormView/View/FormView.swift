@@ -92,8 +92,12 @@ struct fieldsListView: View {
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
             case .radio ((_, let radioViewModel)):
-                ControlFormBuilderView(titleControl: radioViewModel.control.label) {
+                ControlFormBuilderView {
+                    EmptyView()
+                } controlType: {
                     RadioButtonView(radioButtonVM: radioViewModel)
+                } footerView: {
+                    EmptyView()
                 }
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
                 .onReceive(
@@ -108,14 +112,58 @@ struct fieldsListView: View {
                     viewModel.applyFieldRules(by: field.id)
                 }
             case .textBox((_, let textBoxViewModel)):
-                ControlFormBuilderView(titleControl: textBoxViewModel.control.label) {
+                ControlFormBuilderView {
+                    EmptyView()
+                } controlType: {
                     TextBoxComponent(viewModel: textBoxViewModel)
+                } footerView: {
+                    EmptyView()
                 }
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
             case .number((_, let numberViewModel)):
-                ControlFormBuilderView(titleControl: numberViewModel.numberFieldModel.type.rawValue) {
+                ControlFormBuilderView {
+                    ///HeaderView
+                    HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.baseProperties!)) {
+                        HStack(alignment: .firstTextBaseline, spacing: 4) {
+                            if let label = numberViewModel.baseProperties?.label {
+                                Text(label)
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                            }
+                            if let subLabel = numberViewModel.baseProperties?.subLabel {
+                                Text(subLabel)
+                                    .font(.subheadline)
+                                    .foregroundStyle(.red)
+                            }
+                            if let tooltip = numberViewModel.baseProperties?.tooltip {
+                                HStack {
+                                    Text("ⓘ")
+                                        .font(.system(size: 18))
+                                        .foregroundStyle(.gray)
+
+                                    Text(tooltip)
+                                        .font(.system(size: 20))
+                                        .foregroundStyle(.gray)
+                                        .offset(y: 5)
+                                }
+                            }
+                        }
+                    }
+                    .padding(.bottom, 8)
+                } controlType: {
+                    ///Control
                     NumberFieldComponent(viewModel: numberViewModel)
+                } footerView: {
+                    ///FooterView
+                    if let interactiveProperties = numberViewModel.interactiveProperties {
+                        FooterComponentView(viewModel: FooterComponentViewModel(interactiveBaseProperties: numberViewModel.interactiveProperties!.base)) {
+                            HStack {
+                                Text(interactiveProperties.addNote == true ? "Note": "")
+                                Text(interactiveProperties.addAttachment == true ? "|| Attachment": "")
+                        }
+                    }
                 }
+            }
         }
     }
 }

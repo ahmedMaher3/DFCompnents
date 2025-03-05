@@ -6,28 +6,28 @@
 //
 
 import SwiftUI
-struct ControlFormBuilderView<Control: View>: View  {
-    let titleControl: String
-    let control: () -> Control
-
-    //MARK: - inilize control
-    init(titleControl: String, @ViewBuilder controlType: @escaping () -> Control) {
-        self.titleControl = titleControl
-        self.control = controlType
-    }
-
-    var body: some View {
-        LazyVStack(alignment: .leading, spacing: 8) {
-            Text(titleControl)
-                .fontWeight(.bold)
-                .font(.system(size: 20))
-            ///HeaderView
-            ///Control
-            control()
-            ///FooterView
-        }
-    }
-}
+//struct ControlFormBuilderView<Control: View>: View  {
+//    let titleControl: String
+//    let control: () -> Control
+//
+//    //MARK: - inilize control
+//    init(titleControl: String, @ViewBuilder controlType: @escaping () -> Control) {
+//        self.titleControl = titleControl
+//        self.control = controlType
+//    }
+//
+//    var body: some View {
+//        LazyVStack(alignment: .leading, spacing: 8) {
+//            Text(titleControl)
+//                .fontWeight(.bold)
+//                .font(.system(size: 20))
+//            ///HeaderView
+//            ///Control
+//            control()
+//            ///FooterView
+//        }
+//    }
+//}
 
 //struct ControlFormBuilderView<Control: View>: View {
 //
@@ -49,3 +49,31 @@ struct ControlFormBuilderView<Control: View>: View  {
 //        }
 //    }
 //}
+struct ControlFormBuilderView<Control: View, Header: View, Footer: View>: View {
+    let headerView: (() -> Header)?
+    let control: () -> Control
+    let footerView: (() -> Footer)?
+
+    init(
+        @ViewBuilder headerView: @escaping () -> Header,
+        @ViewBuilder controlType: @escaping () -> Control,
+        @ViewBuilder footerView: @escaping () -> Footer
+    ) {
+        self.headerView = headerView
+        self.control = controlType
+        self.footerView = footerView
+    }
+
+    var body: some View {
+        LazyVStack(alignment: .leading, spacing: 8) {
+            /// Header View (only shown if provided)
+            headerView?()
+
+            /// Control
+            control()
+
+            /// Footer View (only shown if provided)
+            footerView?()
+        }
+    }
+}
