@@ -115,7 +115,7 @@ struct FieldsListView: View {
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                         set: { newValue in
                             viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil 
+                            ? [newValue!] : nil
                         }
                     )
                 )
@@ -127,13 +127,17 @@ struct FieldsListView: View {
         if let interactiveProperties = interactiveProperties {
             FooterComponentView(viewModel:
                                     FooterComponentViewModel(interactiveBaseProperties: interactiveProperties)) {
-                HStack {
-                    if interactiveProperties.addNote {
-                        Text("Note")
+                if interactiveProperties.addNote || interactiveProperties.addAttachment {
+                    HStack {
+                        if interactiveProperties.addNote {
+                            Text("Note")
+                        }
+                        if interactiveProperties.addAttachment {
+                            Text("|| Attachment")
+                        }
                     }
-                    if interactiveProperties.addAttachment {
-                        Text("|| Attachment")
-                    }
+                } else {
+                    EmptyView()
                 }
             }
         } else {

@@ -55,7 +55,8 @@ class FormViewModel: ObservableObject {
         guard let warnings else { return }
         var fieldWarnings: [String] = []
 
-        if checkValueIsEmpty(value: value), let requiredWarning = warnings.fieldValidation.required {
+        if checkValueIsEmpty(value: value),
+           let requiredWarning = warnings.fieldValidation.required {
             fieldWarnings.append(requiredWarning)
         }
 
@@ -82,7 +83,7 @@ class FormViewModel: ObservableObject {
             case let stringValue as String:
                 return stringValue.isEmpty
             default:
-                return false 
+                return false
         }
     }
 }

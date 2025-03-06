@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ControlFormBuilderView<Control: View, Header: View, Footer: View>: View {
+struct ControlFormBuilderView<Header: View, Control: View, Footer: View>: View {
     let headerView: (() -> Header)?
     let control: () -> Control
     let footerView: (() -> Footer)?
@@ -25,16 +25,16 @@ struct ControlFormBuilderView<Control: View, Header: View, Footer: View>: View {
 
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 8) {
-            /// Header View (only shown if provided)
+            /// Header View
             headerView?()
             /// Control
             control()
+            /// Footer View
+            footerView?()
             /// Warning Card (only if there's a warning)
             if let warning = warningMessage, !warning.isEmpty {
                 WarningCardView(message: warning)
             }
-            /// Footer View (only shown if provided)
-            footerView?()
         }
     }
 }
