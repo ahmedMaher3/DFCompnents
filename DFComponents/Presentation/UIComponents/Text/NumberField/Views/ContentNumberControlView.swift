@@ -20,21 +20,33 @@ struct ContentNumberControlView: View {
                 .cornerRadius(4)
                 .overlay(
                     RoundedRectangle(cornerRadius: 4)
-                        .stroke(Color.gray, lineWidth: 0.5)
+                        .stroke(viewModel.interactiveProperties?.isError ?? false
+                                ? .red : .gray, lineWidth: 0.5)
                 )
                 .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))
                 .keyboardType(.numberPad)
                 .focused($isTextFieldFocused)
                 .onChange(of: text) { _, newValue in
-                    if let intValue = Int(newValue) {
-                        viewModel.currentValue = intValue
+                    if newValue.allSatisfy({ $0.isNumber || $0.isLetter }) {
+                        viewModel.numberFieldModel.isError = false
+                        viewModel.inputValue = newValue
+                    } else {
+                        viewModel.numberFieldModel.isError = true
                     }
                 }
-                .onChange(of: viewModel.currentValue) { _, newValue in
+                .onChange(of: text) { _, newValue in
+                    if newValue.rangeOfCharacter(from: .letters) != nil {
+                        viewModel.numberFieldModel.isError = true
+                    } else {
+                        viewModel.numberFieldModel.isError = false
+                        viewModel.inputValue = newValue
+                    }
+                }
+                .onChange(of: viewModel.inputValue) { _, newValue in
                     text = "\(newValue)"
                 }
                 .onAppear {
-                    text = "\(viewModel.currentValue)"
+                    text = "\(viewModel.inputValue)"
                 }
             /// Stepper
             if viewModel.numberFieldModel.step! != 0 {

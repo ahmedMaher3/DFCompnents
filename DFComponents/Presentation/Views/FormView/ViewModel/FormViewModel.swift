@@ -7,22 +7,22 @@
 
 import SwiftUI
 
-
 @MainActor
 class FormViewModel: ObservableObject {
 
     @Published var fields: [FieldEntity] = []
+    @Published var rulesImp: RuleImp!
+    @Published var warningsDictionary: [String: [String]] = [:] // Stores warnings by field ID
 
     var formBuildUseCase: FormBuildUseCase = FormBuildUseCase()
     var rules = [Rule]()
     var warnings: WarningsEntity?
-    @Published var rulesImp: RuleImp!
 
     func fetchForm() async {
         do {
             let response =  try await formBuildUseCase.excute()
             fields = response.fields
-            rules = response.rules 
+            rules = response.rules
             warnings = response.warnings
             self.doRules()
         }
@@ -44,12 +44,32 @@ class FormViewModel: ObservableObject {
         }
 
         rulesImp = RuleImp(controls: fields, rules: rules)
-
         rulesImp.handleAllRules()
     }
 
     func applyFieldRules(by id: String) {
-
         rulesImp.getAffectedRules(forControlId: id)
+    }
+
+    func checkingWarning(for fieldId: String, value: String?, isError: Bool) {
+        guard let warnings else { return }
+
+        var fieldWarnings: [String] = []
+        if value?.isEmpty == true {
+            if let requiredWarning = warnings.fieldValidation.required {
+                fieldWarnings.append(requiredWarning)
+            }
+        }
+        if let field = fields.first(where: { $0.id == fieldId }) {
+            switch field {
+                case .textBox((let baseField, _)),
+                        .radio((let baseField, _)),
+                        .number((let baseField, _)):
+                    if let numericWarning = warnings.fieldValidation.input.numeric, isError {
+                        fieldWarnings.append(numericWarning)
+                    }
+                    warningsDictionary[baseField.fieldId] = fieldWarnings
+            }
+        }
     }
 }

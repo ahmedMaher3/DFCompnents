@@ -5,7 +5,7 @@
 //  Created by Eslam on 05/03/2025.
 //
 import SwiftUI
-struct fieldsListView: View {
+struct FieldsListView: View {
     @ObservedObject var viewModel: FormViewModel
 
     var body: some View {
@@ -13,8 +13,7 @@ struct fieldsListView: View {
             renderField(for: field)
         }
     }
-    
-    ///HeaderView
+    /// HeaderView
     @ViewBuilder
     private func renderHeader(for baseProperties: BaseProperties?) -> some View {
         if let baseProperties = baseProperties {
@@ -47,6 +46,7 @@ struct fieldsListView: View {
             EmptyView() // If no header is available
         }
     }
+
     @ViewBuilder
     private func labelView(label: String, baseProperties: BaseProperties) -> some View {
         if baseProperties.required ?? false {
@@ -64,42 +64,66 @@ struct fieldsListView: View {
         }
     }
 
-    ///Controls
+    /// Controls
     @ViewBuilder
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
             case .radio((_, let radioViewModel)):
-                ControlFormBuilderView {
-                    EmptyView()
-                } controlType: {
-                    RadioButtonView(radioButtonVM: radioViewModel)
-                } footerView: {
-                    EmptyView()
+                ControlFormBuilderView(
+                    headerView: { EmptyView() },
+                    controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
+                    footerView: { EmptyView() },
+                    warningMessage: Binding<String?>(
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                        set: { newValue in
+                            viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
+                            ? [newValue!] : nil
+                        }
+                    ))
+                .onAppear {
+                    viewModel.checkingWarning(for: field.id, value: nil, isError: false)
                 }
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
 
             case .textBox((_, let textBoxViewModel)):
-                ControlFormBuilderView {
-                    EmptyView()
-                } controlType: {
-                    TextBoxComponent(viewModel: textBoxViewModel)
-                } footerView: {
-                    EmptyView()
-                }
+                ControlFormBuilderView(
+                    headerView: { EmptyView() },
+                    controlType: {
+                        TextBoxComponent(viewModel: textBoxViewModel)
+                    },
+                    footerView: { EmptyView() },
+                    warningMessage: Binding<String?>(
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                        set: { newValue in
+                            viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
+                            ? [newValue!] : nil
+                        }
+                    )
+                )
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
 
             case .number((_, let numberViewModel)):
-                ControlFormBuilderView {
-                    renderHeader(for: numberViewModel.baseProperties)
-                } controlType: {
-                    NumberFieldComponent(viewModel: numberViewModel)
-                } footerView: {
-                    renderFooter(for: numberViewModel.numberFieldModel.base)
-                }
+                ControlFormBuilderView(
+                    headerView: { renderHeader(for: numberViewModel.baseProperties) },
+                    controlType: {
+                        NumberFieldComponent(viewModel: numberViewModel)
+                            .onReceive(numberViewModel.objectWillChange) { updatedValue in
+                                viewModel.checkingWarning(for: field.id, value: "\(numberViewModel.inputValue)", isError: numberViewModel.interactiveProperties?.isError ?? false)
+                            }
+                    },
+                    footerView: { renderFooter(for: numberViewModel.numberFieldModel.base) },
+                    warningMessage: Binding<String?>(
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                        set: { newValue in
+                            viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
+                            ? [newValue!] : nil 
+                        }
+                    )
+                )
         }
     }
 
-    ///FooterView
+    /// FooterView
     @ViewBuilder
     private func renderFooter(for interactiveProperties: InteractiveField?) -> some View {
         if let interactiveProperties = interactiveProperties {

@@ -5,7 +5,7 @@
 //  Created by Eslam on 03/03/2025.
 //
 struct FieldValidationEntity {
-    let emptyForm, required, maxAttachment: String
+    let emptyForm, required, maxAttachment: String?
     let input: InputValidationEntity
     let number: NumberValidationEntity
     let dateTime: DateTimeValidationEntity

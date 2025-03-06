@@ -23,7 +23,7 @@ struct FormView: View {
                 Text(title.localizedKey)
                 if !viewModel.fields.isEmpty {
                     Form {
-                        fieldsListView(viewModel: viewModel)
+                        FieldsListView(viewModel: viewModel)
                     }
                     .padding()
                     Text(locale.identifier)
