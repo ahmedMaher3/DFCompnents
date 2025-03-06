@@ -22,13 +22,7 @@ struct TextBoxComponent: View {
             VStack(alignment: .leading, spacing: styleManager.innerPadding) {
                 // Title and Subtitle
                 VStack(alignment: .leading, spacing: 2) {
-    //                Text(viewModel.title)
-    //                    .styledText(font: styleManager.titleFont, color: isDisabled ? styleManager.disabledTextColor : styleManager.primaryTextColor)
-    
-    //                if let subtitle = viewModel.subtitle {
-    //                    Text(subtitle)
-    //                        .styledText(font: styleManager.subtitleFont, color: isDisabled ? styleManager.disabledTextColor.opacity(0.7) : styleManager.secondaryTextColor)
-    //                }
+
                 }
                // .padding(.bottom, styleManager.innerPadding)
                 let borderColor = viewModel.hasInteracted ? (viewModel.isValid ? styleManager.borderValidColor : styleManager.errorColor) : styleManager.borderColor

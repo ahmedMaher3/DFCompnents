@@ -10,6 +10,7 @@ import SwiftUI
 struct RadioButtonView: View {
 
     @ObservedObject var radioButtonVM: RadioButtonViewModel
+    @EnvironmentObject var formViewModel: FormViewModel
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -21,7 +22,9 @@ struct RadioButtonView: View {
                     .frame(width: 24, height: 24)
                     .foregroundColor(item.isSelected ?? false ? .blue : .gray)
                     .onTapGesture {
-                        radioButtonVM.selectOption(item)
+
+                       radioButtonVM.selectOption(item)
+                        formViewModel.updateTextBoxValue(fieldId: "91975fe4-40cc-4a4b-9c81-3eb0bed3ddb5", newValue: radioButtonVM.selectedValue)
                     }
                     Text(item.name)
                         .fontWeight(.medium)

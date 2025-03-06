@@ -18,21 +18,17 @@ struct FormView: View {
         NavigationStack {
             VStack {
                 if !viewModel.pages.isEmpty {
-                    //                    Form {
-                    //                        fieldsListView(viewModel: viewModel)
-                    //                    }
-                    //                    .padding()
-                    
                     TabView {
-                        ForEach(self.viewModel.pages.keys.sorted(), id: \.self) { pageId in
-                            if let controls = self.viewModel.pages[pageId] {
-                                PageView(controls: controls, viewModel: self.viewModel)
-                            }
+                        ForEach(self.viewModel.pages, id: \.id) { page in
+                                    PageView(controls: page.fields)
+                                   .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                                   .environmentObject(viewModel)
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                     .padding()
-                    
+
+
                 } else {
                     // Show loading state while form data is being fetched
                     loadingView()
@@ -61,14 +57,17 @@ struct FormView: View {
 
 struct PageView: View {
     var controls: [FieldEntity]
-
-    @ObservedObject var viewModel: FormViewModel
+    @EnvironmentObject var viewModel: FormViewModel
 
     var body: some View {
-        ForEach(viewModel.fields, id: \.id) { field in
-            renderField(for: field)
-        }
-    }
+        VStack(spacing: 20) {
+               ForEach(controls, id: \.id) { field in
+                   renderField(for: field)
+                       .environmentObject(viewModel)
+               }
+           }
+           .padding()
+       }
 
     @ViewBuilder
     private func renderField(for field: FieldEntity) -> some View {
@@ -86,16 +85,16 @@ struct PageView: View {
                     .removeDuplicates()
             ) { newOptions in
                 print("Updated options: \(newOptions)")
-                // Call update in ViewModel to apply rules
-//                viewModel.applyFieldRules(by: field.id)
+
             }
         case .textBox((_, let textBoxViewModel)):
             ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
                 TextBoxComponent(viewModel: textBoxViewModel)
             }
             .opacity(textBoxViewModel.control.hidden ? 0 : 1)
-        case .page((_, let pageViewModel)):
+        case .page((_, _)):
             EmptyView()
+
         }
     }
 

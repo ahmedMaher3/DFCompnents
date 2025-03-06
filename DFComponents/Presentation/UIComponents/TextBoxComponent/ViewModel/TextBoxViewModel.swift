@@ -51,7 +51,7 @@ class TextBoxViewModel: ObservableObject {
     // MARK: - UI Accessors
     var title: String { config.title }
     var subtitle: String? { config.subtitle }
-    var placeholder: String { config.placeholder }
+    var placeholder: String { control.placeHolder }
     var prefixOptions: [String] { config.prefixOptions }
     var suffixOptions: [String] { config.suffixOptions }
 

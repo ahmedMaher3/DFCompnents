@@ -7,9 +7,9 @@
 
 struct FormEntity {
     var items = [BaseFieldProtocol]()
-    var fields: [FieldEntity]
+   // var fields: [FieldEntity]
+    var pages: [PageModel]
     var rules: [Rule]
-    var mode: FormType?
 
     
     mutating func appendSubmitItem() {

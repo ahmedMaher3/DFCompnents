@@ -11,7 +11,7 @@ import Foundation
 protocol BaseFieldProtocol {
     var type: FieldType! { get }
     var fieldId: String! { get }
-    var label: String! { get }
+    var label: String! { get set}
     var parentId: String? { get }
     var index: Int! { get }
     var answer: Any? { get set }
@@ -111,7 +111,7 @@ protocol InteractiveFieldDelegate:  InteractiveFieldProtocol {
 extension InteractiveFieldDelegate {
     var type: FieldType! { base.type }
     var fieldId: String! { base.fieldId }
-    var label: String! { base.label }
+   // var label: String! { base.label }
     var parentId: String? { base.parentId }
     var index: Int! { base.index }
     var rules: FieldRules? { base.rules }
@@ -123,6 +123,10 @@ extension InteractiveFieldDelegate {
     var attachmentExtensions: String! { base.attachmentExtensions }
     
     // Mutable properties
+    var label: String! {
+        get { base.label }
+        set { base.label = newValue }
+    }
     var answer: Any? {
         get { base.answer }
         set { base.answer = newValue }

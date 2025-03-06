@@ -258,50 +258,63 @@
                 },
                 {
                     "weight": {
-                        "criteria": [
-                            {
-                                "state": "Equal",
-                                "value": "10"
-                            }
-                        ],
+                        "criteria": null,
                         "value": 5
                     },
-                    "id": "0d6eff6f-a25a-4e9b-9998-f043df18347a",
+                    "id": "91975fe4-40cc-4a4b-9c81-3eb0bed3ddb4",
                     "templateQuestionId": null,
-                    "type": "Number",
+                    "type": "TextBox",
                     "parentId": "e686a84f-481d-46cc-8bdc-597c8f6aaf93",
-                    "order": "a0",
+                    "order": "a1",
                     "properties": {
-                        "decimalPlaces": 0,
-                        "step": 1,
-                        "minimumValue": null,
-                        "maximumValue": null,
-                        "minimumDigits": null,
-                        "maximumDigits": null,
+                        "mask": "",
+                        "regex": "",
+                        "subType": "Any",
+                        "prefix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "suffix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "autoComplete": true,
+                        "allowSpellCheck": true,
+                        "textCase": "Mixed",
+                        "entryLimit": "Character",
+                        "minimumLength": null,
+                        "maximumLength": null,
                         "required": false,
                         "unique": null,
                         "addAttachment": false,
                         "addNote": false,
                         "defaultAnswer": {
+                            "prefix": null,
+                            "suffix": null,
                             "value": null,
-                            "type": "Number",
+                            "type": "TextBox",
                             "note": "",
                             "score": null,
                             "attachments": null
                         },
-                        "placeholder": "Number",
+                        "placeholder": "567",
                         "attachmentType": null,
                         "attachmentExtensions": null,
                         "maxAttachmentsNumber": null,
                         "hidden": false,
                         "disabled": false,
                         "labelPosition": "Top",
-                        "label": "Number Question",
-                        "sublabel": "Sublabel",
+                        "label": "Omar Ibrahem ?",
+                        "sublabel": "",
                         "tooltip": "",
                         "localization": {}
                     },
-                    "rules": null
+                    "rules": {
+                        "effectIn": [],
+                        "dependOn": [
+                            "6f7bb492-4f34-4543-afbf-e15fe5b700d5"
+                        ]
+                    }
                 },
                 {
                     "weight": {
@@ -435,14 +448,14 @@
                             "score": null,
                             "attachments": null
                         },
-                        "placeholder": "Ramadan Karim",
+                        "placeholder": "123",
                         "attachmentType": null,
                         "attachmentExtensions": null,
                         "maxAttachmentsNumber": null,
                         "hidden": false,
                         "disabled": false,
                         "labelPosition": "Top",
-                        "label": "Ramadan Gana ?",
+                        "label": "Ahmed Maher",
                         "sublabel": "",
                         "tooltip": "",
                         "localization": {}
