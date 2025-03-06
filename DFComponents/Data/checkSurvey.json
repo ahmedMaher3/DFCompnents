@@ -4,7 +4,7 @@
     "data": {
         "schema": {
             "id": "0b58a4bd-ae01-430d-987e-208225a2cfe5",
-            "lastAppliedEventId": "2e4c239c-7c34-4cac-a83e-71380c7f560e",
+            "lastAppliedEventId": "155bfb19-e8e0-40c1-8a3a-bc5895b2d0f6",
             "theme": {
                 "id": "1860dc6d-e725-4829-a3a1-82d09d89213d",
                 "name": "Default Theme",
@@ -174,10 +174,10 @@
                             "custom": "value does not match the pattern {0}"
                         },
                         "number": {
-                            "minimumValue": "Minimum Value is {0}",
-                            "maximumValue": "Maximum Value is {0}",
+                            "minimumValue": "1",
+                            "maximumValue": "100",
                             "minimumDigits": "1",
-                            "maximumDigits": "10"
+                            "maximumDigits": "3"
                         },
                         "dateTime": {
                             "dateTime": "Enter date and time.",
@@ -237,6 +237,25 @@
                 }
             },
             "fields": [
+                {
+                    "id": "c985a6d4-3a4e-4fa8-b949-cf9560c3ed6f",
+                    "templateQuestionId": null,
+                    "type": "Page",
+                    "parentId": null,
+                    "order": "a0",
+                    "properties": {
+                        "submit": "",
+                        "next": "",
+                        "back": "",
+                        "backVisibility": true,
+                        "labelPosition": "Top",
+                        "label": "",
+                        "sublabel": "",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
                 {
                     "weight": {
                         "criteria": null,
@@ -303,18 +322,18 @@
                     "parentId": "c985a6d4-3a4e-4fa8-b949-cf9560c3ed6f",
                     "order": "a1",
                     "properties": {
-                        "decimalPlaces": 3,
+                        "decimalPlaces": 1,
                         "step": 4,
-                        "minimumValue": null,
+                        "minimumValue": 1.0,
                         "maximumValue": 100.0,
-                        "minimumDigits": null,
-                        "maximumDigits": null,
+                        "minimumDigits": 1,
+                        "maximumDigits": 3,
                         "required": true,
                         "unique": null,
                         "addAttachment": false,
                         "addNote": false,
                         "defaultAnswer": {
-                            "value": 1.0,
+                            "value": "1.0",
                             "type": "Number",
                             "note": "",
                             "score": null,
@@ -327,7 +346,7 @@
                         "hidden": false,
                         "disabled": false,
                         "labelPosition": "Top",
-                        "label": "What's your age?",
+                        "label": "What's your age ?",
                         "sublabel": "Number",
                         "tooltip": "",
                         "localization": {}
@@ -361,4 +380,3 @@
         }
     }
 }
-

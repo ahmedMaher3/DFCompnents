@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentNumberControlView: View {
-    @StateObject var viewModel: NumberFieldViewModel
+    @ObservedObject var viewModel: NumberFieldViewModel
     @FocusState private var isTextFieldFocused: Bool
     @State private var text: String = ""
 
@@ -20,7 +20,7 @@ struct ContentNumberControlView: View {
                 .cornerRadius(4)
                 .overlay(
                     RoundedRectangle(cornerRadius: 4)
-                        .stroke(viewModel.interactiveProperties?.isError ?? false
+                        .stroke(viewModel.numberFieldModel.isError ?? false
                                 ? .red : .gray, lineWidth: 0.5)
                 )
                 .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))

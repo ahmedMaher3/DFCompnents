@@ -22,9 +22,9 @@ import Foundation
 //    }
 //}
 final class FooterComponentViewModel: ObservableObject {
-    @Published var interactiveBaseProperties: InteractiveField
+    @Published var interactiveProperties: InteractiveField
 
-    init(interactiveBaseProperties: InteractiveField) {
-        self.interactiveBaseProperties = interactiveBaseProperties
+    init(interactiveProperties: InteractiveField) {
+        self.interactiveProperties = interactiveProperties
     }
 }

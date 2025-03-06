@@ -6,34 +6,37 @@
 //
 
 import SwiftUI
-/*
-struct FooterComponentView<ContentFooter: View>: View {
-    let footerControlBaseProperties: () -> any InteractivePropertiesProtocol
-    let content: () -> ContentFooter
 
-    init(footerControlBaseProperties: @escaping () -> any InteractivePropertiesProtocol,
-         @ViewBuilder content: @escaping () -> ContentFooter) {
-        self.footerControlBaseProperties = footerControlBaseProperties
-        self.content = content
+struct FooterComponentView: View {
+    @StateObject var viewModel: FooterComponentViewModel
+
+    init(viewModel: FooterComponentViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
-        content()
+        renderFooter(for: viewModel.interactiveProperties)
             .padding(4)
     }
-}
-*/
-
-struct FooterComponentView<ContentFooter: View>: View {
-    @ObservedObject var viewModel: FooterComponentViewModel
-    let content: () -> ContentFooter
-    init(viewModel: FooterComponentViewModel,
-         @ViewBuilder content: @escaping () -> ContentFooter) {
-        self.viewModel = viewModel
-        self.content = content
-    }
-    var body: some View {
-        content()
-            .padding(4)
+    
+    /// FooterView
+    @ViewBuilder
+    private func renderFooter(for interactiveProperties: InteractiveField?) -> some View {
+        if let interactiveProperties = interactiveProperties {
+            if interactiveProperties.addNote || interactiveProperties.addAttachment {
+                HStack {
+                    if interactiveProperties.addNote {
+                        Text("Note")
+                    }
+                    if interactiveProperties.addAttachment {
+                        Text("|| Attachment")
+                    }
+                }
+            } else {
+                EmptyView()
+            }
+        } else {
+            EmptyView()
+        }
     }
 }
