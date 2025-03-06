@@ -1,18 +1,84 @@
 //
-//  fieldsListView.swift
+//  SectionView.swift
 //  DFComponents
 //
-//  Created by Eslam on 05/03/2025.
+//  Created by mac on 3/6/25.
 //
-import SwiftUI
-struct FieldsListView: View {
-    @ObservedObject var viewModel: FormViewModel
 
+import SwiftUI
+
+struct SectionView: View {
+    
+    @EnvironmentObject var viewModel: FormViewModel
+    let title: String
+//    let icon: String
+    let fields: [FieldEntity]
+    
+    @State private var isExpanded = true
+    
     var body: some View {
-        ForEach(viewModel.fields, id: \.id) { field in
-            renderField(for: field)
+        List {
+            Section(header: sectionHeader()) {
+                if isExpanded {
+                    ForEach(fields, id: \.id) { field in
+                        renderField(for: field)
+                    }
+                }
+            }
+        }
+        .listStyle(PlainListStyle()) // Native list styling
+    }
+    
+    // MARK: - Section Header
+    @ViewBuilder
+    private func sectionHeader() -> some View {
+        Button(action: { isExpanded.toggle() }) {
+            HStack {
+//                Image(systemName: icon)
+//                    .foregroundColor(.white)
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(.white)
+                Spacer()
+                Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                    .foregroundColor(.white)
+            }
+            .padding()
+            .background(Color.blue)
         }
     }
+    
+//    @ViewBuilder
+//    private func renderField(for field: FieldEntity) -> some View {
+//        switch field {
+//        case .radio ((_, let radioViewModel)):
+//            ControlFormBuilderView<<#Header: View#>, <#Control: View#>, <#Footer: View#>>(titleControl: radioViewModel.control.label) {
+//                RadioButtonView(radioButtonVM: radioViewModel)
+//            }
+//            .opacity(radioViewModel.control.hidden ? 0 : 1)
+//            .onReceive(
+//                radioViewModel.$control
+//                    .map { $0.options }
+//                    .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+//                    .dropFirst()
+//                    .removeDuplicates()
+//            ) { newOptions in
+//                print("Updated options: \(newOptions)")
+//
+//            }
+//        case .textBox((_, let textBoxViewModel)):
+//            ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
+//                TextBoxComponent(viewModel: textBoxViewModel)
+//            }
+//            .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+//        case .page((_, _)):
+//            EmptyView()
+//        case .section((_, let sectionViewModel)):
+//            SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
+//
+//        }
+//    }
+    
     /// HeaderView
     @ViewBuilder
     private func renderHeader(for baseProperties: BaseProperties?) -> some View {
@@ -148,4 +214,9 @@ struct FieldsListView: View {
             EmptyView()
         }
     }
+
+}
+
+#Preview {
+    SectionView(title: "", fields: [])
 }

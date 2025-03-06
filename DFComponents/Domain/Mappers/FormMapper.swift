@@ -12,12 +12,16 @@ protocol EntityMapper {
     associatedtype Entity
     func map (from dto: DTO) -> [PageModel]
     associatedtype Warnings
-    func map (from dto: DTO) -> [FieldEntity]
+//    func map (from dto: DTO) -> [FieldEntity]
     func map (from dto: Warnings) -> WarningsEntity
-
 }
 
 class FormMapper: EntityMapper {
+    
+//    func map(from dto: Schema) -> [FieldEntity] {
+//        <#code#>
+//    }
+    
 
     typealias DTO = Schema
     typealias Entity = FieldEntity
@@ -67,8 +71,8 @@ class FormMapper: EntityMapper {
                 let control = SectionField(field: field)
                 return .section((control, SectionViewModel(controls: [], title: "title")))
             case .number:
-                    let control = NumberFieldModel(field: field)
-                    return .number((control, NumberFieldViewModel(numberFieldModel: control)))
+                let control = NumberFieldModel(field: field)
+                return .number((control, NumberFieldViewModel(numberFieldModel: control)))
 
             default:
                 return nil
@@ -138,13 +142,13 @@ struct PageModel: Identifiable {
     var fields: [FieldEntity]
     var mode: FormType
 }
-}
 
 enum FieldEntity: Identifiable {
     case textBox((BaseFieldProtocol, TextBoxViewModel))
     case radio((BaseFieldProtocol, RadioButtonViewModel))
     case page((BaseFieldProtocol, PageViewModel))
     case section((BaseFieldProtocol, SectionViewModel))
+    case number((BaseFieldProtocol, NumberFieldViewModel))
     
     var id: String {
         switch self {

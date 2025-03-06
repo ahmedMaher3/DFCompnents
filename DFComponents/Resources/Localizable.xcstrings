@@ -10,6 +10,9 @@
     "%lld" : {
 
     },
+    "%lld Questions" : {
+
+    },
     "%lld/%lld" : {
       "localizations" : {
         "en" : {
@@ -149,12 +152,6 @@
 
     },
     "Submit" : {
-
-    },
-    "Switch to Arabic" : {
-
-    },
-    "Switch to English" : {
 
     },
     "system" : {

@@ -30,19 +30,3 @@ final class RadioButtonViewModel: ObservableObject {
          }
      }
 }
-
-final class PageViewModel: ObservableObject {
-    
-}
-
-final class SectionViewModel: ObservableObject {
-    @Published var controls: [FieldEntity]
-    let title: String
-    let id: String
-
-    init(controls: [FieldEntity], title: String) {
-        self.controls = controls
-        self.id = "2"
-        self.title = title
-    }
-}

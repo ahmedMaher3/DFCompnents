@@ -171,7 +171,9 @@ class FormViewModel: ObservableObject {
             switch field {
                 case .textBox((let baseField, _)),
                         .radio((let baseField, _)),
-                        .number((let baseField, _)):
+                        .number((let baseField, _)),
+                        .page((let baseField, _)),
+                        .section((let baseField, _)):
                     if let numericWarning = warnings.fieldValidation.input.numeric, isError {
                         fieldWarnings.append(numericWarning)
                     }
