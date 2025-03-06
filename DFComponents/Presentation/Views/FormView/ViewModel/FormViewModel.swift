@@ -54,17 +54,8 @@ class FormViewModel: ObservableObject {
     func checkingWarning(for fieldId: String, value: Any?, isError: Bool) {
         guard let warnings else { return }
         var fieldWarnings: [String] = []
-        let isValueEmpty: Bool = {
-              if let value = value as? any Collection {
-                  return value.isEmpty
-              } else if let value = value as? any CustomStringConvertible /*For any primitive dataType*/ {
-                  return value.description.isEmpty
-              } else {
-                  return value == nil
-              }
-          }()
 
-        if isValueEmpty, let requiredWarning = warnings.fieldValidation.required {
+        if checkValueIsEmpty(value: value), let requiredWarning = warnings.fieldValidation.required {
             fieldWarnings.append(requiredWarning)
         }
 
@@ -79,5 +70,19 @@ class FormViewModel: ObservableObject {
                     warningsDictionary[baseField.fieldId] = fieldWarnings
             }
         }
+    }
+
+    ///Check Value Is Empty
+    func checkValueIsEmpty(value: Any?) -> Bool {
+        let isValueEmpty: Bool = {
+              if let value = value as? any Collection {
+                  return value.isEmpty
+              } else if let value = value as? any CustomStringConvertible /*For any primitive dataType*/ {
+                  return value.description.isEmpty
+              } else {
+                  return value == nil
+              }
+          }()
+        return isValueEmpty
     }
 }
