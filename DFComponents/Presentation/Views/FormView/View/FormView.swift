@@ -93,6 +93,38 @@ struct SectionView: View {
             .background(Color.blue)
         }
     }
+    
+    @ViewBuilder
+    private func renderField(for field: FieldEntity) -> some View {
+        switch field {
+        case .radio ((_, let radioViewModel)):
+            ControlFormBuilderView(titleControl: radioViewModel.control.label) {
+                RadioButtonView(radioButtonVM: radioViewModel)
+            }
+            .opacity(radioViewModel.control.hidden ? 0 : 1)
+            .onReceive(
+                radioViewModel.$control
+                    .map { $0.options }
+                    .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+                    .dropFirst()
+                    .removeDuplicates()
+            ) { newOptions in
+                print("Updated options: \(newOptions)")
+
+            }
+        case .textBox((_, let textBoxViewModel)):
+            ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
+                TextBoxComponent(viewModel: textBoxViewModel)
+            }
+            .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+        case .page((_, _)):
+            EmptyView()
+        case .section((_, let sectionViewModel)):
+            SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
+
+        }
+    }
+
 }
     
 struct PageView: View {
@@ -134,8 +166,8 @@ struct PageView: View {
             .opacity(textBoxViewModel.control.hidden ? 0 : 1)
         case .page((_, _)):
             EmptyView()
-        case .section((_, _)):
-            EmptyView()
+        case .section((_, let sectionViewModel)):
+            SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
 
         }
     }
