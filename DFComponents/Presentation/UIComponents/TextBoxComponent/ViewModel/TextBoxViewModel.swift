@@ -27,7 +27,7 @@ class TextBoxViewModel: ObservableObject {
     init(control: TextBoxField ,config: TextBoxDTO = TextBoxViewModel.defaultConfig) {
         self.control = control
         self.config = config
-        self.id = "1"
+        self.id = control.fieldId
         // Set default prefix and suffix if only one option is available
         selectedPrefix = config.prefixOptions.count == 1 ? config.prefixOptions.first : nil
         selectedSuffix = config.suffixOptions.count == 1 ? config.suffixOptions.first : nil

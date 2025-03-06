@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SectionViewModel: ObservableObject {
+class SectionViewModell: ObservableObject {
     @Published var sections: [SectionModel] = [
         SectionModel(title: "Fruits", isExpanded: false, items: ["Apple", "Banana", "Orange"]),
         SectionModel(title: "Vegetables", isExpanded: false, items: ["Carrot", "Broccoli", "Lettuce"]),

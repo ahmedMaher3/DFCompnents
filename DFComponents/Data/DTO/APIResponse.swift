@@ -146,7 +146,7 @@ enum FieldType: String, Codable {
     case checkbox = "checkbox"
     case fileUpload = "fileupload"
     case location = "location"
-    case section = "section"
+    case section = "Section"
 }
 
 struct Option: Decodable, Identifiable {

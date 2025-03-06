@@ -283,9 +283,49 @@ class PageField: BaseFieldProtocol {
     init(field: Field?) {
         self.type = field?.type
         self.fieldId = field?.id ?? ""
+        self.parentId = field?.parentId ?? ""
     }
 
 }
+
+class SectionField: BaseFieldProtocol {
+    var type: FieldType!
+    
+    var fieldId: String!
+    
+    var label: String!
+    
+    var parentId: String?
+    
+    var index: Int!
+    
+    var answer: Any?
+    
+    var isError: Bool!
+    
+    var rules: FieldRules?
+    
+    var hidden: Bool!
+    
+    var disabled: Bool!
+    
+    func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
+        return nil
+    }
+    
+    func getAnswerString() -> String {
+        return ""
+    }
+
+    init(field: Field?) {
+        self.type = field?.type
+        self.fieldId = field?.id ?? ""
+        self.label = field?.properties.label ?? ""
+        self.parentId = field?.parentId ?? ""
+    }
+
+}
+
 
 class TextAreaField: TextBaseDelegate {
     var textBase: TextBase

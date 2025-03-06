@@ -4,7 +4,7 @@
     "data": {
         "schema": {
             "id": "44742e0e-036c-482d-9172-425ad7fa3563",
-            "lastAppliedEventId": "74d2c692-545f-49ab-9a4b-09ac8954607b",
+            "lastAppliedEventId": "744c4f9b-8f5c-4922-9ff2-aaae4ee04838",
             "theme": {
                 "id": "1860dc6d-e725-4829-a3a1-82d09d89213d",
                 "name": "Default Theme",
@@ -258,53 +258,6 @@
                 },
                 {
                     "weight": {
-                        "criteria": [
-                            {
-                                "state": "Equal",
-                                "value": "10"
-                            }
-                        ],
-                        "value": 5
-                    },
-                    "id": "0d6eff6f-a25a-4e9b-9998-f043df18347a",
-                    "templateQuestionId": null,
-                    "type": "Number",
-                    "parentId": "e686a84f-481d-46cc-8bdc-597c8f6aaf93",
-                    "order": "a0",
-                    "properties": {
-                        "decimalPlaces": 0,
-                        "step": 1,
-                        "minimumValue": null,
-                        "maximumValue": null,
-                        "minimumDigits": null,
-                        "maximumDigits": null,
-                        "required": false,
-                        "unique": null,
-                        "addAttachment": false,
-                        "addNote": false,
-                        "defaultAnswer": {
-                            "value": null,
-                            "type": "Number",
-                            "note": "",
-                            "score": null,
-                            "attachments": null
-                        },
-                        "placeholder": "Number",
-                        "attachmentType": null,
-                        "attachmentExtensions": null,
-                        "maxAttachmentsNumber": null,
-                        "hidden": false,
-                        "disabled": false,
-                        "labelPosition": "Top",
-                        "label": "Number Question",
-                        "sublabel": "Sublabel",
-                        "tooltip": "",
-                        "localization": {}
-                    },
-                    "rules": null
-                },
-                {
-                    "weight": {
                         "options": {
                             "818b750a-c00f-4539-a395-839637a5f0c9": 5,
                             "abd6e6f4-9113-4b3e-aceb-5b8ce08fc818": 5,
@@ -367,11 +320,200 @@
                         "tooltip": "",
                         "localization": {}
                     },
+                    "rules": null
+                },
+                {
+                    "id": "d268ecdd-0f44-45fd-a344-c463a25410ae",
+                    "templateQuestionId": null,
+                    "type": "Section",
+                    "parentId": "e686a84f-481d-46cc-8bdc-597c8f6aaf93",
+                    "order": "a2",
+                    "properties": {
+                        "allowCollapse": true,
+                        "defaultMode": "Expanded",
+                        "icon": "",
+                        "labelPosition": "Top",
+                        "label": "Dogs Section",
+                        "sublabel": "",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "options": {
+                            "ad6eea58-41b9-4152-b56f-457b8fc04b07": 2,
+                            "ed2e9b87-2320-4a5f-b209-30e71fa354f0": 2
+                        },
+                        "value": 2
+                    },
+                    "id": "9480d70f-7e46-4f18-b615-823e6a4e20f4",
+                    "templateQuestionId": null,
+                    "type": "Radio",
+                    "parentId": "d268ecdd-0f44-45fd-a344-c463a25410ae",
+                    "order": "a0",
+                    "properties": {
+                        "options": [
+                            {
+                                "id": "ed2e9b87-2320-4a5f-b209-30e71fa354f0",
+                                "name": "Omar Ibrahim"
+                            },
+                            {
+                                "id": "ad6eea58-41b9-4152-b56f-457b8fc04b07",
+                                "name": "Ahmed Maher"
+                            }
+                        ],
+                        "predefinedOptionsId": null,
+                        "shuffleOptions": false,
+                        "otherOption": false,
+                        "otherOptionText": null,
+                        "naOption": false,
+                        "naOptionText": null,
+                        "required": false,
+                        "unique": null,
+                        "addAttachment": false,
+                        "addNote": false,
+                        "defaultAnswer": {
+                            "value": null,
+                            "otherAnswer": null,
+                            "type": "Radio",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "Who Let the dogs out 2",
+                        "sublabel": "",
+                        "tooltip": "",
+                        "localization": {}
+                    },
                     "rules": {
                         "effectIn": [
-                            "6f7bb492-4f34-4543-afbf-e15fe5b700d5"
+                            "63d75ff4-2177-4747-a543-27bbb3737859"
                         ],
                         "dependOn": []
+                    }
+                },
+                {
+                    "weight": {
+                        "criteria": null,
+                        "value": 3
+                    },
+                    "id": "a32753f4-1a55-4a61-ad7e-bccfa3552efd",
+                    "templateQuestionId": null,
+                    "type": "TextBox",
+                    "parentId": "d268ecdd-0f44-45fd-a344-c463a25410ae",
+                    "order": "a1",
+                    "properties": {
+                        "mask": "",
+                        "regex": "",
+                        "subType": "Any",
+                        "prefix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "suffix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "autoComplete": true,
+                        "allowSpellCheck": true,
+                        "textCase": "Mixed",
+                        "entryLimit": "Character",
+                        "minimumLength": null,
+                        "maximumLength": null,
+                        "required": false,
+                        "unique": null,
+                        "addAttachment": false,
+                        "addNote": false,
+                        "defaultAnswer": {
+                            "prefix": null,
+                            "suffix": null,
+                            "value": null,
+                            "type": "TextBox",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "placeholder",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "Section Text Question",
+                        "sublabel": "",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "criteria": null,
+                        "value": 5
+                    },
+                    "id": "1c5212d0-985a-4dd9-a2e5-c3aa70588589",
+                    "templateQuestionId": null,
+                    "type": "TextBox",
+                    "parentId": "d268ecdd-0f44-45fd-a344-c463a25410ae",
+                    "order": "a2",
+                    "properties": {
+                        "mask": "",
+                        "regex": "",
+                        "subType": "Any",
+                        "prefix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "suffix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "autoComplete": true,
+                        "allowSpellCheck": true,
+                        "textCase": "Mixed",
+                        "entryLimit": "Character",
+                        "minimumLength": null,
+                        "maximumLength": null,
+                        "required": false,
+                        "unique": null,
+                        "addAttachment": false,
+                        "addNote": false,
+                        "defaultAnswer": {
+                            "prefix": null,
+                            "suffix": null,
+                            "value": null,
+                            "type": "TextBox",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "placeholder",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "Rule Text",
+                        "sublabel": "",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": {
+                        "effectIn": [],
+                        "dependOn": [
+                            "63d75ff4-2177-4747-a543-27bbb3737859"
+                        ]
                     }
                 },
                 {
@@ -393,7 +535,6 @@
                     },
                     "rules": null
                 },
-
                 {
                     "weight": {
                         "criteria": null,
@@ -447,25 +588,75 @@
                         "tooltip": "",
                         "localization": {}
                     },
-                    "rules": {
-                        "effectIn": [],
-                        "dependOn": [
-                            "6f7bb492-4f34-4543-afbf-e15fe5b700d5"
-                        ]
-                    }
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "criteria": null,
+                        "value": 0
+                    },
+                    "id": "e45d5f3c-45ea-45a5-a213-837c5581e729",
+                    "templateQuestionId": null,
+                    "type": "TextBox",
+                    "parentId": "ef31f124-476c-4b81-ad60-639f16df07fb",
+                    "order": "a2",
+                    "properties": {
+                        "mask": "",
+                        "regex": "",
+                        "subType": "Any",
+                        "prefix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "suffix": {
+                            "display": "None",
+                            "value": ""
+                        },
+                        "autoComplete": true,
+                        "allowSpellCheck": true,
+                        "textCase": "Mixed",
+                        "entryLimit": "Character",
+                        "minimumLength": null,
+                        "maximumLength": null,
+                        "required": false,
+                        "unique": null,
+                        "addAttachment": false,
+                        "addNote": false,
+                        "defaultAnswer": {
+                            "prefix": null,
+                            "suffix": null,
+                            "value": null,
+                            "type": "TextBox",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "Ahlan",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "Happy Eid",
+                        "sublabel": "",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": null
                 }
             ],
             "rules": [
                 {
-                    "id": "6f7bb492-4f34-4543-afbf-e15fe5b700d5",
+                    "id": "63d75ff4-2177-4747-a543-27bbb3737859",
                     "disabled": false,
                     "operation": "Any",
                     "ifConditions": [
                         {
-                            "fieldId": "6e09ee1f-488d-4f77-a190-5d6d3724f09f",
+                            "fieldId": "9480d70f-7e46-4f18-b615-823e6a4e20f4",
                             "fieldState": "Include",
                             "target": "Value",
-                            "value": "818b750a-c00f-4539-a395-839637a5f0c9",
+                            "value": "ed2e9b87-2320-4a5f-b209-30e71fa354f0",
                             "quota": 0
                         }
                     ],
@@ -474,7 +665,7 @@
                             "type": "Show",
                             "sourceFieldsIds": null,
                             "targetFieldsIds": [
-                                "91975fe4-40cc-4a4b-9c81-3eb0bed3ddb5"
+                                "1c5212d0-985a-4dd9-a2e5-c3aa70588589"
                             ],
                             "expression": null,
                             "actionImpact": "Field"

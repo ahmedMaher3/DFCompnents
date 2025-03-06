@@ -6,8 +6,8 @@
 
 import SwiftUI
 
-struct SectionView: View {
-    @StateObject private var viewModel = SectionViewModel()
+struct SectionVieww: View {
+    @StateObject private var viewModel = SectionViewModell()
 
     var body: some View {
 
@@ -56,7 +56,7 @@ struct SectionView: View {
 // Preview
 struct ExpandableSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView()
+        SectionVieww()
     }
 }
 

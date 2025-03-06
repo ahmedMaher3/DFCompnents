@@ -24,7 +24,7 @@ struct FormView: View {
                     //                    .padding()
                     
                     TabView {
-                        ForEach(self.viewModel.pages.keys.sorted(), id: \.self) { pageId in
+                        ForEach(self.viewModel.pages.keys.sorted(), id: \.self) { pageId in // 2 pages
                             if let controls = self.viewModel.pages[pageId] {
                                 PageView(controls: controls, viewModel: self.viewModel)
                             }
@@ -59,17 +59,46 @@ struct FormView: View {
     }
 }
 
-struct PageView: View {
-    var controls: [FieldEntity]
-
-    @ObservedObject var viewModel: FormViewModel
-
+struct SectionView: View {
+    let title: String
+//    let icon: String
+    let fields: [FieldEntity]
+    
+    @State private var isExpanded = true
+    
     var body: some View {
-        ForEach(viewModel.fields, id: \.id) { field in
-            renderField(for: field)
+        List {
+            Section(header: sectionHeader()) {
+                if isExpanded {
+                    ForEach(fields, id: \.id) { field in
+                        renderField(for: field)
+                    }
+                }
+            }
+        }
+        .listStyle(GroupedListStyle()) // Native list styling
+    }
+    
+    // MARK: - Section Header
+    @ViewBuilder
+    private func sectionHeader() -> some View {
+        Button(action: { isExpanded.toggle() }) {
+            HStack {
+//                Image(systemName: icon)
+//                    .foregroundColor(.white)
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(.white)
+                Spacer()
+                Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                    .foregroundColor(.white)
+            }
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(8)
         }
     }
-
+    
     @ViewBuilder
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
@@ -94,34 +123,27 @@ struct PageView: View {
                 TextBoxComponent(viewModel: textBoxViewModel)
             }
             .opacity(textBoxViewModel.control.hidden ? 0 : 1)
-        case .page((_, let pageViewModel)):
+        case .page((_, _)):
+            EmptyView()
+        case .section((_, _)):
             EmptyView()
         }
     }
 
-}
-
-struct BaseComponentView: View {
-    var entity: FieldEntity
     
-    var body: some View {
-        switch entity {
-        case .textBox(let (field, _)):
-            Text("TextBox: \(field.label ?? "No Label")")
-        case .radio(let (field, _)):
-            Text("RadioButton: \(field.label ?? "No Label")")
-        case .page(let (field, _)):
-            Text("Page: \(field.label ?? "No Label")")
-        }
-    }
 }
 
-struct fieldsListView: View {
-    @ObservedObject var viewModel: FormViewModel  // ObservedObject prevents unnecessary re-renders
+
+struct PageView: View {
+    var controls: [FieldEntity]
+
+    @ObservedObject var viewModel: FormViewModel
 
     var body: some View {
-        ForEach(viewModel.fields, id: \.id) { field in
-            renderField(for: field)
+        VStack {
+            ForEach(controls, id: \.id) { field in
+                renderField(for: field)
+            }
         }
     }
 
@@ -151,6 +173,50 @@ struct fieldsListView: View {
             .opacity(textBoxViewModel.control.hidden ? 0 : 1)
         case .page((_, _)):
             EmptyView()
+        case .section((_, let sectionViewModel)):
+            SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
         }
     }
+
 }
+
+//struct fieldsListView: View {
+//    @ObservedObject var viewModel: FormViewModel  // ObservedObject prevents unnecessary re-renders
+//
+//    var body: some View {
+//        ForEach(viewModel.fields, id: \.id) { field in
+//            renderField(for: field)
+//        }
+//    }
+//
+//    @ViewBuilder
+//    private func renderField(for field: FieldEntity) -> some View {
+//        switch field {
+//        case .radio ((_, let radioViewModel)):
+//            ControlFormBuilderView(titleControl: radioViewModel.control.label) {
+//                RadioButtonView(radioButtonVM: radioViewModel)
+//            }
+//            .opacity(radioViewModel.control.hidden ? 0 : 1)
+//            .onReceive(
+//                radioViewModel.$control
+//                    .map { $0.options }
+//                    .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+//                    .dropFirst()
+//                    .removeDuplicates()
+//            ) { newOptions in
+//                print("Updated options: \(newOptions)")
+//                // Call update in ViewModel to apply rules
+//                viewModel.applyFieldRules(by: field.id)
+//            }
+//        case .textBox((_, let textBoxViewModel)):
+//            ControlFormBuilderView(titleControl: textBoxViewModel.control.label ) {
+//                TextBoxComponent(viewModel: textBoxViewModel)
+//            }
+//            .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+//        case .page((_, _)):
+//            EmptyView()
+//        case .section((_, _)):
+//            EmptyView()
+//        }
+//    }
+//}

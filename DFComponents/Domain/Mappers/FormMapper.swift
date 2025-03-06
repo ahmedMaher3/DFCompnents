@@ -30,6 +30,9 @@ class FormMapper: EntityMapper {
             case .page:
                 let control = PageField(field: field)
                 return .page((control, PageViewModel()))
+            case .section:
+                let control = SectionField(field: field)
+                return .section((control, SectionViewModel(controls: [], title: "title")))
 
             default:
                 return nil
@@ -47,6 +50,7 @@ enum FieldEntity: Identifiable {
     case textBox((BaseFieldProtocol, TextBoxViewModel))
     case radio((BaseFieldProtocol, RadioButtonViewModel))
     case page((BaseFieldProtocol, PageViewModel))
+    case section((BaseFieldProtocol, SectionViewModel))
     
     var id: String {
         switch self {
@@ -55,6 +59,8 @@ enum FieldEntity: Identifiable {
         case .textBox((let field, _)):
             return field.fieldId
         case .radio((let field, _)):
+            return field.fieldId
+        case .section((let field, _)):
             return field.fieldId
         }
     }
@@ -67,12 +73,14 @@ enum FieldEntity: Identifiable {
             return field.parentId
         case .page((let field, _)):
             return field.parentId
+        case .section((let field, _)):
+            return field.parentId
         }
     }
     
     var type: FieldType {
         switch self {
-        case .textBox((let field, _)), .radio((let field, _)), .page((let field, _)):
+        case .textBox((let field, _)), .radio((let field, _)), .page((let field, _)), .section((let field, _)):
             return field.type
         }
     }
