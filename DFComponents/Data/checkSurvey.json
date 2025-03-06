@@ -323,7 +323,7 @@
                     "order": "a1",
                     "properties": {
                         "decimalPlaces": 1,
-                        "step": 4,
+                        "step": 4 ,
                         "minimumValue": 1.0,
                         "maximumValue": 100.0,
                         "minimumDigits": 1,

@@ -59,14 +59,18 @@ class FormViewModel: ObservableObject {
            let requiredWarning = warnings.fieldValidation.required {
             fieldWarnings.append(requiredWarning)
         }
-
+        
         if let field = fields.first(where: { $0.id == fieldId }) {
             switch field {
-                case .textBox((let baseField, _)),
-                        .radio((let baseField, _)),
-                        .number((let baseField, _)):
+                case .textBox((let baseField, _)): break
+                case .radio((let baseField, _)): break
+                case .number((let baseField, let numberViewModel)):
                     if let numericWarning = warnings.fieldValidation.input.numeric, isError {
                         fieldWarnings.append(numericWarning)
+                    } else  if !numberViewModel.validateDecimalPlaces() {
+                        if let customWarning = warnings.fieldValidation.input.custom {
+                            fieldWarnings.append(customWarning.replacingOccurrences(of: customWarning, with: "invalid decimal places".localized))
+                        }
                     }
                     warningsDictionary[baseField.fieldId] = fieldWarnings
             }

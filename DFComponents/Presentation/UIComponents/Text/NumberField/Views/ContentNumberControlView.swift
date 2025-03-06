@@ -24,7 +24,7 @@ struct ContentNumberControlView: View {
                                 ? .red : .gray, lineWidth: 0.5)
                 )
                 .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))
-                .keyboardType(.numberPad)
+                .keyboardType(.decimalPad)
                 .focused($isTextFieldFocused)
                 .onChange(of: text) { _, newValue in
                     if newValue.allSatisfy({ $0.isNumber }) {
@@ -38,6 +38,9 @@ struct ContentNumberControlView: View {
                 }
                 .onChange(of: viewModel.inputValue) { _, newValue in
                     text = "\(newValue)"
+                    viewModel.inputValue = newValue
+                   let status = viewModel.validateDecimalPlaces()
+                    print("validateDecimalPlaces value: \(status)")
                 }
                 .onAppear {
                     text = "\(viewModel.inputValue)"

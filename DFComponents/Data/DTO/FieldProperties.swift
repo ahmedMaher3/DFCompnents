@@ -108,7 +108,7 @@ struct NumberProperties: InteractivePropertiesProtocol {
     var maximumValue: Double?
     var minimumDigits: Int?
     var maximumDigits: Int?
-    var step: Int?
+    var step: Double?
     var decimalPlaces: Int?
     var required: Bool?
     var placeholder: String?
