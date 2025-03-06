@@ -303,7 +303,7 @@
                         "defaultAnswer": {
                             "prefix": null,
                             "suffix": null,
-                            "value": "",
+                            "value": null,
                             "type": "TextBox",
                             "note": "",
                             "score": null,
@@ -345,7 +345,7 @@
                         "addAttachment": false,
                         "addNote": false,
                         "defaultAnswer": {
-                            "value": 1.0,
+                            "value": null,
                             "type": "Number",
                             "note": "",
                             "score": null,
