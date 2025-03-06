@@ -73,7 +73,7 @@ struct FieldsListView: View {
                     controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                     footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                         set: { newValue in
                             viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
                             ? [newValue!] : nil

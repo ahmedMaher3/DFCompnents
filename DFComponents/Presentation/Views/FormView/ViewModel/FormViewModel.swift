@@ -51,15 +51,20 @@ class FormViewModel: ObservableObject {
         rulesImp.getAffectedRules(forControlId: id)
     }
 
-    func checkingWarning(for fieldId: String, value: String?, isError: Bool) {
+    func checkingWarning(for fieldId: String, value: Any?, isError: Bool) {
         guard let warnings else { return }
-
         var fieldWarnings: [String] = []
-        if value?.isEmpty == true {
-            if let requiredWarning = warnings.fieldValidation.required {
-                fieldWarnings.append(requiredWarning)
+        let isValueEmpty: Bool = {
+            switch value {
+                case let stringValue as String: return stringValue.isEmpty
+                default: return false
             }
+        }()
+
+        if isValueEmpty, let requiredWarning = warnings.fieldValidation.required {
+            fieldWarnings.append(requiredWarning)
         }
+
         if let field = fields.first(where: { $0.id == fieldId }) {
             switch field {
                 case .textBox((let baseField, _)),
