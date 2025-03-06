@@ -50,6 +50,7 @@ final class LocalFormRepository: FormBuildRepository {
                     continuation.resume(throwing: decodingError)
                 } catch {
                     print("Unexpected error: \(error.localizedDescription)")
+                    print("bi7asl ah hana:\(error)")
                     continuation.resume(throwing: error)
                 }
 

@@ -6,25 +6,35 @@
 //
 
 import SwiftUI
-struct ControlFormBuilderView<Control: View>: View  {
 
-    let titleControl: String
+struct ControlFormBuilderView<Header: View, Control: View, Footer: View>: View {
+    let headerView: (() -> Header)?
     let control: () -> Control
+    let footerView: (() -> Footer)?
+    @Binding var warningMessage: String?
 
-
-    //MARK: - inilize control
-    init(titleControl: String, @ViewBuilder controlType: @escaping () -> Control) {
-        self.titleControl = titleControl
+    init(@ViewBuilder headerView: @escaping () -> Header,
+        @ViewBuilder controlType: @escaping () -> Control,
+        @ViewBuilder footerView: @escaping () -> Footer,
+        warningMessage: Binding<String?>) {
+        self.headerView = headerView
         self.control = controlType
+        self.footerView = footerView
+        self._warningMessage = warningMessage
     }
 
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 8) {
-            Text(titleControl)
-                .fontWeight(.bold)
-                .font(.system(size: 20))
+            /// Header View
+            headerView?()
+            /// Control
             control()
+            /// Footer View
+            footerView?()
+            /// Warning Card (only if there's a warning)
+            if let warning = warningMessage, !warning.isEmpty {
+                WarningCardView(message: warning)
+            }
         }
     }
 }
-

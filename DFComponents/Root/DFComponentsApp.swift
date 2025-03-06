@@ -11,11 +11,18 @@ import SwiftUI
 struct DFComponentsApp: App {
     
     @State var appearanceManager = AppearanceManager()
+    @State private var currentLocale: Locale = {
+        if let savedLocale = UserDefaults.standard.string(forKey: "selectedLocale") {
+            return Locale(identifier: savedLocale)
+        }
+        return .current
+    }()
     
     var body: some Scene {
         WindowGroup {
             SplashView()
                 .environment(appearanceManager)
+                .environment(\.locale, currentLocale)
                 .onAppear {
                     appearanceManager.initAppearanceStyle()
                 }

@@ -16,6 +16,8 @@ class FormViewModel: ObservableObject {
     @Published var fields: [FieldEntity] = []
     @Published var pages: [PageModel] = []
     @Published var rulesImp: RuleImp!
+    @Published var warningsDictionary: [String: [String]] = [:] // Stores warnings by field ID
+    var warnings: WarningsEntity?
 
     func fetchForm() async {
         do {
@@ -23,6 +25,7 @@ class FormViewModel: ObservableObject {
             mode = response.pages.first?.mode
             pages = response.pages
             rules = response.rules
+            warnings = response.warnings
             self.doRules()
         }
         catch let error as NSError {
@@ -56,14 +59,15 @@ class FormViewModel: ObservableObject {
                 return field
             case .section((let field, _)):
                 return field
+            case .number((let field, _)):
+                return field
             }
         }
-        
+
         rulesImp = RuleImp(controls: fields, rules: rules)
-        
         rulesImp.handleAllRules()
     }
-    
+
     func applyFieldRules(by id: String) {
         rulesImp.getAffectedRules(forControlId: id)
     }
@@ -153,4 +157,40 @@ class FormViewModel: ObservableObject {
 //        return baseField
 //    }
 
+
+    func checkingWarning(for fieldId: String, value: Any?, isError: Bool) {
+        guard let warnings else { return }
+        var fieldWarnings: [String] = []
+
+        if checkValueIsEmpty(value: value),
+           let requiredWarning = warnings.fieldValidation.required {
+            fieldWarnings.append(requiredWarning)
+        }
+
+        if let field = fields.first(where: { $0.id == fieldId }) {
+            switch field {
+                case .textBox((let baseField, _)),
+                        .radio((let baseField, _)),
+                        .number((let baseField, _)):
+                    if let numericWarning = warnings.fieldValidation.input.numeric, isError {
+                        fieldWarnings.append(numericWarning)
+                    }
+                    warningsDictionary[baseField.fieldId] = fieldWarnings
+            }
+        }
+    }
+
+    ///Check Value Is Empty
+    func checkValueIsEmpty(value: Any?) -> Bool {
+        switch value {
+            case nil:
+                return true
+            case let collection as any Collection:
+                return collection.isEmpty
+            case let stringValue as String:
+                return stringValue.isEmpty
+            default:
+                return false
+        }
+    }
 }

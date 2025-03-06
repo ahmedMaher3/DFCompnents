@@ -40,7 +40,8 @@ struct TextBoxComponent: View {
                         .opacity(isDisabled ? 0.6 : 1.0)
                     }
 
-                    TextField(viewModel.placeholder, text: $viewModel.text, onEditingChanged: { isEditing in
+                    TextField(viewModel.placeholder, text: $viewModel.text, onEditingChanged:
+                                { isEditing in
                         if !isDisabled {
                             viewModel.onEditingChanged(isEditing: isEditing)
                         }

@@ -13,6 +13,7 @@ protocol BasePropertiesProtocol: Codable {
     var labelPosition: String? { get }
     var tooltip: String? { get }
     var hidden: Bool? { get set }
+    var required: Bool? { get }
 }
 
 struct BaseProperties: BasePropertiesProtocol {
@@ -21,14 +22,15 @@ struct BaseProperties: BasePropertiesProtocol {
     var labelPosition: String?
     var tooltip: String?
     var hidden: Bool?
-    
+    var required: Bool?
+
     enum CodingKeys: String, CodingKey {
-        case label, tooltip, hidden
+        //label,
+        case  tooltip, hidden, required
         case subLabel = "sublabel"
         case labelPosition
     }
 }
-
 protocol InteractivePropertiesProtocol: BasePropertiesProtocol {
     var required: Bool? { get }
     var placeholder: String? { get }
@@ -37,6 +39,14 @@ protocol InteractivePropertiesProtocol: BasePropertiesProtocol {
     var attachmentExtensions: String? { get }
     var attachmentType: AttachmentType? { get }
     var disabled: Bool? { get }
+}
+
+//MARK: - Properties related to number
+protocol NumberBaseProperties: InteractivePropertiesProtocol {
+    ///stepper
+    var step: Int? { get }
+    ///DecimalPlaceValue
+    var decimalPlaces: Int? { get }
 }
 
 protocol TextBaseProperties: InteractivePropertiesProtocol {
@@ -86,7 +96,22 @@ struct TextBoxProperties: TextBaseProperties {
     let regex: String?
     let subType: TextBoxSubType?
 }
-
+struct NumberComponentProperties: NumberBaseProperties {
+    var step: Int?
+    var decimalPlaces: Int?
+    var required: Bool?
+    var placeholder: String?
+    var addAttachment: Bool?
+    var addNote: Bool?
+    var attachmentExtensions: String?
+    var attachmentType: AttachmentType?
+    var disabled: Bool?
+    var label: String?
+    var subLabel: String?
+    var labelPosition: String?
+    var tooltip: String?
+    var hidden: Bool?
+}
 struct RadioProperties: MCQPropertiesProtocol {
     let options: [MCQOption]
     let defaultAnswer: BaseAnswerMCQ?
