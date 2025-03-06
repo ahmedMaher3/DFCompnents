@@ -17,7 +17,7 @@ class FormViewModel: ObservableObject {
 
     var formBuildUseCase: FormBuildUseCase = FormBuildUseCase()
     var rules = [Rule]()
-    var mode: FormType?
+    @Published var mode: FormType?
     @Published var rulesImp: RuleImp!
 
     func fetchForm() async {

@@ -30,8 +30,8 @@ struct FormView: View {
                             }
                         }
                     }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                    .padding()
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
+//                    .padding()
                     
                 } else {
                     // Show loading state while form data is being fetched
@@ -76,7 +76,7 @@ struct SectionView: View {
                 }
             }
         }
-        .listStyle(GroupedListStyle()) // Native list styling
+        .listStyle(PlainListStyle()) // Native list styling
     }
     
     // MARK: - Section Header
@@ -95,7 +95,6 @@ struct SectionView: View {
             }
             .padding()
             .background(Color.blue)
-            .cornerRadius(8)
         }
     }
     
