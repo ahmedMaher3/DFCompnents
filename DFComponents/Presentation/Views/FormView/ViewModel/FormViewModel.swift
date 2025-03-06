@@ -7,25 +7,22 @@
 
 import SwiftUI
 
-typealias PageModel = [String: [FieldEntity]]
 
 @MainActor
 class FormViewModel: ObservableObject {
 
-    @Published var fields: [FieldEntity] = []
-    @Published var pages: PageModel = [:]
-
     var formBuildUseCase: FormBuildUseCase = FormBuildUseCase()
     var rules = [Rule]()
     @Published var mode: FormType?
+    @Published var fields: [FieldEntity] = []
+    @Published var pages: [PageModel] = []
     @Published var rulesImp: RuleImp!
 
     func fetchForm() async {
         do {
             let response = try await formBuildUseCase.excute()
-            self.mode = response.mode
-            fields = response.fields
-            self.convertToPages()
+            mode = response.pages.first?.mode
+            pages = response.pages
             rules = response.rules
             self.doRules()
         }
@@ -33,7 +30,22 @@ class FormViewModel: ObservableObject {
             print(error.localizedDescription)
         }
     }
-    
+
+    func updateTextBoxValue(fieldId: String, newValue: String) {
+        pages = pages.map { page in
+            var updatedPage = page
+            updatedPage.fields = updatedPage.fields.map { field in
+                if case .textBox((let textBoxField, let textBoxViewModel)) = field,
+                   textBoxField.fieldId == fieldId {
+                    textBoxViewModel.control.label = newValue
+                }
+                return field
+            }
+            return updatedPage
+        }
+    }
+
+
     private func doRules() {
         let fields: [BaseFieldProtocol] = fields.map { fieldEntity in
             switch fieldEntity {

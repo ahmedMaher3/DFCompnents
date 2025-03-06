@@ -9,7 +9,7 @@ import Foundation
 
 protocol FormBuildUseCaseProtocol {
     func excute() async throws -> FormEntity
-    func map(dto: Schema) -> [FieldEntity]
+    func map(dto: Schema) -> [PageModel]
 }
 
 
@@ -28,16 +28,16 @@ class FormBuildUseCase: FormBuildUseCaseProtocol {
     func excute() async throws -> FormEntity {
         do {
             let response = try await repository.fetchForm()
-            let controls = map(dto: response)
-            return FormEntity(fields: controls, rules: response.rules, mode: response.settings.format)
+            let pages = map(dto: response)
+            return FormEntity(pages: pages, rules: response.rules)
         }
         catch let error as NSError {
             print(error.localizedDescription)
-            return FormEntity(fields: [], rules: [], mode: nil)
+            return FormEntity(pages: [], rules: [])
         }
     }
 
-    func map(dto: Schema) -> [FieldEntity] {
+    func map(dto: Schema) -> [PageModel] {
          let entityMapper = mapper as! FormMapper
         return entityMapper.map(from: dto)
     }

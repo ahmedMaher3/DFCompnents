@@ -11,18 +11,12 @@ final class RadioButtonViewModel: ObservableObject {
 
     @Published var control: RadioButtonField
     let id: String
+    @Published var selectedValue: String = ""
 
      init(control: RadioButtonField) {
          self.control = control
          self.id = control.fieldId
-//         $control
-//                   .map { $0.options }
-//                   .removeDuplicates()
-//                   .sink { [weak self] updatedOptions in
-//                       print("Options changed in ViewModel: \(updatedOptions)")
-//                      // self?.notifyParent()
-//                   }
-//                  // .store(in: &cancellables)
+
      }
 
      // When an option is selected, update all options:
@@ -32,6 +26,7 @@ final class RadioButtonViewModel: ObservableObject {
          if let index = control.options.firstIndex(where: {$0.id == option.id}) {
              control.options[index].isSelected = true
              control.answer = option.id
+             selectedValue = option.name
          }
      }
 }

@@ -10,7 +10,7 @@ import Foundation
 protocol EntityMapper {
     associatedtype DTO
     associatedtype Entity
-    func map (from dto: DTO) -> [FieldEntity]
+    func map (from dto: DTO) -> [PageModel]
 }
 
 class FormMapper: EntityMapper {
@@ -18,8 +18,36 @@ class FormMapper: EntityMapper {
     typealias DTO = Schema
     typealias Entity = FieldEntity
     
-    func map(from dto: Schema) -> [FieldEntity] {
-        return dto.fields.compactMap { field in
+    func map(from dto: Schema) -> [PageModel] {
+        let pages = groupFieldsByPage (fields: dto.fields,mode:dto.settings.format )
+        return pages
+    }
+
+    func groupFieldsByPage(fields: [Field], mode: FormType) -> [PageModel] {
+        let pageIds = fields.compactMap { $0.type == .page ? $0.id : nil }
+
+        let groupedFields = Dictionary(grouping: fields.filter{$0.parentId != nil}) { field in
+
+            field.parentId.flatMap { pageIds.contains($0) ? $0 : nil }
+        }
+        //let pages = groupedFields.map { PageModel(id: $0.key!, fields: mapFields(fields: $0.value)) }
+        let pages = groupedFields.map { (key, value) in
+            let mappedFields = mapFields(fields: value)
+
+            // 🔹 Debug: Print the mapping process
+            print("Mapping for Page ID:", key ?? "Unknown", "Mapped Fields:", mappedFields)
+
+            return PageModel(id: key ?? "", fields: mappedFields, mode: mode)
+        }
+
+        return pages
+    }
+
+    
+
+
+    func mapFields(fields: [Field]) -> [FieldEntity] {
+        return fields.compactMap { field in
             switch field.type {
             case .textBox:
                 let control = TextBoxField(field: field)
@@ -33,18 +61,23 @@ class FormMapper: EntityMapper {
             case .section:
                 let control = SectionField(field: field)
                 return .section((control, SectionViewModel(controls: [], title: "title")))
+            case .number:
+                let control = TextBoxField(field: field)
+                return .textBox((control, TextBoxViewModel(control: control)))
 
             default:
                 return nil
             }
         }
     }
+    
 }
 
-//struct Form {
-//    var items: [FieldEntity]
-//    var rules: [Rule]
-//}
+struct PageModel: Identifiable {
+    var id: String
+    var fields: [FieldEntity]
+    var mode: FormType
+}
 
 enum FieldEntity: Identifiable {
     case textBox((BaseFieldProtocol, TextBoxViewModel))
