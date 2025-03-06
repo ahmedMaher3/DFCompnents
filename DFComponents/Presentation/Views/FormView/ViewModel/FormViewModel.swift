@@ -74,15 +74,15 @@ class FormViewModel: ObservableObject {
 
     ///Check Value Is Empty
     func checkValueIsEmpty(value: Any?) -> Bool {
-        let isValueEmpty: Bool = {
-              if let value = value as? any Collection {
-                  return value.isEmpty
-              } else if let value = value as? any CustomStringConvertible /*For any primitive dataType*/ {
-                  return value.description.isEmpty
-              } else {
-                  return value == nil
-              }
-          }()
-        return isValueEmpty
+        switch value {
+            case nil:
+                return true
+            case let collection as any Collection:
+                return collection.isEmpty
+            case let stringValue as String:
+                return stringValue.isEmpty
+            default:
+                return false 
+        }
     }
 }
