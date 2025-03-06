@@ -27,20 +27,14 @@ struct ContentNumberControlView: View {
                 .keyboardType(.numberPad)
                 .focused($isTextFieldFocused)
                 .onChange(of: text) { _, newValue in
-                    if newValue.allSatisfy({ $0.isNumber || $0.isLetter }) {
+                    if newValue.allSatisfy({ $0.isNumber }) {
                         viewModel.numberFieldModel.isError = false
-                        viewModel.inputValue = newValue
-                    } else {
-                        viewModel.numberFieldModel.isError = true
-                    }
-                }
-                .onChange(of: text) { _, newValue in
-                    if newValue.rangeOfCharacter(from: .letters) != nil {
+                    } else if newValue.rangeOfCharacter(from: .letters) != nil {
                         viewModel.numberFieldModel.isError = true
                     } else {
                         viewModel.numberFieldModel.isError = false
-                        viewModel.inputValue = newValue
                     }
+                    viewModel.inputValue = newValue
                 }
                 .onChange(of: viewModel.inputValue) { _, newValue in
                     text = "\(newValue)"

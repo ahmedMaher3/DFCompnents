@@ -11,18 +11,12 @@ struct WarningCardView: View {
 
     var body: some View {
         HStack {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundColor(.yellow)
-
             Text(message)
                 .font(.caption)
-                .foregroundColor(.red)
+                .foregroundStyle(.red)
                 .padding(.leading, 4)
 
             Spacer()
         }
-        .padding()
-        .background(Color.red.opacity(0.1))
-        .cornerRadius(8)
     }
 }

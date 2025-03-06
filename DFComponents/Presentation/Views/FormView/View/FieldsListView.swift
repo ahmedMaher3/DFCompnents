@@ -46,7 +46,7 @@ struct FieldsListView: View {
             EmptyView() // If no header is available
         }
     }
-
+    ///Label
     @ViewBuilder
     private func labelView(label: String, baseProperties: BaseProperties) -> some View {
         if baseProperties.required ?? false {
@@ -63,7 +63,6 @@ struct FieldsListView: View {
                 .foregroundColor(.primary)
         }
     }
-
     /// Controls
     @ViewBuilder
     private func renderField(for field: FieldEntity) -> some View {
@@ -93,7 +92,7 @@ struct FieldsListView: View {
                     },
                     footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                         set: { newValue in
                             viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
                             ? [newValue!] : nil
@@ -113,7 +112,7 @@ struct FieldsListView: View {
                     },
                     footerView: { renderFooter(for: numberViewModel.numberFieldModel.base) },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                         set: { newValue in
                             viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
                             ? [newValue!] : nil 
@@ -122,7 +121,6 @@ struct FieldsListView: View {
                 )
         }
     }
-
     /// FooterView
     @ViewBuilder
     private func renderFooter(for interactiveProperties: InteractiveField?) -> some View {
