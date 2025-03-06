@@ -10,7 +10,7 @@ protocol NumberBaseDelegate: InteractiveFieldDelegate {
 
 class NumberBase: InteractiveFieldDelegate {
     var base: InteractiveField
-    var baseProperties: BaseProperties?  // ✅ Expose base properties separately
+    var baseProperties: BaseProperties? 
     let step: Int?
     let decimalPlaces: Int?
     let minimumDigits: Int?
@@ -28,14 +28,13 @@ class NumberBase: InteractiveFieldDelegate {
             maximumValue = properties.maximumValue
             minimumDigits = properties.minimumDigits
             maximumDigits = properties.maximumDigits
-            // ✅ Extract base properties from NumberProperties
+
             self.baseProperties = BaseProperties(
                 label: properties.label,
                 subLabel: properties.subLabel,
                 tooltip: properties.tooltip,
                 hidden: properties.hidden,
-                required: properties.required
-            )
+                required: properties.required)
         } else {
             step = nil
             decimalPlaces = nil
