@@ -15,28 +15,41 @@ struct FooterComponentView: View {
     }
 
     var body: some View {
-        renderFooter(for: viewModel.interactiveProperties)
+        renderFooter(fieldEntity: viewModel.fieldEntity, for: viewModel.interactiveProperties)
             .padding(4)
     }
-    
+
     /// FooterView
     @ViewBuilder
-    private func renderFooter(for interactiveProperties: InteractiveField?) -> some View {
-        if let interactiveProperties = interactiveProperties {
-            if interactiveProperties.addNote || interactiveProperties.addAttachment {
-                HStack {
-                    if interactiveProperties.addNote {
-                        Text("Note")
+    private func renderFooter(fieldEntity: FieldEntity, for interactiveProperties: InteractiveField?) -> some View {
+        switch fieldEntity {
+            case .radio((_, let radioViewModel)): EmptyView()
+            case .textBox((_, let textBoxViewModel)): EmptyView()
+            case .number((_, let numberViewModel)):
+                if let interactiveProperties = interactiveProperties {
+                    VStack {
+                        Text("\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)")
+                            .foregroundStyle(.gray)
+                            .font(.system(size: 13))
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .padding([.top,.trailing], 4)
+                        if interactiveProperties.addNote || interactiveProperties.addAttachment {
+                            HStack {
+                                if interactiveProperties.addNote {
+                                    Text("Note")
+                                }
+                                if interactiveProperties.addAttachment {
+                                    Text("|| Attachment")
+                                }
+                            }
+                        } else {
+                            EmptyView()
+                        }
                     }
-                    if interactiveProperties.addAttachment {
-                        Text("|| Attachment")
-                    }
-                }
-            } else {
-                EmptyView()
+                } else {
+                    EmptyView()
             }
-        } else {
-            EmptyView()
         }
     }
 }

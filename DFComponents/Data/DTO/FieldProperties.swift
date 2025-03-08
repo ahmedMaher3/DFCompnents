@@ -122,7 +122,7 @@ struct NumberProperties: InteractivePropertiesProtocol {
     var labelPosition: String?
     var tooltip: String?
     var hidden: Bool?
-    let defaultAnswer: DefaultAnswer?
+    let defaultAnswer: BaseAnswerNumber?
 }
 struct RadioProperties: MCQPropertiesProtocol {
     let options: [MCQOption]

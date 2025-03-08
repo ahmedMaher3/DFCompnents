@@ -13,49 +13,49 @@ struct ContentNumberControlView: View {
     @State private var text: String = ""
 
     var body: some View {
-        ZStack {
-            TextField(viewModel.numberFieldModel.placeHolder, text: $text)
-                .padding(8)
-                .frame(height: 48)
-                .cornerRadius(4)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 4)
-                        .stroke(viewModel.numberFieldModel.isError ?? false
-                                ? .red : .gray, lineWidth: 0.5)
-                )
-                .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))
-                .keyboardType(.decimalPad)
-                .focused($isTextFieldFocused)
-                .onChange(of: text) { _, newValue in
-                    if newValue.allSatisfy({ $0.isNumber }) {
-                        viewModel.numberFieldModel.isError = false
-                    } else if newValue.rangeOfCharacter(from: .letters) != nil {
-                        viewModel.numberFieldModel.isError = true
-                    } else {
-                        viewModel.numberFieldModel.isError = false
+        VStack {
+            ZStack {
+                TextField(viewModel.numberFieldModel.placeHolder, text: $text)
+                    .padding(8)
+                    .frame(height: 48)
+                    .cornerRadius(4)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 4)
+                            .stroke(.gray, lineWidth: 0.5)
+                    )
+                    .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))
+                    .keyboardType(.decimalPad)
+                    .focused($isTextFieldFocused)
+                    .onChange(of: text) { oldValue, newValue in
+                        viewModel.characterCount = newValue.count
+                        if viewModel.inputValue != newValue {
+                            if !newValue.isEmpty {
+                                viewModel.inputValue = newValue
+                            }
+                        }
                     }
-                    viewModel.inputValue = newValue
+
+                /// Stepper
+                if viewModel.numberFieldModel.step! != 0 {
+                    StepperNumberFieldView(viewModel: viewModel, isTextFieldFocused: $isTextFieldFocused)
+                        .disabled(viewModel.numberFieldModel.isError ? true : false)
+                } else {
+                    EmptyView()
                 }
-                .onChange(of: viewModel.inputValue) { _, newValue in
-                    text = "\(newValue)"
-                    viewModel.inputValue = newValue
-                   let status = viewModel.validateDecimalPlaces()
-                    print("validateDecimalPlaces value: \(status)")
-                }
-                .onAppear {
-                    text = "\(viewModel.inputValue)"
-                }
-            /// Stepper
-            if viewModel.numberFieldModel.step! != 0 {
-                StepperNumberFieldView(viewModel: viewModel, isTextFieldFocused: $isTextFieldFocused)
-            } else {
-                EmptyView()
             }
+            .onReceive(viewModel.$inputValue) { newValue in
+                if text != newValue {
+                    text = newValue
+                }
+            }
+            .onAppear {
+                text = viewModel.inputValue
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .contentShape(Rectangle()) // Ensures taps in empty areas are detected
+        .onTapGesture {
+            isTextFieldFocused = false // Close keyboard only when tapping outside
+        }
     }
 }
-
-//#Preview {
-//    ContentNumberControlView()
-//}

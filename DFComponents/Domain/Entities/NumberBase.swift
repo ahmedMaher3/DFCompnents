@@ -17,7 +17,7 @@ class NumberBase: InteractiveFieldDelegate {
     let maximumDigits: Int?
     let minimumValue: Double?
     let maximumValue: Double?
-    let defaultAnswer: DefaultAnswer?
+    let defaultAnswer: BaseAnswerNumber?
 
     init(field: Field?) {
         self.base = InteractiveField(field: field)

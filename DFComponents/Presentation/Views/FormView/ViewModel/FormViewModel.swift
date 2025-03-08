@@ -42,7 +42,6 @@ class FormViewModel: ObservableObject {
                     return field
             }
         }
-
         rulesImp = RuleImp(controls: fields, rules: rules)
         rulesImp.handleAllRules()
     }
@@ -59,18 +58,47 @@ class FormViewModel: ObservableObject {
            let requiredWarning = warnings.fieldValidation.required {
             fieldWarnings.append(requiredWarning)
         }
-        
+
         if let field = fields.first(where: { $0.id == fieldId }) {
             switch field {
                 case .textBox((let baseField, _)): break
                 case .radio((let baseField, _)): break
                 case .number((let baseField, let numberViewModel)):
-                    if let numericWarning = warnings.fieldValidation.input.numeric, isError {
-                        fieldWarnings.append(numericWarning)
-                    } else  if !numberViewModel.validateDecimalPlaces() {
-                        if let customWarning = warnings.fieldValidation.input.custom {
-                            fieldWarnings.append(customWarning.replacingOccurrences(of: customWarning, with: "invalid decimal places".localized))
+                    let inputValue = numberViewModel.inputValue
+                    ///  Check if input contains letters (Only allow numbers)
+                    if inputValue.rangeOfCharacter(from: CharacterSet.letters) != nil {
+                        if let numericWarning = warnings.fieldValidation.input.numeric {
+                            fieldWarnings.append(numericWarning) // "Please Insert Only Number"
                         }
+                    } else if inputValue.contains(".") {
+                        ///  Validate Decimal Places
+                        if !numberViewModel.validateDecimalPlaces(),
+                           let customWarning = warnings.fieldValidation.input.custom {
+                            fieldWarnings.append(customWarning.replacingOccurrences(of: "{0}", with: "invalid decimal places".localized))
+                        }
+                    } else {
+                        /// Convert inputValue to Int
+                        if let inputNumber = Int(inputValue) {
+                            //  Check Minimum Value
+                            if let minValue = Int(warnings.fieldValidation.number.minimumValue ?? ""),
+                               inputNumber < minValue {
+                                fieldWarnings.append("Minimum value allowed is \(minValue)")
+                            }
+                            ///  Check Maximum Value
+                            if let maxValue = Int(warnings.fieldValidation.number.maximumValue ?? ""),
+                               inputNumber > maxValue {
+                                fieldWarnings.append("Maximum value allowed is \(maxValue) \n")
+                            }
+                        }
+                        ///  Check Maximum Digits (Only if input is fully numeric)
+                        if let maxDigits = numberViewModel.numberFieldModel.maximumDigits,
+                           inputValue.count > maxDigits {
+                            fieldWarnings.append("Maximum digits allowed is \(maxDigits) \n")
+                        }
+                    }
+                    let statusWarnings = !fieldWarnings.isEmpty
+                    if numberViewModel.numberFieldModel.isError != statusWarnings {
+                        numberViewModel.numberFieldModel.isError = statusWarnings
                     }
                     warningsDictionary[baseField.fieldId] = fieldWarnings
             }
