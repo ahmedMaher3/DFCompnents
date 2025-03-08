@@ -24,16 +24,29 @@ struct ControlFormBuilderView<Header: View, Control: View, Footer: View>: View {
     }
 
     var body: some View {
-        LazyVStack(alignment: .leading, spacing: 8) {
-            /// Header View
-            headerView?()
-            /// Control
-            control()
-            /// Footer View
-            footerView?()
-            /// Warning Card (only if there's a warning)
-            if let warning = warningMessage, !warning.isEmpty {
+        if let warning = warningMessage, !warning.isEmpty {
+            LazyVStack(alignment: .leading, spacing: 8) {
+                /// Header View
+                headerView?()
+                /// Control
+                control()
+                    .overlay(RoundedRectangle(cornerRadius: 4)
+                            .stroke(.red,lineWidth: 0.5))
+                /// Footer View
+                footerView?()
                 WarningCardView(message: warning)
+            }
+            .padding(6)
+            .background(Color.red.opacity(0.05))
+            .cornerRadius(8)
+        } else {
+            LazyVStack(alignment: .leading, spacing: 8) {
+                /// Header View
+                headerView?()
+                /// Control
+                control()
+                /// Footer View
+                footerView?()
             }
         }
     }

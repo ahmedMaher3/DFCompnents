@@ -9,17 +9,21 @@ import Foundation
 
 final class NumberFieldViewModel: ObservableObject {
     @Published var numberFieldModel: NumberFieldModel
-    @Published var inputValue: String
+    @Published var inputValue: String = ""
+    @Published var characterCount: Int = 0
 
     init(numberFieldModel: NumberFieldModel) {
         self.numberFieldModel = numberFieldModel
-        self.inputValue = "\(numberFieldModel.decimalPlaces ?? 0)"
+        if numberFieldModel.numberProperties.defaultAnswer?.value != nil {
+                self.inputValue = numberFieldModel.numberProperties.defaultAnswer?.value ?? ""
+                self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
+        }
     }
 
     func incrementStepper() {
         guard let step = numberFieldModel.step,
               inputValue.rangeOfCharacter(from: .letters) == nil else { return }
-        var incrementStep = Int(inputValue) ?? 0
+        var incrementStep = Double(inputValue) ?? 0
         incrementStep += step
         inputValue = "\(incrementStep)"
         numberFieldModel.isError = incrementStep > 0 ? false : true
@@ -28,22 +32,16 @@ final class NumberFieldViewModel: ObservableObject {
     func decrementStepper() {
         guard let step = numberFieldModel.step,
               inputValue.rangeOfCharacter(from: .letters) == nil else { return }
-        let decrementStep = Int(inputValue) ?? 0
+        let decrementStep = Double(inputValue) ?? 0
         let newValue = max(decrementStep - step, 0)
         inputValue = "\(newValue)"
         numberFieldModel.isError = newValue >= 0 ? false : true
     }
+
+    func validateDecimalPlaces() -> Bool {
+        guard let decimalPlaces = numberFieldModel.decimalPlaces else { return true }
+        let numberOfDecimals = inputValue.split(separator: ".").count > 1
+        ? inputValue.split(separator: ".")[1].count : 0
+        return numberOfDecimals <= decimalPlaces
+    }
 }
-/*
-self.baseProperties = BaseProperties(
-    label: numberFieldModel.label,
-    subLabel: numberFieldModel.sublabel,
-    labelPosition: numberFieldModel.interactiveProperties?.labelPosition,
-    tooltip: numberFieldModel.tooltip,
-    hidden: numberFieldModel.hidden,
-    required: numberFieldModel.required)
-self.interactiveProperties = numberFieldModel.numberBase
-if self.interactiveProperties?.decimalPlaces ?? 0 >= 0 {
-    self.interactiveProperties?.isError = false
-}
- */

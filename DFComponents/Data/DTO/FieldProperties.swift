@@ -108,7 +108,7 @@ struct NumberProperties: InteractivePropertiesProtocol {
     var maximumValue: Double?
     var minimumDigits: Int?
     var maximumDigits: Int?
-    var step: Int?
+    var step: Double?
     var decimalPlaces: Int?
     var required: Bool?
     var placeholder: String?
@@ -122,7 +122,7 @@ struct NumberProperties: InteractivePropertiesProtocol {
     var labelPosition: String?
     var tooltip: String?
     var hidden: Bool?
-    let defaultAnswer: DefaultAnswer?
+    let defaultAnswer: BaseAnswerNumber?
 }
 struct RadioProperties: MCQPropertiesProtocol {
     let options: [MCQOption]

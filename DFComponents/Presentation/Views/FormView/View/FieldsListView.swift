@@ -51,7 +51,6 @@ struct FieldsListView: View {
                     )
                 )
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
-
             case .number((_, let numberViewModel)):
                 ControlFormBuilderView(
                     headerView: {
@@ -60,20 +59,22 @@ struct FieldsListView: View {
                     controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
                             .onReceive(numberViewModel.objectWillChange) { updatedValue in
-                                viewModel.checkingWarning(for: field.id, value: "\(numberViewModel.inputValue)", isError: numberViewModel.numberFieldModel.isError ?? false)
+                                viewModel.checkingWarning(for: field.id,
+                                                          value: "\(numberViewModel.inputValue)",
+                                                          isError: numberViewModel.numberFieldModel.isError ?? false)
                             }
                     },
                     footerView: {
-                        FooterComponentView(viewModel: FooterComponentViewModel(interactiveProperties: numberViewModel.numberFieldModel.base))
+                        FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
                     },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                         set: { newValue in
                             viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
                             ? [newValue!] : nil
-                        }
-                    )
+                    }
                 )
+            )
         }
     }
 }
