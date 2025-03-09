@@ -32,24 +32,50 @@ struct FormView: View {
             VStack {
                 if !viewModel.pages.isEmpty {
                     
-                    TabView {
-                        ForEach(self.viewModel.pages, id: \.id) { page in
-                                    PageView(controls: page.fields)
-                                   .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                                   .environmentObject(viewModel)
+                    
+                    if self.viewModel.mode == .card {
+                        TabView {
+                            ForEach(self.viewModel.pages, id: \.id) { page in
+                                GeometryReader { geometry in
+                                ScrollView {
+                                        
+                                        VStack {
+                                            Spacer()
+                                            PageView(controls: page.fields)
+                                                .frame(maxWidth: .infinity) // Ensures it expands properly
+                                                .environmentObject(viewModel)
+                                            Spacer()
+                                        }
+                                        .frame(maxWidth: .infinity, minHeight: geometry.size.height) // Uses container height
+                                    }
+                                }
+                            }
                         }
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
+                        .if(self.viewModel.mode == .card) { tab in
+                            tab.frame(height: UIScreen.main.bounds.height / 2)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color.white)
+                                        .shadow(radius: 5)
+                                )
+                                .padding()
+                        }
+                    } else {
+                        
+                        TabView {
+                            
+                            ForEach(self.viewModel.pages, id: \.id) { page in
+                                VStack {
+                                    PageView(controls: page.fields)
+                                        .environmentObject(viewModel)
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                                }
+                            }
+                        }
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
                     }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
-                    .if(self.viewModel.mode == .card) { tab in
-                        tab.frame(height: UIScreen.main.bounds.height / 2)
-                            .background(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(Color.white)
-                                    .shadow(radius: 5)
-                            )
-                            .padding()
-                    }
-
+                    
                 } else {
                     // Show loading state while form data is being fetched
                     loadingView()
@@ -82,10 +108,6 @@ struct FormView: View {
                 .progressViewStyle(CircularProgressViewStyle())
         }
     }
-#Preview {
-    FormView()
-}
-
     
     func switchLanguage(to localeIdentifier: String) {
         currentLocale = Locale(identifier: localeIdentifier)
@@ -99,3 +121,7 @@ struct FormView: View {
     }
     
 }
+
+//#Preview {
+//    FormView()
+//}

@@ -13,13 +13,14 @@ struct PageView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-               ForEach(controls, id: \.id) { field in
-                   renderField(for: field)
-                       .environmentObject(viewModel)
-               }
-           }
-           .padding()
-       }
+            ForEach(controls, id: \.id) { field in
+                renderField(for: field)
+                    .environmentObject(viewModel)
+            }
+        }
+        .padding()
+        .border(Color.yellow, width: 8)
+    }
 
     /// Controls
     @ViewBuilder
