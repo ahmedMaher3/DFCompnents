@@ -8,7 +8,7 @@
 class NumberFieldModel: NumberBaseDelegate {
     var numberProperties: NumberBase
 //    var numberBaseProperties: BaseProperties
-    let step: Double?
+    let step: Int?
     let decimalPlaces: Int?
     let minimumDigits: Int?
     let maximumDigits: Int?

@@ -23,7 +23,7 @@ final class NumberFieldViewModel: ObservableObject {
     func incrementStepper() {
         guard let step = numberFieldModel.step,
               inputValue.rangeOfCharacter(from: .letters) == nil else { return }
-        var incrementStep = Double(inputValue) ?? 0
+        var incrementStep = Int(inputValue) ?? 0
         incrementStep += step
         inputValue = "\(incrementStep)"
         numberFieldModel.isError = incrementStep > 0 ? false : true
@@ -32,10 +32,10 @@ final class NumberFieldViewModel: ObservableObject {
     func decrementStepper() {
         guard let step = numberFieldModel.step,
               inputValue.rangeOfCharacter(from: .letters) == nil else { return }
-        let decrementStep = Double(inputValue) ?? 0
-        let newValue = max(decrementStep - step, 0)
-        inputValue = "\(newValue)"
-        numberFieldModel.isError = newValue >= 0 ? false : true
+        let decrementStep = Int(inputValue) ?? 0
+        let result = decrementStep - step
+        inputValue = "\(result)"
+        numberFieldModel.isError = result >= 0 ? false : true
     }
 
     func validateDecimalPlaces() -> Bool {
