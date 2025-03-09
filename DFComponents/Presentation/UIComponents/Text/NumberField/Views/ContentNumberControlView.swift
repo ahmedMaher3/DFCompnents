@@ -15,7 +15,7 @@ struct ContentNumberControlView: View {
     var body: some View {
         VStack {
             ZStack {
-                TextField(viewModel.numberFieldModel.placeHolder, text: $text)
+                TextField(viewModel.numberFieldModel.placeHolder, text: $text.onChange(numberChanged))
                     .padding(8)
                     .frame(height: 48)
                     .cornerRadius(4)
@@ -26,17 +26,8 @@ struct ContentNumberControlView: View {
                     .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))
                     .keyboardType(.decimalPad)
                     .focused($isTextFieldFocused)
-                    .onChange(of: text) { oldValue, newValue in
-                        viewModel.characterCount = newValue.count
-                        if viewModel.inputValue != newValue {
-                            if !newValue.isEmpty {
-                                viewModel.inputValue = newValue
-                            }
-                        }
-                    }
-
                 /// Stepper
-                if viewModel.numberFieldModel.step! != 0 {
+                if let step = viewModel.numberFieldModel.step, step != 0 {
                     StepperNumberFieldView(viewModel: viewModel, isTextFieldFocused: $isTextFieldFocused)
                         .disabled(viewModel.numberFieldModel.isError ? true : false)
                 } else {
@@ -53,9 +44,53 @@ struct ContentNumberControlView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .contentShape(Rectangle()) // Ensures taps in empty areas are detected
+        .contentShape(Rectangle())
         .onTapGesture {
-            isTextFieldFocused = false // Close keyboard only when tapping outside
+            isTextFieldFocused = false
         }
     }
+
+    func numberChanged(to value: String) {
+            viewModel.characterCount = value.count
+            if value.isEmpty {
+                DispatchQueue.main.async {
+                    isTextFieldFocused = true
+                }
+            }
+            if viewModel.inputValue != value {
+                viewModel.inputValue = value
+            }
+        }
 }
+extension Binding {
+    @MainActor
+    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
+        Binding(
+            get: { self.wrappedValue },
+            set: { newValue in
+                self.wrappedValue = newValue
+                handler(newValue)
+            }
+        )
+    }
+}
+/*
+ //            .onReceive(viewModel.$inputValue) { newValue in
+ //                if text != newValue {
+ //                    DispatchQueue.main.async {
+ //                        text = newValue
+ //                    }
+ //                }
+ //            }
+ //                    .onChange(of: text) { oldValue, newValue in
+ //                        viewModel.characterCount = newValue.count
+ //                        if viewModel.inputValue != newValue {
+ //                            if !newValue.isEmpty {
+ //                                DispatchQueue.main.async {
+ //                                    viewModel.inputValue = newValue
+ //                                }
+ //                            }
+ //                        }
+ //                    }
+
+ */
