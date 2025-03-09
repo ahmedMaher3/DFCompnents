@@ -32,7 +32,6 @@ struct FormView: View {
             VStack {
                 if !viewModel.pages.isEmpty {
                     
-                    
                     if self.viewModel.mode == .card {
                         TabView {
                             ForEach(self.viewModel.pages, id: \.id) { page in
@@ -62,19 +61,16 @@ struct FormView: View {
                                 .padding()
                         }
                     } else {
-                        
                         TabView {
-                            
                             ForEach(self.viewModel.pages, id: \.id) { page in
-                                VStack {
-                                    PageView(controls: page.fields)
-                                        .environmentObject(viewModel)
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                                }
+                                PageView(controls: page.fields)
+                                    .environmentObject(viewModel)
                             }
                         }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
                     }
+//                    }
                     
                 } else {
                     // Show loading state while form data is being fetched

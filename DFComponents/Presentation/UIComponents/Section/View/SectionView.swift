@@ -17,34 +17,41 @@ struct SectionView: View {
     @State private var isExpanded = true
     
     var body: some View {
-        List {
+//        List {
             Section(header: sectionHeader()) {
                 if isExpanded {
-                    ForEach(fields, id: \.id) { field in
-                        renderField(for: field)
+                    ScrollView {
+                        LazyVStack(spacing: 10) {
+                            
+                            ForEach(fields, id: \.id) { field in
+                                renderField(for: field)
+                            }
+                        }
                     }
                 }
             }
-        }
-        .listStyle(PlainListStyle()) // Native list styling
+//        }
+//        .listStyle(PlainListStyle()) // Native list styling
     }
     
     // MARK: - Section Header
     @ViewBuilder
     private func sectionHeader() -> some View {
-        Button(action: { isExpanded.toggle() }) {
-            HStack {
-//                Image(systemName: icon)
-//                    .foregroundColor(.white)
-                Text(title)
-                    .font(.headline)
-                    .foregroundColor(.white)
-                Spacer()
-                Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                    .foregroundColor(.white)
+        VStack {
+            Button(action: { isExpanded.toggle() }) {
+                HStack {
+                    //                Image(systemName: icon)
+                    //                    .foregroundColor(.white)
+                    Text(title)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Spacer()
+                    Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                        .foregroundColor(.white)
+                }
+                .padding()
+                .background(Color.blue)
             }
-            .padding()
-            .background(Color.blue)
         }
     }
     
