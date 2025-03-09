@@ -7,7 +7,6 @@
 
 class NumberFieldModel: NumberBaseDelegate {
     var numberProperties: NumberBase
-//    var numberBaseProperties: BaseProperties
     let step: Int?
     let decimalPlaces: Int?
     let minimumDigits: Int?
@@ -17,7 +16,6 @@ class NumberFieldModel: NumberBaseDelegate {
 
     init(field: Field?) {
         self.numberProperties = NumberBase(field: field)
-        //        self.numberComponentProperties = NumberCom
         if let properties = field?.properties as? NumberProperties {
             self.step = properties.step
             self.decimalPlaces = properties.decimalPlaces

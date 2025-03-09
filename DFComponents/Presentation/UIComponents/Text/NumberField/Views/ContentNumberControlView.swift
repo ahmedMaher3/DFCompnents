@@ -17,7 +17,7 @@ struct ContentNumberControlView: View {
             ZStack {
                 TextField(viewModel.numberFieldModel.placeHolder, text: $text.onChange(numberChanged))
                     .padding(8)
-                    .frame(height: 48)
+                    .frame(height: 48) // Simplify instead of min, ideal, and max constraints
                     .cornerRadius(4)
                     .overlay(
                         RoundedRectangle(cornerRadius: 4)
@@ -26,20 +26,24 @@ struct ContentNumberControlView: View {
                     .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))
                     .keyboardType(.decimalPad)
                     .focused($isTextFieldFocused)
-                    .toolbar {
-                        ToolbarItemGroup(placement: .keyboard) {
-                            Spacer()
-                            Button("Done") {
-                                isTextFieldFocused = false  // Dismiss keyboard
-                            }
-                        }
-                    }
+
                 /// Stepper
                 if let step = viewModel.numberFieldModel.step, step != 0 {
                     StepperNumberFieldView(viewModel: viewModel, isTextFieldFocused: $isTextFieldFocused)
                         .disabled(viewModel.numberFieldModel.isError ? true : false)
                 } else {
                     EmptyView()
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                            Spacer()
+                    Button("Done") {
+                        let answer = BaseAnswerNumber(value: text)
+                        viewModel.numberFieldModel.answer = answer
+                        print("Display please the input value from user:\(text) and answer please become:\(viewModel.numberFieldModel.answer)")
+                        isTextFieldFocused = false
+                    }
                 }
             }
             .onReceive(viewModel.$inputValue) { newValue in
@@ -52,20 +56,15 @@ struct ContentNumberControlView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .contentShape(Rectangle())
-        .onTapGesture {
-            isTextFieldFocused = false
-        }
+//        .contentShape(Rectangle())
+//        .onTapGesture {
+//            isTextFieldFocused = false
+//        }
     }
 
     func numberChanged(to value: String) {
         viewModel.characterCount = value.count
-        if value.isEmpty {
-            DispatchQueue.main.async {
-                isTextFieldFocused = true
-            }
-        }
-        if viewModel.inputValue != value {
+        if viewModel.inputValue != value && !value.isEmpty {
             viewModel.inputValue = value
         }
     }

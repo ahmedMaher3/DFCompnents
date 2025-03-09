@@ -15,8 +15,10 @@ final class NumberFieldViewModel: ObservableObject {
     init(numberFieldModel: NumberFieldModel) {
         self.numberFieldModel = numberFieldModel
         if numberFieldModel.numberProperties.defaultAnswer?.value != nil {
-                self.inputValue = numberFieldModel.numberProperties.defaultAnswer?.value ?? ""
-                self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
+            let answer = BaseAnswerNumber(value: numberFieldModel.numberProperties.defaultAnswer?.value ?? "")
+            print("Display the answer please:\(answer)")
+            self.inputValue = numberFieldModel.numberProperties.defaultAnswer?.value ?? ""
+            self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
         }
     }
 
@@ -44,4 +46,6 @@ final class NumberFieldViewModel: ObservableObject {
         ? inputValue.split(separator: ".")[1].count : 0
         return numberOfDecimals <= decimalPlaces
     }
+
+
 }
