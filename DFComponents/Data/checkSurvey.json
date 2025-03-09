@@ -4,7 +4,7 @@
     "data": {
         "schema": {
             "id": "44742e0e-036c-482d-9172-425ad7fa3563",
-            "lastAppliedEventId": "744c4f9b-8f5c-4922-9ff2-aaae4ee04838",
+            "lastAppliedEventId": "e3b5df5f-0616-4054-a515-cb3f6703dc8f",
             "theme": {
                 "id": "1860dc6d-e725-4829-a3a1-82d09d89213d",
                 "name": "Default Theme",
@@ -105,7 +105,7 @@
                 "identifier": "N5DsWvjD/rxSnR2ozqx"
             },
             "settings": {
-                "format": "Classic",
+                "format": "Card",
                 "enableScoreCalculation": true,
                 "enableViewResults": true,
                 "enablePageValidation": true,
@@ -259,12 +259,13 @@
                 {
                     "weight": {
                         "options": {
-                            "818b750a-c00f-4539-a395-839637a5f0c9": 5,
-                            "abd6e6f4-9113-4b3e-aceb-5b8ce08fc818": 5,
                             "2b002edb-f31d-496e-bac9-843ea8a4db0a": 5,
-                            "aa440d68-5f75-4f42-afa2-8f0a990d9dd9": 5
+                            "43ccf939-9538-4f1c-a921-ff2809c5d951": 10,
+                            "818b750a-c00f-4539-a395-839637a5f0c9": 5,
+                            "aa440d68-5f75-4f42-afa2-8f0a990d9dd9": 5,
+                            "abd6e6f4-9113-4b3e-aceb-5b8ce08fc818": 5
                         },
-                        "value": 5
+                        "value": 10
                     },
                     "id": "6e09ee1f-488d-4f77-a190-5d6d3724f09f",
                     "templateQuestionId": null,
@@ -273,6 +274,10 @@
                     "order": "a1",
                     "properties": {
                         "options": [
+                            {
+                                "id": "43ccf939-9538-4f1c-a921-ff2809c5d951",
+                                "name": "Hassan Beeh Elshaer"
+                            },
                             {
                                 "id": "abd6e6f4-9113-4b3e-aceb-5b8ce08fc818",
                                 "name": "Maher"
