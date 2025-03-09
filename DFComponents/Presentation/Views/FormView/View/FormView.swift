@@ -6,6 +6,16 @@
 //
 import SwiftUI
 
+extension View {
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
+}
+
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
@@ -21,6 +31,7 @@ struct FormView: View {
         NavigationStack {
             VStack {
                 if !viewModel.pages.isEmpty {
+                    
                     TabView {
                         ForEach(self.viewModel.pages, id: \.id) { page in
                                     PageView(controls: page.fields)
@@ -28,9 +39,16 @@ struct FormView: View {
                                    .environmentObject(viewModel)
                         }
                     }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                    .padding()
-
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
+                    .if(self.viewModel.mode == .card) { tab in
+                        tab.frame(height: UIScreen.main.bounds.height / 2)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.white)
+                                    .shadow(radius: 5)
+                            )
+                            .padding()
+                    }
 
                 } else {
                     // Show loading state while form data is being fetched
@@ -45,9 +63,9 @@ struct FormView: View {
                         }
                 }
             }
-            .navigationTitle(title.localizedKey)
-            .navigationBarTitleDisplayMode(.inline)
-            //            .navigationBarTitle(LocalizedStringKey(title), displayMode: .inline)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(hex: "#FAFBFF"))
+            .navigationBarTitle(title, displayMode: .inline)
             .environmentObject(styleManagerVM)
             .onAppear {
                 currentLocale = locale
@@ -64,6 +82,10 @@ struct FormView: View {
                 .progressViewStyle(CircularProgressViewStyle())
         }
     }
+#Preview {
+    FormView()
+}
+
     
     func switchLanguage(to localeIdentifier: String) {
         currentLocale = Locale(identifier: localeIdentifier)
