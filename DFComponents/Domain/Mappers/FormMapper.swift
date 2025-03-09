@@ -12,75 +12,141 @@ protocol EntityMapper {
     associatedtype Entity
     func map (from dto: DTO) -> [PageModel]
     associatedtype Warnings
-//    func map (from dto: DTO) -> [FieldEntity]
+    //    func map (from dto: DTO) -> [FieldEntity]
     func map (from dto: Warnings) -> WarningsEntity
 }
 
 class FormMapper: EntityMapper {
     
-//    func map(from dto: Schema) -> [FieldEntity] {
-//        <#code#>
-//    }
+    //    func map(from dto: Schema) -> [FieldEntity] {
+    //        <#code#>
+    //    }
     
-
+    
     typealias DTO = Schema
     typealias Entity = FieldEntity
     typealias formWarnings = WarningsEntity
     
     func map(from dto: Schema) -> [PageModel] {
-        let pages = groupFieldsByPage (fields: dto.fields,mode:dto.settings.format )
+        let pages = convertToPages(fields: dto.fields,
+                                   mode: dto.settings.format )
         return pages
     }
-
-    func groupFieldsByPage(fields: [Field], mode: FormType) -> [PageModel] {
-        let pageIds = fields.compactMap { $0.type == .page ? $0.id : nil }
-
-        let groupedFields = Dictionary(grouping: fields.filter{$0.parentId != nil}) { field in
-
-            field.parentId.flatMap { pageIds.contains($0) ? $0 : nil }
-        }
-        //let pages = groupedFields.map { PageModel(id: $0.key!, fields: mapFields(fields: $0.value)) }
-        let pages = groupedFields.map { (key, value) in
-            let mappedFields = mapFields(fields: value)
-
-            // 🔹 Debug: Print the mapping process
-            print("Mapping for Page ID:", key ?? "Unknown", "Mapped Fields:", mappedFields)
-
-            return PageModel(id: key ?? "", fields: mappedFields, mode: mode)
-        }
-
-        return pages
-    }
-
     
-
-
-    func mapFields(fields: [Field]) -> [FieldEntity] {
+    private func convertToPages(fields: [Field], mode: FormType) -> [PageModel] {
+        return mode == .classic ? convertToPagesInClassicMode(fields: fields, mode: mode) : convertToPagesInCardsMode(fields: fields, mode: mode)
+    }
+    
+    //    func groupFieldsByPage(fields: [Field], mode: FormType) -> [PageModel] {
+    //        let pageIds = fields.compactMap { $0.type == .page ? $0.id : nil }
+    //
+    //        let groupedFields = Dictionary(grouping: fields.filter{$0.parentId != nil}) { field in
+    //
+    //            field.parentId.flatMap { pageIds.contains($0) ? $0 : nil }
+    //        }
+    //        //let pages = groupedFields.map { PageModel(id: $0.key!, fields: mapFields(fields: $0.value)) }
+    //        let pages = groupedFields.map { (key, value) in
+    //            let mappedFields = mapFields(fields: value)
+    //
+    //            // 🔹 Debug: Print the mapping process
+    //            print("Mapping for Page ID:", key ?? "Unknown", "Mapped Fields:", mappedFields)
+    //
+    //            return PageModel(id: key ?? "", fields: mappedFields, mode: mode)
+    //        }
+    //
+    //        return pages
+    //    }
+    
+    //    func mapFields(fields: [Field]) -> [FieldEntity] {
+    //        return fields.compactMap { field in
+    //            switch field.type {
+    //            case .textBox:
+    //                let control = TextBoxField(field: field)
+    //                return .textBox((control, TextBoxViewModel(control: control)))
+    //            case .radio:
+    //                let control = RadioButtonField(field: field)
+    //                return .radio((control, RadioButtonViewModel(control: control)))
+    //            case .page:
+    //                let control = PageField(field: field)
+    //                return .page((control, PageViewModel()))
+    //            case .section:
+    //                let control = SectionField(field: field)
+    //                return .section((control, SectionViewModel(controls: [], title: "title")))
+    //            case .number:
+    //                let control = NumberFieldModel(field: field)
+    //                return .number((control, NumberFieldViewModel(numberFieldModel: control)))
+    //
+    //            default:
+    //                return nil
+    //            }
+    //        }
+    //    }
+    
+    func convertToPagesInClassicMode(fields: [Field], mode: FormType) -> [PageModel] {
+        let pageIds = fields.compactMap { $0.type == .page ? $0.id : nil } // collect pageIds
+        
+        let groupedFields = Dictionary(grouping: fields.filter { $0.parentId != nil }) { $0.parentId! } // Collect fields with same parent id in group
+        
+        // 🔹 Recursively process pages & sections
+        let pages = pageIds.compactMap { pageId -> PageModel? in
+            guard let pageFields = groupedFields[pageId] else { return nil }
+            let mappedFields = mapFieldsRecursively(fields: pageFields, groupedFields: groupedFields)
+            return PageModel(id: pageId, fields: mappedFields, mode: mode)
+        }
+        
+        return pages
+    }
+    
+    private func convertToPagesInCardsMode(fields: [Field], mode: FormType) -> [PageModel] {
+        var pages: [PageModel] = []
+        var cardIndex = 1
+        
+        let cardFields = fields.filter { $0.type != .page && $0.type != .section } // Exclude pages & sections
+        
+        for field in cardFields {
+            let pageId = "page_\(cardIndex)" // Manually assigning unique page IDs
+            
+            let mappedFields = mapFieldsRecursively(fields: [field], groupedFields: [:]) // Map single field
+            
+            let pageModel = PageModel(id: pageId, fields: mappedFields, mode: mode)
+            pages.append(pageModel)
+            
+            cardIndex += 1
+        }
+        
+        return pages
+    }
+    
+    // 🔹 Recursive function to map fields & handle sections dynamically
+    private func mapFieldsRecursively(fields: [Field], groupedFields: [String: [Field]]) -> [FieldEntity] {
         return fields.compactMap { field in
-            switch field.type {
-            case .textBox:
-                let control = TextBoxField(field: field)
-                return .textBox((control, TextBoxViewModel(control: control)))
-            case .radio:
-                let control = RadioButtonField(field: field)
-                return .radio((control, RadioButtonViewModel(control: control)))
-            case .page:
-                let control = PageField(field: field)
-                return .page((control, PageViewModel()))
-            case .section:
+            if field.type == .section {
+                let sectionControls = mapFieldsRecursively(fields: groupedFields[field.id!] ?? [], groupedFields: groupedFields)
                 let control = SectionField(field: field)
-                return .section((control, SectionViewModel(controls: [], title: "title")))
-            case .number:
-                let control = NumberFieldModel(field: field)
-                return .number((control, NumberFieldViewModel(numberFieldModel: control)))
-
-            default:
-                return nil
+                return .section((control, SectionViewModel(controls: sectionControls, title: field.properties.label ?? "Section")))
             }
+            return mapSingleField(field: field)
         }
     }
-
-        func map(from dto: Warnings) -> WarningsEntity {
+    
+    // 🔹 Helper Function to Map a Single Field
+    private func mapSingleField(field: Field) -> FieldEntity? {
+        switch field.type {
+        case .textBox:
+            let control = TextBoxField(field: field)
+            return .textBox((control, TextBoxViewModel(control: control)))
+        case .radio:
+            let control = RadioButtonField(field: field)
+            return .radio((control, RadioButtonViewModel(control: control)))
+        case .number:
+            let control = NumberFieldModel(field: field)
+            return .number((control, NumberFieldViewModel(numberFieldModel: control)))
+        default:
+            return nil
+        }
+    }
+    
+    func map(from dto: Warnings) -> WarningsEntity {
         return WarningsEntity(
             formValidation: FormValidationEntity(
                 expired: dto.formWarning.formValidation.expired,
@@ -186,7 +252,7 @@ enum FieldEntity: Identifiable {
             return field.type
         }
     }
-
+    
 }
 
 

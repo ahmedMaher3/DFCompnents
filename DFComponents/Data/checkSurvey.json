@@ -105,7 +105,7 @@
                 "identifier": "N5DsWvjD/rxSnR2ozqx"
             },
             "settings": {
-                "format": "Classic",
+                "format": "Card",
                 "enableScoreCalculation": true,
                 "enableViewResults": true,
                 "enablePageValidation": true,
@@ -331,7 +331,7 @@
                     "id": "66742560-71f6-427c-a04d-8a570ca8c2e1",
                     "templateQuestionId": null,
                     "type": "Number",
-                    "parentId": "c985a6d4-3a4e-4fa8-b949-cf9560c3ed6f",
+                    "parentId": "ef31f124-476c-4b81-ad60-639f16df07fb",
                     "order": "a1",
                     "properties": {
                         "decimalPlaces": 1,
