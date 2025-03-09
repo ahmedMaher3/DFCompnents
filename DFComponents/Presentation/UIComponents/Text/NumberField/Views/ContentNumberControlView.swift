@@ -26,6 +26,14 @@ struct ContentNumberControlView: View {
                     .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))
                     .keyboardType(.decimalPad)
                     .focused($isTextFieldFocused)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button("Done") {
+                                isTextFieldFocused = false  // Dismiss keyboard
+                            }
+                        }
+                    }
                 /// Stepper
                 if let step = viewModel.numberFieldModel.step, step != 0 {
                     StepperNumberFieldView(viewModel: viewModel, isTextFieldFocused: $isTextFieldFocused)
@@ -51,46 +59,15 @@ struct ContentNumberControlView: View {
     }
 
     func numberChanged(to value: String) {
-            viewModel.characterCount = value.count
-            if value.isEmpty {
-                DispatchQueue.main.async {
-                    isTextFieldFocused = true
-                }
-            }
-            if viewModel.inputValue != value {
-                viewModel.inputValue = value
+        viewModel.characterCount = value.count
+        if value.isEmpty {
+            DispatchQueue.main.async {
+                isTextFieldFocused = true
             }
         }
-}
-extension Binding {
-    @MainActor
-    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
-        Binding(
-            get: { self.wrappedValue },
-            set: { newValue in
-                self.wrappedValue = newValue
-                handler(newValue)
-            }
-        )
+        if viewModel.inputValue != value {
+            viewModel.inputValue = value
+        }
     }
 }
-/*
- //            .onReceive(viewModel.$inputValue) { newValue in
- //                if text != newValue {
- //                    DispatchQueue.main.async {
- //                        text = newValue
- //                    }
- //                }
- //            }
- //                    .onChange(of: text) { oldValue, newValue in
- //                        viewModel.characterCount = newValue.count
- //                        if viewModel.inputValue != newValue {
- //                            if !newValue.isEmpty {
- //                                DispatchQueue.main.async {
- //                                    viewModel.inputValue = newValue
- //                                }
- //                            }
- //                        }
- //                    }
 
- */

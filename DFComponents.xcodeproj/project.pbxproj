@@ -84,6 +84,7 @@
 		AAF1B1832D76490500DC44B4 /* LocationValidationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1B1822D76490500DC44B4 /* LocationValidationEntity.swift */; };
 		AAF1B1852D76490900DC44B4 /* InputValidationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1B1842D76490900DC44B4 /* InputValidationEntity.swift */; };
 		AAF1B1872D76490D00DC44B4 /* NumberValidationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1B1862D76490D00DC44B4 /* NumberValidationEntity.swift */; };
+		AAF297102D7DA6C800E7B0C3 /* BindingExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2970F2D7DA6C800E7B0C3 /* BindingExtenstion.swift */; };
 		AAF8308A2D78C84F001B0CAC /* FieldsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF830892D78C84F001B0CAC /* FieldsListView.swift */; };
 		AAF8308D2D7909D2001B0CAC /* WarningCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF8308C2D7909D2001B0CAC /* WarningCardView.swift */; };
 		E44926C42D4B8AD200EA5D5E /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44926C32D4B8AD200EA5D5E /* FormView.swift */; };
@@ -247,6 +248,7 @@
 		AAF1B1822D76490500DC44B4 /* LocationValidationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationValidationEntity.swift; sourceTree = "<group>"; };
 		AAF1B1842D76490900DC44B4 /* InputValidationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidationEntity.swift; sourceTree = "<group>"; };
 		AAF1B1862D76490D00DC44B4 /* NumberValidationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberValidationEntity.swift; sourceTree = "<group>"; };
+		AAF2970F2D7DA6C800E7B0C3 /* BindingExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtenstion.swift; sourceTree = "<group>"; };
 		AAF830892D78C84F001B0CAC /* FieldsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsListView.swift; sourceTree = "<group>"; };
 		AAF8308C2D7909D2001B0CAC /* WarningCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningCardView.swift; sourceTree = "<group>"; };
 		E44926C32D4B8AD200EA5D5E /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 		AAE5CA8D2D4A4D6F00FDA699 /* Extenstions */ = {
 			isa = PBXGroup;
 			children = (
+				AAF2970F2D7DA6C800E7B0C3 /* BindingExtenstion.swift */,
 				E489E81D2D4A6A15007EA370 /* ColorExtension.swift */,
 				AAE5CA8E2D4A4D8D00FDA699 /* ImageExtension.swift */,
 				AAE5CABD2D4A50AD00FDA699 /* ViewExtenstion.swift */,
@@ -1560,6 +1563,7 @@
 				E48CA1132D5CC72300A519ED /* AppSpacing.swift in Sources */,
 				AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */,
 				E48CA01A2D537D7100A519ED /* SignatureComponent.swift in Sources */,
+				AAF297102D7DA6C800E7B0C3 /* BindingExtenstion.swift in Sources */,
 				A9474D7E2D64AD7700031047 /* FieldRules.swift in Sources */,
 				E4A9019E2D5E01E9007080AC /* NetworkServiceImpl.swift in Sources */,
 				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
