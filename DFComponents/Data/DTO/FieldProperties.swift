@@ -40,14 +40,21 @@ protocol InteractivePropertiesProtocol: BasePropertiesProtocol {
     var attachmentType: AttachmentType? { get }
     var disabled: Bool? { get }
 }
-
+/*
 //MARK: - Properties related to number
 protocol NumberBaseProperties: InteractivePropertiesProtocol {
     ///stepper
     var step: Int? { get }
     ///DecimalPlaceValue
     var decimalPlaces: Int? { get }
+    ///Value Limit
+    var minimumValue: Double? { get }
+    var maximumValue: Double? { get }
+    ///Entry Limit
+    var minimumDigits: Int? { get }
+    var maximumDigits: Int? { get }
 }
+ */
 
 protocol TextBaseProperties: InteractivePropertiesProtocol {
     var allowSpellcheck: Bool? { get }
@@ -96,8 +103,12 @@ struct TextBoxProperties: TextBaseProperties {
     let regex: String?
     let subType: TextBoxSubType?
 }
-struct NumberComponentProperties: NumberBaseProperties {
-    var step: Int?
+struct NumberProperties: InteractivePropertiesProtocol {
+    var minimumValue: Double?
+    var maximumValue: Double?
+    var minimumDigits: Int?
+    var maximumDigits: Int?
+    var step: Double?
     var decimalPlaces: Int?
     var required: Bool?
     var placeholder: String?
@@ -111,6 +122,7 @@ struct NumberComponentProperties: NumberBaseProperties {
     var labelPosition: String?
     var tooltip: String?
     var hidden: Bool?
+    let defaultAnswer: BaseAnswerNumber?
 }
 struct RadioProperties: MCQPropertiesProtocol {
     let options: [MCQOption]

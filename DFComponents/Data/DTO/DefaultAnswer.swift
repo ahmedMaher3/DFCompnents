@@ -24,7 +24,7 @@ protocol TextAnswer: Answer {
 }
 
 protocol NumberAnswer: Answer {
-    var value: Double? { get }
+    var value: String? { get }
 }
 
 protocol MultiChoiceAnswer: Answer {
@@ -58,9 +58,9 @@ struct BaseAnswerText: TextAnswer {
 struct BaseAnswerNumber: NumberAnswer {
     let note: String?
     let attachments: [AnyDecodable]?
-    let value: Double?
-    
-    init(value: Double, note: String? = nil, attachments: [Any]? = nil) {
+    var value: String?
+
+    init(value: String, note: String? = nil, attachments: [Any]? = nil) {
         self.value = value
         self.note = note
         self.attachments = attachments?.map(AnyDecodable.init)

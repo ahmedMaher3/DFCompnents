@@ -22,9 +22,19 @@ import Foundation
 //    }
 //}
 final class FooterComponentViewModel: ObservableObject {
-    @Published var interactiveBaseProperties: InteractiveField
+//        @Published var interactiveProperties: InteractiveField
+//        @Published var controlViewModel: any ObservableObject
+//    
+//        init(controlViewModel: any ObservableObject,interactiveProperties: InteractiveField) {
+//            self.interactiveProperties = interactiveProperties
+//            self.controlViewModel = controlViewModel
+//        }
+    @Published var interactiveProperties: InteractiveField
+    @Published var fieldEntity: FieldEntity
 
-    init(interactiveBaseProperties: InteractiveField) {
-        self.interactiveBaseProperties = interactiveBaseProperties
+    init( fieldEntity: FieldEntity,interactiveProperties: InteractiveField) {
+        self.fieldEntity = fieldEntity
+        self.interactiveProperties = interactiveProperties
     }
+
 }

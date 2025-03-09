@@ -8,43 +8,40 @@
 import Foundation
 
 final class NumberFieldViewModel: ObservableObject {
-    //MARK: - NumberBaseProperties
     @Published var numberFieldModel: NumberFieldModel
-    @Published var inputValue: String
-
-    var baseProperties: BaseProperties?
-    var interactiveProperties: NumberBase?
+    @Published var inputValue: String = ""
+    @Published var characterCount: Int = 0
 
     init(numberFieldModel: NumberFieldModel) {
         self.numberFieldModel = numberFieldModel
-        self.inputValue = "\(numberFieldModel.decimalPlaces ?? 0)"
-        self.baseProperties = BaseProperties(
-            label: numberFieldModel.label,
-            subLabel: numberFieldModel.sublabel,
-            labelPosition: numberFieldModel.interactiveProperties?.labelPosition,
-            tooltip: numberFieldModel.tooltip,
-            hidden: numberFieldModel.hidden,
-            required: numberFieldModel.required)
-        self.interactiveProperties = numberFieldModel.numberBase
-        if self.interactiveProperties?.decimalPlaces ?? 0 >= 0 {
-            self.interactiveProperties?.isError = false
+        if numberFieldModel.numberProperties.defaultAnswer?.value != nil {
+                self.inputValue = numberFieldModel.numberProperties.defaultAnswer?.value ?? ""
+                self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
         }
     }
 
     func incrementStepper() {
-        guard let step = numberFieldModel.step, inputValue.rangeOfCharacter(from: .letters) == nil else { return }
-        var incrementStep = Int(inputValue) ?? 0
+        guard let step = numberFieldModel.step,
+              inputValue.rangeOfCharacter(from: .letters) == nil else { return }
+        var incrementStep = Double(inputValue) ?? 0
         incrementStep += step
         inputValue = "\(incrementStep)"
-        interactiveProperties?.isError = incrementStep > 0 ? false : true
+        numberFieldModel.isError = incrementStep > 0 ? false : true
     }
 
     func decrementStepper() {
-        guard let step = numberFieldModel.step, inputValue.rangeOfCharacter(from: .letters) == nil else { return }
-        let decrementStep = Int(inputValue) ?? 0
+        guard let step = numberFieldModel.step,
+              inputValue.rangeOfCharacter(from: .letters) == nil else { return }
+        let decrementStep = Double(inputValue) ?? 0
         let newValue = max(decrementStep - step, 0)
         inputValue = "\(newValue)"
-        interactiveProperties?.isError = newValue >= 0 ? false : true
+        numberFieldModel.isError = newValue >= 0 ? false : true
     }
 
+    func validateDecimalPlaces() -> Bool {
+        guard let decimalPlaces = numberFieldModel.decimalPlaces else { return true }
+        let numberOfDecimals = inputValue.split(separator: ".").count > 1
+        ? inputValue.split(separator: ".")[1].count : 0
+        return numberOfDecimals <= decimalPlaces
+    }
 }

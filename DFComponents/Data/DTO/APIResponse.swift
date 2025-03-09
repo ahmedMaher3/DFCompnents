@@ -117,7 +117,7 @@ struct Field: Codable {
             case .radio:
                 properties = try container.decode(RadioProperties.self, forKey: .properties)
             case .number:
-                properties = try container.decode(NumberComponentProperties.self, forKey: .properties)
+                properties = try container.decode(NumberProperties.self, forKey: .properties)
             default:
                 properties = try container.decode(BaseProperties.self, forKey: .properties)
         }

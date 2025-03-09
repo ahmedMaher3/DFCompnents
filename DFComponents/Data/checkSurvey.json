@@ -174,10 +174,10 @@
                             "custom": "value does not match the pattern {0}"
                         },
                         "number": {
-                            "minimumValue": "Minimum Value is {0}",
-                            "maximumValue": "Maximum Value is {0}",
+                            "minimumValue": "1",
+                            "maximumValue": "100",
                             "minimumDigits": "1",
-                            "maximumDigits": "10"
+                            "maximumDigits": "3"
                         },
                         "dateTime": {
                             "dateTime": "Enter date and time.",
@@ -334,17 +334,18 @@
                     "parentId": "c985a6d4-3a4e-4fa8-b949-cf9560c3ed6f",
                     "order": "a1",
                     "properties": {
-                        "decimalPlaces": 3,
-                        "step": 4,
-                        "minimumValue": null,
+                        "decimalPlaces": 1,
+                        "step": 4 ,
+                        "minimumValue": 1.0,
                         "maximumValue": 100.0,
-                        "minimumDigits": null,
-                        "maximumDigits": null,
+                        "minimumDigits": 1,
+                        "maximumDigits": 3,
                         "required": true,
                         "unique": null,
                         "addAttachment": false,
                         "addNote": false,
                         "defaultAnswer": {
+                            "value": "1.0",
                             "value": null,
                             "type": "Number",
                             "note": "",
@@ -743,4 +744,3 @@
         }
     }
 }
-
