@@ -64,7 +64,7 @@ class FormViewModel: ObservableObject {
                 case .textBox((let baseField, _)): break
                 case .radio((let baseField, _)): break
                 case .number((let baseField, let numberViewModel)):
-                    let inputValue = numberViewModel.inputValue
+                    let inputValue = numberViewModel.answer?.value ?? ""
                     ///  Check if input contains letters (Only allow numbers)
                     if inputValue.rangeOfCharacter(from: CharacterSet.letters) != nil {
                         if let numericWarning = warnings.fieldValidation.input.numeric {

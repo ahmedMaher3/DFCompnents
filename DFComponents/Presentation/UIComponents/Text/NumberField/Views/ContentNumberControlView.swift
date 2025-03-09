@@ -17,7 +17,7 @@ struct ContentNumberControlView: View {
             ZStack {
                 TextField(viewModel.numberFieldModel.placeHolder, text: $text.onChange(numberChanged))
                     .padding(8)
-                    .frame(height: 48) // Simplify instead of min, ideal, and max constraints
+                    .frame(height: 48)
                     .cornerRadius(4)
                     .overlay(
                         RoundedRectangle(cornerRadius: 4)
@@ -35,37 +35,29 @@ struct ContentNumberControlView: View {
                     EmptyView()
                 }
             }
+            .onAppear {
+                text = viewModel.answer?.value ?? ""
+            }
             .toolbar {
-                ToolbarItem(placement: .keyboard) {
-                            Spacer()
-                    Button("Done") {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Button {
                         let answer = BaseAnswerNumber(value: text)
                         viewModel.numberFieldModel.answer = answer
                         print("Display please the input value from user:\(text) and answer please become:\(viewModel.numberFieldModel.answer)")
                         isTextFieldFocused = false
+                    } label: {
+                        Text("Done")
                     }
                 }
             }
-            .onReceive(viewModel.$inputValue) { newValue in
-                if text != newValue {
-                    text = newValue
-                }
-            }
-            .onAppear {
-                text = viewModel.inputValue
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
-//        .contentShape(Rectangle())
-//        .onTapGesture {
-//            isTextFieldFocused = false
-//        }
     }
 
     func numberChanged(to value: String) {
         viewModel.characterCount = value.count
-        if viewModel.inputValue != value && !value.isEmpty {
-            viewModel.inputValue = value
+        //viewModel.answer?.value != value && !value.isEmpty
+        if viewModel.answer?.value != value {
+            viewModel.answer?.value = value
         }
     }
 }

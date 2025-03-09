@@ -60,7 +60,7 @@ struct FieldsListView: View {
                         NumberFieldComponent(viewModel: numberViewModel)
                             .onReceive(numberViewModel.objectWillChange) { updatedValue in
                                 viewModel.checkingWarning(for: field.id,
-                                                          value: "\(numberViewModel.inputValue)",
+                                                          value: "\(numberViewModel.answer?.value ?? "")",
                                                           isError: numberViewModel.numberFieldModel.isError ?? false)
                             }
                     },
