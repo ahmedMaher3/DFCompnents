@@ -19,58 +19,39 @@ extension View {
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
-
+    
     @Environment(\.locale) private var locale
     @State private var currentLocale: Locale = .current
-
+    
     @State private var showingAppearanceSheet = false
-
+    
     var title: String = "FormView"
-
+    
     var body: some View {
         NavigationStack {
             VStack {
                 if !viewModel.pages.isEmpty {
                     
-                    if self.viewModel.mode == .card {
-                        TabView {
-                            ForEach(self.viewModel.pages, id: \.id) { page in
-                                GeometryReader { geometry in
-                                ScrollView {
-                                        
-                                        VStack {
-                                            Spacer()
-                                            PageView(controls: page.fields)
-                                                .frame(maxWidth: .infinity) // Ensures it expands properly
-                                                .environmentObject(viewModel)
-                                            Spacer()
-                                        }
-                                        .frame(maxWidth: .infinity, minHeight: geometry.size.height) // Uses container height
-                                    }
-                                }
-                            }
+                    TabView {
+                        ForEach(self.viewModel.pages, id: \.id) { page in
+                            PageView(controls: page.fields) // PageView will handle layout
+                                .environmentObject(viewModel)
                         }
-                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
-                        .if(self.viewModel.mode == .card) { tab in
-                            tab.frame(height: UIScreen.main.bounds.height / 2)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(Color.white)
-                                        .shadow(radius: 5)
-                                )
-                                .padding()
-                        }
-                    } else {
-                        TabView {
-                            ForEach(self.viewModel.pages, id: \.id) { page in
-                                PageView(controls: page.fields)
-                                    .environmentObject(viewModel)
-                            }
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
-                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
                     }
-//                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
+                    
+                    .if(self.viewModel.mode == .card) { tab in
+                        tab.frame(height: UIScreen.main.bounds.height / 2)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.white)
+                                    .shadow(radius: 5)
+                            )
+                            .padding()
+                    }
+                    .if(self.viewModel.mode == .classic) { tab in
+                        tab.frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
+                    }
                     
                 } else {
                     // Show loading state while form data is being fetched
@@ -94,7 +75,7 @@ struct FormView: View {
             }
         }
     }
-
+    
     // Loading view to be displayed while fetching the form data
     private func loadingView() -> some View {
         VStack {
