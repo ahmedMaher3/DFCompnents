@@ -20,7 +20,7 @@ class FormViewModel: ObservableObject {
     func fetchForm() async {
         do {
             let response = try await formBuildUseCase.excute()
-            mode = response.pages.first?.mode
+        //    mode = response.pages.first?.mode
             pages = response.pages
             rules = response.rules
             self.doRules()
