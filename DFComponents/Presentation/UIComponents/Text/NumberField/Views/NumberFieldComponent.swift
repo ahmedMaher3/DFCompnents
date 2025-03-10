@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct NumberFieldComponent: View {
+
     @EnvironmentObject var formViewModel:FormViewModel
-    @ObservedObject var viewModel: NumberFieldViewModel
+    @StateObject var viewModel: NumberFieldViewModel
+
+    init(viewModel: NumberFieldViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
         ContentNumberControlView(viewModel: viewModel)

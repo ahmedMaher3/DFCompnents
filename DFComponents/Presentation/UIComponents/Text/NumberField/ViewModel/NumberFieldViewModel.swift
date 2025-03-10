@@ -34,7 +34,6 @@ final class NumberFieldViewModel: ObservableObject {
               numberFieldModel.numberAnswer?.value?.rangeOfCharacter(from: .letters) == nil else { return }
         var incrementStep = Int(numberFieldModel.numberAnswer?.value ?? "") ?? 0
         incrementStep += step
-        print(incrementStep)
         numberFieldModel.numberAnswer?.value = "\(incrementStep)"
         numberFieldModel.isError = incrementStep > 0 ? false : true
     }
@@ -44,9 +43,10 @@ final class NumberFieldViewModel: ObservableObject {
               numberFieldModel.numberAnswer?.value?.rangeOfCharacter(from: .letters) == nil else { return }
         let decrementStep = Int(numberFieldModel.numberAnswer?.value ?? "") ?? 0
         let result = decrementStep - step
-        print(result)
-        numberFieldModel.numberAnswer?.value = "\(result)"
-        numberFieldModel.isError = result >= 0 ? false : true
+        if result > 0 {
+            numberFieldModel.numberAnswer?.value = "\(result)"
+            numberFieldModel.isError = result >= 0 ? false : true
+        }
     }
     
     func validateDecimalPlaces() -> Bool {
