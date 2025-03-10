@@ -18,10 +18,7 @@ protocol EntityMapper {
 
 class FormMapper: EntityMapper {
     
-    //    func map(from dto: Schema) -> [FieldEntity] {
-    //        <#code#>
-    //    }
-    
+
     
     typealias DTO = Schema
     typealias Entity = FieldEntity

@@ -18,28 +18,37 @@ extension View {
 
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
+    @StateObject var stepProgressViewModel: StepProgressViewModel = StepProgressViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
-    
+
     @Environment(\.locale) private var locale
     @State private var currentLocale: Locale = .current
-    
+
     @State private var showingAppearanceSheet = false
-    
+    @State private var currentPage: Int = 0
+
+
     var title: String = "FormView"
-    
+
     var body: some View {
         NavigationStack {
             VStack {
                 if !viewModel.pages.isEmpty {
-                    
-                    TabView {
-                        ForEach(self.viewModel.pages, id: \.id) { page in
-                            PageView(controls: page.fields) // PageView will handle layout
+                    StepProgressView(viewModel: stepProgressViewModel)
+                    TabView(selection: $currentPage) {
+                        ForEach(viewModel.pages.indices, id: \.self) { index in
+                            PageView(controls: viewModel.pages[index].fields)
                                 .environmentObject(viewModel)
+                                .tag(index)
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
-                    
+                    .onChange(of: currentPage) { oldValue,newPage in
+                        stepProgressViewModel.updateCurrentPage(newPage)
+                        stepProgressViewModel.updateProgress()
+
+                    }
+
                     .if(self.viewModel.mode == .card) { tab in
                         tab.frame(height: UIScreen.main.bounds.height / 2)
                             .background(
@@ -52,18 +61,10 @@ struct FormView: View {
                     .if(self.viewModel.mode == .classic) { tab in
                         tab.frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
                     }
-                    
+
                 } else {
-                    // Show loading state while form data is being fetched
                     loadingView()
-                        .onAppear {
-                            Task {
-                                await viewModel.fetchForm()
-                                viewModel.warnings.map { entity in
-                                    print(entity)
-                                }
-                            }
-                        }
+
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -72,10 +73,25 @@ struct FormView: View {
             .environmentObject(styleManagerVM)
             .onAppear {
                 currentLocale = locale
+                Task {
+                    await viewModel.fetchForm()
+                    updateStepProgress()
+                    viewModel.warnings.map { entity in
+                        print(entity)
+                    }
+                }
+
             }
+
         }
     }
-    
+
+    private func updateStepProgress() {
+        stepProgressViewModel.totalPages = viewModel.pages.count
+        stepProgressViewModel.updateProgress()
+    }
+
+
     // Loading view to be displayed while fetching the form data
     private func loadingView() -> some View {
         VStack {
@@ -85,7 +101,7 @@ struct FormView: View {
                 .progressViewStyle(CircularProgressViewStyle())
         }
     }
-    
+
     func switchLanguage(to localeIdentifier: String) {
         currentLocale = Locale(identifier: localeIdentifier)
         UserDefaults.standard.set(localeIdentifier, forKey: "selectedLocale")
@@ -96,9 +112,6 @@ struct FormView: View {
             window.makeKeyAndVisible()
         }
     }
-    
+
 }
 
-//#Preview {
-//    FormView()
-//}

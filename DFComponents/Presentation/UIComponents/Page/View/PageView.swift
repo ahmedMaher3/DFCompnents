@@ -113,7 +113,3 @@ struct PageView: View {
     }
     
 }
-
-//#Preview {
-//    PageView(controls: [])
-//}
