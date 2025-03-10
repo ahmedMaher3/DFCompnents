@@ -8,7 +8,6 @@ import SwiftUI
 
 struct FooterComponentView: View {
     @StateObject var viewModel: FooterComponentViewModel
-    @State private var showTooltip = true
     @State private var showPopover = false
 
     init(viewModel: FooterComponentViewModel) {
@@ -37,6 +36,7 @@ struct FooterComponentView: View {
                             ZStack {
                                 Image(systemName: "info.circle.fill")
                                     .font(.system(size: 16))
+                                    .offset(y: -6)
                                     .foregroundColor(.gray)
                                     .onTapGesture {
                                         showPopover.toggle()
@@ -58,12 +58,13 @@ struct FooterComponentView: View {
                                             .foregroundColor(.white)
                                             .padding()
                                         }
-                                        .presentationCompactAdaptation(.popover) // Ensures popover behavior
+                                        .presentationCompactAdaptation(.popover)
                                     })
                             }
                             Text("\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)")
                                 .foregroundStyle(.gray)
                                 .font(.system(size: 13))
+                                .offset(y: -6) 
                                 .fontWeight(.bold)
                         }
                         .frame(maxWidth: .infinity, alignment: .trailing)

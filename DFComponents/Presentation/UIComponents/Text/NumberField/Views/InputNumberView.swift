@@ -18,7 +18,6 @@ struct InputNumberView: View {
             set: { newValue in
                 viewModel.baseAnswer?.value = newValue
                 viewModel.characterCount = newValue.count
-                print("characterCount\(newValue.count)")
                 formViewModel.checkingWarning(for: viewModel.numberFieldModel.base.fieldId,
                                               value: newValue)
             }
@@ -32,7 +31,7 @@ struct InputNumberView: View {
             .frame(maxWidth: .infinity)
             .cornerRadius(4)
             .overlay(RoundedRectangle(cornerRadius: 4)
-                    .stroke(.gray, lineWidth: 0.5))
+                .stroke(.gray, lineWidth: 0.5))
             .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))
             .keyboardType(.decimalPad)
             .focused($isTextFieldFocused)
@@ -41,7 +40,7 @@ struct InputNumberView: View {
                     HStack {
                         Spacer()
                         Button("Done") {
-                            print("Base Answer is:\(viewModel.baseAnswer )")
+                            print("Base Answer is:\(viewModel.baseAnswer)")
                             isTextFieldFocused = false
                     }
                 }
