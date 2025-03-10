@@ -22,10 +22,11 @@ struct FooterComponentView: View {
     /// FooterView
     @ViewBuilder
     private func renderFooter(fieldEntity: FieldEntity, for interactiveProperties: InteractiveField?) -> some View {
+
         switch fieldEntity {
             case .radio((_, let radioViewModel)): EmptyView()
             case .textBox((_, let textBoxViewModel)): EmptyView()
-            case .number((_, let numberViewModel)):
+            case .number((let baseField, let numberViewModel)):
                 if let interactiveProperties = interactiveProperties {
                     VStack {
                         Text("\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)")

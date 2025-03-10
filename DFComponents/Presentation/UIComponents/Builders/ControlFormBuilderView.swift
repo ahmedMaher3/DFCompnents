@@ -14,9 +14,9 @@ struct ControlFormBuilderView<Header: View, Control: View, Footer: View>: View {
     @Binding var warningMessage: String?
 
     init(@ViewBuilder headerView: @escaping () -> Header,
-        @ViewBuilder controlType: @escaping () -> Control,
-        @ViewBuilder footerView: @escaping () -> Footer,
-        warningMessage: Binding<String?>) {
+         @ViewBuilder controlType: @escaping () -> Control,
+         @ViewBuilder footerView: @escaping () -> Footer,
+         warningMessage: Binding<String?>) {
         self.headerView = headerView
         self.control = controlType
         self.footerView = footerView
@@ -24,30 +24,23 @@ struct ControlFormBuilderView<Header: View, Control: View, Footer: View>: View {
     }
 
     var body: some View {
-        if let warning = warningMessage, !warning.isEmpty {
-            LazyVStack(alignment: .leading, spacing: 8) {
-                /// Header View
-                headerView?()
-                /// Control
-                control()
-                    .overlay(RoundedRectangle(cornerRadius: 4)
-                            .stroke(.red,lineWidth: 0.5))
-                /// Footer View
-                footerView?()
-                WarningCardView(message: warning)
-            }
-            .padding(6)
-            .background(Color.red.opacity(0.05))
-            .cornerRadius(8)
-        } else {
-            LazyVStack(alignment: .leading, spacing: 8) {
-                /// Header View
-                headerView?()
-                /// Control
-                control()
-                /// Footer View
-                footerView?()
-            }
+        LazyVStack(alignment: .leading, spacing: 8) {
+            /// Header View
+            headerView?()
+            /// Control
+            control()
+                .overlay(RoundedRectangle(cornerRadius: 4)
+                    .stroke(warningMessage != nil ? .red : .clear, lineWidth: 0.5)) // Keep structure stable
+
+            /// Footer View
+            footerView?()
+            
+            /// Warning Message (No View Rebuild)
+            WarningCardView(message: warningMessage ?? "")
+                .opacity(warningMessage == nil ? 0 : 1)
         }
+        .padding(6)
+        .background(warningMessage == nil ? Color.clear : Color.red.opacity(0.05))
+        .cornerRadius(8)
     }
 }

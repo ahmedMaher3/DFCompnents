@@ -333,7 +333,7 @@
                         "addAttachment": false,
                         "addNote": false,
                         "defaultAnswer": {
-                            "value": "1.0",
+                            "value": "1",
                             "type": "Number",
                             "note": "",
                             "score": null,

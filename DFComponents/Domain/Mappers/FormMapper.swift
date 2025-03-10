@@ -117,6 +117,17 @@ enum FieldEntity: Identifiable {
                 return field.fieldId
         }
     }
+
+    var answer: Any? {
+        switch self {
+            case .textBox(( let field, _)):
+                return field.answer
+            case .radio(( let field, _)):
+                return field.answer
+            case .number(( let field, _)):
+                return field.answer
+        }
+    }
 }
 
 

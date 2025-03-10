@@ -24,15 +24,15 @@ struct FieldsListView: View {
                     controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                     footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
                         set: { newValue in
-                            viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
+                            if let newValue = newValue, !newValue.isEmpty {
+                                viewModel.warningsDictionary[field.id] = [newValue]
+                            } else {
+                                viewModel.warningsDictionary[field.id] = nil
+                            }
                         }
                     ))
-                .onAppear {
-                    viewModel.checkingWarning(for: field.id, value: nil, isError: false)
-                }
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
 
             case .textBox((_, let textBoxViewModel)):
@@ -43,38 +43,48 @@ struct FieldsListView: View {
                     },
                     footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
                         set: { newValue in
-                            viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
+                            if let newValue = newValue, !newValue.isEmpty {
+                                viewModel.warningsDictionary[field.id] = [newValue]
+                            } else {
+                                viewModel.warningsDictionary[field.id] = nil
+                            }
                         }
                     )
                 )
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
             case .number((_, let numberViewModel)):
+
                 ControlFormBuilderView(
                     headerView: {
                         HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.numberFieldModel.basePropertiesNotInteractive))
                     },
                     controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
-                            .onReceive(numberViewModel.objectWillChange) { updatedValue in
-                                viewModel.checkingWarning(for: field.id,
-                                                          value: "\(numberViewModel.answer?.value ?? "")",
-                                                          isError: numberViewModel.numberFieldModel.isError ?? false)
-                            }
+                            .environmentObject(viewModel)
                     },
                     footerView: {
                         FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
                     },
+                    //                        warningMessage: Binding<String?>(
+                    //                            get: { viewModel.errorMessage },
+                    //                            set: { newValue in
+                    //                                viewModel.errorMessage = newValue?.isEmpty == false
+                    //                                ? newValue! : nil
+                    //                        }
+                    //                    )
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
                         set: { newValue in
-                            viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                    }
+                            if let newValue = newValue, !newValue.isEmpty {
+                                viewModel.warningsDictionary[field.id] = [newValue]
+                            } else {
+                                viewModel.warningsDictionary[field.id] = nil
+                            }
+                        }
+                    )
                 )
-            )
         }
     }
 }

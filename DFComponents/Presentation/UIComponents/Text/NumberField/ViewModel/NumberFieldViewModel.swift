@@ -4,46 +4,97 @@
 //
 //  Created by Eslam on 04/03/2025.
 //
-
 import Foundation
 
 final class NumberFieldViewModel: ObservableObject {
+    
     @Published var numberFieldModel: NumberFieldModel
-//    @Published var inputValue: String = ""
     @Published var characterCount: Int = 0
-    var answer: BaseAnswerNumber?
-
+    
+    var baseAnswer: BaseAnswerNumber? {
+        get {
+            return numberFieldModel.base.answer as? BaseAnswerNumber
+        }
+        set {
+            numberFieldModel.base.answer = newValue
+        }
+    }
+    
     init(numberFieldModel: NumberFieldModel) {
         self.numberFieldModel = numberFieldModel
         if numberFieldModel.numberProperties.defaultAnswer?.value != nil {
-             answer = BaseAnswerNumber(value: numberFieldModel.numberProperties.defaultAnswer?.value ?? "")
-//            self.inputValue = numberFieldModel.numberProperties.defaultAnswer?.value ?? ""
+            numberFieldModel.numberAnswer = BaseAnswerNumber(value: numberFieldModel.numberProperties.defaultAnswer?.value ?? "")
+            self.numberFieldModel.base.answer = numberFieldModel.numberAnswer
             self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
         }
     }
-
+    
     func incrementStepper() {
         guard let step = numberFieldModel.step,
-              answer?.value?.rangeOfCharacter(from: .letters) == nil else { return }
-        var incrementStep = Int(answer?.value ?? "") ?? 0
+              numberFieldModel.numberAnswer?.value?.rangeOfCharacter(from: .letters) == nil else { return }
+        var incrementStep = Int(numberFieldModel.numberAnswer?.value ?? "") ?? 0
         incrementStep += step
-        answer?.value = "\(incrementStep)"
+        print(incrementStep)
+        numberFieldModel.numberAnswer?.value = "\(incrementStep)"
         numberFieldModel.isError = incrementStep > 0 ? false : true
     }
-
+    
     func decrementStepper() {
         guard let step = numberFieldModel.step,
-              answer?.value?.rangeOfCharacter(from: .letters) == nil else { return }
-        let decrementStep = Int(answer?.value ?? "") ?? 0
+              numberFieldModel.numberAnswer?.value?.rangeOfCharacter(from: .letters) == nil else { return }
+        let decrementStep = Int(numberFieldModel.numberAnswer?.value ?? "") ?? 0
         let result = decrementStep - step
-        answer?.value = "\(result)"
+        print(result)
+        numberFieldModel.numberAnswer?.value = "\(result)"
         numberFieldModel.isError = result >= 0 ? false : true
     }
-
+    
     func validateDecimalPlaces() -> Bool {
         guard let decimalPlaces = numberFieldModel.decimalPlaces else { return true }
-        let numberOfDecimals = answer?.value?.split(separator: ".").count ?? 0 > 1
-        ? answer?.value?.split(separator: ".")[1].count : 0
+        let numberOfDecimals = numberFieldModel.numberAnswer?.value?.split(separator: ".").count ?? 0 > 1
+        ? numberFieldModel.numberAnswer?.value?.split(separator: ".")[1].count : 0
         return numberOfDecimals ?? 0 <= decimalPlaces
+    }
+    
+    func validateInput(value: String, warnings: WarningsEntity?) {
+        guard let warnings = warnings else {
+            DispatchQueue.main.async {
+                self.numberFieldModel.isError = false
+                self.numberFieldModel.errorMessage = nil
+            }
+            return
+        }
+        var fieldWarnings: [String] = []
+        if value.rangeOfCharacter(from: CharacterSet.letters) != nil,
+           let numericWarning = warnings.fieldValidation.input.numeric {
+            fieldWarnings.append(numericWarning)
+        }
+        
+        if value.contains("."),
+           let customWarning = warnings.fieldValidation.input.custom,
+           !validateDecimalPlaces() {
+            fieldWarnings.append(customWarning.replacingOccurrences(of: "{0}", with: "invalid decimal places".localized))
+        }
+        
+        if let inputNumber = Int(value) {
+            if let minValue = Int(warnings.fieldValidation.number.minimumValue ?? ""),
+               inputNumber < minValue {
+                fieldWarnings.append("Minimum value allowed is \(minValue)")
+            }
+            if let maxValue = Int(warnings.fieldValidation.number.maximumValue ?? ""),
+               inputNumber > maxValue {
+                fieldWarnings.append("Maximum value allowed is \(maxValue)")
+            }
+        }
+        
+        if let maxDigits = numberFieldModel.maximumDigits,
+           value.replacingOccurrences(of: ".", with: "").count > maxDigits {
+            fieldWarnings.append("Maximum digits allowed is \(maxDigits)")
+        }
+        
+        DispatchQueue.main.async {
+            self.numberFieldModel.isError = !fieldWarnings.isEmpty
+            self.numberFieldModel.errorMessage = fieldWarnings.isEmpty ? nil : fieldWarnings.joined(separator: "\n")
+        }
     }
 }

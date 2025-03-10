@@ -10,13 +10,16 @@ struct WarningCardView: View {
     let message: String
 
     var body: some View {
-        HStack {
-            Text(message)
-                .font(.caption)
-                .foregroundStyle(.red)
-                .padding(.leading, 4)
+          HStack(alignment: .center) {
+          //    Image(systemName: "xmark.circle.fill")
 
-            Spacer()
-        }
-    }
+              Text(message)
+                  .font(.caption)
+                  .padding(.leading, 4)
+          }
+          .foregroundStyle(.red)
+      }
+}
+#Preview {
+    WarningCardView(message: "Eslam")
 }

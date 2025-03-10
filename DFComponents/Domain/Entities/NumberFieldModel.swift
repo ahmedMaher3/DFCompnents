@@ -7,6 +7,7 @@
 
 class NumberFieldModel: NumberBaseDelegate {
     var numberProperties: NumberBase
+    var numberAnswer: BaseAnswerNumber?
     let step: Int?
     let decimalPlaces: Int?
     let minimumDigits: Int?
@@ -23,6 +24,7 @@ class NumberFieldModel: NumberBaseDelegate {
             self.maximumDigits = properties.maximumDigits
             self.minimumValue = properties.minimumValue
             self.maximumValue = properties.maximumValue
+            self.numberAnswer = properties.defaultAnswer
         } else {
             self.step = nil
             self.decimalPlaces = nil
@@ -30,27 +32,7 @@ class NumberFieldModel: NumberBaseDelegate {
             self.maximumDigits = nil
             self.minimumValue = nil
             self.maximumValue = nil
+            self.numberAnswer = nil 
         }
     }
-
-    /*
-     var numberBaseInteractive: NumberBase
-     var step: Int?
-     var decimalPlaces: Int?
-     var interactiveProperties: NumberComponentProperties?  // Store properties here
-
-     init(field: Field?) {
-     numberBase = NumberBase(field: field)
-     if let properties = field?.properties as? NumberComponentProperties {
-     step = properties.step
-     decimalPlaces = properties.decimalPlaces
-     interactiveProperties = properties
-     } else {
-     step = nil
-     decimalPlaces = nil
-     interactiveProperties = nil
-     }
-     }
-     */
-
 }
