@@ -30,7 +30,7 @@ struct ControlFormBuilderView<Header: View, Control: View, Footer: View>: View {
             /// Control
             control()
                 .overlay(RoundedRectangle(cornerRadius: 4)
-                    .stroke(warningMessage != nil ? .red : .clear, lineWidth: 0.5)) // Keep structure stable
+                    .stroke(warningMessage != nil ? .red : .clear, lineWidth: 0.5))
 
             /// Footer View
             footerView?()

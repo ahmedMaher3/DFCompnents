@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct InputNumberView: View {
-
     @ObservedObject var viewModel: NumberFieldViewModel
     @EnvironmentObject var formViewModel: FormViewModel
     @FocusState.Binding var isTextFieldFocused: Bool
 
-    private var textBinding: Binding<String> {
+    private var textNumberBinding: Binding<String> {
         Binding(
             get: { viewModel.numberFieldModel.numberAnswer?.value ?? "" },
             set: { newValue in
@@ -27,7 +26,7 @@ struct InputNumberView: View {
 
     var body: some View {
         VStack {
-            TextField(viewModel.numberFieldModel.placeHolder, text: textBinding)
+            TextField(viewModel.numberFieldModel.placeHolder, text: textNumberBinding)
                 .padding(8)
                 .frame(height: 48)
                 .frame(maxWidth: .infinity)
@@ -39,7 +38,16 @@ struct InputNumberView: View {
                 .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))
                 .keyboardType(.decimalPad)
                 .focused($isTextFieldFocused)
-
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        HStack {
+                            Spacer()
+                            Button("Done") {
+                                isTextFieldFocused = false
+                        }
+                    }
+                }
+            }
         }
     }
 }

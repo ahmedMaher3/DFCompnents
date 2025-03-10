@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NumberFieldComponent: View {
-
     @EnvironmentObject var formViewModel:FormViewModel
     @StateObject var viewModel: NumberFieldViewModel
 
