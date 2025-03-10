@@ -25,6 +25,7 @@ struct FormView: View {
                     Form {
                         FieldsListView(viewModel: viewModel)
                     }
+                    
                     .padding()
                     Text(locale.identifier)
                     Button("Switch to Arabic") {
