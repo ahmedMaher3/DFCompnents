@@ -14,12 +14,12 @@ struct InputNumberView: View {
 
     private var textNumberBinding: Binding<String> {
         Binding(
-            get: { viewModel.numberFieldModel.numberAnswer?.value ?? "" },
+            get: { viewModel.baseAnswer?.value ?? "" },
             set: { newValue in
                 viewModel.baseAnswer?.value = newValue
                 viewModel.characterCount = newValue.count
-                viewModel.numberFieldModel.numberAnswer = viewModel.baseAnswer
-                formViewModel.checkingWarning(for: viewModel.numberFieldModel.base.fieldId, value: newValue)
+                formViewModel.checkingWarning(for: viewModel.numberFieldModel.base.fieldId,
+                                              value: newValue)
             }
         )
     }

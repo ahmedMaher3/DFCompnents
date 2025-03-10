@@ -35,7 +35,8 @@ struct StepperNumberFieldView: View {
             .foregroundStyle(.gray)
             .onTapGesture {
                 viewModel.changeValueStepper(action: action)
-                formViewModel.checkingWarning(for: viewModel.numberFieldModel.base.fieldId, value: viewModel.numberFieldModel.numberAnswer?.value ?? "")
+                formViewModel.checkingWarning(for: viewModel.numberFieldModel.base.fieldId,
+                                              value: viewModel.baseAnswer?.value ?? "")
                 isTextFieldFocused = false
             }
     }

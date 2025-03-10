@@ -16,13 +16,14 @@ final class NumberFieldViewModel: ObservableObject {
         }
         set {
             numberFieldModel.base.answer = newValue
+            numberFieldModel.numberAnswer = newValue
         }
     }
     
     init(numberFieldModel: NumberFieldModel) {
         self.numberFieldModel = numberFieldModel
         if numberFieldModel.numberProperties.defaultAnswer?.value != nil {
-            numberFieldModel.numberAnswer = BaseAnswerNumber(value: numberFieldModel.numberProperties.defaultAnswer?.value ?? "")
+            baseAnswer = BaseAnswerNumber(value: numberFieldModel.numberProperties.defaultAnswer?.value ?? "")
             self.numberFieldModel.base.answer = numberFieldModel.numberAnswer
             self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
         }
@@ -30,17 +31,17 @@ final class NumberFieldViewModel: ObservableObject {
 
     func changeValueStepper(action type: String) {
         guard let step = numberFieldModel.step,
-              numberFieldModel.numberAnswer?.value?.rangeOfCharacter(from: .letters) == nil else { return }
-        var valueStep = Int(numberFieldModel.numberAnswer?.value ?? "") ?? 0
+              baseAnswer?.value?.rangeOfCharacter(from: .letters) == nil else { return }
+        var valueStep = Int(baseAnswer?.value ?? "") ?? 0
         valueStep = type == "Increment"
         ? valueStep + step
         : valueStep - step
-        numberFieldModel.numberAnswer?.value = "\(valueStep)"
+        baseAnswer?.value = "\(valueStep)"
     }
 
     func validateDecimalPlaces() -> Bool {
         guard let decimalPlaces = numberFieldModel.decimalPlaces else { return true }
-        let numberOfDecimals = numberFieldModel.numberAnswer?.value?.split(separator: ".").count ?? 0 > 1
+        let numberOfDecimals = baseAnswer?.value?.split(separator: ".").count ?? 0 > 1
         ? numberFieldModel.numberAnswer?.value?.split(separator: ".")[1].count : 0
         return numberOfDecimals ?? 0 <= decimalPlaces
     }
