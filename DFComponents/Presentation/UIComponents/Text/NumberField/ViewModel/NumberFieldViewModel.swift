@@ -7,7 +7,6 @@
 import Foundation
 
 final class NumberFieldViewModel: ObservableObject {
-    
     @Published var numberFieldModel: NumberFieldModel
     @Published var characterCount: Int = 0
     
