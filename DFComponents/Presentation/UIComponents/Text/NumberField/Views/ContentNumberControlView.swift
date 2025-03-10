@@ -20,7 +20,7 @@ struct ContentNumberControlView: View {
                 if let step = viewModel.numberFieldModel.step, step != 0 {
                     StepperNumberFieldView(viewModel: viewModel,
                                            isTextFieldFocused: $isTextFieldFocused)
-                        .disabled(viewModel.numberFieldModel.isError ? true : false)
+//                        .disabled(viewModel.numberFieldModel.isError ? true : false)
                 } else {
                     EmptyView()
                 }

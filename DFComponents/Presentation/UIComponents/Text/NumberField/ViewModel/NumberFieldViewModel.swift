@@ -28,27 +28,17 @@ final class NumberFieldViewModel: ObservableObject {
             self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
         }
     }
-    
-    func incrementStepper() {
+
+    func changeValueStepper(action type: String) {
         guard let step = numberFieldModel.step,
               numberFieldModel.numberAnswer?.value?.rangeOfCharacter(from: .letters) == nil else { return }
-        var incrementStep = Int(numberFieldModel.numberAnswer?.value ?? "") ?? 0
-        incrementStep += step
-        numberFieldModel.numberAnswer?.value = "\(incrementStep)"
-        numberFieldModel.isError = incrementStep > 0 ? false : true
+        var valueStep = Int(numberFieldModel.numberAnswer?.value ?? "") ?? 0
+        valueStep = type == "Increment"
+        ? valueStep + step
+        : valueStep - step
+        numberFieldModel.numberAnswer?.value = "\(valueStep)"
     }
-    
-    func decrementStepper() {
-        guard let step = numberFieldModel.step,
-              numberFieldModel.numberAnswer?.value?.rangeOfCharacter(from: .letters) == nil else { return }
-        let decrementStep = Int(numberFieldModel.numberAnswer?.value ?? "") ?? 0
-        let result = decrementStep - step
-        if result > 0 {
-            numberFieldModel.numberAnswer?.value = "\(result)"
-            numberFieldModel.isError = result >= 0 ? false : true
-        }
-    }
-    
+
     func validateDecimalPlaces() -> Bool {
         guard let decimalPlaces = numberFieldModel.decimalPlaces else { return true }
         let numberOfDecimals = numberFieldModel.numberAnswer?.value?.split(separator: ".").count ?? 0 > 1
