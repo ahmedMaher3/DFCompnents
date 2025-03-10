@@ -55,7 +55,6 @@ struct FieldsListView: View {
                 )
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
             case .number((_, let numberViewModel)):
-
                 ControlFormBuilderView(
                     headerView: {
                         HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.numberFieldModel.basePropertiesNotInteractive))
@@ -67,13 +66,6 @@ struct FieldsListView: View {
                     footerView: {
                         FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
                     },
-                    //                        warningMessage: Binding<String?>(
-                    //                            get: { viewModel.errorMessage },
-                    //                            set: { newValue in
-                    //                                viewModel.errorMessage = newValue?.isEmpty == false
-                    //                                ? newValue! : nil
-                    //                        }
-                    //                    )
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
                         set: { newValue in

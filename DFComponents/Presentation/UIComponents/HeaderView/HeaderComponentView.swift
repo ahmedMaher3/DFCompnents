@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HeaderComponentView: View {
+    
     @StateObject var viewModel: HeaderComponentViewModel
     
     init(viewModel: HeaderComponentViewModel) {
