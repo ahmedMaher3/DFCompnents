@@ -16,6 +16,7 @@ protocol BaseFieldProtocol {
     var index: Int! { get }
     var answer: Any? { get set }
     var isError: Bool! { get set }
+    var errorMessage: String! { get set }
     var rules: FieldRules? { get }
     var hidden: Bool! { get set }
     var disabled: Bool! { get set }
@@ -50,10 +51,10 @@ struct InteractiveField: InteractiveFieldProtocol {
     var index: Int!
     var answer: Any?
     var isError: Bool!
+    var errorMessage: String!
     var rules: FieldRules?
     var hidden: Bool!
     var disabled: Bool!
-
     var required: Bool!
     var placeHolder: String!
     var note: String?
@@ -77,6 +78,7 @@ struct InteractiveField: InteractiveFieldProtocol {
         self.parentId = field.parentId
         self.index = 0
         self.isError = false
+        self.errorMessage = nil
         self.rules = field.rules
         self.hidden = false
         self.disabled = false
@@ -135,6 +137,10 @@ extension InteractiveFieldDelegate {
     var isError: Bool! {
         get { base.isError }
         set { base.isError = newValue }
+    }
+    var errorMessage: String! {
+        get { base.errorMessage }
+        set { base.errorMessage = newValue }
     }
     var hidden: Bool! {
         get { base.hidden }
@@ -271,7 +277,9 @@ class PageField: BaseFieldProtocol {
     var answer: Any?
     
     var isError: Bool!
-    
+
+    var errorMessage: String!
+
     var rules: FieldRules?
     
     var hidden: Bool!
@@ -308,7 +316,9 @@ class SectionField: BaseFieldProtocol {
     var answer: Any?
     
     var isError: Bool!
-    
+
+    var errorMessage: String!
+
     var rules: FieldRules?
     
     var hidden: Bool!

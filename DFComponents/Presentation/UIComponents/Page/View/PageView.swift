@@ -13,13 +13,13 @@ struct PageView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-               ForEach(controls, id: \.id) { field in
-                   renderField(for: field)
-                       .environmentObject(viewModel)
-               }
-           }
-           .padding()
-       }
+            ForEach(controls, id: \.id) { field in
+                renderField(for: field)
+                    .environmentObject(viewModel)
+            }
+        }
+        .padding()
+    }
 
     /// Controls
     @ViewBuilder
@@ -37,9 +37,9 @@ struct PageView: View {
                             ? [newValue!] : nil
                         }
                     ))
-                .onAppear {
-                    viewModel.checkingWarning(for: field.id, value: nil, isError: false)
-                }
+//                .onAppear {
+//                    viewModel.checkingWarning(for: field.id, value: nil)
+//                }
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
 
             case .textBox((_, let textBoxViewModel)):
@@ -66,30 +66,28 @@ struct PageView: View {
                     },
                     controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
-                            .onReceive(numberViewModel.objectWillChange) { updatedValue in
-                                viewModel.checkingWarning(for: field.id,
-                                                          value: "\(numberViewModel.inputValue)",
-                                                          isError: numberViewModel.numberFieldModel.isError ?? false)
-                            }
                     },
                     footerView: {
                         FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
                     },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
                         set: { newValue in
-                            viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                    }
+                            if let newValue = newValue, !newValue.isEmpty {
+                                viewModel.warningsDictionary[field.id] = [newValue]
+                            } else {
+                                viewModel.warningsDictionary[field.id] = nil
+                            }
+                        }
+                    )
                 )
-            )
-        case .page((_, _)):
-            EmptyView()
-        case .section((_, let sectionViewModel)):
-            SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
+            case .page((_, _)):
+                EmptyView()
+            case .section((_, let sectionViewModel)):
+                SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
         }
     }
-  
+
 }
 
 struct PageVieww: View {
@@ -121,9 +119,9 @@ struct PageVieww: View {
                             ? [newValue!] : nil
                         }
                     ))
-                .onAppear {
-                    viewModel.checkingWarning(for: field.id, value: nil, isError: false)
-                }
+//                .onAppear {
+//                    viewModel.checkingWarning(for: field.id, value: nil)
+//                }
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
 
             case .textBox((_, let textBoxViewModel)):
@@ -150,31 +148,29 @@ struct PageVieww: View {
                     },
                     controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
-                            .onReceive(numberViewModel.objectWillChange) { updatedValue in
-                                viewModel.checkingWarning(for: field.id,
-                                                          value: "\(numberViewModel.inputValue)",
-                                                          isError: numberViewModel.numberFieldModel.isError ?? false)
-                            }
                     },
                     footerView: {
                         FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
                     },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
                         set: { newValue in
-                            viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                    }
+                            if let newValue = newValue, !newValue.isEmpty {
+                                viewModel.warningsDictionary[field.id] = [newValue]
+                            } else {
+                                viewModel.warningsDictionary[field.id] = nil
+                            }
+                        }
+                    )
                 )
-            )
-        case .page((_, _)):
-            EmptyView()
-        case .section((_, let sectionViewModel)):
-            SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
+            case .page((_, _)):
+                EmptyView()
+            case .section((_, let sectionViewModel)):
+                SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
         }
     }
 }
 
-#Preview {
-    PageView(controls: [])
-}
+//#Preview {
+//    PageView(controls: [])
+//}

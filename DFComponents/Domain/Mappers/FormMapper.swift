@@ -12,21 +12,21 @@ protocol EntityMapper {
     associatedtype Entity
     func map (from dto: DTO) -> [PageModel]
     associatedtype Warnings
-//    func map (from dto: DTO) -> [FieldEntity]
+    //    func map (from dto: DTO) -> [FieldEntity]
     func map (from dto: Warnings) -> WarningsEntity
 }
 
 class FormMapper: EntityMapper {
-    
-//    func map(from dto: Schema) -> [FieldEntity] {
-//        <#code#>
-//    }
-    
+
+    //    func map(from dto: Schema) -> [FieldEntity] {
+    //        <#code#>
+    //    }
+
 
     typealias DTO = Schema
     typealias Entity = FieldEntity
     typealias formWarnings = WarningsEntity
-    
+
     func map(from dto: Schema) -> [PageModel] {
         let pages = groupFieldsByPage (fields: dto.fields,mode:dto.settings.format )
         return pages
@@ -52,35 +52,35 @@ class FormMapper: EntityMapper {
         return pages
     }
 
-    
+
 
 
     func mapFields(fields: [Field]) -> [FieldEntity] {
         return fields.compactMap { field in
             switch field.type {
-            case .textBox:
-                let control = TextBoxField(field: field)
-                return .textBox((control, TextBoxViewModel(control: control)))
-            case .radio:
-                let control = RadioButtonField(field: field)
-                return .radio((control, RadioButtonViewModel(control: control)))
-            case .page:
-                let control = PageField(field: field)
-                return .page((control, PageViewModel()))
-            case .section:
-                let control = SectionField(field: field)
-                return .section((control, SectionViewModel(controls: [], title: "title")))
-            case .number:
-                let control = NumberFieldModel(field: field)
-                return .number((control, NumberFieldViewModel(numberFieldModel: control)))
+                case .textBox:
+                    let control = TextBoxField(field: field)
+                    return .textBox((control, TextBoxViewModel(control: control)))
+                case .radio:
+                    let control = RadioButtonField(field: field)
+                    return .radio((control, RadioButtonViewModel(control: control)))
+                case .page:
+                    let control = PageField(field: field)
+                    return .page((control, PageViewModel()))
+                case .section:
+                    let control = SectionField(field: field)
+                    return .section((control, SectionViewModel(controls: [], title: "title")))
+                case .number:
+                    let control = NumberField(field: field)
+                    return .number((control, NumberFieldViewModel(numberFieldModel: control)))
 
-            default:
-                return nil
+                default:
+                    return nil
             }
         }
     }
 
-        func map(from dto: Warnings) -> WarningsEntity {
+    func map(from dto: Warnings) -> WarningsEntity {
         return WarningsEntity(
             formValidation: FormValidationEntity(
                 expired: dto.formWarning.formValidation.expired,
@@ -134,7 +134,7 @@ class FormMapper: EntityMapper {
             )
         )
     }
-    
+
 }
 
 struct PageModel: Identifiable {
@@ -149,44 +149,43 @@ enum FieldEntity: Identifiable {
     case page((BaseFieldProtocol, PageViewModel))
     case section((BaseFieldProtocol, SectionViewModel))
     case number((BaseFieldProtocol, NumberFieldViewModel))
-    
+
     var id: String {
         switch self {
-        case .page((let field, _)):
-            return field.fieldId
-        case .textBox((let field, _)):
-            return field.fieldId
-        case .radio((let field, _)):
-            return field.fieldId
-        case .section((let field, _)):
-            return field.fieldId
-        case .number(( let field, _)):
-            return field.fieldId
+            case .page((let field, _)):
+                return field.fieldId
+            case .textBox((let field, _)):
+                return field.fieldId
+            case .radio((let field, _)):
+                return field.fieldId
+            case .section((let field, _)):
+                return field.fieldId
+            case .number(( let field, _)):
+                return field.fieldId
         }
     }
-    
+  
     var parentId: String? {
         switch self {
-        case .textBox((let field, _)):
-            return field.parentId
-        case .radio((let field, _)):
-            return field.parentId
-        case .page((let field, _)):
-            return field.parentId
-        case .section((let field, _)):
-            return field.parentId
-        case .number(( let field, _)):
-            return field.parentId
-        }
-    }
-    
-    var type: FieldType {
-        switch self {
-        case .textBox((let field, _)), .radio((let field, _)), .page((let field, _)), .section((let field, _)), .number((let field, _)):
-            return field.type
+            case .textBox((let field, _)):
+                return field.parentId
+            case .radio((let field, _)):
+                return field.parentId
+            case .page((let field, _)):
+                return field.parentId
+            case .section((let field, _)):
+                return field.parentId
+            case .number(( let field, _)):
+                return field.parentId
         }
     }
 
+    var type: FieldType {
+        switch self {
+            case .textBox((let field, _)), .radio((let field, _)), .page((let field, _)), .section((let field, _)), .number((let field, _)):
+                return field.type
+        }
+    }
 }
 
 

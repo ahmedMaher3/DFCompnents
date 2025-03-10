@@ -345,8 +345,7 @@
                         "addAttachment": false,
                         "addNote": false,
                         "defaultAnswer": {
-                            "value": "1.0",
-                            "value": null,
+                            "value": "1",
                             "type": "Number",
                             "note": "",
                             "score": null,
@@ -359,8 +358,8 @@
                         "hidden": false,
                         "disabled": false,
                         "labelPosition": "Top",
-                        "label": "Who let the dogs out",
-                        "sublabel": "",
+                        "label": "What's your age ?",
+                        "sublabel": "Number",
                         "tooltip": "",
                         "localization": {}
                     },
