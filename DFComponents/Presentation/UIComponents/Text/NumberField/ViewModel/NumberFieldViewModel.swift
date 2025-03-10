@@ -86,6 +86,5 @@ final class NumberFieldViewModel: ObservableObject {
             self.numberFieldModel.isError = !fieldWarnings.isEmpty
             self.numberFieldModel.errorMessage = fieldWarnings.isEmpty ? nil : fieldWarnings.joined(separator: "\n")
         }
-        print("Display please error message specific number control\(self.numberFieldModel.errorMessage)")
     }
 }
