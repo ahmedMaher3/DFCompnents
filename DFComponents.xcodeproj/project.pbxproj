@@ -62,6 +62,8 @@
 		AAE5CA8C2D4A448B00FDA699 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CA8B2D4A448B00FDA699 /* RadioButtonView.swift */; };
 		AAE5CAC42D4A561000FDA699 /* RadioButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CAC32D4A561000FDA699 /* RadioButtonViewModel.swift */; };
 		AAE5CAC62D4A61FD00FDA699 /* QuestionsRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CAC52D4A61FD00FDA699 /* QuestionsRadioButton.swift */; };
+		E442786B2D7DE100003BAA46 /* StepProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44278672D7DE100003BAA46 /* StepProgressViewModel.swift */; };
+		E442786C2D7DE100003BAA46 /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44278642D7DE100003BAA46 /* StepProgressView.swift */; };
 		E44926C42D4B8AD200EA5D5E /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44926C32D4B8AD200EA5D5E /* FormView.swift */; };
 		E44926C82D4B8B0D00EA5D5E /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44926C72D4B8B0D00EA5D5E /* FormViewModel.swift */; };
 		E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */; };
@@ -200,6 +202,8 @@
 		AAE5CABD2D4A50AD00FDA699 /* ViewExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtenstion.swift; sourceTree = "<group>"; };
 		AAE5CAC32D4A561000FDA699 /* RadioButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonViewModel.swift; sourceTree = "<group>"; };
 		AAE5CAC52D4A61FD00FDA699 /* QuestionsRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsRadioButton.swift; sourceTree = "<group>"; };
+		E44278642D7DE100003BAA46 /* StepProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
+		E44278672D7DE100003BAA46 /* StepProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepProgressViewModel.swift; sourceTree = "<group>"; };
 		E44926C32D4B8AD200EA5D5E /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		E44926C72D4B8B0D00EA5D5E /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
 		E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxComponent.swift; sourceTree = "<group>"; };
@@ -574,6 +578,31 @@
 				AAE5CAC32D4A561000FDA699 /* RadioButtonViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E44278662D7DE100003BAA46 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E44278642D7DE100003BAA46 /* StepProgressView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E44278682D7DE100003BAA46 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E44278672D7DE100003BAA46 /* StepProgressViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E44278692D7DE100003BAA46 /* Stepper */ = {
+			isa = PBXGroup;
+			children = (
+				E44278662D7DE100003BAA46 /* View */,
+				E44278682D7DE100003BAA46 /* ViewModel */,
+			);
+			path = Stepper;
 			sourceTree = "<group>";
 		};
 		E44926C22D4B8AAB00EA5D5E /* FormView */ = {
@@ -1029,6 +1058,7 @@
 		E4BBD0102D4A24FE004AA735 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E44278692D7DE100003BAA46 /* Stepper */,
 				04C1DE332D5DFB750034B704 /* Appearance */,
 				AAD099732D5D3A41007A6CE9 /* FooterView */,
 				A9BF46A32D538E90003F2333 /* ComplicatedView */,
@@ -1330,6 +1360,8 @@
 				AAD099772D5D3CCB007A6CE9 /* FormFieldView.swift in Sources */,
 				E48C9FFF2D5374D300A519ED /* AKMaskFieldEvent.swift in Sources */,
 				E48CA1162D5CC72300A519ED /* TextStyling.swift in Sources */,
+				E442786B2D7DE100003BAA46 /* StepProgressViewModel.swift in Sources */,
+				E442786C2D7DE100003BAA46 /* StepProgressView.swift in Sources */,
 				E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */,
 				E4BBD0272D4A4A7F004AA735 /* CountryDTO.swift in Sources */,
 				E48C9FFE2D5374D300A519ED /* AKMaskFieldBrackets.swift in Sources */,

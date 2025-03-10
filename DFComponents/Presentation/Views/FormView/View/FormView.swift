@@ -8,6 +8,7 @@ import SwiftUI
 
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
+    @StateObject var stepProgressViewModel: StepProgressViewModel = StepProgressViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
 
     @State private var showingAppearanceSheet = false
@@ -18,6 +19,7 @@ struct FormView: View {
         NavigationStack {
             VStack {
                 if !viewModel.pages.isEmpty {
+                    StepProgressView(viewModel: stepProgressViewModel)
                     TabView {
                         ForEach(self.viewModel.pages, id: \.id) { page in
                                     PageView(controls: page.fields)
