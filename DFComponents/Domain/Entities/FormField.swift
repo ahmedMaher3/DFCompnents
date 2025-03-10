@@ -16,7 +16,7 @@ protocol BaseFieldProtocol {
     var index: Int! { get }
     var answer: Any? { get set }
     var isError: Bool! { get set }
-    var errorMessage: String! { get set }
+    var errorMessage: String? { get set }
     var rules: FieldRules? { get }
     var hidden: Bool! { get set }
     var disabled: Bool! { get set }
@@ -51,7 +51,7 @@ struct InteractiveField: InteractiveFieldProtocol {
     var index: Int!
     var answer: Any?
     var isError: Bool!
-    var errorMessage: String!
+    var errorMessage: String?
     var rules: FieldRules?
     var hidden: Bool!
     var disabled: Bool!
@@ -134,7 +134,7 @@ extension InteractiveFieldDelegate {
         get { base.isError }
         set { base.isError = newValue }
     }
-    var errorMessage: String! {
+    var errorMessage: String? {
         get { base.errorMessage }
         set { base.errorMessage = newValue }
     }

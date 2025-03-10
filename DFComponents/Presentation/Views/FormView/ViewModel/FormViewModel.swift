@@ -59,16 +59,21 @@ class FormViewModel: ObservableObject {
             }
             return
         }
-        
-        if let field = fields.first(where: { $0.id == fieldId }),
-           case .number((_, let numberViewModel)) = field {
-            numberViewModel.validateInput(value: numberViewModel.numberFieldModel.numberAnswer?.value ?? "", warnings: warnings)
-            DispatchQueue.main.async {
-                // Store warnings separately for each field
-                if let errorMessage = numberViewModel.numberFieldModel.errorMessage, !errorMessage.isEmpty {
-                    self.warningsDictionary[fieldId] = [errorMessage]
-                } else {
-                    self.warningsDictionary[fieldId] = nil
+
+        if let field = fields.first(where: { $0.id == fieldId }) {
+            switch field {
+                case .textBox((let baseField, _)):
+                    self.warningsDictionary[baseField.fieldId] = nil
+                case .radio((let baseField, _)):
+                    self.warningsDictionary[baseField.fieldId] = nil
+                case .number((let baseField, let numberViewModel)):
+                    numberViewModel.validateInput(value: numberViewModel.numberFieldModel.numberAnswer?.value ?? "", warnings: warnings)
+                    DispatchQueue.main.async {
+                        if let errorMessage = numberViewModel.numberFieldModel.errorMessage, !errorMessage.isEmpty {
+                            self.warningsDictionary[baseField.fieldId] = [errorMessage]
+                        } else {
+                            self.warningsDictionary[baseField.fieldId] = nil
+                    }
                 }
             }
         }
