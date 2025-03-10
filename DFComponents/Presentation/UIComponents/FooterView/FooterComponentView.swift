@@ -8,6 +8,8 @@ import SwiftUI
 
 struct FooterComponentView: View {
     @StateObject var viewModel: FooterComponentViewModel
+    @State private var showTooltip = true
+    @State private var showPopover = false
 
     init(viewModel: FooterComponentViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -28,13 +30,34 @@ struct FooterComponentView: View {
             case .textBox((_, let textBoxViewModel)): EmptyView()
             case .number((let baseField, let numberViewModel)):
                 if let interactiveProperties = interactiveProperties {
-
                     VStack {
                         HStack(alignment: .center, spacing: 4) {
-                            if let tooltip = numberViewModel.numberFieldModel.tooltip {
-                                Image(systemName: "info.circle.fill") // SF Symbol for tooltip icon
+                            ZStack {
+                                Image(systemName: "info.circle.fill")
                                     .font(.system(size: 16))
                                     .foregroundColor(.gray)
+                                    .onTapGesture {
+                                        showPopover.toggle()
+                                    }
+                                    .popover(isPresented: $showPopover,
+                                             attachmentAnchor: .point(.center),
+                                             arrowEdge: .top,
+                                             content: {
+                                        ZStack {
+                                            Color.primaryBlue 
+                                                .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                                            VStack(alignment: .leading, spacing: 4) {
+                                                Text("Your Minimum Digit Length is \(numberViewModel.numberFieldModel.minimumDigits ?? 0)")
+                                                Text("and Your Maximum Digit Length is \(numberViewModel.numberFieldModel.maximumDigits ?? 0)")
+                                            }
+                                            .font(.system(size: 13))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                            .padding()
+                                        }
+                                        .presentationCompactAdaptation(.popover) // Ensures popover behavior
+                                    })
                             }
                             Text("\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)")
                                 .foregroundStyle(.gray)
@@ -42,7 +65,7 @@ struct FooterComponentView: View {
                                 .fontWeight(.bold)
                         }
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding(.top, 4)
+                        .padding(.top, 0)
                         .padding(.trailing, 2)
 
                         if interactiveProperties.addNote || interactiveProperties.addAttachment {
@@ -57,11 +80,47 @@ struct FooterComponentView: View {
                         } else {
                             EmptyView()
                         }
-
                     }
+
                 } else {
                     EmptyView()
                 }
         }
+    }
+}
+struct TooltipView: View {
+    var minDigits: Int
+    var maxDigits: Int
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text("Your Minimum Digit Length is \(minDigits) and")
+            Text("Your Maximum Digit Length is \(maxDigits)")
+        }
+        .font(.system(size: 13))
+        .fontWeight(.bold)
+        .foregroundColor(.white)
+        .padding(12)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.blue) // Set your primaryBlue color here
+                .overlay(
+                    Triangle()
+                        .fill(Color.blue) // Arrow color same as background
+                        .frame(width: 20, height: 10)
+                        .offset(y: -10), alignment: .top
+                )
+        )
+    }
+}
+
+struct Triangle: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        path.closeSubpath()
+        return path
     }
 }

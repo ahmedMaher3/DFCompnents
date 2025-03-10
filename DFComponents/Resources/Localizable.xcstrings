@@ -29,6 +29,9 @@
     "100" : {
 
     },
+    "and Your Maximum Digit Length is %lld" : {
+
+    },
     "Cancel" : {
 
     },
@@ -167,6 +170,15 @@
 
     },
     "Where do you live " : {
+
+    },
+    "Your Maximum Digit Length is %lld" : {
+
+    },
+    "Your Minimum Digit Length is %lld" : {
+
+    },
+    "Your Minimum Digit Length is %lld and" : {
 
     }
   },
