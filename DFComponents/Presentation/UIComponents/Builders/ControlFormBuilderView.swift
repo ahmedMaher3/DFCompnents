@@ -4,48 +4,43 @@
 //
 //  Created by Eslam on 05/02/2025.
 //
-
 import SwiftUI
 
-struct ControlFormBuilderView<Control: View>: View {
+struct ControlFormBuilderView<Header: View, Control: View, Footer: View>: View {
+    let headerView: (() -> Header)?
     let control: () -> Control
-    let fieldEntity: FieldEntity
+    let footerView: (() -> Footer)?
     @Binding var warningMessage: String?
 
-    init(
-        fieldEntity: FieldEntity,
-        @ViewBuilder controlType: @escaping () -> Control,
-        warningMessage: Binding<String?>
-    ) {
+    init(@ViewBuilder headerView: @escaping () -> Header,
+         @ViewBuilder controlType: @escaping () -> Control,
+         @ViewBuilder footerView: @escaping () -> Footer,
+         warningMessage: Binding<String?>) {
+        self.headerView = headerView
         self.control = controlType
-        self.fieldEntity = fieldEntity
+        self.footerView = footerView
         self._warningMessage = warningMessage
     }
 
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 8) {
             /// Header View
-            HeaderComponentView(viewModel: HeaderComponentViewModel(fieldEntity: fieldEntity))
-
-            /// Control with overlay for warnings
+            headerView?()
+            /// Control
             control()
-                .overlay(
-                    warningMessage?.isEmpty == false ?
-                    RoundedRectangle(cornerRadius: 4).stroke(.red, lineWidth: 0.5) : nil
-                )
+                .overlay(RoundedRectangle(cornerRadius: 4)
+                    .stroke(warningMessage != nil ? .red : .clear, lineWidth: 0.5))
 
-            /// Footer View - Aligned to Control
-            FooterComponentView(viewModel: FooterComponentViewModel(control: fieldEntity))
-                .frame(maxWidth: .infinity, alignment: .leading) // Ensures left alignment
-                .padding(.leading, 0) // Adjust leading padding as needed to match the control
+            /// Footer View
+            footerView?()
             
-            /// Warning View
-            if let warning = warningMessage, !warning.isEmpty {
-                WarningCardView(message: warning)
-                    .padding(6)
-                    .background(Color.red.opacity(0.05))
-                    .cornerRadius(8)
-            }
+            /// Warning Message (No View Rebuild)
+            WarningCardView(message: warningMessage ?? "")
+                .opacity(warningMessage == nil ? 0 : 1)
         }
+        .padding(6)
+        .background(warningMessage == nil ? Color.clear : Color.red.opacity(0.05))
+        .cornerRadius(8)
     }
 }
+ 

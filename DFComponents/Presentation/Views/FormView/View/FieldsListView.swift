@@ -24,7 +24,7 @@ struct FieldsListView: View {
             case .textBox((_, let textBoxViewModel)):
             EmptyView()
             case .number((_, let numberViewModel)):
-                ControlFormBuilderView(
+            BaseFieldContainerView(
                     fieldEntity: field,
                     controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)

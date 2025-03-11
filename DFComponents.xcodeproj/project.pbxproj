@@ -103,6 +103,11 @@
 		E472DC9E2D80300B00B8FAF3 /* AttachmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC9D2D80300B00B8FAF3 /* AttachmentButton.swift */; };
 		E472DCA02D803A7E00B8FAF3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC9F2D803A7E00B8FAF3 /* ImagePicker.swift */; };
 		E472DCA52D80492C00B8FAF3 /* NotePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DCA42D80492C00B8FAF3 /* NotePopupView.swift */; };
+		E472DCA82D8056DB00B8FAF3 /* BaseFooterControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DCA72D8056DB00B8FAF3 /* BaseFooterControlView.swift */; };
+		E472DCAB2D8057B300B8FAF3 /* BaseHeaderControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DCAA2D8057B300B8FAF3 /* BaseHeaderControlView.swift */; };
+		E472DCAE2D8057E100B8FAF3 /* BaseHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DCAD2D8057E100B8FAF3 /* BaseHeaderViewModel.swift */; };
+		E472DCB12D80582000B8FAF3 /* BaseFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DCB02D80582000B8FAF3 /* BaseFooterViewModel.swift */; };
+		E472DCB42D8058B500B8FAF3 /* BaseFieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DCB32D8058B500B8FAF3 /* BaseFieldContainerView.swift */; };
 		E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */; };
 		E489E8172D4A3B48007EA370 /* TextBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */; };
 		E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */; };
@@ -280,6 +285,11 @@
 		E472DC9D2D80300B00B8FAF3 /* AttachmentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentButton.swift; sourceTree = "<group>"; };
 		E472DC9F2D803A7E00B8FAF3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		E472DCA42D80492C00B8FAF3 /* NotePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePopupView.swift; sourceTree = "<group>"; };
+		E472DCA72D8056DB00B8FAF3 /* BaseFooterControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFooterControlView.swift; sourceTree = "<group>"; };
+		E472DCAA2D8057B300B8FAF3 /* BaseHeaderControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderControlView.swift; sourceTree = "<group>"; };
+		E472DCAD2D8057E100B8FAF3 /* BaseHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderViewModel.swift; sourceTree = "<group>"; };
+		E472DCB02D80582000B8FAF3 /* BaseFooterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFooterViewModel.swift; sourceTree = "<group>"; };
+		E472DCB32D8058B500B8FAF3 /* BaseFieldContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFieldContainerView.swift; sourceTree = "<group>"; };
 		E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxComponent.swift; sourceTree = "<group>"; };
 		E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxDTO.swift; sourceTree = "<group>"; };
 		E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxViewModel.swift; sourceTree = "<group>"; };
@@ -806,11 +816,8 @@
 		AAE9E1F62D7799FE009E5EDF /* FooterView */ = {
 			isa = PBXGroup;
 			children = (
-				E472DCA32D80491D00B8FAF3 /* AddNote */,
 				AAE9E1F92D779C39009E5EDF /* FooterComponentView.swift */,
 				AAE9E1FC2D779D48009E5EDF /* ViewModel */,
-				E472DC902D802EB900B8FAF3 /* ImagesGridView */,
-				E472DC9D2D80300B00B8FAF3 /* AttachmentButton.swift */,
 			);
 			path = FooterView;
 			sourceTree = "<group>";
@@ -916,6 +923,51 @@
 				E472DCA42D80492C00B8FAF3 /* NotePopupView.swift */,
 			);
 			path = AddNote;
+			sourceTree = "<group>";
+		};
+		E472DCA62D80550700B8FAF3 /* NewFooter */ = {
+			isa = PBXGroup;
+			children = (
+				E472DCAF2D80581300B8FAF3 /* ViewModel */,
+				E472DC9D2D80300B00B8FAF3 /* AttachmentButton.swift */,
+				E472DCA72D8056DB00B8FAF3 /* BaseFooterControlView.swift */,
+				E472DC902D802EB900B8FAF3 /* ImagesGridView */,
+				E472DCA32D80491D00B8FAF3 /* AddNote */,
+			);
+			path = NewFooter;
+			sourceTree = "<group>";
+		};
+		E472DCA92D80579D00B8FAF3 /* NewHeader */ = {
+			isa = PBXGroup;
+			children = (
+				E472DCAC2D8057D100B8FAF3 /* ViewModel */,
+				E472DCAA2D8057B300B8FAF3 /* BaseHeaderControlView.swift */,
+			);
+			path = NewHeader;
+			sourceTree = "<group>";
+		};
+		E472DCAC2D8057D100B8FAF3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E472DCAD2D8057E100B8FAF3 /* BaseHeaderViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E472DCAF2D80581300B8FAF3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E472DCB02D80582000B8FAF3 /* BaseFooterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E472DCB22D8058A000B8FAF3 /* NewBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				E472DCB32D8058B500B8FAF3 /* BaseFieldContainerView.swift */,
+			);
+			path = NewBuilder;
 			sourceTree = "<group>";
 		};
 		E489E8122D4A3AFC007EA370 /* TextBoxComponent */ = {
@@ -1370,10 +1422,13 @@
 			children = (
 				04C847B42D79D04A0078B18F /* Section */,
 				04C847B32D79D0410078B18F /* Page */,
+				E472DCA92D80579D00B8FAF3 /* NewHeader */,
+				E472DCA62D80550700B8FAF3 /* NewFooter */,
 				AAE9E1F62D7799FE009E5EDF /* FooterView */,
 				AAE9E1F52D7799F7009E5EDF /* HeaderView */,
 				AAC387452D76F4E700118896 /* Text */,
 				AAD099652D5CC8CA007A6CE9 /* RulesControls */,
+				E472DCB22D8058A000B8FAF3 /* NewBuilder */,
 				E4A901822D5CD5F8007080AC /* Builders */,
 				E4A901812D5CD5EF007080AC /* Messages */,
 				A9BF46A12D538896003F2333 /* Image-File Upload */,
@@ -1645,8 +1700,10 @@
 				AAD562372D4AABF300C19A11 /* MultiChoiceQuestion.swift in Sources */,
 				A9BF46A22D538896003F2333 /* ImageFileView.swift in Sources */,
 				E4A901A52D5E01E9007080AC /* GuestAuthorizationImpl.swift in Sources */,
+				E472DCB42D8058B500B8FAF3 /* BaseFieldContainerView.swift in Sources */,
 				AAD5623A2D4AAC2700C19A11 /* CheckBoxStyle.swift in Sources */,
 				AAC387592D77413F00118896 /* NumberFieldModel.swift in Sources */,
+				E472DCAB2D8057B300B8FAF3 /* BaseHeaderControlView.swift in Sources */,
 				AAC387552D772F3A00118896 /* NumberFieldViewModel.swift in Sources */,
 				AAD099752D5D3A53007A6CE9 /* FooterFormView.swift in Sources */,
 				E4A901632D52D536007080AC /* StepView.swift in Sources */,
@@ -1655,6 +1712,7 @@
 				AAF1B1832D76490500DC44B4 /* LocationValidationEntity.swift in Sources */,
 				E4A9015A2D52C848007080AC /* SectionModel.swift in Sources */,
 				AAF1B1792D7648E700DC44B4 /* FormValidationEntity.swift in Sources */,
+				E472DCA82D8056DB00B8FAF3 /* BaseFooterControlView.swift in Sources */,
 				E4A9017E2D5CCE90007080AC /* RouterManager.swift in Sources */,
 				AAD562352D4AABE500C19A11 /* CheckBoxView.swift in Sources */,
 				E472DC9C2D802FD100B8FAF3 /* FilesListView.swift in Sources */,
@@ -1686,6 +1744,7 @@
 				AAE9E1F12D7791E3009E5EDF /* ContentNumberControlView.swift in Sources */,
 				A9474BC72D5CE3EA00031047 /* Interceptor.swift in Sources */,
 				E48CA01B2D537D7100A519ED /* SignatureViewModel.swift in Sources */,
+				E472DCB12D80582000B8FAF3 /* BaseFooterViewModel.swift in Sources */,
 				A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */,
 				E4BBD01E2D4A47BD004AA735 /* DropDownView.swift in Sources */,
 				E4A9019D2D5E01E9007080AC /* Endpoint.swift in Sources */,
@@ -1703,6 +1762,7 @@
 				AAF1B1812D76490100DC44B4 /* FileUploadValidationEntity.swift in Sources */,
 				AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */,
 				E489E8172D4A3B48007EA370 /* TextBoxDTO.swift in Sources */,
+				E472DCAE2D8057E100B8FAF3 /* BaseHeaderViewModel.swift in Sources */,
 				E4A901A12D5E01E9007080AC /* NetworkErrorHandling.swift in Sources */,
 				04C847CD2D79D3570078B18F /* StringExtension.swift in Sources */,
 				E44926C82D4B8B0D00EA5D5E /* FormViewModel.swift in Sources */,

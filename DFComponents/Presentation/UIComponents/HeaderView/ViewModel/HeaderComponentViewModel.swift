@@ -8,9 +8,9 @@
 import Foundation
 
 final class HeaderComponentViewModel: ObservableObject {
-    @Published var field: FieldEntity
+    @Published var baseProperties: BaseProperties
 
-    init(fieldEntity: FieldEntity) {
-        self.field = fieldEntity
+    init(baseProperties: BaseProperties) {
+        self.baseProperties = baseProperties
     }
 }

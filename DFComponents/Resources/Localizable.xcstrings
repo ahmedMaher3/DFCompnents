@@ -39,6 +39,9 @@
     "+%lld" : {
 
     },
+    "|| Attachment" : {
+
+    },
     "0" : {
 
     },
@@ -46,6 +49,9 @@
 
     },
     "Add Note" : {
+
+    },
+    "and Your Maximum Digit Length is %lld" : {
 
     },
     "Cancel" : {
@@ -146,6 +152,9 @@
     "More" : {
 
     },
+    "Note" : {
+
+    },
     "Pick a File" : {
 
     },
@@ -216,6 +225,9 @@
 
     },
     "Where do you live " : {
+
+    },
+    "Your Minimum Digit Length is %lld" : {
 
     }
   },

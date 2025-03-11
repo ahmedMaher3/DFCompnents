@@ -85,7 +85,7 @@ struct SectionView: View {
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
             case .radio((_, let radioViewModel)):
-                ControlFormBuilderView(
+            BaseFieldContainerView(
                     fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
@@ -100,7 +100,7 @@ struct SectionView: View {
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
 
             case .textBox((_, let textBoxViewModel)):
-                ControlFormBuilderView(
+            BaseFieldContainerView(
                     fieldEntity: field, controlType: {
                         TextBoxComponent(viewModel: textBoxViewModel)
                     },
@@ -115,7 +115,7 @@ struct SectionView: View {
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
 
             case .number((_, let numberViewModel)):
-                ControlFormBuilderView(
+            BaseFieldContainerView(
                     fieldEntity: field, controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
                             .onReceive(numberViewModel.objectWillChange) { updatedValue in

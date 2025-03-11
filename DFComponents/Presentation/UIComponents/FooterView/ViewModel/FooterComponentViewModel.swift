@@ -8,9 +8,11 @@
 import Foundation
 
 final class FooterComponentViewModel: ObservableObject {
-    @Published var field: FieldEntity
+    @Published var interactiveProperties: InteractiveField
+    @Published var fieldEntity: FieldEntity
 
-    init(control: FieldEntity) {
-        self.field = control
+    init( fieldEntity: FieldEntity,interactiveProperties: InteractiveField) {
+        self.fieldEntity = fieldEntity
+        self.interactiveProperties = interactiveProperties
     }
 }

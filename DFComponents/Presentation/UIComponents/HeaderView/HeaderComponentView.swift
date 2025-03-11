@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HeaderComponentView: View {
+    
     @StateObject var viewModel: HeaderComponentViewModel
     
     init(viewModel: HeaderComponentViewModel) {
@@ -15,35 +16,42 @@ struct HeaderComponentView: View {
     }
     
     var body: some View {
-        renderHeader(for: viewModel.field)
+        renderHeader(for: viewModel.baseProperties)
     }
 
     /// HeaderView
     @ViewBuilder
-    private func renderHeader(for control: FieldEntity?) -> some View {
-        if let fieldEntity = control {
-            switch fieldEntity {
-            case .page, .section, .radio, .textBox:
-                EmptyView()
-            case .number((_, let numberViewModel)):
-                let properties = numberViewModel.numberFieldModel.basePropertiesNotInteractive
-                labelView(baseProperties: properties)
+    private func renderHeader(for baseProperties: BaseProperties?) -> some View {
+        if let _ = baseProperties {
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                if let label = viewModel.baseProperties.label {
+                    labelView(label: label, baseProperties: viewModel.baseProperties)
+                }
+                if let subLabel = viewModel.baseProperties.sublabel {
+                    Text(subLabel)
+                        .font(.subheadline)
+                        .foregroundStyle(.red)
+                }
+
             }
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+        } else {
+            EmptyView() // If no header is available
         }
     }
     ///Label
     @ViewBuilder
-    private func labelView(baseProperties: BaseProperties) -> some View {
+    private func labelView(label: String, baseProperties: BaseProperties) -> some View {
         if baseProperties.required ?? false {
             HStack(alignment: .center) {
-                Text(baseProperties.label ?? "")
+                Text(label)
                     .font(.headline)
                     .foregroundColor(.primary)
                 Text("* ")
                     .foregroundStyle(.red)
             }
         } else {
-            Text(baseProperties.label ?? "")
+            Text(label)
                 .font(.headline)
                 .foregroundColor(.primary)
         }

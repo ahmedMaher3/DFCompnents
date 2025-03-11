@@ -26,7 +26,7 @@ struct PageView: View {
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
             case .radio((_, let radioViewModel)):
-                ControlFormBuilderView(
+            BaseFieldContainerView(
                     fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
@@ -41,7 +41,7 @@ struct PageView: View {
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
 
             case .textBox((_, let textBoxViewModel)):
-                ControlFormBuilderView(
+            BaseFieldContainerView(
                     fieldEntity: field, controlType: {
                         TextBoxComponent(viewModel: textBoxViewModel)
                     },
@@ -56,7 +56,7 @@ struct PageView: View {
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
 
             case .number((_, let numberViewModel)):
-                ControlFormBuilderView(
+            BaseFieldContainerView(
                     fieldEntity: field, controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
                             .onReceive(numberViewModel.objectWillChange) { updatedValue in
@@ -100,7 +100,7 @@ struct PageVieww: View {
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
             case .radio((_, let radioViewModel)):
-                ControlFormBuilderView(
+            BaseFieldContainerView(
                     fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
@@ -115,7 +115,7 @@ struct PageVieww: View {
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
 
             case .textBox((_, let textBoxViewModel)):
-                ControlFormBuilderView(
+            BaseFieldContainerView(
                     fieldEntity: field, controlType: {
                         TextBoxComponent(viewModel: textBoxViewModel)
                     },
@@ -130,7 +130,7 @@ struct PageVieww: View {
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
 
             case .number((_, let numberViewModel)):
-                ControlFormBuilderView(
+            BaseFieldContainerView(
                     fieldEntity: field, controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
                             .onReceive(numberViewModel.objectWillChange) { updatedValue in

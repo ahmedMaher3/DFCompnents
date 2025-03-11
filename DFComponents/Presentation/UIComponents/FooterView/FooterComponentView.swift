@@ -11,154 +11,86 @@ import UniformTypeIdentifiers
 
 struct FooterComponentView: View {
     @StateObject var viewModel: FooterComponentViewModel
-    @State private var showNotePopup = false
-    @State private var noteText: String = ""
-    @State private var savedNote: String?
-    @State private var selectedPhotos: [PhotosPickerItem] = []
-    @State private var selectedFiles: [URL] = []
-    @State private var attachments: [AttachmentModel] = []
-    @State private var showFilePicker = false
-    @State private var showImagePicker = false
-    @State private var isExpanded: Bool = false  // Track expansion state
+    @State private var showPopover = false
 
     init(viewModel: FooterComponentViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
+
     }
 
     var body: some View {
-        renderFooter(fieldEntity: viewModel.field)
+        renderFooter(fieldEntity: viewModel.fieldEntity, for: viewModel.interactiveProperties)
+            .padding(4)
     }
 
-    /// **Reusable Footer Stack**
+    /// FooterView
     @ViewBuilder
-    private func footerStack(sublabel: String?, characterCountText: String?, addNote: Bool, addAttachment: Bool) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            if let sublabel = sublabel {
-                Text(sublabel)
-            }
+    private func renderFooter(fieldEntity: FieldEntity, for interactiveProperties: InteractiveField?) -> some View {
 
-            if let characterCountText = characterCountText {
-                Text(characterCountText)
-                    .foregroundStyle(.gray)
-                    .font(.system(size: 13))
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding([.top, .trailing], 4)
-            }
-
-            if addNote || addAttachment {
-                HStack {
-                    if addNote {
-                        Button(action: { showNotePopup.toggle() }) {
-                            Image(systemName: "bubble.left.and.text.bubble.right.fill")
-                                .foregroundColor(.blue)
-                                .font(.title2)
-                        }
-                    }
-
-                    if addAttachment {
-                        // Attachment Button
-                        AttachmentButton(showImagePicker: $showImagePicker, showFilePicker: $showFilePicker, selectedPhotos: $selectedPhotos)
-                    }
-                }
-
-                if let note = savedNote {
-                    VStack(alignment: .leading) {
-                        let noteText = note.count >= 80 ? note.prefix(80) + "..." : note
-                        Text(isExpanded ? note : noteText)
-                            .padding()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(Color.gray.opacity(0.1))
-                            .cornerRadius(8)
-                            .lineLimit(isExpanded ? nil : 2)
-                        Button(action: {
-                            isExpanded.toggle()
-                        }) {
-                            if note.count > 80 {
-                                Text(isExpanded ? "Less" : "More")
-                                    .foregroundColor(.blue)
-                                    .font(.caption)
-                                    .bold()
-                            }
-                        }
-                        .padding(.top, 4)
-                    }
-                }
-
-
-                // File List
-                FileListView(attachments: $attachments)
-
-                // Image Grid
-                ImageGridView(attachments: $attachments)
-            }
-        }
-        // Image Picker
-        .photosPicker(isPresented: $showImagePicker, selection: $selectedPhotos, matching: .images)
-        .onChange(of: selectedPhotos) { newItems in
-            Task {
-                for item in newItems {
-                    if let data = try? await item.loadTransferable(type: Data.self),
-                       let uiImage = UIImage(data: data) {
-                        let attachment = AttachmentModel(fileName: "Image.jpg", fileSize: data.count, fileType: "jpg", image: uiImage)
-                        attachments.append(attachment)
-                        updateAnswer()
-                    }
-                }
-            }
-        }
-        
-        // File Picker
-        .fileImporter(
-            isPresented: $showFilePicker,
-            allowedContentTypes: [.pdf, .jpeg, .png, .plainText, .spreadsheet, .presentation],
-            allowsMultipleSelection: true
-        ) { result in
-            do {
-                let urls = try result.get()
-                for url in urls {
-                    let fileSize = try FileManager.default.attributesOfItem(atPath: url.path)[.size] as? Int ?? 0
-                    let attachment = AttachmentModel(fileName: url.lastPathComponent, fileSize: fileSize, fileType: url.pathExtension)
-                    attachments.append(attachment)
-                }
-                updateAnswer()
-            } catch {
-                print("Failed to pick file: \(error)")
-            }
-        }
-        .sheet(isPresented: $showNotePopup) {
-            NotePopupView(noteText: $noteText, onSave: {
-                savedNote = noteText
-                showNotePopup = false
-                updateAnswer()
-            })
-            .presentationDetents([.large])
-            .presentationCornerRadius(20)
-        }
-    }
-
-    /// **Render Footer Based on Field Type**
-    @ViewBuilder
-    private func renderFooter(fieldEntity: FieldEntity) -> some View {
         switch fieldEntity {
-        case .page, .section, .radio, .textBox:
-            EmptyView()
+            case .page((_, _)): EmptyView()
+            case .section((_, _)): EmptyView()
+            case .radio((_, let radioViewModel)): EmptyView()
+            case .textBox((_, let textBoxViewModel)): EmptyView()
+            case .number((_ , let numberViewModel)):
+                if let interactiveProperties = interactiveProperties {
+                    VStack {
+                        HStack(alignment: .center, spacing: 4) {
+                            ZStack {
+                                Image(systemName: "info.circle.fill")
+                                    .font(.system(size: 16))
+                                    .offset(y: -6)
+                                    .foregroundColor(.gray)
+                                    .onTapGesture {
+                                        showPopover.toggle()
+                                    }
+                                    .popover(isPresented: $showPopover,
+                                             attachmentAnchor: .point(.center),
+                                             arrowEdge: .top,
+                                             content: {
+                                        ZStack {
+                                            Color.primaryBlue
+                                                .clipShape(RoundedRectangle(cornerRadius: 12))
 
-        case .number((_, let numberViewModel)):
-            let interactiveProperties = numberViewModel.numberFieldModel.base
-            footerStack(
-                sublabel: interactiveProperties.sublabel,
-                characterCountText: "\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)",
-                addNote: interactiveProperties.addNote,
-                addAttachment: interactiveProperties.addAttachment
-            )
-        }
-    }
-    
-    /// **Update Answer in ViewModel**
-    private func updateAnswer() {
-        if case .number((_, let numberViewModel)) = viewModel.field {
-            numberViewModel.numberFieldModel.answer = BaseAnswer(note: savedNote ?? "", attachments: attachments)
+                                            VStack(alignment: .leading, spacing: 4) {
+                                                Text("Your Minimum Digit Length is \(numberViewModel.numberFieldModel.minimumDigits ?? 0)")
+                                                Text("and Your Maximum Digit Length is \(numberViewModel.numberFieldModel.maximumDigits ?? 0)")
+                                            }
+                                            .font(.system(size: 13))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                            .padding()
+                                        }
+                                        .presentationCompactAdaptation(.popover)
+                                    })
+                            }
+                            Text("\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)")
+                                .foregroundStyle(.gray)
+                                .font(.system(size: 13))
+                                .offset(y: -6)
+                                .fontWeight(.bold)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.top, 0)
+                        .padding(.trailing, 2)
+
+                        if interactiveProperties.addNote || interactiveProperties.addAttachment {
+                            HStack {
+                                if interactiveProperties.addNote {
+                                    Text("Note")
+                                }
+                                if interactiveProperties.addAttachment {
+                                    Text("|| Attachment")
+                                }
+                            }
+                        } else {
+                            EmptyView()
+                        }
+                    }
+
+                } else {
+                    EmptyView()
+                }
         }
     }
 }
