@@ -4,9 +4,7 @@
 //
 //  Created by hassan elshaer on 11/03/2025.
 //
-
 import SwiftUI
-import PhotosUI
 
 struct ImageGridView: View {
     @Binding var attachments: [AttachmentModel]
@@ -22,34 +20,41 @@ struct ImageGridView: View {
                             let imageAttachments = attachments.filter { $0.isImage }
                             let visibleImages = Array(imageAttachments.prefix(maxVisibleImages))
 
+                            // Display first maxVisibleImages images normally
                             ForEach(visibleImages) { attachment in
                                 if let image = attachment.image {
-                                    NavigationLink(destination: ImageListView(attachments: $attachments)) {
+                                    NavigationLink(destination: ImageDetailView(attachments: $attachments, image: attachment)) {
                                         Image(uiImage: image)
                                             .resizable()
                                             .scaledToFill()
                                             .frame(width: 80, height: 80)
                                             .clipShape(RoundedRectangle(cornerRadius: 10))
                                     }
-                                    .buttonStyle(PlainButtonStyle()) // Removes default navigation link styling
+                                    .buttonStyle(PlainButtonStyle())
                                 }
                             }
 
+                            // If more images exist, show a "+ count" overlay on the last one
                             if imageAttachments.count > maxVisibleImages {
                                 let remainingCount = imageAttachments.count - maxVisibleImages
 
                                 NavigationLink(destination: ImageListView(attachments: $attachments)) {
                                     ZStack {
-                                        Color.black.opacity(0.6)
-                                            .frame(width: 80, height: 80)
-                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        if let lastImage = imageAttachments[maxVisibleImages].image {
+                                            Image(uiImage: lastImage)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 80, height: 80)
+                                                .overlay(Color.black.opacity(0.5)) // Dark overlay for contrast
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        }
 
                                         Text("+\(remainingCount)")
                                             .foregroundColor(.white)
                                             .font(.system(size: 18, weight: .bold))
                                     }
                                 }
-                                .buttonStyle(PlainButtonStyle()) // Removes default navigation link styling
+                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                     }

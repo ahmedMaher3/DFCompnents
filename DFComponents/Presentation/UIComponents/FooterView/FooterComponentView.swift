@@ -58,7 +58,6 @@ struct FooterComponentView: View {
                     if addAttachment {
                         // Attachment Button
                         AttachmentButton(showImagePicker: $showImagePicker, showFilePicker: $showFilePicker, selectedPhotos: $selectedPhotos)
-
                     }
                 }
 
@@ -69,7 +68,6 @@ struct FooterComponentView: View {
                         .background(Color.gray.opacity(0.1))
                         .cornerRadius(8)
                 }
-     
 
                 // File List
                 FileListView(attachments: $attachments)
@@ -87,6 +85,7 @@ struct FooterComponentView: View {
                        let uiImage = UIImage(data: data) {
                         let attachment = AttachmentModel(fileName: "Image.jpg", fileSize: data.count, fileType: "jpg", image: uiImage)
                         attachments.append(attachment)
+                        updateAnswer()
                     }
                 }
             }
@@ -105,6 +104,7 @@ struct FooterComponentView: View {
                     let attachment = AttachmentModel(fileName: url.lastPathComponent, fileSize: fileSize, fileType: url.pathExtension)
                     attachments.append(attachment)
                 }
+                updateAnswer()
             } catch {
                 print("Failed to pick file: \(error)")
             }
@@ -113,6 +113,7 @@ struct FooterComponentView: View {
             NotePopupView(noteText: $noteText, onSave: {
                 savedNote = noteText
                 showNotePopup = false
+                updateAnswer()
             })
             .presentationDetents([.large])
             .presentationCornerRadius(20)
@@ -134,6 +135,13 @@ struct FooterComponentView: View {
                 addNote: interactiveProperties.addNote,
                 addAttachment: interactiveProperties.addAttachment
             )
+        }
+    }
+    
+    /// **Update Answer in ViewModel**
+    private func updateAnswer() {
+        if case .number((_, let numberViewModel)) = viewModel.field {
+            numberViewModel.numberFieldModel.answer = BaseAnswer(note: savedNote ?? "", attachments: attachments)
         }
     }
 }
