@@ -57,7 +57,8 @@ struct FooterComponentView: View {
 
                     if addAttachment {
                         // Attachment Button
-                        AttachmentButton(showImagePicker: $showImagePicker, showFilePicker: $showFilePicker)
+                        AttachmentButton(showImagePicker: $showImagePicker, showFilePicker: $showFilePicker, selectedPhotos: $selectedPhotos)
+
                     }
                 }
 
