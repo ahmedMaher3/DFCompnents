@@ -9,12 +9,26 @@ import SwiftUI
 
 struct SectionView: View {
     
+    @ObservedObject var sectionViewModel: SectionViewModel
     @EnvironmentObject var viewModel: FormViewModel
-    let title: String
-    //    let icon: String
+//    var control: SectionField
+//    let title: String
+//    let icon: String
     let fields: [FieldEntity]
     
-    @State private var isExpanded = true
+    @State private var isExpanded: Bool = false
+    
+//    init(fields: [FieldEntity], isExpanded: Bool) {
+//        self.fields = fields
+//        self.isExpanded = isExpanded
+//    }
+    
+    init(sectionViewModel: SectionViewModel, fields: [FieldEntity], isExpanded: Bool) {
+        self.sectionViewModel = sectionViewModel
+        self.fields = fields
+        self.isExpanded = isExpanded
+    }
+    
     
     var body: some View {
         Section(header: sectionHeader()) {
@@ -29,25 +43,41 @@ struct SectionView: View {
                 }
             }
         }
+        .listRowInsets(EdgeInsets())
     }
-    
+        
     // MARK: - Section Header
     @ViewBuilder
     private func sectionHeader() -> some View {
         VStack {
-            Button(action: { isExpanded.toggle() }) {
+            Button(action: {
+                isExpanded.toggle()
+                self.sectionViewModel.control.isExpandedStatus = isExpanded
+            }) {
                 HStack {
-                    //                Image(systemName: icon)
-                    //                    .foregroundColor(.white)
-                    Text(title)
+                    
+                    if let iconURLString = self.sectionViewModel.control.icon, let iconURL = URL(string: iconURLString) {
+                        AsyncImage(url: iconURL) { image in
+                            image.resizable()
+                                 .scaledToFit()
+                                 .frame(width: 24, height: 24)
+                                 .foregroundColor(isExpanded ? Color(hex: "#E6EDFD") : Color(hex: "#5989EF"))
+                        } placeholder: {
+                            ProgressView()
+                        }
+                    } else {
+                        Image("Business")
+                            .foregroundColor(isExpanded ? Color(hex: "#E6EDFD") : Color(hex: "#5989EF"))
+                    }
+                    Text(sectionViewModel.control.label)
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(isExpanded ? Color(hex: "#E6EDFD") : Color(hex: "#5989EF"))
                     Spacer()
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                        .foregroundColor(.white)
+                        .foregroundColor(isExpanded ? Color(hex: "#E6EDFD") : Color(hex: "#5989EF"))
                 }
                 .padding()
-                .background(Color.blue)
+                .background(isExpanded ? Color(hex: "#5989EF") : Color(hex: "#E6EDFD"))
             }
         }
     }
@@ -149,7 +179,8 @@ struct SectionView: View {
         case .page((_, _)):
             EmptyView()
         case .section((_, let sectionViewModel)):
-            SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
+            EmptyView()
+//            SectionView(viewModel: sectionViewModel.control, control: sectionViewModel.controls, title: sectionViewModel.control.label, icon: "")
         }
     }
 }

@@ -18,11 +18,6 @@ protocol EntityMapper {
 
 class FormMapper: EntityMapper {
     
-    //    func map(from dto: Schema) -> [FieldEntity] {
-    //        <#code#>
-    //    }
-    
-    
     typealias DTO = Schema
     typealias Entity = FieldEntity
     typealias formWarnings = WarningsEntity
@@ -123,7 +118,7 @@ class FormMapper: EntityMapper {
             if field.type == .section {
                 let sectionControls = mapFieldsRecursively(fields: groupedFields[field.id!] ?? [], groupedFields: groupedFields)
                 let control = SectionField(field: field)
-                return .section((control, SectionViewModel(controls: sectionControls, title: field.properties.label ?? "Section")))
+                return .section((control, SectionViewModel(control: control, controls: sectionControls, sectionField: control)))
             }
             return mapSingleField(field: field)
         }

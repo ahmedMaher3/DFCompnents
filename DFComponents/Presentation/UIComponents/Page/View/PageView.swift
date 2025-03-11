@@ -107,8 +107,8 @@ struct PageView: View {
         case .page((_, _)):
             EmptyView()
         case .section((_, let sectionViewModel)):
-            SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
-            //                .frame(maxWidth: .infinity, minHeight: 200, maxHeight: .infinity) // Ensure it's visible
+            SectionView(sectionViewModel: sectionViewModel, fields: sectionViewModel.controls, isExpanded: sectionViewModel.control.isExpandedStatus)
+//                .environment(viewModel)
         }
     }
     

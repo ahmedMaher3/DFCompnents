@@ -112,14 +112,16 @@ struct Field: Codable {
         self.rules = try container.decodeIfPresent(FieldRules.self, forKey: .rules)
 
         switch self.type {
-            case .textBox:
-                properties = try container.decode(TextBoxProperties.self, forKey: .properties)
-            case .radio:
-                properties = try container.decode(RadioProperties.self, forKey: .properties)
-            case .number:
-                properties = try container.decode(NumberProperties.self, forKey: .properties)
-            default:
-                properties = try container.decode(BaseProperties.self, forKey: .properties)
+        case .textBox:
+            properties = try container.decode(TextBoxProperties.self, forKey: .properties)
+        case .radio:
+            properties = try container.decode(RadioProperties.self, forKey: .properties)
+        case .number:
+            properties = try container.decode(NumberProperties.self, forKey: .properties)
+        case .section:
+            properties = try container.decode(SectionProperties.self, forKey: .properties)
+        default:
+            properties = try container.decode(BaseProperties.self, forKey: .properties)
         }
     }
 

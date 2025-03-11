@@ -105,7 +105,7 @@
                 "identifier": "N5DsWvjD/rxSnR2ozqx"
             },
             "settings": {
-                "format": "Classic",
+                "format": "Card",
                 "enableScoreCalculation": true,
                 "enableViewResults": true,
                 "enablePageValidation": true,
@@ -380,7 +380,7 @@
                     "properties": {
                         "allowCollapse": true,
                         "defaultMode": "Expanded",
-                        "icon": "",
+                        "icon": null,
                         "labelPosition": "Top",
                         "label": "Dogs Section",
                         "sublabel": "",
