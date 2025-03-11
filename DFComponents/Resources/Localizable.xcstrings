@@ -42,9 +42,6 @@
     "0" : {
 
     },
-    "0/10" : {
-
-    },
     "100" : {
 
     },
@@ -134,16 +131,13 @@
     "Last Name: %@" : {
 
     },
+    "Less" : {
+
+    },
     "light" : {
 
     },
     "Loading form data..." : {
-
-    },
-    "Lorem ipsum dolor" : {
-
-    },
-    "Lorem ipsum dolor sit amet, consectetur" : {
 
     },
     "Lower: %.2f" : {
@@ -153,9 +147,6 @@
 
     },
     "Pick a File" : {
-
-    },
-    "Provide a brief summary of the inspection findings, including any concerns" : {
 
     },
     "Save" : {
@@ -219,9 +210,6 @@
 
     },
     "Upper: %.2f" : {
-
-    },
-    "What is your Name ?" : {
 
     },
     "What is your name?" : {

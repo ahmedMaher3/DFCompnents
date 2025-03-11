@@ -19,6 +19,7 @@ struct FooterComponentView: View {
     @State private var attachments: [AttachmentModel] = []
     @State private var showFilePicker = false
     @State private var showImagePicker = false
+    @State private var isExpanded: Bool = false  // Track expansion state
 
     init(viewModel: FooterComponentViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -62,12 +63,28 @@ struct FooterComponentView: View {
                 }
 
                 if let note = savedNote {
-                    Text(note)
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.gray.opacity(0.1))
-                        .cornerRadius(8)
+                    VStack(alignment: .leading) {
+                        let noteText = note.count >= 80 ? note.prefix(80) + "..." : note
+                        Text(isExpanded ? note : noteText)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(8)
+                            .lineLimit(isExpanded ? nil : 2)
+                        Button(action: {
+                            isExpanded.toggle()
+                        }) {
+                            if note.count > 80 {
+                                Text(isExpanded ? "Less" : "More")
+                                    .foregroundColor(.blue)
+                                    .font(.caption)
+                                    .bold()
+                            }
+                        }
+                        .padding(.top, 4)
+                    }
                 }
+
 
                 // File List
                 FileListView(attachments: $attachments)

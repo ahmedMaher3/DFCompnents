@@ -95,7 +95,6 @@
 		AAF8308D2D7909D2001B0CAC /* WarningCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF8308C2D7909D2001B0CAC /* WarningCardView.swift */; };
 		E44926C42D4B8AD200EA5D5E /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44926C32D4B8AD200EA5D5E /* FormView.swift */; };
 		E44926C82D4B8B0D00EA5D5E /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44926C72D4B8B0D00EA5D5E /* FormViewModel.swift */; };
-		E472DC8F2D7EC8D900B8FAF3 /* BaseParentField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC8E2D7EC8D900B8FAF3 /* BaseParentField.swift */; };
 		E472DC922D802ED200B8FAF3 /* ImagesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC912D802ED200B8FAF3 /* ImagesGridView.swift */; };
 		E472DC952D802F1400B8FAF3 /* ImagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC942D802F1400B8FAF3 /* ImagesListView.swift */; };
 		E472DC972D802F4500B8FAF3 /* ImageDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC962D802F4500B8FAF3 /* ImageDetailsView.swift */; };
@@ -103,6 +102,7 @@
 		E472DC9C2D802FD100B8FAF3 /* FilesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC9B2D802FD100B8FAF3 /* FilesListView.swift */; };
 		E472DC9E2D80300B00B8FAF3 /* AttachmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC9D2D80300B00B8FAF3 /* AttachmentButton.swift */; };
 		E472DCA02D803A7E00B8FAF3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC9F2D803A7E00B8FAF3 /* ImagePicker.swift */; };
+		E472DCA52D80492C00B8FAF3 /* NotePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DCA42D80492C00B8FAF3 /* NotePopupView.swift */; };
 		E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */; };
 		E489E8172D4A3B48007EA370 /* TextBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */; };
 		E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */; };
@@ -272,7 +272,6 @@
 		AAF8308C2D7909D2001B0CAC /* WarningCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningCardView.swift; sourceTree = "<group>"; };
 		E44926C32D4B8AD200EA5D5E /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		E44926C72D4B8B0D00EA5D5E /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
-		E472DC8E2D7EC8D900B8FAF3 /* BaseParentField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseParentField.swift; sourceTree = "<group>"; };
 		E472DC912D802ED200B8FAF3 /* ImagesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesGridView.swift; sourceTree = "<group>"; };
 		E472DC942D802F1400B8FAF3 /* ImagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListView.swift; sourceTree = "<group>"; };
 		E472DC962D802F4500B8FAF3 /* ImageDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailsView.swift; sourceTree = "<group>"; };
@@ -280,6 +279,7 @@
 		E472DC9B2D802FD100B8FAF3 /* FilesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesListView.swift; sourceTree = "<group>"; };
 		E472DC9D2D80300B00B8FAF3 /* AttachmentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentButton.swift; sourceTree = "<group>"; };
 		E472DC9F2D803A7E00B8FAF3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		E472DCA42D80492C00B8FAF3 /* NotePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePopupView.swift; sourceTree = "<group>"; };
 		E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxComponent.swift; sourceTree = "<group>"; };
 		E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxDTO.swift; sourceTree = "<group>"; };
 		E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxViewModel.swift; sourceTree = "<group>"; };
@@ -806,6 +806,7 @@
 		AAE9E1F62D7799FE009E5EDF /* FooterView */ = {
 			isa = PBXGroup;
 			children = (
+				E472DCA32D80491D00B8FAF3 /* AddNote */,
 				AAE9E1F92D779C39009E5EDF /* FooterComponentView.swift */,
 				AAE9E1FC2D779D48009E5EDF /* ViewModel */,
 				E472DC902D802EB900B8FAF3 /* ImagesGridView */,
@@ -907,6 +908,14 @@
 				E472DC9B2D802FD100B8FAF3 /* FilesListView.swift */,
 			);
 			path = FilesListView;
+			sourceTree = "<group>";
+		};
+		E472DCA32D80491D00B8FAF3 /* AddNote */ = {
+			isa = PBXGroup;
+			children = (
+				E472DCA42D80492C00B8FAF3 /* NotePopupView.swift */,
+			);
+			path = AddNote;
 			sourceTree = "<group>";
 		};
 		E489E8122D4A3AFC007EA370 /* TextBoxComponent */ = {
@@ -1186,7 +1195,6 @@
 			isa = PBXGroup;
 			children = (
 				A9BF46922D53886A003F2333 /* ControlFormBuilderView.swift */,
-				E472DC8E2D7EC8D900B8FAF3 /* BaseParentField.swift */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -1609,8 +1617,8 @@
 				A9BF46A52D538EC9003F2333 /* ComplicatedView.swift in Sources */,
 				E4A9019F2D5E01E9007080AC /* Network.swift in Sources */,
 				E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */,
-				E472DC8F2D7EC8D900B8FAF3 /* BaseParentField.swift in Sources */,
 				E44926C42D4B8AD200EA5D5E /* FormView.swift in Sources */,
+				E472DCA52D80492C00B8FAF3 /* NotePopupView.swift in Sources */,
 				AAB857352D6CA20B0013027A /* DefaultVal.swift in Sources */,
 				AAC387492D76F51000118896 /* NumberFieldComponent.swift in Sources */,
 				A9BF45D52D50DB15003F2333 /* SliderDTO.swift in Sources */,
