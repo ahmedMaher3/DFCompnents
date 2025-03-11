@@ -50,6 +50,10 @@
 		A9BF46A72D53992A003F2333 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF46A62D539921003F2333 /* CameraPicker.swift */; };
 		A9EA54302D6C891D00C2A9E2 /* FieldProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EA542F2D6C891600C2A9E2 /* FieldProperties.swift */; };
 		A9EA54322D6C899500C2A9E2 /* FormEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EA54312D6C899500C2A9E2 /* FormEntity.swift */; };
+		AA0CF6392D80611500F4D452 /* FieldValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF6382D80611500F4D452 /* FieldValidationStrategy.swift */; };
+		AA0CF63C2D8061BB00F4D452 /* NumberValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF63B2D8061BB00F4D452 /* NumberValidationStrategy.swift */; };
+		AA0CF63E2D80698300F4D452 /* ContextValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF63D2D80698300F4D452 /* ContextValidator.swift */; };
+		AA0CF6412D806A1500F4D452 /* RequiredValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF6402D806A1500F4D452 /* RequiredValidationStrategy.swift */; };
 		AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */; };
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
 		AAB8572F2D6CA1A60013027A /* RuleFormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */; };
@@ -219,6 +223,10 @@
 		A9BF46A62D539921003F2333 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 		A9EA542F2D6C891600C2A9E2 /* FieldProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldProperties.swift; sourceTree = "<group>"; };
 		A9EA54312D6C899500C2A9E2 /* FormEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormEntity.swift; sourceTree = "<group>"; };
+		AA0CF6382D80611500F4D452 /* FieldValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidationStrategy.swift; sourceTree = "<group>"; };
+		AA0CF63B2D8061BB00F4D452 /* NumberValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberValidationStrategy.swift; sourceTree = "<group>"; };
+		AA0CF63D2D80698300F4D452 /* ContextValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextValidator.swift; sourceTree = "<group>"; };
+		AA0CF6402D806A1500F4D452 /* RequiredValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredValidationStrategy.swift; sourceTree = "<group>"; };
 		AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxDTO.swift; sourceTree = "<group>"; };
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleFormBuilder.swift; sourceTree = "<group>"; };
@@ -592,6 +600,41 @@
 				A9BF46A42D538EC5003F2333 /* ComplicatedView.swift */,
 			);
 			path = ComplicatedView;
+			sourceTree = "<group>";
+		};
+		AA0CF6362D805B8200F4D452 /* Warnings */ = {
+			isa = PBXGroup;
+			children = (
+				AA0CF63F2D806A0D00F4D452 /* Required */,
+				AA0CF63A2D8061AE00F4D452 /* Number */,
+				AA0CF6372D80610200F4D452 /* Protocol */,
+				AA0CF63D2D80698300F4D452 /* ContextValidator.swift */,
+			);
+			path = Warnings;
+			sourceTree = "<group>";
+		};
+		AA0CF6372D80610200F4D452 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				AA0CF6382D80611500F4D452 /* FieldValidationStrategy.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		AA0CF63A2D8061AE00F4D452 /* Number */ = {
+			isa = PBXGroup;
+			children = (
+				AA0CF63B2D8061BB00F4D452 /* NumberValidationStrategy.swift */,
+			);
+			path = Number;
+			sourceTree = "<group>";
+		};
+		AA0CF63F2D806A0D00F4D452 /* Required */ = {
+			isa = PBXGroup;
+			children = (
+				AA0CF6402D806A1500F4D452 /* RequiredValidationStrategy.swift */,
+			);
+			path = Required;
 			sourceTree = "<group>";
 		};
 		AAB8572D2D6CA19C0013027A /* Rules */ = {
@@ -1319,6 +1362,7 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				AA0CF6362D805B8200F4D452 /* Warnings */,
 				04C847B42D79D04A0078B18F /* Section */,
 				04C847B32D79D0410078B18F /* Page */,
 				AAE9E1F62D7799FE009E5EDF /* FooterView */,
@@ -1595,6 +1639,7 @@
 				E4A901A52D5E01E9007080AC /* GuestAuthorizationImpl.swift in Sources */,
 				AAD5623A2D4AAC2700C19A11 /* CheckBoxStyle.swift in Sources */,
 				AAC387592D77413F00118896 /* NumberFieldModel.swift in Sources */,
+				AA0CF63E2D80698300F4D452 /* ContextValidator.swift in Sources */,
 				AAC387552D772F3A00118896 /* NumberFieldViewModel.swift in Sources */,
 				AAD099752D5D3A53007A6CE9 /* FooterFormView.swift in Sources */,
 				E4A901632D52D536007080AC /* StepView.swift in Sources */,
@@ -1621,6 +1666,7 @@
 				AAE9E1F42D779599009E5EDF /* StepperNumberFieldView.swift in Sources */,
 				AAD099772D5D3CCB007A6CE9 /* FormFieldView.swift in Sources */,
 				E48C9FFF2D5374D300A519ED /* AKMaskFieldEvent.swift in Sources */,
+				AA0CF6392D80611500F4D452 /* FieldValidationStrategy.swift in Sources */,
 				E48CA1162D5CC72300A519ED /* TextStyling.swift in Sources */,
 				E4BBCFE52D4A24BF004AA735 /* DFComponentsApp.swift in Sources */,
 				E4BBD0272D4A4A7F004AA735 /* CountryDTO.swift in Sources */,
@@ -1643,6 +1689,7 @@
 				E48CA1122D5CC72300A519ED /* AppBorders.swift in Sources */,
 				E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */,
 				AAE9E1FA2D779C39009E5EDF /* FooterComponentView.swift in Sources */,
+				AA0CF63C2D8061BB00F4D452 /* NumberValidationStrategy.swift in Sources */,
 				A95D7A302D4B8B6F004FB6CA /* FormDTO.swift in Sources */,
 				AAF1B1812D76490100DC44B4 /* FileUploadValidationEntity.swift in Sources */,
 				AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */,
@@ -1654,6 +1701,7 @@
 				04C1DE372D5DFBDC0034B704 /* AppearanceSelectionPicker.swift in Sources */,
 				04C847C02D79D1450078B18F /* PageView.swift in Sources */,
 				A9BF469D2D538893003F2333 /* SliderViewModel.swift in Sources */,
+				AA0CF6412D806A1500F4D452 /* RequiredValidationStrategy.swift in Sources */,
 				A9BF469E2D538893003F2333 /* SliderView.swift in Sources */,
 				E48CA1182D5CC72300A519ED /* StyleManager.swift in Sources */,
 				A9BF46942D53886A003F2333 /* ControlFormBuilderView.swift in Sources */,

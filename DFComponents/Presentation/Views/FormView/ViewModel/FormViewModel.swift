@@ -16,8 +16,11 @@ class FormViewModel: ObservableObject {
     @Published var fields: [FieldEntity] = []
     @Published var pages: [PageModel] = []
     @Published var rulesImp: RuleImp!
-    @Published var warningsDictionary: [String: [String]] = [:] // Stores warnings by field ID
+    @Published var warningsDictionary: [String: [String]?] = [:] // Stores warnings by field ID
     var warnings: WarningsEntity?
+
+    // 🔹 Define Validation Strategies
+    private let requiredValidator = ValidatorContext(strategy: RequiredValidationStrategy())
 
     func fetchForm() async {
         do {
@@ -52,16 +55,16 @@ class FormViewModel: ObservableObject {
     private func doRules() {
         let fields: [BaseFieldProtocol] = fields.map { fieldEntity in
             switch fieldEntity {
-            case .textBox((let field, _)):
-                return field
-            case .radio((let field, _)):
-                return field
-            case .page((let field, _)):
-                return field
-            case .section((let field, _)):
-                return field
-            case .number((let field, _)):
-                return field
+                case .textBox((let field, _)):
+                    return field
+                case .radio((let field, _)):
+                    return field
+                case .page((let field, _)):
+                    return field
+                case .section((let field, _)):
+                    return field
+                case .number((let field, _)):
+                    return field
             }
         }
         rulesImp = RuleImp(controls: fields, rules: rules)
@@ -73,34 +76,26 @@ class FormViewModel: ObservableObject {
     }
 
     func checkingWarning(for fieldId: String, value: Any? = nil) {
-        if checkValueIsEmpty(value: value),
-           let requiredWarning = warnings?.fieldValidation.required {
-            DispatchQueue.main.async {
-                self.warningsDictionary[fieldId] = [requiredWarning]
-            }
-            return
+        guard let field = fields.first(where: { $0.id == fieldId }) else { return }
+
+        // 🔹 Apply Required Validation for All Fields
+        requiredValidator.validate(
+            fieldId: fieldId,
+            value: value,
+            warnings: warnings,
+            warningsDictionary: &warningsDictionary,
+            fields: fields)
+
+        // 🔹 Apply Number Validation if the field is a Number
+        if case .number((_, let numberViewModel)) = field {
+            numberViewModel.validateInput(
+                value: numberViewModel.baseAnswer?.value ?? "",
+                warnings: warnings,
+                fields: fields,
+                warningsDictionary: &warningsDictionary)
         }
-        if let field = fields.first(where: { $0.id == fieldId }) {
-            switch field {
-                case .textBox((let baseField, _)):
-                    self.warningsDictionary[baseField.fieldId] = nil
-                case .radio((let baseField, _)):
-                    self.warningsDictionary[baseField.fieldId] = nil
-                  case .page((let baseField, _)):
-                    self.warningsDictionary[baseField.fieldId] = nil
-                case .section((let baseField, _)):
-                    self.warningsDictionary[baseField.fieldId] = nil
-                case .number((let baseField, let numberViewModel)):
-                    numberViewModel.validateInput(value: numberViewModel.numberFieldModel.numberAnswer?.value ?? "", warnings: warnings)
-                    DispatchQueue.main.async {
-                        if let errorMessage = numberViewModel.numberFieldModel.errorMessage, !errorMessage.isEmpty {
-                            self.warningsDictionary[baseField.fieldId] = [errorMessage]
-                        } else {
-                            self.warningsDictionary[baseField.fieldId] = nil
-                    }
-                }
-            }
-        }
+
+        
     }
 
     ///Check Value Is Empty
@@ -117,3 +112,35 @@ class FormViewModel: ObservableObject {
         }
     }
 }
+/*
+ func checkingWarning(for fieldId: String, value: Any? = nil) {
+ if checkValueIsEmpty(value: value),
+ let requiredWarning = warnings?.fieldValidation.required {
+ DispatchQueue.main.async {
+ self.warningsDictionary[fieldId] = [requiredWarning]
+ }
+ return
+ }
+ if let field = fields.first(where: { $0.id == fieldId }) {
+ switch field {
+ case .textBox((let baseField, _)):
+ self.warningsDictionary[baseField.fieldId] = nil
+ case .radio((let baseField, _)):
+ self.warningsDictionary[baseField.fieldId] = nil
+ case .page((let baseField, _)):
+ self.warningsDictionary[baseField.fieldId] = nil
+ case .section((let baseField, _)):
+ self.warningsDictionary[baseField.fieldId] = nil
+ case .number((let baseField, let numberViewModel)):
+ numberViewModel.validateInput(value: numberViewModel.numberFieldModel.numberAnswer?.value ?? "", warnings: warnings)
+ DispatchQueue.main.async {
+ if let errorMessage = numberViewModel.numberFieldModel.errorMessage, !errorMessage.isEmpty {
+ self.warningsDictionary[baseField.fieldId] = [errorMessage]
+ } else {
+ self.warningsDictionary[baseField.fieldId] = nil
+ }
+ }
+ }
+ }
+ }
+ */

@@ -72,7 +72,7 @@ class FormMapper: EntityMapper {
                     return .section((control, SectionViewModel(controls: [], title: "title")))
                 case .number:
                     let control = NumberField(field: field)
-                    return .number((control, NumberFieldViewModel(numberFieldModel: control)))
+                    return .number((control, NumberFieldViewModel(numberFieldModel: control, numberStrategy: NumberValidationStrategy())))
 
                 default:
                     return nil
@@ -93,7 +93,8 @@ class FormMapper: EntityMapper {
                 required: dto.formWarning.fieldValidation.required,
                 maxAttachment: dto.formWarning.fieldValidation.maxAttachment,
                 input: InputValidationEntity(
-                    minimumCharacterLength: dto.formWarning.fieldValidation.input.minimumCharacterLength,
+                    minimumCharacterLength:
+                        dto.formWarning.fieldValidation.input.minimumCharacterLength,
                     maximumCharacterLength: dto.formWarning.fieldValidation.input.maximumCharacterLength,
                     minimumWordLength: dto.formWarning.fieldValidation.input.minimumWordLength,
                     maximumWordLength: dto.formWarning.fieldValidation.input.maximumWordLength,

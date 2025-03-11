@@ -7,15 +7,6 @@
 
 import Foundation
 
-/*
- final class HeaderComponentViewModel<T: BasePropertiesProtocol>: ObservableObject {
-     @Published var baseProperties: T
-
-     init(baseProperties: T) {
-         self.baseProperties = baseProperties
-     }
- }
- */
 final class HeaderComponentViewModel: ObservableObject {
     @Published var baseProperties: BaseProperties
 

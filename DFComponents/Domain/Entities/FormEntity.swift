@@ -13,7 +13,7 @@ struct FormEntity {
 
 //    var items = [BaseFieldProtocol]()
 //    var rules: [Rule]?
-    let warnings: WarningsEntity? 
+    let warnings: WarningsEntity?
 //
 //    init(_ form: Schema) {
 //        for field in form.fields {

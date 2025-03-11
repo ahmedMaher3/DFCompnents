@@ -29,7 +29,7 @@ struct FooterComponentView: View {
             case .section((_, _)): EmptyView()
             case .radio((_, let radioViewModel)): EmptyView()
             case .textBox((_, let textBoxViewModel)): EmptyView()
-            case .number((let baseField, let numberViewModel)):
+            case .number((_ , let numberViewModel)):
                 if let interactiveProperties = interactiveProperties {
                     VStack {
                         HStack(alignment: .center, spacing: 4) {
@@ -46,7 +46,7 @@ struct FooterComponentView: View {
                                              arrowEdge: .top,
                                              content: {
                                         ZStack {
-                                            Color.primaryBlue 
+                                            Color.primaryBlue
                                                 .clipShape(RoundedRectangle(cornerRadius: 12))
 
                                             VStack(alignment: .leading, spacing: 4) {
@@ -64,7 +64,7 @@ struct FooterComponentView: View {
                             Text("\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)")
                                 .foregroundStyle(.gray)
                                 .font(.system(size: 13))
-                                .offset(y: -6) 
+                                .offset(y: -6)
                                 .fontWeight(.bold)
                         }
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -87,43 +87,7 @@ struct FooterComponentView: View {
 
                 } else {
                     EmptyView()
-                }
+            }
         }
-    }
-}
-struct TooltipView: View {
-    var minDigits: Int
-    var maxDigits: Int
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text("Your Minimum Digit Length is \(minDigits) and")
-            Text("Your Maximum Digit Length is \(maxDigits)")
-        }
-        .font(.system(size: 13))
-        .fontWeight(.bold)
-        .foregroundColor(.white)
-        .padding(12)
-        .background(
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.blue) // Set your primaryBlue color here
-                .overlay(
-                    Triangle()
-                        .fill(Color.blue) // Arrow color same as background
-                        .frame(width: 20, height: 10)
-                        .offset(y: -10), alignment: .top
-                )
-        )
-    }
-}
-
-struct Triangle: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.closeSubpath()
-        return path
     }
 }

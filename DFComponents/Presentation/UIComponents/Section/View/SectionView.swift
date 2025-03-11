@@ -58,7 +58,7 @@ struct SectionView: View {
                     controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                     footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                        get: { viewModel.warningsDictionary[field.id]??.joined(separator: "") },
                         set: { newValue in
                             viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
                             ? [newValue!] : nil
@@ -74,7 +74,7 @@ struct SectionView: View {
                     },
                     footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                        get: { viewModel.warningsDictionary[field.id]??.joined(separator: "") },
                         set: { newValue in
                             viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
                             ? [newValue!] : nil
@@ -95,7 +95,7 @@ struct SectionView: View {
                         FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
                     },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                        get: { viewModel.warningsDictionary[field.id]??.joined(separator: "\n") },
                         set: { newValue in
                             if let newValue = newValue, !newValue.isEmpty {
                                 viewModel.warningsDictionary[field.id] = [newValue]
