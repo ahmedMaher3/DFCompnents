@@ -11,7 +11,7 @@ protocol NumberBaseDelegate: InteractiveFieldDelegate {
 class NumberBase: InteractiveFieldDelegate {
     var base: InteractiveField
     var baseProperties: BaseProperties? 
-    let step: Double?
+    let step: Int?
     let decimalPlaces: Int?
     let minimumDigits: Int?
     let maximumDigits: Int?

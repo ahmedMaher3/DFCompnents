@@ -19,29 +19,58 @@ struct FieldsListView: View {
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
             case .radio((_, let radioViewModel)):
-            EmptyView()
+                ControlFormBuilderView(
+                    headerView: { EmptyView() },
+                    controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
+                    footerView: { EmptyView() },
+                    warningMessage: Binding<String?>(
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                        set: { newValue in
+                            if let newValue = newValue, !newValue.isEmpty {
+                                viewModel.warningsDictionary[field.id] = [newValue]
+                            } else {
+                                viewModel.warningsDictionary[field.id] = nil
+                            }
+                        }
+                    ))
+                .opacity(radioViewModel.control.hidden ? 0 : 1)
 
             case .textBox((_, let textBoxViewModel)):
-            EmptyView()
+                ControlFormBuilderView(
+                    headerView: { EmptyView() },
+                    controlType: {
+                        TextBoxComponent(viewModel: textBoxViewModel)
+                    },
+                    footerView: { EmptyView() },
+                    warningMessage: Binding<String?>(
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                        set: { newValue in
+                            if let newValue = newValue, !newValue.isEmpty {
+                                viewModel.warningsDictionary[field.id] = [newValue]
+                            } else {
+                                viewModel.warningsDictionary[field.id] = nil
+                            }
+                        }
+                    )
+                )
+                .opacity(textBoxViewModel.control.hidden ? 0 : 1)
             case .number((_, let numberViewModel)):
             BaseFieldContainerView(
                     fieldEntity: field,
                     controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
-                            .onReceive(numberViewModel.objectWillChange) { updatedValue in
-                                viewModel.checkingWarning(for: field.id,
-                                                          value: "\(numberViewModel.inputValue)",
-                                                          isError: numberViewModel.numberFieldModel.isError ?? false)
-                            }
                     },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
                         set: { newValue in
-                            viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                    }
+                            if let newValue = newValue, !newValue.isEmpty {
+                                viewModel.warningsDictionary[field.id] = [newValue]
+                            } else {
+                                viewModel.warningsDictionary[field.id] = nil
+                            }
+                        }
+                    )
                 )
-            )
         case .page((_, _)):
             EmptyView()
         case .section((_, let sectionViewModel)):
