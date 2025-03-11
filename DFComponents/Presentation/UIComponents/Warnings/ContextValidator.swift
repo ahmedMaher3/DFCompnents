@@ -14,17 +14,16 @@ struct ValidatorContext {
     }
 
     func validate(
-        fieldId: String,
+        fieldEntity: FieldEntity,
         value: Any?,
         warnings: WarningsEntity?,
-        warningsDictionary: inout [String: [String]?],
-        fields: [FieldEntity]) {
+        warningsDictionary: inout [String: [String]?]
+    ) {
         strategy.validate(
-            fieldId: fieldId,
+            fieldEntity: fieldEntity,
             value: value,
             warnings: warnings,
-            warningsDictionary: &warningsDictionary,
-            fields: fields
+            warningsDictionary: &warningsDictionary
         )
     }
 }

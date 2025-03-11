@@ -10,25 +10,25 @@ final class NumberFieldViewModel: ObservableObject {
     @Published var numberFieldModel: NumberField
     @Published var characterCount: Int = 0
 
-    private let validator: ValidatorContext
+    private let validator: FieldValidationStrategy
 
-     var baseAnswer: BaseAnswerNumber? {
-         get { return numberFieldModel.base.answer as? BaseAnswerNumber }
-         set {
-             numberFieldModel.base.answer = newValue
-             numberFieldModel.numberAnswer = newValue
-         }
-     }
+    var baseAnswer: BaseAnswerNumber? {
+        get { return numberFieldModel.base.answer as? BaseAnswerNumber }
+        set {
+            numberFieldModel.base.answer = newValue
+            numberFieldModel.numberAnswer = newValue
+        }
+    }
 
-     init(numberFieldModel: NumberField, numberStrategy: NumberValidationStrategy) {
-         self.numberFieldModel = numberFieldModel
-         self.validator = ValidatorContext(strategy: numberStrategy)
-         if numberFieldModel.numberProperties.defaultAnswer?.value != nil {
-             baseAnswer = BaseAnswerNumber(value: numberFieldModel.numberProperties.defaultAnswer?.value ?? "")
-             self.numberFieldModel.base.answer = numberFieldModel.numberAnswer
-             self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
-         }
-     }
+    init(numberFieldModel: NumberField, validator: FieldValidationStrategy) {
+        self.numberFieldModel = numberFieldModel
+        self.validator = validator
+        if numberFieldModel.numberProperties.defaultAnswer?.value != nil {
+            baseAnswer = BaseAnswerNumber(value: numberFieldModel.numberProperties.defaultAnswer?.value ?? "")
+            self.numberFieldModel.base.answer = numberFieldModel.numberAnswer
+            self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
+        }
+    }
 
     func changeValueStepper(action type: String) {
         guard let step = numberFieldModel.step,
@@ -48,62 +48,19 @@ final class NumberFieldViewModel: ObservableObject {
     }
 
     func validateInput(value: String, warnings: WarningsEntity?,
-                       fields: [FieldEntity], warningsDictionary: inout [String: [String]?]) {
+                       warningsDictionary: inout [String: [String]?]) {
         validator.validate(
-            fieldId: numberFieldModel.fieldId,
+            fieldEntity: .number((numberFieldModel, self)),  // ✅ Pass a single field
             value: value,
             warnings: warnings,
-            warningsDictionary: &warningsDictionary,
-            fields: fields)
-
-        // Make a local copy before using it in DispatchQueue
+            warningsDictionary: &warningsDictionary
+        )
         let fieldId = numberFieldModel.fieldId ?? ""
         let localWarnings = warningsDictionary[fieldId] ?? []
-
+        // Update error state based on warnings
         DispatchQueue.main.async {
             self.numberFieldModel.isError = !(localWarnings?.isEmpty ?? false)
             self.numberFieldModel.errorMessage = localWarnings?.joined(separator: "\n")
         }
     }
 }
-/*
-func validateInput(value: String, warnings: WarningsEntity?) {
-    guard let warnings = warnings else {
-        DispatchQueue.main.async {
-            self.numberFieldModel.isError = false
-            self.numberFieldModel.errorMessage = nil
-        }
-        return
-    }
-    var fieldWarnings: [String] = []
-    if value.rangeOfCharacter(from: CharacterSet.letters) != nil {
-        fieldWarnings.append(warnings.fieldValidation.input.numeric)
-    }
-
-    if value.contains("."),
-       !validateDecimalPlaces() {
-        fieldWarnings.append(warnings.fieldValidation.input.custom.replacingOccurrences(of: "{0}", with: "invalid decimal places".localized))
-    }
-
-    if let inputNumber = Int(value) {
-        if let minValue = Int(warnings.fieldValidation.number.minimumValue ?? ""),
-           inputNumber < minValue {
-            fieldWarnings.append("Minimum value allowed is \(minValue)")
-        }
-        if let maxValue = Int(warnings.fieldValidation.number.maximumValue ?? ""),
-           inputNumber > maxValue {
-            fieldWarnings.append("Maximum value allowed is \(maxValue)")
-        }
-    }
-
-    if let maxDigits = numberFieldModel.maximumDigits,
-       value.replacingOccurrences(of: ".", with: "").count > maxDigits {
-        fieldWarnings.append("Maximum digits allowed is \(maxDigits)")
-    }
-
-    DispatchQueue.main.async {
-        self.numberFieldModel.isError = !fieldWarnings.isEmpty
-        self.numberFieldModel.errorMessage = fieldWarnings.isEmpty ? nil : fieldWarnings.joined(separator: "\n")
-    }
-}
- */

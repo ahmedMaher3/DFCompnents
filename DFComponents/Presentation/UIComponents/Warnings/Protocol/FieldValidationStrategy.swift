@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/*
 protocol FieldValidationStrategy {
     func validate(
         fieldId: String,
@@ -16,8 +16,8 @@ protocol FieldValidationStrategy {
         fields: [FieldEntity]
     )
 }
+*/
 
-/*
  protocol FieldValidationStrategy {
      func validate(
          fieldEntity: FieldEntity,
@@ -26,5 +26,3 @@ protocol FieldValidationStrategy {
          warningsDictionary: inout [String: [String]?]
      )
  }
-
- */

@@ -72,7 +72,7 @@ class FormMapper: EntityMapper {
                     return .section((control, SectionViewModel(controls: [], title: "title")))
                 case .number:
                     let control = NumberField(field: field)
-                    return .number((control, NumberFieldViewModel(numberFieldModel: control, numberStrategy: NumberValidationStrategy())))
+                    return .number((control, NumberFieldViewModel(numberFieldModel: control, validator: NumberValidationStrategy())))
 
                 default:
                     return nil
