@@ -14,7 +14,7 @@ struct SplashView: View {
     var body: some View {
            ZStack {
                if isActive {
-                       FormView()
+                   FormView()
                } else {
                    SplashContentView()
                        

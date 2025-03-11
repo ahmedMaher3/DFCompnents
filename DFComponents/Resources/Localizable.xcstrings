@@ -10,6 +10,9 @@
     "%lld" : {
 
     },
+    "%lld %% Complete" : {
+
+    },
     "%lld Questions" : {
 
     },
@@ -120,6 +123,16 @@
     },
     "Note" : {
 
+    },
+    "Page %lld / %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Page %1$lld / %2$lld"
+          }
+        }
+      }
     },
     "Pick a File" : {
 
