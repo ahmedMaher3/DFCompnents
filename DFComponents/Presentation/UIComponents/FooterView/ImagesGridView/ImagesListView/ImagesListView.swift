@@ -4,7 +4,6 @@
 //
 //  Created by hassan elshaer on 11/03/2025.
 //
-
 import SwiftUI
 import PhotosUI
 import UniformTypeIdentifiers
@@ -147,7 +146,8 @@ struct ImageListView: View {
                     }
                 }
             }
-            .navigationBarHidden(true)
+            .navigationBarHidden(true)  // Ensures navigation bar is hidden
+            .toolbar(.hidden, for: .navigationBar)  // iOS 15+ explicit hiding
             .background(
                 NavigationLink(
                     destination: selectedImage.map { ImageDetailView(attachments: $attachments, image: $0) },
@@ -161,6 +161,8 @@ struct ImageListView: View {
                 .hidden()
             )
         }
+        .navigationViewStyle(StackNavigationViewStyle())  // Ensures proper rendering on iPads
+        .navigationBarHidden(true)  // Double-check hiding
     }
 
     private func toggleSelection(for id: UUID) {

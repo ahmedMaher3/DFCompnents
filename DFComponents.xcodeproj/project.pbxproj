@@ -102,6 +102,7 @@
 		E472DC992D802F8400B8FAF3 /* AttachmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC982D802F8400B8FAF3 /* AttachmentModel.swift */; };
 		E472DC9C2D802FD100B8FAF3 /* FilesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC9B2D802FD100B8FAF3 /* FilesListView.swift */; };
 		E472DC9E2D80300B00B8FAF3 /* AttachmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC9D2D80300B00B8FAF3 /* AttachmentButton.swift */; };
+		E472DCA02D803A7E00B8FAF3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC9F2D803A7E00B8FAF3 /* ImagePicker.swift */; };
 		E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */; };
 		E489E8172D4A3B48007EA370 /* TextBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */; };
 		E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */; };
@@ -278,6 +279,7 @@
 		E472DC982D802F8400B8FAF3 /* AttachmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentModel.swift; sourceTree = "<group>"; };
 		E472DC9B2D802FD100B8FAF3 /* FilesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesListView.swift; sourceTree = "<group>"; };
 		E472DC9D2D80300B00B8FAF3 /* AttachmentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentButton.swift; sourceTree = "<group>"; };
+		E472DC9F2D803A7E00B8FAF3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxComponent.swift; sourceTree = "<group>"; };
 		E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxDTO.swift; sourceTree = "<group>"; };
 		E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxViewModel.swift; sourceTree = "<group>"; };
@@ -885,6 +887,7 @@
 				E472DC932D802F0300B8FAF3 /* ImagesListView */,
 				E472DC9A2D802FC100B8FAF3 /* FilesListView */,
 				E472DC912D802ED200B8FAF3 /* ImagesGridView.swift */,
+				E472DC9F2D803A7E00B8FAF3 /* ImagePicker.swift */,
 			);
 			path = ImagesGridView;
 			sourceTree = "<group>";
@@ -1716,6 +1719,7 @@
 				E48CA1192D5CC72300A519ED /* StyleManagerViewModel.swift in Sources */,
 				E472DC952D802F1400B8FAF3 /* ImagesListView.swift in Sources */,
 				AAB857332D6CA2080013027A /* RuleEvaluator.swift in Sources */,
+				E472DCA02D803A7E00B8FAF3 /* ImagePicker.swift in Sources */,
 				A9BF46972D53887B003F2333 /* DateRangePickerView.swift in Sources */,
 				E4A901CA2D65E873007080AC /* FormMapper.swift in Sources */,
 				A9EA54322D6C899500C2A9E2 /* FormEntity.swift in Sources */,
