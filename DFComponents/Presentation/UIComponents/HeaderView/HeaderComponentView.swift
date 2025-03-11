@@ -15,53 +15,35 @@ struct HeaderComponentView: View {
     }
     
     var body: some View {
-        renderHeader(for: viewModel.baseProperties)
+        renderHeader(for: viewModel.field)
     }
 
     /// HeaderView
     @ViewBuilder
-    private func renderHeader(for baseProperties: BaseProperties?) -> some View {
-        if let _ = baseProperties {
-            HStack(alignment: .firstTextBaseline, spacing: 4) {
-                if let label = viewModel.baseProperties.label {
-                    labelView(label: label, baseProperties: viewModel.baseProperties)
-                }
-                if let subLabel = viewModel.baseProperties.subLabel {
-                    Text(subLabel)
-                        .font(.subheadline)
-                        .foregroundStyle(.red)
-                }
-                if let tooltip = viewModel.baseProperties.tooltip {
-                    HStack {
-                        Text("ⓘ")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.gray)
-
-                        Text(tooltip)
-                            .font(.system(size: 20))
-                            .foregroundStyle(.gray)
-                            .offset(y: 5)
-                    }
-                }
+    private func renderHeader(for control: FieldEntity?) -> some View {
+        if let fieldEntity = control {
+            switch fieldEntity {
+            case .page, .section, .radio, .textBox:
+                EmptyView()
+            case .number((_, let numberViewModel)):
+                let properties = numberViewModel.numberFieldModel.basePropertiesNotInteractive
+                labelView(baseProperties: properties)
             }
-            .frame(maxWidth: .infinity, alignment: .topLeading)
-        } else {
-            EmptyView() // If no header is available
         }
     }
     ///Label
     @ViewBuilder
-    private func labelView(label: String, baseProperties: BaseProperties) -> some View {
+    private func labelView(baseProperties: BaseProperties) -> some View {
         if baseProperties.required ?? false {
             HStack(alignment: .center) {
-                Text(label)
+                Text(baseProperties.label ?? "")
                     .font(.headline)
                     .foregroundColor(.primary)
                 Text("* ")
                     .foregroundStyle(.red)
             }
         } else {
-            Text(label)
+            Text(baseProperties.label ?? "")
                 .font(.headline)
                 .foregroundColor(.primary)
         }

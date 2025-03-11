@@ -73,7 +73,7 @@ struct InteractiveField: InteractiveFieldProtocol {
         self.type = field.type
         self.fieldId = field.id
         self.label = field.properties.label
-        self.sublabel = field.properties.subLabel
+        self.sublabel = field.properties.sublabel
         self.parentId = field.parentId
         self.index = 0
         self.isError = false
@@ -85,7 +85,7 @@ struct InteractiveField: InteractiveFieldProtocol {
         if let properties = field.properties as? InteractivePropertiesProtocol {
             self.required = properties.required
             self.placeHolder = properties.placeholder
-            self.sublabel = properties.subLabel
+            self.sublabel = properties.sublabel
             self.tooltip = properties.tooltip
             self.addNote = properties.addNote ?? false
             self.addAttachment = properties.addAttachment ?? false

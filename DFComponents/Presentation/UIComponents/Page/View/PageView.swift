@@ -27,9 +27,7 @@ struct PageView: View {
         switch field {
             case .radio((_, let radioViewModel)):
                 ControlFormBuilderView(
-                    headerView: { EmptyView() },
-                    controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
-                    footerView: { EmptyView() },
+                    fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                         set: { newValue in
@@ -44,11 +42,9 @@ struct PageView: View {
 
             case .textBox((_, let textBoxViewModel)):
                 ControlFormBuilderView(
-                    headerView: { EmptyView() },
-                    controlType: {
+                    fieldEntity: field, controlType: {
                         TextBoxComponent(viewModel: textBoxViewModel)
                     },
-                    footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                         set: { newValue in
@@ -61,19 +57,13 @@ struct PageView: View {
 
             case .number((_, let numberViewModel)):
                 ControlFormBuilderView(
-                    headerView: {
-                        HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.numberFieldModel.basePropertiesNotInteractive))
-                    },
-                    controlType: {
+                    fieldEntity: field, controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
                             .onReceive(numberViewModel.objectWillChange) { updatedValue in
                                 viewModel.checkingWarning(for: field.id,
                                                           value: "\(numberViewModel.inputValue)",
                                                           isError: numberViewModel.numberFieldModel.isError ?? false)
                             }
-                    },
-                    footerView: {
-                        FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
                     },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
@@ -111,9 +101,7 @@ struct PageVieww: View {
         switch field {
             case .radio((_, let radioViewModel)):
                 ControlFormBuilderView(
-                    headerView: { EmptyView() },
-                    controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
-                    footerView: { EmptyView() },
+                    fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                         set: { newValue in
@@ -128,11 +116,9 @@ struct PageVieww: View {
 
             case .textBox((_, let textBoxViewModel)):
                 ControlFormBuilderView(
-                    headerView: { EmptyView() },
-                    controlType: {
+                    fieldEntity: field, controlType: {
                         TextBoxComponent(viewModel: textBoxViewModel)
                     },
-                    footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                         set: { newValue in
@@ -145,19 +131,13 @@ struct PageVieww: View {
 
             case .number((_, let numberViewModel)):
                 ControlFormBuilderView(
-                    headerView: {
-                        HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.numberFieldModel.basePropertiesNotInteractive))
-                    },
-                    controlType: {
+                    fieldEntity: field, controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
                             .onReceive(numberViewModel.objectWillChange) { updatedValue in
                                 viewModel.checkingWarning(for: field.id,
                                                           value: "\(numberViewModel.inputValue)",
                                                           isError: numberViewModel.numberFieldModel.isError ?? false)
                             }
-                    },
-                    footerView: {
-                        FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
                     },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },

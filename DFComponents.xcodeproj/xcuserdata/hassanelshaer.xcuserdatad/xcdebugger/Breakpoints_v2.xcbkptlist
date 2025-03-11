@@ -3,4 +3,70 @@
    uuid = "C0D05ACB-7059-4977-87FE-A163C2B4BFA6"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D41305D3-AF07-4C66-9580-48E266F0B459"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DFComponents/Presentation/UIComponents/Section/View/SectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "renderField(for:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D41305D3-AF07-4C66-9580-48E266F0B459 - 4e0fbd8399e4bdf4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DFComponents.SectionView.renderField(for: DFComponents.FieldEntity) -&gt; some"
+                  moduleName = "DFComponents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hassanelshaer/Documents/DFCompnents2/DFComponents/Presentation/UIComponents/Section/View/SectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "396">
+               </Location>
+               <Location
+                  uuid = "D41305D3-AF07-4C66-9580-48E266F0B459 - 4e0fbd8399e4bdf4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DFComponents.SectionView.renderField(for: DFComponents.FieldEntity) -&gt; some"
+                  moduleName = "DFComponents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hassanelshaer/Documents/DFCompnents2/DFComponents/Presentation/UIComponents/Section/View/SectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "676">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC6FAD6F-EA21-482D-88A6-558186717AF9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DFComponents/Domain/Entities/FormField.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "init(field:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

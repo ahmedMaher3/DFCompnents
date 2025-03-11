@@ -10,6 +10,19 @@
     "%lld" : {
 
     },
+    "%lld Photo%@ Selected" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld Photo%2$@ Selected"
+          }
+        }
+      }
+    },
+    "%lld Photos" : {
+
+    },
     "%lld Questions" : {
 
     },
@@ -23,13 +36,19 @@
         }
       }
     },
-    "|| Attachment" : {
+    "+%lld" : {
 
     },
     "0" : {
 
     },
+    "0/10" : {
+
+    },
     "100" : {
+
+    },
+    "Add Note" : {
 
     },
     "Cancel" : {
@@ -48,6 +67,9 @@
 
     },
     "Dates Available" : {
+
+    },
+    "Deselect All" : {
 
     },
     "Done" : {
@@ -97,7 +119,10 @@
     "Huge List" : {
 
     },
-    "ⓘ" : {
+    "Image Detail" : {
+
+    },
+    "Images" : {
 
     },
     "InputFieldComponent" : {
@@ -115,16 +140,34 @@
     "Loading form data..." : {
 
     },
+    "Lorem ipsum dolor" : {
+
+    },
+    "Lorem ipsum dolor sit amet, consectetur" : {
+
+    },
     "Lower: %.2f" : {
 
     },
-    "Note" : {
+    "More" : {
 
     },
     "Pick a File" : {
 
     },
+    "Provide a brief summary of the inspection findings, including any concerns" : {
+
+    },
+    "Save" : {
+
+    },
     "Search countries" : {
+
+    },
+    "Select" : {
+
+    },
+    "Select All" : {
 
     },
     "Select date" : {
@@ -137,6 +180,12 @@
 
     },
     "Settings" : {
+
+    },
+    "Show %lld more files" : {
+
+    },
+    "Show less" : {
 
     },
     "Show Less" : {
@@ -160,7 +209,16 @@
     "Tap to select an image" : {
 
     },
+    "Upload File" : {
+
+    },
+    "Upload Image" : {
+
+    },
     "Upper: %.2f" : {
+
+    },
+    "What is your Name ?" : {
 
     },
     "What is your name?" : {

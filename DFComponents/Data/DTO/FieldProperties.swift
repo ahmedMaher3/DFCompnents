@@ -9,7 +9,7 @@ import Foundation
 
 protocol BasePropertiesProtocol: Codable {
     var label: String? { get }
-    var subLabel: String? { get }
+    var sublabel: String? { get }
     var labelPosition: String? { get }
     var tooltip: String? { get }
     var hidden: Bool? { get set }
@@ -18,7 +18,7 @@ protocol BasePropertiesProtocol: Codable {
 
 struct BaseProperties: BasePropertiesProtocol {
     var label: String?
-    var subLabel: String?
+    var sublabel: String?
     var labelPosition: String?
     var tooltip: String?
     var hidden: Bool?
@@ -27,7 +27,7 @@ struct BaseProperties: BasePropertiesProtocol {
     enum CodingKeys: String, CodingKey {
         //label,
         case  tooltip, hidden, required
-        case subLabel = "sublabel"
+        case sublabel = "sublabel"
         case labelPosition
     }
 }
@@ -91,7 +91,7 @@ struct TextBoxProperties: TextBaseProperties {
     let attachmentType: AttachmentType?
     let disabled: Bool?
     let label: String?
-    let subLabel: String?
+    let sublabel: String?
     let labelPosition: String?
     let tooltip: String?
     var hidden: Bool?
@@ -118,7 +118,7 @@ struct NumberProperties: InteractivePropertiesProtocol {
     var attachmentType: AttachmentType?
     var disabled: Bool?
     var label: String?
-    var subLabel: String?
+    var sublabel: String?
     var labelPosition: String?
     var tooltip: String?
     var hidden: Bool?
@@ -141,7 +141,7 @@ struct RadioProperties: MCQPropertiesProtocol {
     let attachmentType: AttachmentType?
     let disabled: Bool?
     let label: String?
-    let subLabel: String?
+    let sublabel: String?
     let labelPosition: String?
     let tooltip: String?
     var hidden: Bool?

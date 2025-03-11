@@ -19,43 +19,13 @@ struct FieldsListView: View {
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
             case .radio((_, let radioViewModel)):
-                ControlFormBuilderView(
-                    headerView: { EmptyView() },
-                    controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
-                    footerView: { EmptyView() },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
-                        set: { newValue in
-                            viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                        }
-                    ))
-                .onAppear {
-                    viewModel.checkingWarning(for: field.id, value: nil, isError: false)
-                }
-                .opacity(radioViewModel.control.hidden ? 0 : 1)
+            EmptyView()
 
             case .textBox((_, let textBoxViewModel)):
-                ControlFormBuilderView(
-                    headerView: { EmptyView() },
-                    controlType: {
-                        TextBoxComponent(viewModel: textBoxViewModel)
-                    },
-                    footerView: { EmptyView() },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
-                        set: { newValue in
-                            viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                        }
-                    )
-                )
-                .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+            EmptyView()
             case .number((_, let numberViewModel)):
                 ControlFormBuilderView(
-                    headerView: {
-                        HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.numberFieldModel.basePropertiesNotInteractive))
-                    },
+                    fieldEntity: field,
                     controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
                             .onReceive(numberViewModel.objectWillChange) { updatedValue in
@@ -63,9 +33,6 @@ struct FieldsListView: View {
                                                           value: "\(numberViewModel.inputValue)",
                                                           isError: numberViewModel.numberFieldModel.isError ?? false)
                             }
-                    },
-                    footerView: {
-                        FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
                     },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
