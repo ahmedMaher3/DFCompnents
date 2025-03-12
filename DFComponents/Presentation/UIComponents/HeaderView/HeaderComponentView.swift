@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HeaderComponentView: View {
+    
     @StateObject var viewModel: HeaderComponentViewModel
     
     init(viewModel: HeaderComponentViewModel) {
@@ -31,18 +32,7 @@ struct HeaderComponentView: View {
                         .font(.subheadline)
                         .foregroundStyle(.red)
                 }
-                if let tooltip = viewModel.baseProperties.tooltip {
-                    HStack {
-                        Text("ⓘ")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.gray)
 
-                        Text(tooltip)
-                            .font(.system(size: 20))
-                            .foregroundStyle(.gray)
-                            .offset(y: 5)
-                    }
-                }
             }
             .frame(maxWidth: .infinity, alignment: .topLeading)
         } else {

@@ -54,7 +54,6 @@ struct FormView: View {
 
                 } else {
                     loadingView()
-
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -70,7 +69,6 @@ struct FormView: View {
                         print(entity)
                     }
                 }
-
             }
 
         }

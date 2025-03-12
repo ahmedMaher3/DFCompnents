@@ -114,30 +114,27 @@ struct SectionView: View {
             )
             .opacity(textBoxViewModel.control.hidden ? 0 : 1)
             
-        case .number((_, let numberViewModel)):
-            ControlFormBuilderView(
-                headerView: {
-                    HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.numberFieldModel.basePropertiesNotInteractive))
-                },
-                controlType: {
-                    NumberFieldComponent(viewModel: numberViewModel)
-                        .onReceive(numberViewModel.objectWillChange) { updatedValue in
-                            viewModel.checkingWarning(for: field.id,
-                                                      value: "\(numberViewModel.inputValue)",
-                                                      isError: numberViewModel.numberFieldModel.isError ?? false)
+            case .number((_, let numberViewModel)):
+                ControlFormBuilderView(
+                    headerView: {
+                        HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.numberFieldModel.basePropertiesNotInteractive))
+                    },
+                    controlType: {
+                        NumberFieldComponent(viewModel: numberViewModel)
+                    },
+                    footerView: {
+                        FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
+                    },
+                    warningMessage: Binding<String?>(
+                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                        set: { newValue in
+                            if let newValue = newValue, !newValue.isEmpty {
+                                viewModel.warningsDictionary[field.id] = [newValue]
+                            } else {
+                                viewModel.warningsDictionary[field.id] = nil
+                            }
                         }
-                },
-                footerView: {
-                    FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
-                },
-                warningMessage: Binding<String?>(
-                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
-                    set: { newValue in
-                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                        ? [newValue!] : nil
-                    }
-                )
-            )
+                    )
         case .page((_, _)):
             EmptyView()
         case .section((_, _)):

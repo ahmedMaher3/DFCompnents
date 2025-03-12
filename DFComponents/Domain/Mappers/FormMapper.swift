@@ -21,7 +21,7 @@ class FormMapper: EntityMapper {
     typealias DTO = Schema
     typealias Entity = FieldEntity
     typealias formWarnings = WarningsEntity
-    
+
     func map(from dto: Schema) -> [PageModel] {
         let pages = convertToPages(fields: dto.fields,
                                    mode: dto.settings.format )
@@ -89,7 +89,7 @@ class FormMapper: EntityMapper {
             let control = RadioButtonField(field: field)
             return .radio((control, RadioButtonViewModel(control: control)))
         case .number:
-            let control = NumberFieldModel(field: field)
+            let control = NumberField(field: field)
             return .number((control, NumberFieldViewModel(numberFieldModel: control)))
         default:
             return nil
@@ -150,7 +150,7 @@ class FormMapper: EntityMapper {
             )
         )
     }
-    
+
 }
 
 struct PageModel: Identifiable {
@@ -165,22 +165,22 @@ enum FieldEntity: Identifiable {
     case page((BaseFieldProtocol, PageViewModel))
     case section((BaseFieldProtocol, SectionViewModel))
     case number((BaseFieldProtocol, NumberFieldViewModel))
-    
+
     var id: String {
         switch self {
-        case .page((let field, _)):
-            return field.fieldId
-        case .textBox((let field, _)):
-            return field.fieldId
-        case .radio((let field, _)):
-            return field.fieldId
-        case .section((let field, _)):
-            return field.fieldId
-        case .number(( let field, _)):
-            return field.fieldId
+            case .page((let field, _)):
+                return field.fieldId
+            case .textBox((let field, _)):
+                return field.fieldId
+            case .radio((let field, _)):
+                return field.fieldId
+            case .section((let field, _)):
+                return field.fieldId
+            case .number(( let field, _)):
+                return field.fieldId
         }
     }
-    
+  
     var parentId: String? {
         switch self {
         case .textBox((let field, _)):
