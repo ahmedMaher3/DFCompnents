@@ -73,7 +73,7 @@ class FormMapper: EntityMapper {
             if field.type == .section {
                 let sectionControls = mapFieldsRecursively(fields: groupedFields[field.id!] ?? [], groupedFields: groupedFields)
                 let control = SectionField(field: field)
-                return .section((control, SectionViewModel(control: control, controls: sectionControls, sectionField: control)))
+                return .section((control, SectionViewModel(controls: sectionControls, sectionField: control)))
             }
             return mapSingleField(field: field)
         }
@@ -196,6 +196,43 @@ enum FieldEntity: Identifiable {
         }
     }
     
+    var value: String? {
+        get {
+            switch self {
+            case .textBox((let field, _)),
+                    .radio((let field, _)),
+                    .page((let field, _)),
+                    .section((let field, _)),
+                    .number((let field, _)):
+                return field.answer as? String
+            }
+        }
+        set {
+            guard let newValue = newValue else { return }
+            switch self {
+            case .textBox((var field, let id)):
+                field.answer = newValue
+                self = .textBox((field, id))
+                
+            case .radio((var field, let id)):
+                field.answer = newValue
+                self = .radio((field, id))
+                
+            case .page((var field, let id)):
+                field.answer = newValue
+                self = .page((field, id))
+                
+            case .section((var field, let id)):
+                field.answer = newValue
+                self = .section((field, id))
+                
+            case .number((var field, let id)):
+                field.answer = newValue
+                self = .number((field, id))
+            }
+        }
+    }
+
     var type: FieldType {
         switch self {
         case .textBox((let field, _)), .radio((let field, _)), .page((let field, _)), .section((let field, _)), .number((let field, _)):

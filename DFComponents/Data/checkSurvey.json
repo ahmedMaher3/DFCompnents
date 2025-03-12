@@ -105,7 +105,7 @@
                 "identifier": "N5DsWvjD/rxSnR2ozqx"
             },
             "settings": {
-                "format": "Card",
+                "format": "Classic",
                 "enableScoreCalculation": true,
                 "enableViewResults": true,
                 "enablePageValidation": true,
@@ -383,6 +383,49 @@
                         "icon": null,
                         "labelPosition": "Top",
                         "label": "Dogs Section",
+                        "sublabel": "",
+                        "tooltip": "",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "criteria": null,
+                        "value": 0
+                    },
+                    "id": "66742560-71f6-427c-a04d-8a570ca8c2e2",
+                    "templateQuestionId": null,
+                    "type": "Number",
+                    "parentId": "d268ecdd-0f44-45fd-a344-c463a25410ae",
+                    "order": "a1",
+                    "properties": {
+                        "decimalPlaces": 1,
+                        "step": 4 ,
+                        "minimumValue": 1.0,
+                        "maximumValue": 100.0,
+                        "minimumDigits": 1,
+                        "maximumDigits": 3,
+                        "required": true,
+                        "unique": null,
+                        "addAttachment": false,
+                        "addNote": false,
+                        "defaultAnswer": {
+                            "value": "4.0",
+                            "value": null,
+                            "type": "Number",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "Who let the dogs out",
                         "sublabel": "",
                         "tooltip": "",
                         "localization": {}

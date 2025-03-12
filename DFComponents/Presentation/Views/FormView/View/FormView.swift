@@ -27,7 +27,7 @@ struct FormView: View {
                     StepProgressView(viewModel: stepProgressViewModel)
                     TabView(selection: $currentPage) {
                         ForEach(viewModel.pages.indices, id: \.self) { index in
-                            PageView(controls: viewModel.pages[index].fields)
+                            PageView(pageViewModel: PageViewModel(controls: viewModel.pages[index].fields))
                                 .environmentObject(viewModel)
                                 .tag(index)
                         }

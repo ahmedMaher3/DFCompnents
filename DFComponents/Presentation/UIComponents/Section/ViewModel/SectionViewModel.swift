@@ -9,11 +9,13 @@ import Foundation
 
 final class SectionViewModel: ObservableObject {
     @Published var sectionField: SectionField
-    @Published var control: SectionField
-    @Published var controls: [FieldEntity]
+    @Published var controls: [FieldEntity] {
+        didSet {
+            print("controls changed:- \(controls) ")
+        }
+    }
 
-    init(control: SectionField, controls: [FieldEntity], sectionField: SectionField) {
-        self.control = control
+    init(controls: [FieldEntity], sectionField: SectionField) {
         self.controls = controls
         self.sectionField = sectionField
     }

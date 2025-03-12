@@ -14,7 +14,11 @@ class FormViewModel: ObservableObject {
     var rules = [Rule]()
     @Published var mode: FormType?
     @Published var fields: [FieldEntity] = []
-    @Published var pages: [PageModel] = []
+    @Published var pages: [PageModel] = [] {
+        didSet {
+            print("pages changed:- \(pages)")
+        }
+    }
     @Published var rulesImp: RuleImp!
     @Published var warningsDictionary: [String: [String]] = [:] // Stores warnings by field ID
     var warnings: WarningsEntity?

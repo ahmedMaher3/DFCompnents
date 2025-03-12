@@ -9,14 +9,18 @@ import SwiftUI
 
 struct PageView: View {
     
-    var controls: [FieldEntity]
     @EnvironmentObject var viewModel: FormViewModel
+    @ObservedObject var pageViewModel: PageViewModel
+    
+    init(pageViewModel: PageViewModel) {
+        self.pageViewModel = pageViewModel
+    }
     
     var body: some View {
         
         if self.viewModel.mode == .classic {
             List {
-                ForEach(controls, id: \.id) { field in
+                ForEach(self.pageViewModel.controls, id: \.id) { field in
                     renderField(for: field)
                         .environmentObject(viewModel)
                 }
@@ -29,9 +33,10 @@ struct PageView: View {
                 ScrollView {
                     VStack {
                         Spacer()
-                        ForEach(controls, id: \.id) { field in
+                        ForEach(self.pageViewModel.controls, id: \.id) { field in
                             renderField(for: field)
                                 .frame(maxWidth: .infinity)
+                                .environmentObject(viewModel)
                         }
                         Spacer()
                     }
@@ -107,8 +112,10 @@ struct PageView: View {
         case .page((_, _)):
             EmptyView()
         case .section((_, let sectionViewModel)):
-            SectionView(sectionViewModel: sectionViewModel, fields: sectionViewModel.controls, isExpanded: sectionViewModel.control.isExpandedStatus)
-//                .environment(viewModel)
+            SectionView(sectionViewModel: sectionViewModel, fields: sectionViewModel.controls, isExpanded: sectionViewModel.sectionField.isExpandedStatus)
+                .onReceive(sectionViewModel.objectWillChange) { updatedValue in
+                    print("updated Values:- \(sectionViewModel.controls)")
+                }
         }
     }
     
