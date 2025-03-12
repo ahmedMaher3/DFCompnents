@@ -22,7 +22,7 @@ class FormViewModel: ObservableObject {
     @Published var rulesImp: RuleImp!
 
     /// Stores warnings by field ID
-    @Published var warningsDictionary: [String: [String]?] = [:]
+    @Published var warningsDictionary: [String: [String]]? = [:]
 
 
     func fetchForm() async {

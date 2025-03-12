@@ -49,7 +49,7 @@ final class NumberFieldViewModel: ObservableObject {
     }
 
     func validateInput(value: String, warnings: WarningsEntity?,
-                       warningsDictionary: inout [String: [String]?]) {
+                       warningsDictionary: inout [String: [String]]?) {
         validator.validate(
             fieldEntity: .number((numberFieldModel, self)),
             value: value,
@@ -57,11 +57,11 @@ final class NumberFieldViewModel: ObservableObject {
             warningsDictionary: &warningsDictionary
         )
         let fieldId = numberFieldModel.fieldId ?? ""
-        let localWarnings = warningsDictionary[fieldId] ?? []
+        let localWarnings = warningsDictionary?[fieldId] ?? []
 
         DispatchQueue.main.async {
-            self.numberFieldModel.isError = !(localWarnings?.isEmpty ?? false)
-            self.numberFieldModel.errorMessage = localWarnings?.joined(separator: "\n")
+            self.numberFieldModel.isError = !(localWarnings.isEmpty)
+            self.numberFieldModel.errorMessage = localWarnings.joined(separator: "\n")
         }
     }
 }

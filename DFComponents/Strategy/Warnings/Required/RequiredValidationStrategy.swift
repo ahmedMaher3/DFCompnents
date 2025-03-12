@@ -13,18 +13,18 @@ struct RequiredValidationStrategy: FieldValidationStrategy {
         fieldEntity: FieldEntity,
         value: Any?,
         warnings: WarningsEntity?,
-        warningsDictionary: inout [String: [String]?]) {
+        warningsDictionary: inout [String: [String]]?) {
         let fieldId = fieldEntity.id
 
             guard let requiredWarning = warnings?.fieldValidation.required else {
-            warningsDictionary[fieldId] = nil
+                warningsDictionary?[fieldId] = nil
             return
         }
 
             let isEmpty = checkValueIsEmpty(value: value)
         let warningMessages: [String]? = isEmpty ? [requiredWarning] : nil
 
-        warningsDictionary[fieldId] = warningMessages
+            warningsDictionary?[fieldId] = warningMessages
 
         if case .number((_, let numberViewModel)) = fieldEntity {
             let isError = warningMessages != nil

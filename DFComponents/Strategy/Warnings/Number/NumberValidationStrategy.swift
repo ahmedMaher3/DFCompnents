@@ -16,7 +16,7 @@ final class NumberValidationStrategy: FieldValidationStrategy {
     func validate(fieldEntity: FieldEntity,
                   value: Any?,
                   warnings: WarningsEntity?,
-                  warningsDictionary: inout [String: [String]?]) {
+                  warningsDictionary: inout [String: [String]]?) {
 
         guard case .number((let numberField, let numberViewModel)) = fieldEntity else { return }
 
@@ -24,7 +24,7 @@ final class NumberValidationStrategy: FieldValidationStrategy {
         var fieldWarnings: [String] = []
 
         guard let numberWarnings = warnings?.fieldValidation.input else {
-            warningsDictionary[fieldId] = nil
+            warningsDictionary?[fieldId] = nil
             return
         }
 
@@ -65,7 +65,7 @@ final class NumberValidationStrategy: FieldValidationStrategy {
         valueLimitValidator.validate(value: numberValue, fieldWarnings: &fieldWarnings)
         entryLimitValidator.validate(value: numberValue, fieldWarnings: &fieldWarnings)
 
-        warningsDictionary[fieldId] = fieldWarnings.isEmpty ? nil : fieldWarnings
+        warningsDictionary?[fieldId] = fieldWarnings.isEmpty ? nil : fieldWarnings
 
         DispatchQueue.main.async {
             numberViewModel.numberFieldModel.isError = !fieldWarnings.isEmpty

@@ -17,7 +17,7 @@ struct FormValidator {
         fieldEntity: FieldEntity,
         value: Any?,
         warnings: WarningsEntity?,
-        warningsDictionary: inout [String: [String]?]) {
+        warningsDictionary: inout [String: [String]]?) {
         strategy.validate(
             fieldEntity: fieldEntity,
             value: value,
