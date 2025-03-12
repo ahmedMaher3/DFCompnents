@@ -36,7 +36,6 @@ struct FooterComponentView: View {
                             ZStack {
                                 Image(systemName: "info.circle.fill")
                                     .font(.system(size: 16))
-                                    .offset(y: -6)
                                     .foregroundColor(.gray)
                                     .onTapGesture {
                                         showPopover.toggle()
@@ -55,16 +54,16 @@ struct FooterComponentView: View {
                                             }
                                             .font(.system(size: 13))
                                             .fontWeight(.bold)
-                                            .foregroundColor(.white)
+                                            .foregroundStyle(.white)
                                             .padding()
                                         }
-                                        .presentationCompactAdaptation(.popover)
+                                        .background(.primaryBlue)
+                                        .presentationCompactAdaptation(.none)
                                     })
                             }
                             Text("\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)")
                                 .foregroundStyle(.gray)
                                 .font(.system(size: 13))
-                                .offset(y: -6)
                                 .fontWeight(.bold)
                         }
                         .frame(maxWidth: .infinity, alignment: .trailing)
