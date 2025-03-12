@@ -8,6 +8,8 @@
 class NumberField: NumberBaseDelegate {
     var numberProperties: NumberBase
     var numberAnswer: BaseAnswerNumber?
+    var fieldWarning: WarningsEntity?
+
     let step: Int?
     let decimalPlaces: Int?
     let minimumDigits: Int?
@@ -32,7 +34,7 @@ class NumberField: NumberBaseDelegate {
             self.maximumDigits = nil
             self.minimumValue = nil
             self.maximumValue = nil
-            self.numberAnswer = nil 
+            self.numberAnswer = nil
         }
     }
 }

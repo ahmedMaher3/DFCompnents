@@ -9,7 +9,6 @@ import SwiftUI
 
 struct InputNumberView: View {
     @ObservedObject var viewModel: NumberFieldViewModel
-    @EnvironmentObject var formViewModel: FormViewModel
     @FocusState.Binding var isTextFieldFocused: Bool
 
     private var textNumberBinding: Binding<String> {
@@ -18,8 +17,8 @@ struct InputNumberView: View {
             set: { newValue in
                 viewModel.baseAnswer?.value = newValue
                 viewModel.characterCount = newValue.count
-                formViewModel.checkingWarning(for: viewModel.numberFieldModel.base.fieldId,
-                                              value: newValue)
+                viewModel.validateInput(value: viewModel.baseAnswer?.value ?? "",
+                                        warnings: viewModel.numberFieldModel.fieldWarning)
             }
         )
     }

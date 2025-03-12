@@ -23,7 +23,9 @@ protocol BaseFieldProtocol {
 
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer?
     func getAnswerString() -> String
+
 }
+
 
 protocol InteractiveFieldProtocol: BaseFieldProtocol {
     var required: Bool! { get }
@@ -175,11 +177,12 @@ extension InteractiveFieldDelegate {
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? { base.handleSavedAnswer(sAnswer) }
     func getAnswerString() -> String { base.getAnswerString() }
     func isAnswered() -> Bool { base.isAnswered() }
+    func updateWarnings(_ warnings: [String]?) {
+    }
 }
 
 class TextBase: InteractiveFieldDelegate {
     var base: InteractiveField
-
     let allowSpellCheck: Bool?
     let maximumLength: Int?
     let minimumLength: Int?
@@ -223,7 +226,6 @@ extension TextBaseDelegate {
 // 5. Implementation of specific field types becomes very clean
 class TextBoxField: TextBaseDelegate {
     var textBase: TextBase
-
     // TextBox specific properties only
     let regex: String?
     let mask: String?
@@ -264,6 +266,7 @@ class TextBoxField: TextBaseDelegate {
 }
 
 class PageField: BaseFieldProtocol {
+
     var type: FieldType!
     
     var fieldId: String!
@@ -285,7 +288,7 @@ class PageField: BaseFieldProtocol {
     var hidden: Bool!
     
     var disabled: Bool!
-    
+
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
         return nil
     }
@@ -324,7 +327,7 @@ class SectionField: BaseFieldProtocol {
     var hidden: Bool!
     
     var disabled: Bool!
-    
+
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
         return nil
     }
@@ -363,7 +366,6 @@ class TextAreaField: TextBaseDelegate {
 
 class MCQBase: InteractiveFieldDelegate {
     var base: InteractiveField
-
     var options: [MCQOption]
     var defaultAnswer: BaseAnswerMCQ?
     var predefinedOptions: String?

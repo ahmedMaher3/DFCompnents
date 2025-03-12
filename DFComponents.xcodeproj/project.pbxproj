@@ -83,7 +83,6 @@
 		AAE5CA8C2D4A448B00FDA699 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CA8B2D4A448B00FDA699 /* RadioButtonView.swift */; };
 		AAE5CAC42D4A561000FDA699 /* RadioButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CAC32D4A561000FDA699 /* RadioButtonViewModel.swift */; };
 		AAE5CAC62D4A61FD00FDA699 /* QuestionsRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5CAC52D4A61FD00FDA699 /* QuestionsRadioButton.swift */; };
-		AAE9E1F12D7791E3009E5EDF /* ContentNumberControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9E1F02D7791E3009E5EDF /* ContentNumberControlView.swift */; };
 		AAE9E1F42D779599009E5EDF /* StepperNumberFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9E1F32D779599009E5EDF /* StepperNumberFieldView.swift */; };
 		AAE9E1F82D779C27009E5EDF /* HeaderComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9E1F72D779C27009E5EDF /* HeaderComponentView.swift */; };
 		AAE9E1FA2D779C39009E5EDF /* FooterComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9E1F92D779C39009E5EDF /* FooterComponentView.swift */; };
@@ -261,7 +260,6 @@
 		AAE5CABD2D4A50AD00FDA699 /* ViewExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtenstion.swift; sourceTree = "<group>"; };
 		AAE5CAC32D4A561000FDA699 /* RadioButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonViewModel.swift; sourceTree = "<group>"; };
 		AAE5CAC52D4A61FD00FDA699 /* QuestionsRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsRadioButton.swift; sourceTree = "<group>"; };
-		AAE9E1F02D7791E3009E5EDF /* ContentNumberControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentNumberControlView.swift; sourceTree = "<group>"; };
 		AAE9E1F32D779599009E5EDF /* StepperNumberFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperNumberFieldView.swift; sourceTree = "<group>"; };
 		AAE9E1F72D779C27009E5EDF /* HeaderComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderComponentView.swift; sourceTree = "<group>"; };
 		AAE9E1F92D779C39009E5EDF /* FooterComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterComponentView.swift; sourceTree = "<group>"; };
@@ -852,7 +850,6 @@
 		AAE9E1F22D779576009E5EDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AAE9E1F02D7791E3009E5EDF /* ContentNumberControlView.swift */,
 				AAC387482D76F51000118896 /* NumberFieldComponent.swift */,
 				AAE9E1F32D779599009E5EDF /* StepperNumberFieldView.swift */,
 				AAF297112D7E272C00E7B0C3 /* InputNumberView.swift */,
@@ -1709,7 +1706,6 @@
 				AA9A221A2D80AF7100150E62 /* ValueLimitValidationStrategy.swift in Sources */,
 				E4A9014A2D4BAD2C007080AC /* SplashView.swift in Sources */,
 				AAF1B17B2D7648F100DC44B4 /* FieldValidationEntity.swift in Sources */,
-				AAE9E1F12D7791E3009E5EDF /* ContentNumberControlView.swift in Sources */,
 				A9474BC72D5CE3EA00031047 /* Interceptor.swift in Sources */,
 				E48CA01B2D537D7100A519ED /* SignatureViewModel.swift in Sources */,
 				A95D7A292D4B812E004FB6CA /* DateViewModel.swift in Sources */,

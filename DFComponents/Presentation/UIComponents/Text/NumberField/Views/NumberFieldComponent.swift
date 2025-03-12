@@ -8,10 +8,22 @@
 import SwiftUI
 
 struct NumberFieldComponent: View {
-    @EnvironmentObject var formViewModel:FormViewModel
     @ObservedObject var viewModel: NumberFieldViewModel
+    @FocusState private var isTextFieldFocused: Bool
 
     var body: some View {
-        ContentNumberControlView(viewModel: viewModel)
+        VStack {
+            ZStack {
+                InputNumberView(viewModel: viewModel,
+                                isTextFieldFocused: $isTextFieldFocused)
+                /// Stepper
+                if let step = viewModel.numberFieldModel.step, step != 0 {
+                    StepperNumberFieldView(viewModel: viewModel,
+                                           isTextFieldFocused: $isTextFieldFocused)
+                } else {
+                    EmptyView()
+                }
+            }
+        }
     }
 }
