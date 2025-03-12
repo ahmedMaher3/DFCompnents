@@ -120,7 +120,7 @@ struct ImageListView: View {
 
                         HStack {
                             Button(action: {}) {
-                                Image(systemName: "pencil")
+                                Image(.edit)
                                     .foregroundColor(.blue)
                                     .font(.system(size: 20))
                             }
@@ -134,9 +134,11 @@ struct ImageListView: View {
                             Spacer()
 
                             Button(action: deleteSelectedImages) {
-                                Image(systemName: "trash")
-                                    .foregroundColor(.red)
-                                    .font(.system(size: 20))
+                                Image(.delete)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(.red) 
                             }
                             .frame(width: 50, height: 50)
                         }

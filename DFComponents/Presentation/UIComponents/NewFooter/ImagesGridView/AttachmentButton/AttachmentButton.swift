@@ -26,7 +26,7 @@ struct AttachmentButton: View {
             })
             Button("Upload File", action: { showFilePicker.toggle() })
         } label: {
-            Image(systemName: "paperclip")
+            Image(.uploadAttachment)
                 .foregroundColor(.blue)
                 .font(.title2)
         }

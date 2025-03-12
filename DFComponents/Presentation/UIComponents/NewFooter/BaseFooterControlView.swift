@@ -19,50 +19,84 @@ struct BaseFooterControlView: View {
     @State private var attachments: [AttachmentModel] = []
     @State private var showFilePicker = false
     @State private var showImagePicker = false
-    @State private var isExpanded: Bool = false  // Track expansion state
-
+    @State private var isExpanded: Bool = false
+    @State private var showPopover = false
+    
     init(viewModel: BaseFooterViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-
+    
     var body: some View {
         renderFooter(fieldEntity: viewModel.field)
     }
-
+    
     /// **Reusable Footer Stack**
     @ViewBuilder
-    private func footerStack(sublabel: String?, characterCountText: String?, addNote: Bool, addAttachment: Bool) -> some View {
+    private func footerStack(sublabel: String?, characterCountText: String?, addNote: Bool, addAttachment: Bool, tooltip: String) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             if let sublabel = sublabel {
-                Text(sublabel)
-            }
-
-            if let characterCountText = characterCountText {
-                Text(characterCountText)
-                    .foregroundStyle(.gray)
-                    .font(.system(size: 13))
-                    .fontWeight(.bold)
+                HStack(alignment: .center, spacing: 8) {
+                    Text(sublabel)
+                    
+                    Spacer()
+                    
+                    HStack(alignment: .center,spacing: 4) {
+                        if !(tooltip.isEmpty ) {
+                            ZStack {
+                                Image(.pinToolTip)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 14, height: 14)
+                                    .foregroundColor(.gray)
+                                    .onTapGesture {
+                                        showPopover.toggle()
+                                    }
+                                    .popover(isPresented: $showPopover, attachmentAnchor: .point(.center), arrowEdge: .top) {
+                                        ZStack {
+                                            Color.primaryBlue
+                                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                            VStack(alignment: .leading, spacing: 4) {
+                                                Text(tooltip)
+                                            }
+                                            .font(.system(size: 12))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                            .padding()
+                                        }
+                                        .background(.primaryBlue)
+                                        .presentationCompactAdaptation(.popover)
+                                    }
+                            }
+                        }
+                        if let characterCountText = characterCountText {
+                            Text(characterCountText)
+                                .foregroundStyle(.gray)
+                                .font(.system(size: 13))
+                                .fontWeight(.bold)
+                        }
+                    }
                     .frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding([.top, .trailing], 4)
+                    .padding(.top, 0)
+                    .padding(.trailing, 2)
+                }
             }
-
+            
             if addNote || addAttachment {
                 HStack {
                     if addNote {
                         Button(action: { showNotePopup.toggle() }) {
-                            Image(systemName: "bubble.left.and.text.bubble.right.fill")
+                            Image(.addNote)
                                 .foregroundColor(.blue)
                                 .font(.title2)
                         }
                     }
-
+                    
                     if addAttachment {
-                        // Attachment Button
                         AttachmentButton(showImagePicker: $showImagePicker, showFilePicker: $showFilePicker, selectedPhotos: $selectedPhotos)
                     }
                 }
-
-                if let note = savedNote {
+                
+                if let note = savedNote, !(note.isEmpty ?? true) {
                     VStack(alignment: .leading) {
                         let noteText = note.count >= 80 ? note.prefix(80) + "..." : note
                         Text(isExpanded ? note : noteText)
@@ -71,9 +105,7 @@ struct BaseFooterControlView: View {
                             .background(Color.gray.opacity(0.1))
                             .cornerRadius(8)
                             .lineLimit(isExpanded ? nil : 2)
-                        Button(action: {
-                            isExpanded.toggle()
-                        }) {
+                        Button(action: { isExpanded.toggle() }) {
                             if note.count > 80 {
                                 Text(isExpanded ? "Less" : "More")
                                     .foregroundColor(.blue)
@@ -84,16 +116,11 @@ struct BaseFooterControlView: View {
                         .padding(.top, 4)
                     }
                 }
-
-
-                // File List
+                
                 FileListView(attachments: $attachments)
-
-                // Image Grid
                 ImageGridView(attachments: $attachments)
             }
         }
-        // Image Picker
         .photosPicker(isPresented: $showImagePicker, selection: $selectedPhotos, matching: .images)
         .onChange(of: selectedPhotos) { newItems in
             Task {
@@ -107,8 +134,6 @@ struct BaseFooterControlView: View {
                 }
             }
         }
-        
-        // File Picker
         .fileImporter(
             isPresented: $showFilePicker,
             allowedContentTypes: [.pdf, .jpeg, .png, .plainText, .spreadsheet, .presentation],
@@ -136,21 +161,21 @@ struct BaseFooterControlView: View {
             .presentationCornerRadius(20)
         }
     }
-
+    
     /// **Render Footer Based on Field Type**
     @ViewBuilder
     private func renderFooter(fieldEntity: FieldEntity) -> some View {
         switch fieldEntity {
         case .page, .section, .radio, .textBox:
             EmptyView()
-
         case .number((_, let numberViewModel)):
             let interactiveProperties = numberViewModel.numberFieldModel.base
             footerStack(
                 sublabel: interactiveProperties.sublabel,
                 characterCountText: "\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)",
                 addNote: interactiveProperties.addNote,
-                addAttachment: interactiveProperties.addAttachment
+                addAttachment: interactiveProperties.addAttachment,
+                tooltip: interactiveProperties.tooltip ?? "test test test"
             )
         }
     }
@@ -162,4 +187,3 @@ struct BaseFooterControlView: View {
         }
     }
 }
-

@@ -51,6 +51,9 @@
     "Add Note" : {
 
     },
+    "and Your Maximum Digit Length is %@" : {
+
+    },
     "and Your Maximum Digit Length is %lld" : {
 
     },
@@ -228,6 +231,9 @@
 
     },
     "Your Maximum Digit Length is %lld" : {
+
+    },
+    "Your Minimum Digit Length is %@" : {
 
     },
     "Your Minimum Digit Length is %lld" : {

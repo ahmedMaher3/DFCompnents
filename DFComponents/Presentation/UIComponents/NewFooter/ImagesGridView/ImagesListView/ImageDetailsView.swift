@@ -49,7 +49,7 @@ struct ImageDetailView: View {
                 Button(action: {
                     // Handle edit action
                 }) {
-                    Image(systemName: "pencil")
+                    Image(.edit)
                         .foregroundColor(.blue)
                         .padding()
                 }
@@ -57,7 +57,10 @@ struct ImageDetailView: View {
                 Spacer()
 
                 Button(action: deleteImage) {
-                    Image(systemName: "trash")
+                    Image(.delete)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
                         .foregroundColor(.red)
                         .padding()
                 }

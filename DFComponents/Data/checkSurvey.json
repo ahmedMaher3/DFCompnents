@@ -298,8 +298,8 @@
                         "naOptionText": null,
                         "required": false,
                         "unique": null,
-                        "addAttachment": false,
-                        "addNote": false,
+                        "addAttachment": true,
+                        "addNote": true,
                         "defaultAnswer": {
                             "prefix": null,
                             "suffix": null,
@@ -342,8 +342,8 @@
                         "maximumDigits": 3,
                         "required": true,
                         "unique": null,
-                        "addAttachment": false,
-                        "addNote": false,
+                        "addAttachment": true,
+                        "addNote": true,
                         "defaultAnswer": {
                             "value": "1",
                             "type": "Number",
@@ -360,7 +360,7 @@
                         "labelPosition": "Top",
                         "label": "What's your age ?",
                         "sublabel": "Number",
-                        "tooltip": "",
+                        "tooltip": "test test",
                         "localization": {}
                     },
                     "rules": null
@@ -415,8 +415,8 @@
                         "naOptionText": null,
                         "required": false,
                         "unique": null,
-                        "addAttachment": false,
-                        "addNote": false,
+                        "addAttachment": true,
+                        "addNote": true,
                         "defaultAnswer": {
                             "value": null,
                             "otherAnswer": null,
@@ -474,8 +474,8 @@
                         "maximumLength": null,
                         "required": false,
                         "unique": null,
-                        "addAttachment": false,
-                        "addNote": false,
+                        "addAttachment": true,
+                        "addNote": true,
                         "defaultAnswer": {
                             "prefix": null,
                             "suffix": null,
@@ -529,8 +529,8 @@
                         "maximumLength": null,
                         "required": false,
                         "unique": null,
-                        "addAttachment": false,
-                        "addNote": false,
+                        "addAttachment": true,
+                        "addNote": true,
                         "defaultAnswer": {
                             "prefix": null,
                             "suffix": null,
@@ -608,8 +608,8 @@
                         "maximumLength": null,
                         "required": false,
                         "unique": null,
-                        "addAttachment": false,
-                        "addNote": false,
+                        "addAttachment": true,
+                        "addNote": true,
                         "defaultAnswer": {
                             "prefix": null,
                             "suffix": null,
@@ -663,8 +663,8 @@
                         "maximumLength": null,
                         "required": false,
                         "unique": null,
-                        "addAttachment": false,
-                        "addNote": false,
+                        "addAttachment": true,
+                        "addNote": true,
                         "defaultAnswer": {
                             "prefix": null,
                             "suffix": null,

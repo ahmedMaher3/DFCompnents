@@ -40,13 +40,12 @@ struct BaseFieldContainerView<Control: View>: View {
                 .padding(.leading, 0) // Adjust leading padding as needed to match the control
             
             /// Warning View
-            if let warning = warningMessage, !warning.isEmpty {
-                WarningCardView(message: warning)
-                    .padding(6)
-                    .background(Color.red.opacity(0.05))
-                    .cornerRadius(8)
-            }
+            WarningCardView(message: warningMessage ?? "")
+                .opacity(warningMessage == nil ? 0 : 1)
         }
+        .padding(6)
+        .background(warningMessage == nil ? Color.clear : Color.red.opacity(0.05))
+        .cornerRadius(8)
     }
 }
 

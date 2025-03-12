@@ -898,6 +898,7 @@
 		E472DC902D802EB900B8FAF3 /* ImagesGridView */ = {
 			isa = PBXGroup;
 			children = (
+				E472DCB52D81938D00B8FAF3 /* AttachmentButton */,
 				E472DC932D802F0300B8FAF3 /* ImagesListView */,
 				E472DC9A2D802FC100B8FAF3 /* FilesListView */,
 				E472DC912D802ED200B8FAF3 /* ImagesGridView.swift */,
@@ -934,9 +935,8 @@
 		E472DCA62D80550700B8FAF3 /* NewFooter */ = {
 			isa = PBXGroup;
 			children = (
-				E472DCAF2D80581300B8FAF3 /* ViewModel */,
-				E472DC9D2D80300B00B8FAF3 /* AttachmentButton.swift */,
 				E472DCA72D8056DB00B8FAF3 /* BaseFooterControlView.swift */,
+				E472DCAF2D80581300B8FAF3 /* ViewModel */,
 				E472DC902D802EB900B8FAF3 /* ImagesGridView */,
 				E472DCA32D80491D00B8FAF3 /* AddNote */,
 			);
@@ -974,6 +974,14 @@
 				E472DCB32D8058B500B8FAF3 /* BaseFieldContainerView.swift */,
 			);
 			path = NewBuilder;
+			sourceTree = "<group>";
+		};
+		E472DCB52D81938D00B8FAF3 /* AttachmentButton */ = {
+			isa = PBXGroup;
+			children = (
+				E472DC9D2D80300B00B8FAF3 /* AttachmentButton.swift */,
+			);
+			path = AttachmentButton;
 			sourceTree = "<group>";
 		};
 		E489E8122D4A3AFC007EA370 /* TextBoxComponent */ = {

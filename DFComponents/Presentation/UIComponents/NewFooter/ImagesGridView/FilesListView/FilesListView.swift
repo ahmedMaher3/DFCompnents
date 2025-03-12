@@ -21,7 +21,7 @@ struct FileListView: View {
                 ForEach(showAllFiles ? nonImageAttachments : Array(nonImageAttachments.prefix(maxVisibleFiles))) { attachment in
                     HStack {
                         // File Type Icon
-                        Image(attachment.iconName)
+                        Image(attachment.iconName ?? "pdfIcon")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 32, height: 32)
@@ -45,13 +45,16 @@ struct FileListView: View {
                         Button(action: {
                             attachments.removeAll { $0.id == attachment.id }
                         }) {
-                            Image(systemName: "trash.fill")
+                            Image(.delete)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 14, height: 14)
                                 .foregroundColor(.red)
                         }
                     }
                     .padding()
                     .overlay(
-                        RoundedRectangle(cornerRadius: 12)
+                        RoundedRectangle(cornerRadius: 4)
                             .stroke(Color(red: 220/255, green: 220/255, blue: 220/255), lineWidth: 1) // Light gray border
                     )
                     .background(Color.clear) // Transparent background

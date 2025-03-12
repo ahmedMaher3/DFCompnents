@@ -52,7 +52,7 @@ struct HeaderComponentView: View {
             }
         } else {
             Text(label)
-                .font(.headline)
+                .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.primary)
         }
     }

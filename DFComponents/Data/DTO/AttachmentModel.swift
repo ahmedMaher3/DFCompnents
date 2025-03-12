@@ -20,14 +20,17 @@ struct AttachmentModel: Identifiable {
         return image != nil
     }
     
-    var iconName: String {
+    var iconName: String? {
+        guard image == nil else { return nil } // If it's an image, return nil (so UI can show actual image)
+        
         switch fileType.lowercased() {
-        case "pdf": return "doc.richtext"
+        case "pdf": return "pdfIcon"
         case "jpg", "jpeg", "png": return "photo"
-        case "doc", "docx": return "doc.text"
-        case "ppt", "pptx": return "doc.on.clipboard"
-        case "xls", "xlsx": return "tablecells"
-        default: return "doc"
+        case "doc", "docx": return "officeIcon"
+        case "ppt", "pptx": return "pdfIcon"
+        case "xls", "xlsx": return "officeIcon"
+        default: return "pdfIcon"
         }
     }
 }
+
