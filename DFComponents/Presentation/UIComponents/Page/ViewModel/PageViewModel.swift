@@ -8,11 +8,7 @@
 import Foundation
 
 final class PageViewModel: ObservableObject {
-    @Published var controls: [FieldEntity] {
-        didSet {
-            print("Page controls updated:- \(controls)")
-        }
-    }
+    @Published var controls: [FieldEntity]
     
     init(controls: [FieldEntity]) {
         self.controls = controls

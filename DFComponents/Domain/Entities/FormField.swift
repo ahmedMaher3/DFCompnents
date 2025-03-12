@@ -32,7 +32,7 @@ protocol SectionFieldProtocol: BaseFieldProtocol {
     var isExpandedStatus: Bool { get set }
 }
 
-struct SectionField: SectionFieldProtocol {
+class SectionField: SectionFieldProtocol {
     
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? { nil }
     func getAnswerString() -> String { "" }
