@@ -14,6 +14,8 @@ class FormViewModel: ObservableObject {
     var rules = [Rule]()
     var warnings: WarningsEntity?
 
+    private var fieldsDictionary: [String: FieldEntity] = [:]
+
     @Published var mode: FormType?
     @Published var fields: [FieldEntity] = []
     @Published var pages: [PageModel] = []
@@ -22,12 +24,14 @@ class FormViewModel: ObservableObject {
     /// Stores warnings by field ID
     @Published var warningsDictionary: [String: [String]?] = [:]
 
+
     func fetchForm() async {
         do {
             let response = try await formBuildUseCase.excute()
             mode = response.pages.first?.mode
             pages = response.pages
             fields = pages.flatMap { $0.fields }
+            fieldsDictionary = Dictionary(uniqueKeysWithValues: fields.map { ($0.id, $0) })
             rules = response.rules
             warnings = response.warnings
             self.doRules()
@@ -75,7 +79,8 @@ class FormViewModel: ObservableObject {
     }
 
     func checkingWarning(for fieldId: String, value: Any? = nil) {
-        guard let field = fields.first(where: { $0.id == fieldId }) else { return }
+        guard let field = fieldsDictionary[fieldId] else { return }
+
         if case .number((_, let numberViewModel)) = field {
             numberViewModel.validateInput(
                 value: numberViewModel.baseAnswer?.value ?? "",

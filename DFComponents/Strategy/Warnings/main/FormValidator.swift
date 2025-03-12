@@ -1,12 +1,12 @@
 //
-//  ContextValidator.swift
+//  FormValidator.swift
 //  DFComponents
 //
 //  Created by Eslam on 11/03/2025.
 //
 
 import Foundation
-struct ValidatorContext {
+struct FormValidator {
     private let strategy: FieldValidationStrategy
 
     init(strategy: FieldValidationStrategy) {
@@ -17,8 +17,7 @@ struct ValidatorContext {
         fieldEntity: FieldEntity,
         value: Any?,
         warnings: WarningsEntity?,
-        warningsDictionary: inout [String: [String]?]
-    ) {
+        warningsDictionary: inout [String: [String]?]) {
         strategy.validate(
             fieldEntity: fieldEntity,
             value: value,

@@ -52,10 +52,13 @@
 		A9EA54322D6C899500C2A9E2 /* FormEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EA54312D6C899500C2A9E2 /* FormEntity.swift */; };
 		AA0CF6392D80611500F4D452 /* FieldValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF6382D80611500F4D452 /* FieldValidationStrategy.swift */; };
 		AA0CF63C2D8061BB00F4D452 /* NumberValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF63B2D8061BB00F4D452 /* NumberValidationStrategy.swift */; };
-		AA0CF63E2D80698300F4D452 /* ContextValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF63D2D80698300F4D452 /* ContextValidator.swift */; };
+		AA0CF63E2D80698300F4D452 /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF63D2D80698300F4D452 /* FormValidator.swift */; };
 		AA0CF6412D806A1500F4D452 /* RequiredValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF6402D806A1500F4D452 /* RequiredValidationStrategy.swift */; };
 		AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */; };
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
+		AA9A22182D80AF6600150E62 /* EntryLimitValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A22172D80AF6500150E62 /* EntryLimitValidationStrategy.swift */; };
+		AA9A221A2D80AF7100150E62 /* ValueLimitValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A22192D80AF7100150E62 /* ValueLimitValidationStrategy.swift */; };
+		AA9A221C2D80AF7C00150E62 /* GeneralValidationStrategyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategyProtocol.swift */; };
 		AAB8572F2D6CA1A60013027A /* RuleFormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */; };
 		AAB857312D6CA2040013027A /* RuleExecuterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */; };
 		AAB857332D6CA2080013027A /* RuleEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857322D6CA2080013027A /* RuleEvaluator.swift */; };
@@ -225,10 +228,13 @@
 		A9EA54312D6C899500C2A9E2 /* FormEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormEntity.swift; sourceTree = "<group>"; };
 		AA0CF6382D80611500F4D452 /* FieldValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidationStrategy.swift; sourceTree = "<group>"; };
 		AA0CF63B2D8061BB00F4D452 /* NumberValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberValidationStrategy.swift; sourceTree = "<group>"; };
-		AA0CF63D2D80698300F4D452 /* ContextValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextValidator.swift; sourceTree = "<group>"; };
+		AA0CF63D2D80698300F4D452 /* FormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
 		AA0CF6402D806A1500F4D452 /* RequiredValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredValidationStrategy.swift; sourceTree = "<group>"; };
 		AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxDTO.swift; sourceTree = "<group>"; };
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
+		AA9A22172D80AF6500150E62 /* EntryLimitValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryLimitValidationStrategy.swift; sourceTree = "<group>"; };
+		AA9A22192D80AF7100150E62 /* ValueLimitValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueLimitValidationStrategy.swift; sourceTree = "<group>"; };
+		AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralValidationStrategyProtocol.swift; sourceTree = "<group>"; };
 		AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleFormBuilder.swift; sourceTree = "<group>"; };
 		AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleExecuterProtocol.swift; sourceTree = "<group>"; };
 		AAB857322D6CA2080013027A /* RuleEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEvaluator.swift; sourceTree = "<group>"; };
@@ -605,20 +611,22 @@
 		AA0CF6362D805B8200F4D452 /* Warnings */ = {
 			isa = PBXGroup;
 			children = (
+				AA9A221F2D80B3CB00150E62 /* main */,
+				AA9A221D2D80B02C00150E62 /* General */,
 				AA0CF63F2D806A0D00F4D452 /* Required */,
 				AA0CF63A2D8061AE00F4D452 /* Number */,
-				AA0CF6372D80610200F4D452 /* Protocol */,
-				AA0CF63D2D80698300F4D452 /* ContextValidator.swift */,
+				AA0CF6372D80610200F4D452 /* Protocols */,
 			);
 			path = Warnings;
 			sourceTree = "<group>";
 		};
-		AA0CF6372D80610200F4D452 /* Protocol */ = {
+		AA0CF6372D80610200F4D452 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategyProtocol.swift */,
 				AA0CF6382D80611500F4D452 /* FieldValidationStrategy.swift */,
 			);
-			path = Protocol;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		AA0CF63A2D8061AE00F4D452 /* Number */ = {
@@ -635,6 +643,31 @@
 				AA0CF6402D806A1500F4D452 /* RequiredValidationStrategy.swift */,
 			);
 			path = Required;
+			sourceTree = "<group>";
+		};
+		AA9A221D2D80B02C00150E62 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				AA9A22192D80AF7100150E62 /* ValueLimitValidationStrategy.swift */,
+				AA9A22172D80AF6500150E62 /* EntryLimitValidationStrategy.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		AA9A221E2D80B29700150E62 /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				AA0CF6362D805B8200F4D452 /* Warnings */,
+			);
+			path = Strategy;
+			sourceTree = "<group>";
+		};
+		AA9A221F2D80B3CB00150E62 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				AA0CF63D2D80698300F4D452 /* FormValidator.swift */,
+			);
+			path = main;
 			sourceTree = "<group>";
 		};
 		AAB8572D2D6CA19C0013027A /* Rules */ = {
@@ -1296,6 +1329,7 @@
 				AAE5CABA2D4A505100FDA699 /* Common */,
 				E4A9017C2D5CCE67007080AC /* Managers */,
 				E4A9017F2D5CCF8B007080AC /* Theme */,
+				AA9A221E2D80B29700150E62 /* Strategy */,
 				E4BBCFEA2D4A24C2004AA735 /* DFComponents.entitlements */,
 				E4BBCFEB2D4A24C2004AA735 /* Preview Content */,
 			);
@@ -1362,7 +1396,6 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				AA0CF6362D805B8200F4D452 /* Warnings */,
 				04C847B42D79D04A0078B18F /* Section */,
 				04C847B32D79D0410078B18F /* Page */,
 				AAE9E1F62D7799FE009E5EDF /* FooterView */,
@@ -1639,7 +1672,7 @@
 				E4A901A52D5E01E9007080AC /* GuestAuthorizationImpl.swift in Sources */,
 				AAD5623A2D4AAC2700C19A11 /* CheckBoxStyle.swift in Sources */,
 				AAC387592D77413F00118896 /* NumberFieldModel.swift in Sources */,
-				AA0CF63E2D80698300F4D452 /* ContextValidator.swift in Sources */,
+				AA0CF63E2D80698300F4D452 /* FormValidator.swift in Sources */,
 				AAC387552D772F3A00118896 /* NumberFieldViewModel.swift in Sources */,
 				AAD099752D5D3A53007A6CE9 /* FooterFormView.swift in Sources */,
 				E4A901632D52D536007080AC /* StepView.swift in Sources */,
@@ -1673,6 +1706,7 @@
 				E48C9FFE2D5374D300A519ED /* AKMaskFieldBrackets.swift in Sources */,
 				E48CA0032D5374D300A519ED /* AKMaskFieldBlockCharacter.swift in Sources */,
 				AAE9E1FE2D779D64009E5EDF /* HeaderComponentViewModel.swift in Sources */,
+				AA9A221A2D80AF7100150E62 /* ValueLimitValidationStrategy.swift in Sources */,
 				E4A9014A2D4BAD2C007080AC /* SplashView.swift in Sources */,
 				AAF1B17B2D7648F100DC44B4 /* FieldValidationEntity.swift in Sources */,
 				AAE9E1F12D7791E3009E5EDF /* ContentNumberControlView.swift in Sources */,
@@ -1727,8 +1761,10 @@
 				A9474BCD2D5CE49C00031047 /* NetworkError.swift in Sources */,
 				E48CA1152D5CC72300A519ED /* AppFonts.swift in Sources */,
 				AAF297122D7E272C00E7B0C3 /* InputNumberView.swift in Sources */,
+				AA9A22182D80AF6600150E62 /* EntryLimitValidationStrategy.swift in Sources */,
 				04C847C72D79D1FD0078B18F /* WelcomeView.swift in Sources */,
 				AAC3874E2D77185200118896 /* InputFieldComponent.swift in Sources */,
+				AA9A221C2D80AF7C00150E62 /* GeneralValidationStrategyProtocol.swift in Sources */,
 				E4A901C82D65E84B007080AC /* FormUseCase.swift in Sources */,
 				E48CA1142D5CC72300A519ED /* AppColors.swift in Sources */,
 				A9474BC92D5CE42100031047 /* RequestModifier.swift in Sources */,

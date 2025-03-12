@@ -10,7 +10,9 @@ final class NumberFieldViewModel: ObservableObject {
     @Published var numberFieldModel: NumberField
     @Published var characterCount: Int = 0
 
-    private let validator: FieldValidationStrategy
+    private var validator: FieldValidationStrategy {
+        return FieldEntity.number((numberFieldModel, self)).validatorField!
+    }
 
     var baseAnswer: BaseAnswerNumber? {
         get { return numberFieldModel.base.answer as? BaseAnswerNumber }
@@ -20,9 +22,8 @@ final class NumberFieldViewModel: ObservableObject {
         }
     }
 
-    init(numberFieldModel: NumberField, validator: FieldValidationStrategy) {
+    init(numberFieldModel: NumberField) {
         self.numberFieldModel = numberFieldModel
-        self.validator = validator
         if numberFieldModel.numberProperties.defaultAnswer?.value != nil {
             baseAnswer = BaseAnswerNumber(value: numberFieldModel.numberProperties.defaultAnswer?.value ?? "")
             self.numberFieldModel.base.answer = numberFieldModel.numberAnswer
@@ -50,14 +51,14 @@ final class NumberFieldViewModel: ObservableObject {
     func validateInput(value: String, warnings: WarningsEntity?,
                        warningsDictionary: inout [String: [String]?]) {
         validator.validate(
-            fieldEntity: .number((numberFieldModel, self)),  // ✅ Pass a single field
+            fieldEntity: .number((numberFieldModel, self)),
             value: value,
             warnings: warnings,
             warningsDictionary: &warningsDictionary
         )
         let fieldId = numberFieldModel.fieldId ?? ""
         let localWarnings = warningsDictionary[fieldId] ?? []
-        // Update error state based on warnings
+
         DispatchQueue.main.async {
             self.numberFieldModel.isError = !(localWarnings?.isEmpty ?? false)
             self.numberFieldModel.errorMessage = localWarnings?.joined(separator: "\n")

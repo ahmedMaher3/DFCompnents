@@ -72,7 +72,7 @@ class FormMapper: EntityMapper {
                     return .section((control, SectionViewModel(controls: [], title: "title")))
                 case .number:
                     let control = NumberField(field: field)
-                    return .number((control, NumberFieldViewModel(numberFieldModel: control, validator: NumberValidationStrategy())))
+                    return .number((control, NumberFieldViewModel(numberFieldModel: control)))
 
                 default:
                     return nil
@@ -165,7 +165,7 @@ enum FieldEntity: Identifiable {
                 return field.fieldId
         }
     }
-  
+
     var parentId: String? {
         switch self {
             case .textBox((let field, _)):
@@ -185,6 +185,15 @@ enum FieldEntity: Identifiable {
         switch self {
             case .textBox((let field, _)), .radio((let field, _)), .page((let field, _)), .section((let field, _)), .number((let field, _)):
                 return field.type
+        }
+    }
+
+    var validatorField: FieldValidationStrategy? {
+        switch self {
+            case .number:
+                return NumberValidationStrategy()
+            default:
+                return nil
         }
     }
 }
