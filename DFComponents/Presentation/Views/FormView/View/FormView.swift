@@ -25,6 +25,7 @@ struct FormView: View {
             VStack {
                 if !viewModel.pages.isEmpty {
                     StepProgressView(viewModel: stepProgressViewModel)
+                    Spacer()
                     TabView(selection: $currentPage) {
                         ForEach(viewModel.pages.indices, id: \.self) { index in
                             PageView(pageViewModel: PageViewModel(controls: viewModel.pages[index].fields))
@@ -51,6 +52,8 @@ struct FormView: View {
                     .if(self.viewModel.mode == .classic) { tab in
                         tab.frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
                     }
+                    Spacer()
+                    FooterView(currentPage: $currentPage, totalPages: viewModel.pages.count)
 
                 } else {
                     loadingView()
@@ -90,16 +93,48 @@ struct FormView: View {
         }
     }
 
-    func switchLanguage(to localeIdentifier: String) {
-        currentLocale = Locale(identifier: localeIdentifier)
-        UserDefaults.standard.set(localeIdentifier, forKey: "selectedLocale")
-        //
-        //        // Restart the app for full effect
-        if let window = UIApplication.shared.windows.first {
-            window.rootViewController = UIHostingController(rootView: SplashView().environment(\.locale, currentLocale))
-            window.makeKeyAndVisible()
+
+    struct FooterView: View {
+        @Binding var currentPage: Int
+        let totalPages: Int
+
+        var body: some View {
+            HStack {
+                Button(action: {
+                    if currentPage > 0 {
+                        currentPage -= 1
+                    }
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Back")
+                    }
+                    .foregroundColor(currentPage > 0 ? .blue : .gray)
+                }
+                .disabled(currentPage == 0)
+
+                Spacer()
+
+                Button(action: {
+                    if currentPage < totalPages - 1 {
+                        currentPage += 1
+                    }
+                }) {
+                    HStack {
+                        Text("Next")
+                        Image(systemName: "chevron.right")
+                    }
+                    .foregroundColor(currentPage < totalPages - 1 ? .blue : .gray)
+                }
+                .disabled(currentPage >= totalPages - 1)
+            }
+            .padding()
+            .frame(height: 55)
+            .background(Color(.systemGray6))
+
         }
     }
+
 
 }
 

@@ -38,6 +38,9 @@
     "and Your Maximum Digit Length is %lld" : {
 
     },
+    "Back" : {
+
+    },
     "Cancel" : {
 
     },
@@ -119,6 +122,9 @@
 
     },
     "Lower: %.2f" : {
+
+    },
+    "Next" : {
 
     },
     "Note" : {

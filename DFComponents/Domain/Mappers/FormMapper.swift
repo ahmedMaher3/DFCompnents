@@ -27,46 +27,46 @@ class FormMapper: EntityMapper {
                                    mode: dto.settings.format )
         return pages
     }
-    
+
     private func convertToPages(fields: [Field], mode: FormType) -> [PageModel] {
         return mode == .classic ? convertToPagesInClassicMode(fields: fields, mode: mode) : convertToPagesInCardsMode(fields: fields, mode: mode)
     }
             
     func convertToPagesInClassicMode(fields: [Field], mode: FormType) -> [PageModel] {
         let pageIds = fields.compactMap { $0.type == .page ? $0.id : nil } // collect pageIds
-        
+
         let groupedFields = Dictionary(grouping: fields.filter { $0.parentId != nil }) { $0.parentId! } // Collect fields with same parent id in group
-        
+
         // 🔹 Recursively process pages & sections
         let pages = pageIds.compactMap { pageId -> PageModel? in
             guard let pageFields = groupedFields[pageId] else { return nil }
             let mappedFields = mapFieldsRecursively(fields: pageFields, groupedFields: groupedFields)
             return PageModel(id: pageId, fields: mappedFields, mode: mode)
         }
-        
+
         return pages
     }
-    
+
     private func convertToPagesInCardsMode(fields: [Field], mode: FormType) -> [PageModel] {
         var pages: [PageModel] = []
         var cardIndex = 1
-        
+
         let cardFields = fields.filter { $0.type != .page && $0.type != .section } // Exclude pages & sections
-        
+
         for field in cardFields {
             let pageId = "page_\(cardIndex)" // Manually assigning unique page IDs
-            
+
             let mappedFields = mapFieldsRecursively(fields: [field], groupedFields: [:]) // Map single field
-            
+
             let pageModel = PageModel(id: pageId, fields: mappedFields, mode: mode)
             pages.append(pageModel)
-            
+
             cardIndex += 1
         }
-        
+
         return pages
     }
-    
+
     // 🔹 Recursive function to map fields & handle sections dynamically
     private func mapFieldsRecursively(fields: [Field], groupedFields: [String: [Field]]) -> [FieldEntity] {
         return fields.compactMap { field in
@@ -78,7 +78,7 @@ class FormMapper: EntityMapper {
             return mapSingleField(field: field)
         }
     }
-    
+
     // 🔹 Helper Function to Map a Single Field
     private func mapSingleField(field: Field) -> FieldEntity? {
         switch field.type {
@@ -95,7 +95,7 @@ class FormMapper: EntityMapper {
             return nil
         }
     }
-    
+
     func map(from dto: Warnings) -> WarningsEntity {
         return WarningsEntity(
             formValidation: FormValidationEntity(
@@ -159,6 +159,8 @@ struct PageModel: Identifiable {
     var mode: FormType
 }
 
+
+
 enum FieldEntity: Identifiable {
     case textBox((BaseFieldProtocol, TextBoxViewModel))
     case radio((BaseFieldProtocol, RadioButtonViewModel))
@@ -166,37 +168,18 @@ enum FieldEntity: Identifiable {
     case section((BaseFieldProtocol, SectionViewModel))
     case number((BaseFieldProtocol, NumberFieldViewModel))
 
-    var id: String {
+    private var baseField: BaseFieldProtocol {
         switch self {
-            case .page((let field, _)):
-                return field.fieldId
-            case .textBox((let field, _)):
-                return field.fieldId
-            case .radio((let field, _)):
-                return field.fieldId
-            case .section((let field, _)):
-                return field.fieldId
-            case .number(( let field, _)):
-                return field.fieldId
+        case .textBox((let field, _)),
+                .radio((let field, _)),
+                .page((let field, _)),
+                .section((let field, _)),
+                .number((let field, _)):
+            return field
         }
     }
-  
-    var parentId: String? {
-        switch self {
-        case .textBox((let field, _)):
-            return field.parentId
-        case .radio((let field, _)):
-            return field.parentId
-        case .page((let field, _)):
-            return field.parentId
-        case .section((let field, _)):
-            return field.parentId
-        case .number(( let field, _)):
-            return field.parentId
-        }
-    }
-    
-    var value: String? {
+
+        var value: String? {
         get {
             switch self {
             case .textBox((let field, _)),
@@ -233,11 +216,16 @@ enum FieldEntity: Identifiable {
         }
     }
 
-    var type: FieldType {
-        switch self {
-        case .textBox((let field, _)), .radio((let field, _)), .page((let field, _)), .section((let field, _)), .number((let field, _)):
-            return field.type
-        }
-    }
-    
+    var id: String { baseField.fieldId }
+
+    var parentId: String? { baseField.parentId }
+
+    var type: FieldType { baseField.type }
 }
+
+
+
+
+
+
+
