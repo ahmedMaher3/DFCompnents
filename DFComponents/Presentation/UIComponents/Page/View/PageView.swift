@@ -64,7 +64,7 @@ struct PageView: View {
                     }
                 ))
             .onAppear {
-                viewModel.checkingWarning(for: field.id, value: nil, isError: false)
+                viewModel.checkingWarning(for: field.id, value: nil)
             }
             .opacity(radioViewModel.control.hidden ? 0 : 1)
             
@@ -85,28 +85,28 @@ struct PageView: View {
             )
             .opacity(textBoxViewModel.control.hidden ? 0 : 1)
             
-            case .number((_, let numberViewModel)):
-                ControlFormBuilderView(
-                    headerView: {
-                        HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.numberFieldModel.basePropertiesNotInteractive))
-                    },
-                    controlType: {
-                        NumberFieldComponent(viewModel: numberViewModel)
-                    },
-                    footerView: {
-                        FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
-                    },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
-                        set: { newValue in
-                            if let newValue = newValue, !newValue.isEmpty {
-                                viewModel.warningsDictionary[field.id] = [newValue]
-                            } else {
-                                viewModel.warningsDictionary[field.id] = nil
-                            }
+        case .number((_, let numberViewModel)):
+            ControlFormBuilderView(
+                headerView: {
+                    HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.numberFieldModel.basePropertiesNotInteractive))
+                },
+                controlType: {
+                    NumberFieldComponent(viewModel: numberViewModel)
+                },
+                footerView: {
+                    FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
+                },
+                warningMessage: Binding<String?>(
+                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                    set: { newValue in
+                        if let newValue = newValue, !newValue.isEmpty {
+                            viewModel.warningsDictionary[field.id] = [newValue]
+                        } else {
+                            viewModel.warningsDictionary[field.id] = nil
                         }
-                    )
+                    }
                 )
+            )
         case .page((_, _)):
             EmptyView()
         case .section((_, let sectionViewModel)):
