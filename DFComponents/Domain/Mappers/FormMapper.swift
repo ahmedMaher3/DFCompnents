@@ -197,7 +197,7 @@ enum FieldEntity: Identifiable {
         }
     }
 
-    var validateViewModel: ValidateField? {
+    var validateViewModel: ValidateFieldStrategy? {
         switch self {
             case .number((_, let viewModel)):
                 return viewModel
