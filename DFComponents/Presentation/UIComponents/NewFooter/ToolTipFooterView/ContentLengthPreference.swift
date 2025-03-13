@@ -1,7 +1,8 @@
-struct ContentLengthPreference: PreferenceKey {
-    static var defaultValue: CGFloat { 0 }
+//
+//  ContentLengthPreference.swift
+//  DFComponents
+//
+//  Created by Eslam on 13/03/2025.
+//
 
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
-    }
-}
+
