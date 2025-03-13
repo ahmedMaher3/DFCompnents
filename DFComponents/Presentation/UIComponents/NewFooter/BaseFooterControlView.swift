@@ -56,43 +56,12 @@ struct BaseFooterControlView: View {
                     .padding(.trailing, 2)
                 }
             }
-            
             if addNote || addAttachment {
                 HStack {
-                    if addNote {
-                        Button(action: { showNotePopup.toggle() }) {
-                            Image(.addNote)
-                                .foregroundColor(.blue)
-                                .font(.title2)
-                        }
-                    }
-                    
-                    if addAttachment {
-                        AttachmentButton(showImagePicker: $showImagePicker, showFilePicker: $showFilePicker, selectedPhotos: $selectedPhotos)
-                    }
+                    renderNoteButton()
+                    renderAttachmentButton()
                 }
-                
-                if let note = savedNote, !(note.isEmpty ?? true) {
-                    VStack(alignment: .leading) {
-                        let noteText = note.count >= 80 ? note.prefix(80) + "..." : note
-                        Text(isExpanded ? note : noteText)
-                            .padding()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(Color.gray.opacity(0.1))
-                            .cornerRadius(8)
-                            .lineLimit(isExpanded ? nil : 2)
-                        Button(action: { isExpanded.toggle() }) {
-                            if note.count > 80 {
-                                Text(isExpanded ? "Less" : "More")
-                                    .foregroundColor(.blue)
-                                    .font(.caption)
-                                    .bold()
-                            }
-                        }
-                        .padding(.top, 4)
-                    }
-                }
-                
+                renderSavedNote()
                 FileListView(attachments: $attachments)
                 ImageGridView(attachments: $attachments)
             }
@@ -156,6 +125,44 @@ struct BaseFooterControlView: View {
         }
     }
     
+    @ViewBuilder
+    private func renderNoteButton() -> some View {
+        Button(action: { showNotePopup.toggle() }) {
+            Image(.addNote)
+                .foregroundColor(.blue)
+                .font(.title2)
+        }
+    }
+
+    @ViewBuilder
+    private func renderAttachmentButton() -> some View {
+        AttachmentButton(showImagePicker: $showImagePicker, showFilePicker: $showFilePicker, selectedPhotos: $selectedPhotos)
+    }
+
+    @ViewBuilder
+    private func renderSavedNote() -> some View {
+        if let note = savedNote, !(note.isEmpty ?? true) {
+            VStack(alignment: .leading) {
+                let noteText = note.count >= 80 ? note.prefix(80) + "..." : note
+                Text(isExpanded ? note : noteText)
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(8)
+                    .lineLimit(isExpanded ? nil : 2)
+                
+                if note.count > 80 {
+                    Button(action: { isExpanded.toggle() }) {
+                        Text(isExpanded ? "Less" : "More")
+                            .foregroundColor(.blue)
+                            .font(.caption)
+                            .bold()
+                    }
+                    .padding(.top, 4)
+                }
+            }
+        }
+    }
     /// **Update Answer in ViewModel**
     private func updateAnswer() {
         if case .number((_, let numberViewModel)) = viewModel.field {
