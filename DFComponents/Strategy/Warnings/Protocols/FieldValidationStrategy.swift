@@ -11,6 +11,6 @@ protocol FieldValidationStrategy {
         fieldEntity: FieldEntity,
         value: Any?,
         warnings: WarningsEntity?,
-        warningsDictionary: inout [String: [String]]
+        warningsMessagesDictionary: inout [String: [String]]
     )
 }

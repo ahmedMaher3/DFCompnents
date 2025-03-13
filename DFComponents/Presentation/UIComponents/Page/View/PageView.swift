@@ -31,9 +31,9 @@ struct PageView: View {
                     controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                     footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary?[field.id]?.joined(separator: "") },
+                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
                         set: { newValue in
-                            viewModel.warningsDictionary?[field.id] = newValue?.isEmpty == false
+                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
                             ? [newValue!] : nil
                         }
                     ))
@@ -50,9 +50,9 @@ struct PageView: View {
                     },
                     footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary?[field.id]?.joined(separator: "") },
+                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
                         set: { newValue in
-                            viewModel.warningsDictionary?[field.id] = newValue?.isEmpty == false
+                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
                             ? [newValue!] : nil
                         }
                     )
@@ -66,9 +66,9 @@ struct PageView: View {
                     },
                     controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
-                            .onReceive(numberViewModel.$warningsDictionary) { newValue in
+                            .onReceive(numberViewModel.$warningsMessagesDictionary) { newValue in
                                 Task { @MainActor in
-                                    viewModel.warningsDictionary = newValue
+                                    viewModel.warningsMessagesDictionary = newValue
                                 }
                             }
                     },
@@ -77,13 +77,13 @@ struct PageView: View {
                     },
                     warningMessage: Binding<String?>(
                         get: {
-                            return viewModel.warningsDictionary?[field.id]?.joined(separator: "\n")
+                            return viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "\n")
                         },
                         set: { newValue in
                             if let newValue = newValue, !newValue.isEmpty {
-                                viewModel.warningsDictionary?[field.id] = [newValue]
+                                viewModel.warningsMessagesDictionary?[field.id] = [newValue]
                             } else {
-                                viewModel.warningsDictionary?[field.id] = nil
+                                viewModel.warningsMessagesDictionary?[field.id] = nil
                             }
                         }
                     )

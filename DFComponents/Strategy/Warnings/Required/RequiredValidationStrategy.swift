@@ -12,17 +12,17 @@ struct RequiredValidationStrategy: FieldValidationStrategy {
         fieldEntity: FieldEntity,
         value: Any?,
         warnings: WarningsEntity?,
-        warningsDictionary: inout [String: [String]]) {
+        warningsMessagesDictionary: inout [String: [String]]) {
         let fieldId = fieldEntity.id
         guard let requiredWarning = warnings?.fieldValidation.required else {
-            warningsDictionary[fieldId] = nil
+            warningsMessagesDictionary[fieldId] = nil
             return
         }
         let isEmpty = checkValueIsEmpty(value: value)
         let warningMessages: [String]? = isEmpty ? [requiredWarning] : nil
         let isError = warningMessages != nil
         let errorMessage = warningMessages?.joined(separator: "\n")
-        warningsDictionary[fieldId] = warningMessages
+        warningsMessagesDictionary[fieldId] = warningMessages
             if let validateViewModel = fieldEntity.validateViewModel {
             Task { @MainActor in
                 validateViewModel.updateValidationState(

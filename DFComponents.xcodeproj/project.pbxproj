@@ -58,7 +58,7 @@
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
 		AA9A22182D80AF6600150E62 /* EntryLimitValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A22172D80AF6500150E62 /* EntryLimitValidationStrategy.swift */; };
 		AA9A221A2D80AF7100150E62 /* ValueLimitValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A22192D80AF7100150E62 /* ValueLimitValidationStrategy.swift */; };
-		AA9A221C2D80AF7C00150E62 /* GeneralValidationStrategyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategyProtocol.swift */; };
+		AA9A221C2D80AF7C00150E62 /* GeneralValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategy.swift */; };
 		AAB8572F2D6CA1A60013027A /* RuleFormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */; };
 		AAB857312D6CA2040013027A /* RuleExecuterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */; };
 		AAB857332D6CA2080013027A /* RuleEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857322D6CA2080013027A /* RuleEvaluator.swift */; };
@@ -235,7 +235,7 @@
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AA9A22172D80AF6500150E62 /* EntryLimitValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryLimitValidationStrategy.swift; sourceTree = "<group>"; };
 		AA9A22192D80AF7100150E62 /* ValueLimitValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueLimitValidationStrategy.swift; sourceTree = "<group>"; };
-		AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralValidationStrategyProtocol.swift; sourceTree = "<group>"; };
+		AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralValidationStrategy.swift; sourceTree = "<group>"; };
 		AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleFormBuilder.swift; sourceTree = "<group>"; };
 		AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleExecuterProtocol.swift; sourceTree = "<group>"; };
 		AAB857322D6CA2080013027A /* RuleEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEvaluator.swift; sourceTree = "<group>"; };
@@ -626,7 +626,7 @@
 			isa = PBXGroup;
 			children = (
 				AABE226C2D81FDE000CAF95A /* ValidateField.swift */,
-				AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategyProtocol.swift */,
+				AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategy.swift */,
 				AA0CF6382D80611500F4D452 /* FieldValidationStrategy.swift */,
 			);
 			path = Protocols;
@@ -1768,7 +1768,7 @@
 				AA9A22182D80AF6600150E62 /* EntryLimitValidationStrategy.swift in Sources */,
 				04C847C72D79D1FD0078B18F /* WelcomeView.swift in Sources */,
 				AAC3874E2D77185200118896 /* InputFieldComponent.swift in Sources */,
-				AA9A221C2D80AF7C00150E62 /* GeneralValidationStrategyProtocol.swift in Sources */,
+				AA9A221C2D80AF7C00150E62 /* GeneralValidationStrategy.swift in Sources */,
 				E4A901C82D65E84B007080AC /* FormUseCase.swift in Sources */,
 				E48CA1142D5CC72300A519ED /* AppColors.swift in Sources */,
 				A9474BC92D5CE42100031047 /* RequestModifier.swift in Sources */,

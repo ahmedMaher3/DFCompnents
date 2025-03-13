@@ -18,7 +18,7 @@ class FormViewModel: ObservableObject {
     @Published var fields: [FieldEntity] = []
     @Published var pages: [PageModel] = []
     @Published var rulesImp: RuleImp!
-    @Published var warningsDictionary: [String: [String]]? = [:]
+    @Published var warningsMessagesDictionary: [String: [String]]? = [:]
 
 
     func fetchForm() async {

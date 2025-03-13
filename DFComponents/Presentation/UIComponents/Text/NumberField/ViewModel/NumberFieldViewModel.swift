@@ -9,7 +9,7 @@ import Foundation
 final class NumberFieldViewModel: ObservableObject {
     @Published var numberFieldModel: NumberField
     @Published var characterCount: Int = 0
-    @Published var warningsDictionary: [String: [String]] = [:]
+    @Published var warningsMessagesDictionary: [String: [String]] = [:]
 
     private var validator: FieldValidationStrategy {
         return FieldEntity.number((numberFieldModel, self)).validatorField!
@@ -57,10 +57,10 @@ final class NumberFieldViewModel: ObservableObject {
             fieldEntity: .number((numberFieldModel, self)),
             value: value,
             warnings: warnings,
-            warningsDictionary: &warningsDictionary)
+            warningsMessagesDictionary: &warningsMessagesDictionary)
 
         let fieldId = numberFieldModel.fieldId ?? ""
-        let numberWarnings = warningsDictionary[fieldId] ?? []
+        let numberWarnings = warningsMessagesDictionary[fieldId] ?? []
         Task { @MainActor in 
             self.numberFieldModel.isError = !numberWarnings.isEmpty
             self.numberFieldModel.errorMessage = numberWarnings.joined(separator: "\n")

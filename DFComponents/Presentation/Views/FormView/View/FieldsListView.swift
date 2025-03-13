@@ -24,12 +24,12 @@ struct FieldsListView: View {
                     controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                     footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary?[field.id]?.joined(separator: "\n") },
+                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "\n") },
                         set: { newValue in
                             if let newValue = newValue, !newValue.isEmpty {
-                                viewModel.warningsDictionary?[field.id] = [newValue]
+                                viewModel.warningsMessagesDictionary?[field.id] = [newValue]
                             } else {
-                                viewModel.warningsDictionary?[field.id] = nil
+                                viewModel.warningsMessagesDictionary?[field.id] = nil
                             }
                         }
                     ))
@@ -43,12 +43,12 @@ struct FieldsListView: View {
                     },
                     footerView: { EmptyView() },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary?[field.id]?.joined(separator: "\n") },
+                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "\n") },
                         set: { newValue in
                             if let newValue = newValue, !newValue.isEmpty {
-                                viewModel.warningsDictionary?[field.id] = [newValue]
+                                viewModel.warningsMessagesDictionary?[field.id] = [newValue]
                             } else {
-                                viewModel.warningsDictionary?[field.id] = nil
+                                viewModel.warningsMessagesDictionary?[field.id] = nil
                             }
                         }
                     )
@@ -66,12 +66,12 @@ struct FieldsListView: View {
                         FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
                     },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary?[field.id]?.joined(separator: "\n") },
+                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "\n") },
                         set: { newValue in
                             if let newValue = newValue, !newValue.isEmpty {
-                                viewModel.warningsDictionary?[field.id] = [newValue]
+                                viewModel.warningsMessagesDictionary?[field.id] = [newValue]
                             } else {
-                                viewModel.warningsDictionary?[field.id] = nil
+                                viewModel.warningsMessagesDictionary?[field.id] = nil
                             }
                         }
                     )
