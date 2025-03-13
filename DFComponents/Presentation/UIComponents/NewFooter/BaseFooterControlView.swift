@@ -42,31 +42,7 @@ struct BaseFooterControlView: View {
                     
                     HStack(alignment: .center,spacing: 4) {
                         if !(tooltip.isEmpty ) {
-                            ZStack {
-                                Image(.pinToolTip)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 14, height: 14)
-                                    .foregroundColor(.gray)
-                                    .onTapGesture {
-                                        showPopover.toggle()
-                                    }
-                                    .popover(isPresented: $showPopover, attachmentAnchor: .point(.center), arrowEdge: .top) {
-                                        ZStack {
-                                            Color.primaryBlue
-                                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                                            VStack(alignment: .leading, spacing: 4) {
-                                                Text(tooltip)
-                                            }
-                                            .font(.system(size: 12))
-                                            .fontWeight(.bold)
-                                            .foregroundColor(.white)
-                                            .padding()
-                                        }
-                                        .background(.primaryBlue)
-                                        .presentationCompactAdaptation(.popover)
-                                    }
-                            }
+                            ToolTipFooterView(tooltip: tooltip)
                         }
                         if let characterCountText = characterCountText {
                             Text(characterCountText)

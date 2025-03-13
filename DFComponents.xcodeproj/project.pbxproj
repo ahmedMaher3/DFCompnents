@@ -110,6 +110,7 @@
 		E472DCAE2D8057E100B8FAF3 /* BaseHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DCAD2D8057E100B8FAF3 /* BaseHeaderViewModel.swift */; };
 		E472DCB12D80582000B8FAF3 /* BaseFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DCB02D80582000B8FAF3 /* BaseFooterViewModel.swift */; };
 		E472DCB42D8058B500B8FAF3 /* BaseFieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DCB32D8058B500B8FAF3 /* BaseFieldContainerView.swift */; };
+		E472DCB82D82C83900B8FAF3 /* ToolTipFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DCB72D82C83900B8FAF3 /* ToolTipFooterView.swift */; };
 		E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */; };
 		E489E8172D4A3B48007EA370 /* TextBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */; };
 		E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */; };
@@ -294,6 +295,7 @@
 		E472DCAD2D8057E100B8FAF3 /* BaseHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderViewModel.swift; sourceTree = "<group>"; };
 		E472DCB02D80582000B8FAF3 /* BaseFooterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFooterViewModel.swift; sourceTree = "<group>"; };
 		E472DCB32D8058B500B8FAF3 /* BaseFieldContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFieldContainerView.swift; sourceTree = "<group>"; };
+		E472DCB72D82C83900B8FAF3 /* ToolTipFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipFooterView.swift; sourceTree = "<group>"; };
 		E489E8132D4A3B17007EA370 /* TextBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxComponent.swift; sourceTree = "<group>"; };
 		E489E8162D4A3B48007EA370 /* TextBoxDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxDTO.swift; sourceTree = "<group>"; };
 		E489E81A2D4A4072007EA370 /* TextBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxViewModel.swift; sourceTree = "<group>"; };
@@ -935,6 +937,7 @@
 		E472DCA62D80550700B8FAF3 /* NewFooter */ = {
 			isa = PBXGroup;
 			children = (
+				E472DCB62D82C82200B8FAF3 /* ToolTipFooterView */,
 				E472DCA72D8056DB00B8FAF3 /* BaseFooterControlView.swift */,
 				E472DCAF2D80581300B8FAF3 /* ViewModel */,
 				E472DC902D802EB900B8FAF3 /* ImagesGridView */,
@@ -946,8 +949,8 @@
 		E472DCA92D80579D00B8FAF3 /* NewHeader */ = {
 			isa = PBXGroup;
 			children = (
-				E472DCAC2D8057D100B8FAF3 /* ViewModel */,
 				E472DCAA2D8057B300B8FAF3 /* BaseHeaderControlView.swift */,
+				E472DCAC2D8057D100B8FAF3 /* ViewModel */,
 			);
 			path = NewHeader;
 			sourceTree = "<group>";
@@ -982,6 +985,14 @@
 				E472DC9D2D80300B00B8FAF3 /* AttachmentButton.swift */,
 			);
 			path = AttachmentButton;
+			sourceTree = "<group>";
+		};
+		E472DCB62D82C82200B8FAF3 /* ToolTipFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				E472DCB72D82C83900B8FAF3 /* ToolTipFooterView.swift */,
+			);
+			path = ToolTipFooterView;
 			sourceTree = "<group>";
 		};
 		E489E8122D4A3AFC007EA370 /* TextBoxComponent */ = {
@@ -1704,6 +1715,7 @@
 				A9474BD62D5CEF7E00031047 /* GlobalErrorHandler.swift in Sources */,
 				E48CA1172D5CC72300A519ED /* BorderStyling.swift in Sources */,
 				A95D7A262D4B8127004FB6CA /* DateDTO.swift in Sources */,
+				E472DCB82D82C83900B8FAF3 /* ToolTipFooterView.swift in Sources */,
 				AAD0996B2D5CCA23007A6CE9 /* RulesControlsViewModel.swift in Sources */,
 				E4A901A22D5E01E9007080AC /* AlamofireService.swift in Sources */,
 				E4A901532D50DC07007080AC /* MapView.swift in Sources */,
