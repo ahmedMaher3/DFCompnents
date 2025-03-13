@@ -14,10 +14,10 @@ struct NumberFieldComponent: View {
     var body: some View {
         VStack {
             ZStack {
-                InputNumberView(viewModel: viewModel,
-                                isTextFieldFocused: $isTextFieldFocused)
+                    InputNumberView(viewModel: viewModel, isTextFieldFocused: $isTextFieldFocused)
                 /// Stepper
-                if let step = viewModel.numberFieldModel.step, step != 0 {
+                if let step = viewModel.numberFieldModel.step,
+                   step != 0 {
                     StepperNumberFieldView(viewModel: viewModel,
                                            isTextFieldFocused: $isTextFieldFocused)
                 } else {

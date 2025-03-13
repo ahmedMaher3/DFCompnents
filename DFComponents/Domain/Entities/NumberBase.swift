@@ -11,7 +11,6 @@ protocol NumberBaseDelegate: InteractiveFieldDelegate {
 class NumberBase: InteractiveFieldDelegate {
     var base: InteractiveField
     var baseProperties: BaseProperties?
-    var fieldWarning: WarningsEntity?
 
     let step: Int?
     let decimalPlaces: Int?

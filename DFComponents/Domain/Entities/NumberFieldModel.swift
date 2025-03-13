@@ -35,6 +35,7 @@ class NumberField: NumberBaseDelegate {
             self.minimumValue = nil
             self.maximumValue = nil
             self.numberAnswer = nil
+            self.fieldWarning = nil
         }
     }
 }

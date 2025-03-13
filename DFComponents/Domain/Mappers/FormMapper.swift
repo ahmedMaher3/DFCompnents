@@ -201,13 +201,13 @@ enum FieldEntity: Identifiable {
         switch self {
             case .number((_, let viewModel)):
                 return viewModel
-            case .textBox((_, let viewModel)):
+            case .textBox((_,_)):
                 break
-            case .radio((_,  let viewModel)):
+            case .radio((_,_)):
                 break
-            case .page((_,  let viewModel)):
+            case .page((_,_)):
                 break
-            case .section((_,  let viewModel)):
+            case .section((_,_)):
                 break
         }
         return nil

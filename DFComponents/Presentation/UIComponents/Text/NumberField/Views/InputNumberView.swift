@@ -35,16 +35,16 @@ struct InputNumberView: View {
             .keyboardType(.decimalPad)
             .focused($isTextFieldFocused)
             .toolbar {
-                ToolbarItem(placement: .keyboard) {
-                    HStack {
-                        Spacer()
-                        Button("Done") {
-                            print("Base Answer is:\(viewModel.baseAnswer)")
-                            isTextFieldFocused = false
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button {
+                        print("Base Answer is:\(viewModel.baseAnswer)")
+                        isTextFieldFocused.toggle()
+                    } label: {
+                        Text("Done")
                     }
                 }
             }
-        }
     }
 }
 

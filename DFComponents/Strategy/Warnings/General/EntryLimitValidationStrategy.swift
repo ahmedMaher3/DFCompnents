@@ -17,8 +17,7 @@ final class EntryLimitValidationStrategy: GeneralValidationStrategyProtocol {
 
     func validate(
         value: String?,
-        fieldWarnings: inout [String]
-    ) {
+        fieldWarnings: inout [String]) {
         guard let valueField = value else { return print("") }
         let inputValue = valueField.replacingOccurrences(of: ".", with: "")
 

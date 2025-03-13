@@ -51,6 +51,7 @@ final class NumberFieldViewModel: ObservableObject {
         ? numberFieldModel.numberAnswer?.value?.split(separator: ".")[1].count : 0
         return numberOfDecimals ?? 0 <= decimalPlaces
     }
+    
     func validateInput(value: String, warnings: WarningsEntity?) {
         validator.validate(
             fieldEntity: .number((numberFieldModel, self)),

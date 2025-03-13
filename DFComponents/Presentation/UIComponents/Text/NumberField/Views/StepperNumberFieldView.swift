@@ -9,7 +9,6 @@ import SwiftUI
 
 struct StepperNumberFieldView: View {
     @ObservedObject var viewModel: NumberFieldViewModel
-//    @EnvironmentObject var formViewModel:FormViewModel
     @FocusState.Binding var isTextFieldFocused: Bool
 
     var body: some View {
