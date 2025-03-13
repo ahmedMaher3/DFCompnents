@@ -196,6 +196,22 @@ enum FieldEntity: Identifiable {
                 return nil
         }
     }
+
+    var validateViewModel: ValidateField? {
+        switch self {
+            case .number((_, let viewModel)):
+                return viewModel
+            case .textBox((_, let viewModel)):
+                break
+            case .radio((_,  let viewModel)):
+                break
+            case .page((_,  let viewModel)):
+                break
+            case .section((_,  let viewModel)):
+                break
+        }
+        return nil
+    }
 }
 
 

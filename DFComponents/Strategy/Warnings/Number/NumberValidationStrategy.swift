@@ -48,7 +48,7 @@ final class NumberValidationStrategy: FieldValidationStrategy {
         // Decimal Places
         if numberValue.contains("."),
            !validateDecimalPlaces(numberValue, maxDecimals: numberViewModel.numberFieldModel.decimalPlaces) {
-            fieldWarnings.append(numberWarnings.custom.replacingOccurrences(of: "{0}", with: "Invalid decimal places"))
+            fieldWarnings.append(numberWarnings.custom.replacingOccurrences(of: "{0}", with: "\(numberViewModel.numberFieldModel.decimalPlaces ?? 0)"))
         }
 
         // Value & Entry Limits
@@ -70,8 +70,7 @@ final class NumberValidationStrategy: FieldValidationStrategy {
             numberViewModel.numberFieldModel.isError = !fieldWarnings.isEmpty
             numberViewModel.numberFieldModel.errorMessage = fieldWarnings.isEmpty ? nil : fieldWarnings.joined(separator: "\n")
         }
-        numberViewModel.warningsDictionary = warningsDictionary
-        print("display please fieldWarnings Message:\(numberViewModel.warningsDictionary)")
+//        numberViewModel.warningsDictionary = warningsDictionary
     }
     private func validateDecimalPlaces(_ value: String, maxDecimals: Int?) -> Bool {
         guard let maxDecimals = maxDecimals, let decimalPart = value.split(separator: ".").last else { return true }

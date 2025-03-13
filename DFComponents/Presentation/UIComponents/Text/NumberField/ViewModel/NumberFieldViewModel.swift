@@ -9,13 +9,8 @@ import Foundation
 final class NumberFieldViewModel: ObservableObject {
     @Published var numberFieldModel: NumberField
     @Published var characterCount: Int = 0
-//    @Published var warningsDictionary: [String: [String]]? = [:]
-    @Published var warningsDictionary: [String: [String]] = [:] {
-            didSet {
-                objectWillChange.send()  // 🚀 Force SwiftUI to detect change
-                print("warningsDictionary changed: \(warningsDictionary)")
-            }
-        }
+    @Published var warningsDictionary: [String: [String]] = [:]
+
     private var validator: FieldValidationStrategy {
         return FieldEntity.number((numberFieldModel, self)).validatorField!
     }
@@ -25,6 +20,9 @@ final class NumberFieldViewModel: ObservableObject {
         set {
             numberFieldModel.base.answer = newValue
             numberFieldModel.numberAnswer = newValue
+            guard let countDigit = numberFieldModel.numberAnswer?.value?.count
+            else { return print("Value not valid") }
+            characterCount = countDigit > 0 ? countDigit : 0
         }
     }
 
@@ -53,57 +51,18 @@ final class NumberFieldViewModel: ObservableObject {
         ? numberFieldModel.numberAnswer?.value?.split(separator: ".")[1].count : 0
         return numberOfDecimals ?? 0 <= decimalPlaces
     }
-/*
-    func validateInput(value: String, warnings: WarningsEntity?,
-                       warningsDictionary: inout [String: [String]]?) {
+    func validateInput(value: String, warnings: WarningsEntity?) {
         validator.validate(
             fieldEntity: .number((numberFieldModel, self)),
             value: value,
             warnings: warnings,
-            warningsDictionary: &warningsDictionary
-        )
-        let fieldId = numberFieldModel.fieldId ?? ""
-        let localWarnings = warningsDictionary?[fieldId] ?? []
-
-        DispatchQueue.main.async {
-            self.numberFieldModel.isError = !(localWarnings.isEmpty)
-            self.numberFieldModel.errorMessage = localWarnings.joined(separator: "\n")
-        }
-    }
-    */
-    /*
-    func validateInput(value: String) {
-        var warningsDictionary: [String : [String]]? = [:]
-
-        validator.validate(
-            fieldEntity: .number((numberFieldModel, self)),
-            value: value,
-            warnings: nil,  // No external warnings
-            warningsDictionary: &warningsDictionary
-        )
+            warningsDictionary: &warningsDictionary)
 
         let fieldId = numberFieldModel.fieldId ?? ""
-        let localWarnings = warningsDictionary?[fieldId] ?? []
-
-        DispatchQueue.main.async {
-            self.numberFieldModel.isError = !(localWarnings.isEmpty)
-            self.numberFieldModel.errorMessage = localWarnings.joined(separator: "\n")
+        let numberWarnings = warningsDictionary[fieldId] ?? []
+        Task { @MainActor in 
+            self.numberFieldModel.isError = !numberWarnings.isEmpty
+            self.numberFieldModel.errorMessage = numberWarnings.joined(separator: "\n")
         }
     }
-    */
-    func validateInput(value: String, warnings: WarningsEntity?) {
-           validator.validate(
-               fieldEntity: .number((numberFieldModel, self)),
-               value: value,
-               warnings: warnings,
-               warningsDictionary: &warningsDictionary
-           )
-
-           let fieldId = numberFieldModel.fieldId ?? ""
-            let localWarnings = warningsDictionary[fieldId] ?? []
-           DispatchQueue.main.async {
-               self.numberFieldModel.isError = !localWarnings.isEmpty
-               self.numberFieldModel.errorMessage = localWarnings.joined(separator: "\n")
-           }
-       }
 }

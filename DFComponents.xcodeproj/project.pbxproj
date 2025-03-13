@@ -63,6 +63,8 @@
 		AAB857312D6CA2040013027A /* RuleExecuterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */; };
 		AAB857332D6CA2080013027A /* RuleEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857322D6CA2080013027A /* RuleEvaluator.swift */; };
 		AAB857352D6CA20B0013027A /* DefaultVal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857342D6CA20B0013027A /* DefaultVal.swift */; };
+		AABE226D2D81FDE000CAF95A /* ValidateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABE226C2D81FDE000CAF95A /* ValidateField.swift */; };
+		AABE226F2D82005C00CAF95A /* NumberViewModelExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABE226E2D82005C00CAF95A /* NumberViewModelExtention.swift */; };
 		AAC387492D76F51000118896 /* NumberFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC387482D76F51000118896 /* NumberFieldComponent.swift */; };
 		AAC3874E2D77185200118896 /* InputFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3874D2D77185200118896 /* InputFieldComponent.swift */; };
 		AAC387522D772F1900118896 /* InputFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC387512D772F1900118896 /* InputFieldViewModel.swift */; };
@@ -238,6 +240,8 @@
 		AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleExecuterProtocol.swift; sourceTree = "<group>"; };
 		AAB857322D6CA2080013027A /* RuleEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEvaluator.swift; sourceTree = "<group>"; };
 		AAB857342D6CA20B0013027A /* DefaultVal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultVal.swift; sourceTree = "<group>"; };
+		AABE226C2D81FDE000CAF95A /* ValidateField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateField.swift; sourceTree = "<group>"; };
+		AABE226E2D82005C00CAF95A /* NumberViewModelExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberViewModelExtention.swift; sourceTree = "<group>"; };
 		AAC387482D76F51000118896 /* NumberFieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFieldComponent.swift; sourceTree = "<group>"; };
 		AAC3874D2D77185200118896 /* InputFieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldComponent.swift; sourceTree = "<group>"; };
 		AAC387512D772F1900118896 /* InputFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldViewModel.swift; sourceTree = "<group>"; };
@@ -621,6 +625,7 @@
 		AA0CF6372D80610200F4D452 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				AABE226C2D81FDE000CAF95A /* ValidateField.swift */,
 				AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategyProtocol.swift */,
 				AA0CF6382D80611500F4D452 /* FieldValidationStrategy.swift */,
 			);
@@ -725,6 +730,7 @@
 		AAC387532D772F2A00118896 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				AABE226E2D82005C00CAF95A /* NumberViewModelExtention.swift */,
 				AAC387542D772F3A00118896 /* NumberFieldViewModel.swift */,
 			);
 			path = ViewModel;
@@ -1639,6 +1645,7 @@
 				A9EA54302D6C891D00C2A9E2 /* FieldProperties.swift in Sources */,
 				A9BF46A52D538EC9003F2333 /* ComplicatedView.swift in Sources */,
 				E4A9019F2D5E01E9007080AC /* Network.swift in Sources */,
+				AABE226D2D81FDE000CAF95A /* ValidateField.swift in Sources */,
 				E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */,
 				E44926C42D4B8AD200EA5D5E /* FormView.swift in Sources */,
 				AAB857352D6CA20B0013027A /* DefaultVal.swift in Sources */,
@@ -1703,6 +1710,7 @@
 				E48C9FFE2D5374D300A519ED /* AKMaskFieldBrackets.swift in Sources */,
 				E48CA0032D5374D300A519ED /* AKMaskFieldBlockCharacter.swift in Sources */,
 				AAE9E1FE2D779D64009E5EDF /* HeaderComponentViewModel.swift in Sources */,
+				AABE226F2D82005C00CAF95A /* NumberViewModelExtention.swift in Sources */,
 				AA9A221A2D80AF7100150E62 /* ValueLimitValidationStrategy.swift in Sources */,
 				E4A9014A2D4BAD2C007080AC /* SplashView.swift in Sources */,
 				AAF1B17B2D7648F100DC44B4 /* FieldValidationEntity.swift in Sources */,

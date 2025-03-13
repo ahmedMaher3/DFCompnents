@@ -67,7 +67,7 @@ struct PageView: View {
                     controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
                             .onReceive(numberViewModel.$warningsDictionary) { newValue in
-                                DispatchQueue.main.async {
+                                Task { @MainActor in
                                     viewModel.warningsDictionary = newValue
                                 }
                             }
