@@ -88,7 +88,7 @@ struct ImageListView: View {
                                                 toggleSelection(for: attachment.id)
                                             }
 
-                                        Image(systemName: selectedImages.contains(attachment.id) ? "checkmark.circle.fill" : "circle")
+                                        Image(selectedImages.contains(attachment.id) ? .selected : .unSelected)
                                             .resizable()
                                             .frame(width: 24, height: 24)
                                             .foregroundColor(selectedImages.contains(attachment.id) ? .blue : .gray)

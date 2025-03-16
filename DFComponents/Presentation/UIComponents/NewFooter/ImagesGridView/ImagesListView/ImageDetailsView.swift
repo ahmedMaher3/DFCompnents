@@ -21,9 +21,8 @@ struct ImageDetailView: View {
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }) {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.blue)
-                        .padding()
+                    Image(.arrowLeft)
+                        .padding(24)
                 }
 
                 Spacer()

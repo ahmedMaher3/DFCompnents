@@ -141,7 +141,7 @@ struct BaseFooterControlView: View {
 
     @ViewBuilder
     private func renderSavedNote() -> some View {
-        if let note = savedNote, !(note.isEmpty ?? true) {
+        if let note = savedNote, !(note.isEmpty ) {
             VStack(alignment: .leading) {
                 let noteText = note.count >= 80 ? note.prefix(80) + "..." : note
                 Text(isExpanded ? note : noteText)
