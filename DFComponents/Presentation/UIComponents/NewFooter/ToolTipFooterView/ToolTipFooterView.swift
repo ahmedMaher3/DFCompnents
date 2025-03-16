@@ -81,7 +81,8 @@ struct ToolTipFooterView: View {
                 }
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(height: textHeight)
-                .padding()
+                .padding(.vertical, 8)
+                .padding(.horizontal, 4)
                 .presentationCompactAdaptation(.none)
         }
         .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -91,8 +92,8 @@ struct ToolTipFooterView: View {
 }
 
 #Preview {
-    //        ToolTipFooterView(tooltip: "test test test testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test")
-    //            ToolTipFooterView(tooltip: "test test test testtest testtest testtest testtest testtest")
+//            ToolTipFooterView(tooltip: "test test test testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test")
+//                ToolTipFooterView(tooltip: "test test test testtest testtest testtest testtest testtest")
     ToolTipFooterView(tooltip: "test test")
 
 }
