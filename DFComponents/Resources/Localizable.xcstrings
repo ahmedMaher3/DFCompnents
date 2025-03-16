@@ -10,6 +10,22 @@
     "%lld" : {
 
     },
+    "%lld %% Complete" : {
+
+    },
+    "%lld Photo%@ Selected" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld Photo%2$@ Selected"
+          }
+        }
+      }
+    },
+    "%lld Photos" : {
+
+    },
     "%lld Questions" : {
 
     },
@@ -23,6 +39,9 @@
         }
       }
     },
+    "+%lld" : {
+
+    },
     "|| Attachment" : {
 
     },
@@ -32,7 +51,16 @@
     "100" : {
 
     },
+    "Add Note" : {
+
+    },
+    "and Your Maximum Digit Length is %@" : {
+
+    },
     "and Your Maximum Digit Length is %lld" : {
+
+    },
+    "Back" : {
 
     },
     "Cancel" : {
@@ -51,6 +79,9 @@
 
     },
     "Dates Available" : {
+
+    },
+    "Deselect All" : {
 
     },
     "Done" : {
@@ -100,6 +131,12 @@
     "Huge List" : {
 
     },
+    "Image Detail" : {
+
+    },
+    "Images" : {
+
+    },
     "InputFieldComponent" : {
 
     },
@@ -107,6 +144,9 @@
 
     },
     "Last Name: %@" : {
+
+    },
+    "Less" : {
 
     },
     "light" : {
@@ -118,13 +158,38 @@
     "Lower: %.2f" : {
 
     },
+    "More" : {
+
+    },
+    "Next" : {
+
+    },
     "Note" : {
 
+    },
+    "Page %lld / %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Page %1$lld / %2$lld"
+          }
+        }
+      }
     },
     "Pick a File" : {
 
     },
+    "Save" : {
+
+    },
     "Search countries" : {
+
+    },
+    "Select" : {
+
+    },
+    "Select All" : {
 
     },
     "Select date" : {
@@ -137,6 +202,12 @@
 
     },
     "Settings" : {
+
+    },
+    "Show %lld more files" : {
+
+    },
+    "Show less" : {
 
     },
     "Show Less" : {
@@ -157,7 +228,16 @@
     "system" : {
 
     },
+    "Take Photo" : {
+
+    },
     "Tap to select an image" : {
+
+    },
+    "Upload File" : {
+
+    },
+    "Upload Image" : {
 
     },
     "Upper: %.2f" : {
@@ -167,6 +247,9 @@
 
     },
     "Where do you live " : {
+
+    },
+    "Your Minimum Digit Length is %@" : {
 
     },
     "Your Minimum Digit Length is %lld" : {

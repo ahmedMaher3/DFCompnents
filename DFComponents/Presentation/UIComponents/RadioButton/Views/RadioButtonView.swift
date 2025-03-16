@@ -22,9 +22,8 @@ struct RadioButtonView: View {
                     .frame(width: 24, height: 24)
                     .foregroundColor(item.isSelected ?? false ? .blue : .gray)
                     .onTapGesture {
-
-                       radioButtonVM.selectOption(item)
-                        formViewModel.updateTextBoxValue(fieldId: "91975fe4-40cc-4a4b-9c81-3eb0bed3ddb5", newValue: radioButtonVM.selectedValue)
+                        radioButtonVM.selectOption(item)
+                        formViewModel.applyFieldRules(by: radioButtonVM.control.fieldId)
                     }
                     Text(item.name)
                         .fontWeight(.medium)

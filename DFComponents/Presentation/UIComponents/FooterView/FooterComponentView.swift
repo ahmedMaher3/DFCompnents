@@ -5,6 +5,8 @@
 //  Created by Eslam on 04/03/2025.
 //
 import SwiftUI
+import PhotosUI
+import UniformTypeIdentifiers
 
 struct FooterComponentView: View {
     @StateObject var viewModel: FooterComponentViewModel

@@ -9,7 +9,7 @@ import Foundation
 
 protocol BasePropertiesProtocol: Codable {
     var label: String? { get }
-    var subLabel: String? { get }
+    var sublabel: String? { get }
     var labelPosition: String? { get }
     var tooltip: String? { get }
     var hidden: Bool? { get set }
@@ -18,7 +18,7 @@ protocol BasePropertiesProtocol: Codable {
 
 struct BaseProperties: BasePropertiesProtocol {
     var label: String?
-    var subLabel: String?
+    var sublabel: String?
     var labelPosition: String?
     var tooltip: String?
     var hidden: Bool?
@@ -27,7 +27,7 @@ struct BaseProperties: BasePropertiesProtocol {
     enum CodingKeys: String, CodingKey {
         //label,
         case  tooltip, hidden, required
-        case subLabel = "sublabel"
+        case sublabel = "sublabel"
         case labelPosition
     }
 }
@@ -65,6 +65,12 @@ protocol TextBaseProperties: InteractivePropertiesProtocol {
     var textCase: String? { get }
 }
 
+protocol SectionPropertiesProtocol: BasePropertiesProtocol {
+    var allowCollapse: Bool? { get }
+    var defaultMode: String? { get }
+    var icon: String? { get }
+}
+
 protocol MCQPropertiesProtocol: InteractivePropertiesProtocol {
     var options: [MCQOption] { get }
     var defaultAnswer: BaseAnswerMCQ? { get }
@@ -74,6 +80,18 @@ protocol MCQPropertiesProtocol: InteractivePropertiesProtocol {
     var otherOptionText: String? { get }
     var naOption: Bool? { get }
     var naOptionText: String? { get }
+}
+
+struct SectionProperties: SectionPropertiesProtocol {
+    var sublabel: String?
+    var label: String?
+    var labelPosition: String?
+    var tooltip: String?
+    var hidden: Bool?
+    var required: Bool?
+    let allowCollapse: Bool?
+    let defaultMode: String?
+    let icon: String?
 }
 
 struct TextBoxProperties: TextBaseProperties {
@@ -91,7 +109,7 @@ struct TextBoxProperties: TextBaseProperties {
     let attachmentType: AttachmentType?
     let disabled: Bool?
     let label: String?
-    let subLabel: String?
+    let sublabel: String?
     let labelPosition: String?
     let tooltip: String?
     var hidden: Bool?
@@ -118,7 +136,7 @@ struct NumberProperties: InteractivePropertiesProtocol {
     var attachmentType: AttachmentType?
     var disabled: Bool?
     var label: String?
-    var subLabel: String?
+    var sublabel: String?
     var labelPosition: String?
     var tooltip: String?
     var hidden: Bool?
@@ -141,7 +159,7 @@ struct RadioProperties: MCQPropertiesProtocol {
     let attachmentType: AttachmentType?
     let disabled: Bool?
     let label: String?
-    let subLabel: String?
+    let sublabel: String?
     let labelPosition: String?
     let tooltip: String?
     var hidden: Bool?

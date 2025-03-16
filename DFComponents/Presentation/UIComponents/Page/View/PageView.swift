@@ -8,17 +8,44 @@
 import SwiftUI
 
 struct PageView: View {
-    var controls: [FieldEntity]
+
     @EnvironmentObject var viewModel: FormViewModel
+    @ObservedObject var pageViewModel: PageViewModel
+
+    init(pageViewModel: PageViewModel) {
+        self.pageViewModel = pageViewModel
+    }
 
     var body: some View {
-        VStack(spacing: 20) {
-            ForEach(controls, id: \.id) { field in
-                renderField(for: field)
-                    .environmentObject(viewModel)
+
+        if self.viewModel.mode == .classic {
+            List {
+                ForEach(self.pageViewModel.controls, id: \.id) { field in
+                    renderField(for: field)
+                        .environmentObject(viewModel)
+                }
             }
+            .buttonStyle(PlainButtonStyle()) // to make all button actions work properly within a list
+            .listStyle(PlainListStyle())
+            .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
+        } else {
+
+            GeometryReader { geometry in
+                ScrollView {
+                    VStack {
+                        Spacer()
+                        ForEach(self.pageViewModel.controls, id: \.id) { field in
+                            renderField(for: field)
+                                .frame(maxWidth: .infinity)
+                                .environmentObject(viewModel)
+                        }
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity, minHeight: geometry.size.height) // Uses container height
+                }
+            }
+
         }
-        .padding()
     }
 
     /// Controls
@@ -26,10 +53,8 @@ struct PageView: View {
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
             case .radio((_, let radioViewModel)):
-                ControlFormBuilderView(
-                    headerView: { EmptyView() },
-                    controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
-                    footerView: { EmptyView() },
+                BaseFieldContainerView(
+                    fieldEntity: field, controlType: {RadioButtonView(radioButtonVM: radioViewModel) },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
                         set: { newValue in
@@ -37,34 +62,23 @@ struct PageView: View {
                             ? [newValue!] : nil
                         }
                     ))
-                //                .onAppear {
-                //                    viewModel.checkingWarning(for: field.id, value: nil)
-                //                }
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
 
             case .textBox((_, let textBoxViewModel)):
-                ControlFormBuilderView(
-                    headerView: { EmptyView() },
-                    controlType: {
-                        TextBoxComponent(viewModel: textBoxViewModel)
-                    },
-                    footerView: { EmptyView() },
+                BaseFieldContainerView(
+                    fieldEntity: field, controlType: { TextBoxComponent(viewModel: textBoxViewModel) },
                     warningMessage: Binding<String?>(
                         get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
                         set: { newValue in
                             viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
                             ? [newValue!] : nil
                         }
-                    )
-                )
+                    ))
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
 
             case .number((_, let numberViewModel)):
-                ControlFormBuilderView(
-                    headerView: {
-                        HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.numberFieldModel.basePropertiesNotInteractive))
-                    },
-                    controlType: {
+                BaseFieldContainerView(
+                    fieldEntity: field, controlType: {
                         NumberFieldComponent(viewModel: numberViewModel)
                             .onReceive(numberViewModel.$warningsMessagesDictionary) { newValue in
                                 Task { @MainActor in
@@ -72,26 +86,21 @@ struct PageView: View {
                                 }
                             }
                     },
-                    footerView: {
-                        FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
-                    },
                     warningMessage: Binding<String?>(
-                        get: {
-                            return viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "\n")
-                        },
+                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
                         set: { newValue in
-                            if let newValue = newValue, !newValue.isEmpty {
-                                viewModel.warningsMessagesDictionary?[field.id] = [newValue]
-                            } else {
-                                viewModel.warningsMessagesDictionary?[field.id] = nil
-                            }
+                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
+                            ? [newValue!] : nil
                         }
-                    )
-                )
+                    ))
             case .page((_, _)):
                 EmptyView()
             case .section((_, let sectionViewModel)):
-                SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
+                SectionView(sectionViewModel: sectionViewModel, fields: sectionViewModel.controls, isExpanded: sectionViewModel.sectionField.isExpandedStatus)
+                    .onReceive(sectionViewModel.objectWillChange) { updatedValue in
+                        print("updated Values:- \(sectionViewModel.controls)")
+                    }
         }
     }
+
 }

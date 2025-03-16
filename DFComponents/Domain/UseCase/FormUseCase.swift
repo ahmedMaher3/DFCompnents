@@ -49,9 +49,5 @@ class FormBuildUseCase: FormBuildUseCaseProtocol {
         return entityMapper.map(from: dto)
     }
 
-//    func map(dto: Schema) -> [FieldEntity] {
-//        let entityMapper = mapper as! FormMapper
-//        return entityMapper.map(from: dto)
-//    }
 
 }

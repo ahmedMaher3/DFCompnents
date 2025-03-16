@@ -23,9 +23,59 @@ protocol BaseFieldProtocol {
 
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer?
     func getAnswerString() -> String
-
 }
 
+protocol SectionFieldProtocol: BaseFieldProtocol {
+    var allowCollapse: Bool? { get }
+    var defaultMode: String? { get }
+    var icon: String? { get }
+    var isExpandedStatus: Bool { get set }
+}
+
+class SectionField: SectionFieldProtocol {
+
+    func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? { nil }
+    func getAnswerString() -> String { "" }
+
+    var allowCollapse: Bool?
+    var defaultMode: String?
+    var icon: String?
+    var isExpandedStatus: Bool = false
+    var type: FieldType!
+    var fieldId: String!
+    var label: String!
+    var parentId: String?
+    var index: Int!
+    var answer: Any?
+    var isError: Bool!
+    var rules: FieldRules?
+    var hidden: Bool!
+    var disabled: Bool!
+    var errorMessage: String!
+
+    init(field: Field?) {
+        guard let field = field else { return }
+
+        // Initialize base properties
+        self.type = field.type
+        self.fieldId = field.id
+        self.label = field.properties.label
+        self.parentId = field.parentId
+        self.index = 0
+        self.isError = false
+        self.rules = field.rules
+        self.hidden = false
+        self.disabled = false
+
+        // Initialize interactive properties
+        if let properties = field.properties as? SectionPropertiesProtocol {
+            self.allowCollapse = properties.allowCollapse
+            self.defaultMode = properties.defaultMode
+            self.icon = properties.icon
+        }
+
+    }
+}
 
 protocol InteractiveFieldProtocol: BaseFieldProtocol {
     var required: Bool! { get }
@@ -76,7 +126,7 @@ struct InteractiveField: InteractiveFieldProtocol {
         self.type = field.type
         self.fieldId = field.id
         self.label = field.properties.label
-        self.sublabel = field.properties.subLabel
+        self.sublabel = field.properties.sublabel
         self.parentId = field.parentId
         self.index = 0
         self.isError = false
@@ -89,7 +139,7 @@ struct InteractiveField: InteractiveFieldProtocol {
         if let properties = field.properties as? InteractivePropertiesProtocol {
             self.required = properties.required
             self.placeHolder = properties.placeholder
-            self.sublabel = properties.subLabel
+            self.sublabel = properties.sublabel
             self.tooltip = properties.tooltip
             self.addNote = properties.addNote ?? false
             self.addAttachment = properties.addAttachment ?? false
@@ -177,12 +227,11 @@ extension InteractiveFieldDelegate {
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? { base.handleSavedAnswer(sAnswer) }
     func getAnswerString() -> String { base.getAnswerString() }
     func isAnswered() -> Bool { base.isAnswered() }
-    func updateWarnings(_ warnings: [String]?) {
-    }
 }
 
 class TextBase: InteractiveFieldDelegate {
     var base: InteractiveField
+
     let allowSpellCheck: Bool?
     let maximumLength: Int?
     let minimumLength: Int?
@@ -226,6 +275,7 @@ extension TextBaseDelegate {
 // 5. Implementation of specific field types becomes very clean
 class TextBoxField: TextBaseDelegate {
     var textBase: TextBase
+
     // TextBox specific properties only
     let regex: String?
     let mask: String?
@@ -266,33 +316,32 @@ class TextBoxField: TextBaseDelegate {
 }
 
 class PageField: BaseFieldProtocol {
-
     var type: FieldType!
-    
+
     var fieldId: String!
-    
+
     var label: String!
-    
+
     var parentId: String?
-    
+
     var index: Int!
-    
+
     var answer: Any?
-    
+
     var isError: Bool!
 
     var errorMessage: String!
 
     var rules: FieldRules?
-    
+
     var hidden: Bool!
-    
+
     var disabled: Bool!
 
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
         return nil
     }
-    
+
     func getAnswerString() -> String {
         return ""
     }
@@ -304,47 +353,6 @@ class PageField: BaseFieldProtocol {
     }
 
 }
-
-class SectionField: BaseFieldProtocol {
-    var type: FieldType!
-    
-    var fieldId: String!
-    
-    var label: String!
-    
-    var parentId: String?
-    
-    var index: Int!
-    
-    var answer: Any?
-    
-    var isError: Bool!
-
-    var errorMessage: String!
-
-    var rules: FieldRules?
-    
-    var hidden: Bool!
-    
-    var disabled: Bool!
-
-    func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
-        return nil
-    }
-    
-    func getAnswerString() -> String {
-        return ""
-    }
-
-    init(field: Field?) {
-        self.type = field?.type
-        self.fieldId = field?.id ?? ""
-        self.label = field?.properties.label ?? ""
-        self.parentId = field?.parentId ?? ""
-    }
-
-}
-
 
 class TextAreaField: TextBaseDelegate {
     var textBase: TextBase
@@ -366,6 +374,7 @@ class TextAreaField: TextBaseDelegate {
 
 class MCQBase: InteractiveFieldDelegate {
     var base: InteractiveField
+
     var options: [MCQOption]
     var defaultAnswer: BaseAnswerMCQ?
     var predefinedOptions: String?

@@ -4,7 +4,6 @@
 //
 //  Created by Eslam on 05/02/2025.
 //
-
 import SwiftUI
 
 struct ControlFormBuilderView<Header: View, Control: View, Footer: View>: View {
@@ -44,3 +43,4 @@ struct ControlFormBuilderView<Header: View, Control: View, Footer: View>: View {
         .cornerRadius(8)
     }
 }
+ 

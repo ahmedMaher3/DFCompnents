@@ -27,7 +27,7 @@ struct HeaderComponentView: View {
                 if let label = viewModel.baseProperties.label {
                     labelView(label: label, baseProperties: viewModel.baseProperties)
                 }
-                if let subLabel = viewModel.baseProperties.subLabel {
+                if let subLabel = viewModel.baseProperties.sublabel {
                     Text(subLabel)
                         .font(.subheadline)
                         .foregroundStyle(.red)
@@ -52,7 +52,7 @@ struct HeaderComponentView: View {
             }
         } else {
             Text(label)
-                .font(.headline)
+                .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.primary)
         }
     }

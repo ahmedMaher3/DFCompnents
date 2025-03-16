@@ -34,7 +34,7 @@ class NumberBase: InteractiveFieldDelegate {
 
             self.baseProperties = BaseProperties(
                 label: properties.label,
-                subLabel: properties.subLabel,
+                sublabel: properties.sublabel,
                 tooltip: properties.tooltip,
                 hidden: properties.hidden,
                 required: properties.required)
