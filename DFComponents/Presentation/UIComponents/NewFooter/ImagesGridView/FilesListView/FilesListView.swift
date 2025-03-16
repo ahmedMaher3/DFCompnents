@@ -43,7 +43,9 @@ struct FileListView: View {
 
                         // Delete Button
                         Button(action: {
-                            attachments.removeAll { $0.id == attachment.id }
+                            if let index = attachments.firstIndex(where: { $0.id == attachment.id }) {
+                                attachments.remove(at: index)
+                            }
                         }) {
                             Image(.delete)
                                 .resizable()

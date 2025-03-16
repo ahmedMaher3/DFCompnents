@@ -52,10 +52,8 @@ struct PageView: View {
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
         case .radio((_, let radioViewModel)):
-            ControlFormBuilderView(
-                headerView: { EmptyView() },
-                controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
-                footerView: { EmptyView() },
+            BaseFieldContainerView(
+                fieldEntity: field, controlType: {RadioButtonView(radioButtonVM: radioViewModel) },
                 warningMessage: Binding<String?>(
                     get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                     set: { newValue in
@@ -69,44 +67,27 @@ struct PageView: View {
             .opacity(radioViewModel.control.hidden ? 0 : 1)
             
         case .textBox((_, let textBoxViewModel)):
-            ControlFormBuilderView(
-                headerView: { EmptyView() },
-                controlType: {
-                    TextBoxComponent(viewModel: textBoxViewModel)
-                },
-                footerView: { EmptyView() },
+            BaseFieldContainerView(
+                fieldEntity: field, controlType: { TextBoxComponent(viewModel: textBoxViewModel) },
                 warningMessage: Binding<String?>(
                     get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                     set: { newValue in
                         viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
                         ? [newValue!] : nil
                     }
-                )
-            )
+                ))
             .opacity(textBoxViewModel.control.hidden ? 0 : 1)
             
         case .number((_, let numberViewModel)):
-            ControlFormBuilderView(
-                headerView: {
-                    HeaderComponentView(viewModel: HeaderComponentViewModel(baseProperties: numberViewModel.numberFieldModel.basePropertiesNotInteractive))
-                },
-                controlType: {
-                    NumberFieldComponent(viewModel: numberViewModel)
-                },
-                footerView: {
-                    FooterComponentView(viewModel: FooterComponentViewModel(fieldEntity: field,  interactiveProperties: numberViewModel.numberFieldModel.base))
-                },
+            BaseFieldContainerView(
+                fieldEntity: field, controlType: {  NumberFieldComponent(viewModel: numberViewModel) },
                 warningMessage: Binding<String?>(
-                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                     set: { newValue in
-                        if let newValue = newValue, !newValue.isEmpty {
-                            viewModel.warningsDictionary[field.id] = [newValue]
-                        } else {
-                            viewModel.warningsDictionary[field.id] = nil
-                        }
+                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
+                        ? [newValue!] : nil
                     }
-                )
-            )
+                ))
         case .page((_, _)):
             EmptyView()
         case .section((_, let sectionViewModel)):

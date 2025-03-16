@@ -19,40 +19,27 @@ struct FieldsListView: View {
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
             case .radio((_, let radioViewModel)):
-                ControlFormBuilderView(
-                    headerView: { EmptyView() },
-                    controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
-                    footerView: { EmptyView() },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
-                        set: { newValue in
-                            if let newValue = newValue, !newValue.isEmpty {
-                                viewModel.warningsDictionary[field.id] = [newValue]
-                            } else {
-                                viewModel.warningsDictionary[field.id] = nil
-                            }
-                        }
-                    ))
+            BaseFieldContainerView(
+                fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
+                warningMessage: Binding<String?>(
+                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                    set: { newValue in
+                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
+                        ? [newValue!] : nil
+                    }
+                ))
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
 
             case .textBox((_, let textBoxViewModel)):
-                ControlFormBuilderView(
-                    headerView: { EmptyView() },
-                    controlType: {
-                        TextBoxComponent(viewModel: textBoxViewModel)
-                    },
-                    footerView: { EmptyView() },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
-                        set: { newValue in
-                            if let newValue = newValue, !newValue.isEmpty {
-                                viewModel.warningsDictionary[field.id] = [newValue]
-                            } else {
-                                viewModel.warningsDictionary[field.id] = nil
-                            }
-                        }
-                    )
-                )
+            BaseFieldContainerView(
+                fieldEntity: field, controlType: { TextBoxComponent(viewModel: textBoxViewModel) },
+                warningMessage: Binding<String?>(
+                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                    set: { newValue in
+                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
+                        ? [newValue!] : nil
+                    }
+                ))
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
             case .number((_, let numberViewModel)):
             BaseFieldContainerView(

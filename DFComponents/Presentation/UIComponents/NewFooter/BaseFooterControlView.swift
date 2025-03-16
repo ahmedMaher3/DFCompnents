@@ -90,8 +90,8 @@ struct BaseFooterControlView: View {
                     let fileSize = try FileManager.default.attributesOfItem(atPath: url.path)[.size] as? Int ?? 0
                     let attachment = AttachmentModel(fileName: url.lastPathComponent, fileSize: fileSize, fileType: url.pathExtension)
                     attachments.append(attachment)
+                    updateAnswer()
                 }
-                updateAnswer()
             } catch {
                 print("Failed to pick file: \(error)")
             }
@@ -102,6 +102,7 @@ struct BaseFooterControlView: View {
                 showNotePopup = false
                 updateAnswer()
             })
+            .id(UUID()) // Ensures sheet gets recreated properly
             .presentationDetents([.large])
             .presentationCornerRadius(20)
         }

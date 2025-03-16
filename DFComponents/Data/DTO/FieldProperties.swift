@@ -83,8 +83,8 @@ protocol MCQPropertiesProtocol: InteractivePropertiesProtocol {
 }
 
 struct SectionProperties: SectionPropertiesProtocol {
+    var sublabel: String?
     var label: String?
-    var subLabel: String?
     var labelPosition: String?
     var tooltip: String?
     var hidden: Bool?
