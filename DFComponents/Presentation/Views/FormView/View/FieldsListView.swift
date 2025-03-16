@@ -74,7 +74,8 @@ struct FieldsListView: View {
         case .page((_, _)):
             EmptyView()
         case .section((_, let sectionViewModel)):
-            SectionView(title: sectionViewModel.title, fields: sectionViewModel.controls)
+            EmptyView()
+//            SectionView(fields: sectionViewModel.controls)
         }
     }
 }

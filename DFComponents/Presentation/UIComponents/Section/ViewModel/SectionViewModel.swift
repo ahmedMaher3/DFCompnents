@@ -8,13 +8,11 @@
 import Foundation
 
 final class SectionViewModel: ObservableObject {
+    @Published var sectionField: SectionField
     @Published var controls: [FieldEntity]
-    let title: String
-    let id: String
 
-    init(controls: [FieldEntity], title: String) {
+    init(controls: [FieldEntity], sectionField: SectionField) {
         self.controls = controls
-        self.id = "2"
-        self.title = title
+        self.sectionField = sectionField
     }
 }

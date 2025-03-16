@@ -21,8 +21,11 @@
       }
     },
     "%lld Photos" : {
+   
 
     },
+    "%lld %% Complete" : {
+        },
     "%lld Questions" : {
 
     },
@@ -55,6 +58,9 @@
 
     },
     "and Your Maximum Digit Length is %lld" : {
+
+    },
+    "Back" : {
 
     },
     "Cancel" : {
@@ -150,13 +156,24 @@
 
     },
     "Lower: %.2f" : {
-
     },
+    "Next" : {
+        },
     "More" : {
 
     },
     "Note" : {
 
+    },
+    "Page %lld / %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Page %1$lld / %2$lld"
+          }
+        }
+      }
     },
     "Pick a File" : {
 

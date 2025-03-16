@@ -65,6 +65,12 @@ protocol TextBaseProperties: InteractivePropertiesProtocol {
     var textCase: String? { get }
 }
 
+protocol SectionPropertiesProtocol: BasePropertiesProtocol {
+    var allowCollapse: Bool? { get }
+    var defaultMode: String? { get }
+    var icon: String? { get }
+}
+
 protocol MCQPropertiesProtocol: InteractivePropertiesProtocol {
     var options: [MCQOption] { get }
     var defaultAnswer: BaseAnswerMCQ? { get }
@@ -74,6 +80,18 @@ protocol MCQPropertiesProtocol: InteractivePropertiesProtocol {
     var otherOptionText: String? { get }
     var naOption: Bool? { get }
     var naOptionText: String? { get }
+}
+
+struct SectionProperties: SectionPropertiesProtocol {
+    var label: String?
+    var subLabel: String?
+    var labelPosition: String?
+    var tooltip: String?
+    var hidden: Bool?
+    var required: Bool?
+    let allowCollapse: Bool?
+    let defaultMode: String?
+    let icon: String?
 }
 
 struct TextBoxProperties: TextBaseProperties {

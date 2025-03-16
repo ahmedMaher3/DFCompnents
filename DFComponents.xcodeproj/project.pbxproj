@@ -96,6 +96,8 @@
 		AAF297122D7E272C00E7B0C3 /* InputNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF297112D7E272C00E7B0C3 /* InputNumberView.swift */; };
 		AAF8308A2D78C84F001B0CAC /* FieldsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF830892D78C84F001B0CAC /* FieldsListView.swift */; };
 		AAF8308D2D7909D2001B0CAC /* WarningCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF8308C2D7909D2001B0CAC /* WarningCardView.swift */; };
+		E44278722D7F1C17003BAA46 /* StepProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442786F2D7F1C17003BAA46 /* StepProgressViewModel.swift */; };
+		E44278732D7F1C17003BAA46 /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442786D2D7F1C17003BAA46 /* StepProgressView.swift */; };
 		E44926C42D4B8AD200EA5D5E /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44926C32D4B8AD200EA5D5E /* FormView.swift */; };
 		E44926C82D4B8B0D00EA5D5E /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44926C72D4B8B0D00EA5D5E /* FormViewModel.swift */; };
 		E472DC922D802ED200B8FAF3 /* ImagesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DC912D802ED200B8FAF3 /* ImagesGridView.swift */; };
@@ -282,6 +284,8 @@
 		AAF297112D7E272C00E7B0C3 /* InputNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputNumberView.swift; sourceTree = "<group>"; };
 		AAF830892D78C84F001B0CAC /* FieldsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsListView.swift; sourceTree = "<group>"; };
 		AAF8308C2D7909D2001B0CAC /* WarningCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningCardView.swift; sourceTree = "<group>"; };
+		E442786D2D7F1C17003BAA46 /* StepProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
+		E442786F2D7F1C17003BAA46 /* StepProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepProgressViewModel.swift; sourceTree = "<group>"; };
 		E44926C32D4B8AD200EA5D5E /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		E44926C72D4B8B0D00EA5D5E /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
 		E472DC912D802ED200B8FAF3 /* ImagesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesGridView.swift; sourceTree = "<group>"; };
@@ -872,6 +876,31 @@
 			path = Warning;
 			sourceTree = "<group>";
 		};
+		E442786E2D7F1C17003BAA46 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E442786D2D7F1C17003BAA46 /* StepProgressView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E44278702D7F1C17003BAA46 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E442786F2D7F1C17003BAA46 /* StepProgressViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E44278712D7F1C17003BAA46 /* Stepper */ = {
+			isa = PBXGroup;
+			children = (
+				E442786E2D7F1C17003BAA46 /* View */,
+				E44278702D7F1C17003BAA46 /* ViewModel */,
+			);
+			path = Stepper;
+			sourceTree = "<group>";
+		};
 		E44926C22D4B8AAB00EA5D5E /* FormView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1426,6 +1455,7 @@
 		E4BBD0102D4A24FE004AA735 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E44278712D7F1C17003BAA46 /* Stepper */,
 				04C847C22D79D1D00078B18F /* WelcomeView */,
 				AAF8308B2D7909C9001B0CAC /* Warning */,
 				04C1DE332D5DFB750034B704 /* Appearance */,
@@ -1782,6 +1812,8 @@
 				AAF1B1872D76490D00DC44B4 /* NumberValidationEntity.swift in Sources */,
 				AAD562332D4AABD200C19A11 /* CheckBoxViewModel.swift in Sources */,
 				04C847BE2D79D1260078B18F /* PageViewModel.swift in Sources */,
+				E44278722D7F1C17003BAA46 /* StepProgressViewModel.swift in Sources */,
+				E44278732D7F1C17003BAA46 /* StepProgressView.swift in Sources */,
 				04C847BC2D79D0F80078B18F /* SectionViewModel.swift in Sources */,
 				E48CA1122D5CC72300A519ED /* AppBorders.swift in Sources */,
 				E489E81B2D4A4072007EA370 /* TextBoxViewModel.swift in Sources */,

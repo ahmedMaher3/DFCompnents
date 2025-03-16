@@ -8,12 +8,15 @@ import SwiftUI
 
 struct FormView: View {
     @StateObject var viewModel: FormViewModel = FormViewModel()
+    @StateObject var stepProgressViewModel: StepProgressViewModel = StepProgressViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
 
     @Environment(\.locale) private var locale
     @State private var currentLocale: Locale = .current
 
     @State private var showingAppearanceSheet = false
+    @State private var currentPage: Int = 0
+
 
     var title: String = "FormView"
 
@@ -21,36 +24,64 @@ struct FormView: View {
         NavigationStack {
             VStack {
                 if !viewModel.pages.isEmpty {
-                    TabView {
-                        ForEach(self.viewModel.pages, id: \.id) { page in
-                                    PageView(controls: page.fields)
-                                   .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                                   .environmentObject(viewModel)
+                    StepProgressView(viewModel: stepProgressViewModel)
+                    Spacer()
+                    TabView(selection: $currentPage) {
+                        ForEach(viewModel.pages.indices, id: \.self) { index in
+                            PageView(pageViewModel: PageViewModel(controls: viewModel.pages[index].fields))
+                                .environmentObject(viewModel)
+                                .tag(index)
                         }
                     }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                    .padding()
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
+                    .onChange(of: currentPage) { oldValue,newPage in
+                        stepProgressViewModel.updateCurrentPage(newPage)
+                        stepProgressViewModel.updateProgress()
 
+                    }
+
+                    .if(self.viewModel.mode == .card) { tab in
+                        tab.frame(height: UIScreen.main.bounds.height / 2)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.white)
+                                    .shadow(radius: 5)
+                            )
+                            .padding()
+                    }
+                    .if(self.viewModel.mode == .classic) { tab in
+                        tab.frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
+                    }
+                    Spacer()
+                    FooterView(currentPage: $currentPage, totalPages: viewModel.pages.count)
 
                 } else {
-                    // Show loading state while form data is being fetched
                     loadingView()
-                        .onAppear {
-                            Task {
-                                await viewModel.fetchForm()
-                            }
-                        }
                 }
             }
-            .navigationTitle(title.localizedKey)
-            .navigationBarTitleDisplayMode(.inline)
-            //            .navigationBarTitle(LocalizedStringKey(title), displayMode: .inline)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(hex: "#FAFBFF"))
+            .navigationBarTitle(title, displayMode: .inline)
             .environmentObject(styleManagerVM)
             .onAppear {
                 currentLocale = locale
+                Task {
+                    await viewModel.fetchForm()
+                    updateStepProgress()
+                    viewModel.warnings.map { entity in
+                        print(entity)
+                    }
+                }
             }
+
         }
     }
+
+    private func updateStepProgress() {
+        stepProgressViewModel.totalPages = viewModel.pages.count
+        stepProgressViewModel.updateProgress()
+    }
+
 
     // Loading view to be displayed while fetching the form data
     private func loadingView() -> some View {
@@ -61,16 +92,49 @@ struct FormView: View {
                 .progressViewStyle(CircularProgressViewStyle())
         }
     }
-    
-    func switchLanguage(to localeIdentifier: String) {
-        currentLocale = Locale(identifier: localeIdentifier)
-        UserDefaults.standard.set(localeIdentifier, forKey: "selectedLocale")
-        //
-        //        // Restart the app for full effect
-        if let window = UIApplication.shared.windows.first {
-            window.rootViewController = UIHostingController(rootView: SplashView().environment(\.locale, currentLocale))
-            window.makeKeyAndVisible()
+
+
+    struct FooterView: View {
+        @Binding var currentPage: Int
+        let totalPages: Int
+
+        var body: some View {
+            HStack {
+                Button(action: {
+                    if currentPage > 0 {
+                        currentPage -= 1
+                    }
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Back")
+                    }
+                    .foregroundColor(currentPage > 0 ? .blue : .gray)
+                }
+                .disabled(currentPage == 0)
+
+                Spacer()
+
+                Button(action: {
+                    if currentPage < totalPages - 1 {
+                        currentPage += 1
+                    }
+                }) {
+                    HStack {
+                        Text("Next")
+                        Image(systemName: "chevron.right")
+                    }
+                    .foregroundColor(currentPage < totalPages - 1 ? .blue : .gray)
+                }
+                .disabled(currentPage >= totalPages - 1)
+            }
+            .padding()
+            .frame(height: 55)
+            .background(Color(.systemGray6))
+
         }
     }
-    
+
+
 }
+
