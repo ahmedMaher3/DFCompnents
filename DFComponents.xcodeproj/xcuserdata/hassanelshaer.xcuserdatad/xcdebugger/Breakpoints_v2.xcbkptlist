@@ -18,6 +18,53 @@
             endingLineNumber = "131"
             landmarkName = "renderNoteButton()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4C8ED7B2-733C-4AFF-A0F4-7DCCED7DF1E2 - a3cc9403adec314d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DFComponents.BaseFooterControlView.renderNoteButton() -&gt; some"
+                  moduleName = "DFComponents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hassanelshaer/Documents/DFCompnents2/DFComponents/Presentation/UIComponents/NewFooter/BaseFooterControlView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "4C8ED7B2-733C-4AFF-A0F4-7DCCED7DF1E2 - 11ee9c7c72e1f541"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in DFComponents.BaseFooterControlView.renderNoteButton() -&gt; some"
+                  moduleName = "DFComponents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hassanelshaer/Documents/DFCompnents2/DFComponents/Presentation/UIComponents/NewFooter/BaseFooterControlView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "4C8ED7B2-733C-4AFF-A0F4-7DCCED7DF1E2 - 96259b3b2f8e102e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.font(Swift.Optional&lt;SwiftUI.Font&gt;) -&gt; some&gt;&gt;.0 in DFComponents.BaseFooterControlView.renderNoteButton() -&gt; some"
+                  moduleName = "DFComponents"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hassanelshaer/Documents/DFCompnents2/DFComponents/Presentation/UIComponents/NewFooter/BaseFooterControlView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

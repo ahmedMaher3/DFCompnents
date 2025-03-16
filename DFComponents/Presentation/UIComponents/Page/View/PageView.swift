@@ -25,6 +25,7 @@ struct PageView: View {
                         .environmentObject(viewModel)
                 }
             }
+            .buttonStyle(PlainButtonStyle()) // to make all button actions work properly within a list
             .listStyle(PlainListStyle())
             .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
         } else {
