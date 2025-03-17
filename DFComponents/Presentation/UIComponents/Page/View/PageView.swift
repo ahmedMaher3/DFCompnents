@@ -54,7 +54,8 @@ struct PageView: View {
         switch field {
         case .radio((_, let radioViewModel)):
             BaseFieldContainerView(
-                fieldEntity: field, controlType: {RadioButtonView(radioButtonVM: radioViewModel) },
+                fieldEntity: field,
+                controlType: {RadioButtonView(radioButtonVM: radioViewModel) },
                 warningMessage: Binding<String?>(
                     get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                     set: { newValue in
@@ -69,7 +70,8 @@ struct PageView: View {
             
         case .textBox((_, let textBoxViewModel)):
             BaseFieldContainerView(
-                fieldEntity: field, controlType: { TextBoxComponent(viewModel: textBoxViewModel) },
+                fieldEntity: field,
+                controlType: { TextBoxComponent(viewModel: textBoxViewModel) },
                 warningMessage: Binding<String?>(
                     get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                     set: { newValue in
@@ -81,7 +83,8 @@ struct PageView: View {
             
         case .number((_, let numberViewModel)):
             BaseFieldContainerView(
-                fieldEntity: field, controlType: {  NumberFieldComponent(viewModel: numberViewModel) },
+                fieldEntity: field,
+                controlType: {  NumberFieldComponent(viewModel: numberViewModel) },
                 warningMessage: Binding<String?>(
                     get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
                     set: { newValue in

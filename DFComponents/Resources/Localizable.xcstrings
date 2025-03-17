@@ -10,6 +10,9 @@
     "%lld" : {
 
     },
+    "%lld %% Complete" : {
+
+    },
     "%lld Photo%@ Selected" : {
       "localizations" : {
         "en" : {
@@ -21,11 +24,8 @@
       }
     },
     "%lld Photos" : {
-   
 
     },
-    "%lld %% Complete" : {
-        },
     "%lld Questions" : {
 
     },
@@ -42,9 +42,6 @@
     "+%lld" : {
 
     },
-    "|| Attachment" : {
-
-    },
     "0" : {
 
     },
@@ -52,12 +49,6 @@
 
     },
     "Add Note" : {
-
-    },
-    "and Your Maximum Digit Length is %@" : {
-
-    },
-    "and Your Maximum Digit Length is %lld" : {
 
     },
     "Back" : {
@@ -156,13 +147,12 @@
 
     },
     "Lower: %.2f" : {
+
     },
-    "Next" : {
-        },
     "More" : {
 
     },
-    "Note" : {
+    "Next" : {
 
     },
     "Page %lld / %lld" : {
@@ -245,18 +235,6 @@
 
     },
     "Where do you live " : {
-
-    },
-    "Your Maximum Digit Length is %lld" : {
-
-    },
-    "Your Minimum Digit Length is %@" : {
-
-    },
-    "Your Minimum Digit Length is %lld" : {
-
-    },
-    "Your Minimum Digit Length is %lld and" : {
 
     }
   },
