@@ -29,7 +29,7 @@ struct BaseFieldContainerView<Control: View>: View {
             /// Control with overlay for warnings
             control()
                 .overlay(
-                    fieldEntity.errorMessage?.isEmpty == false ?
+                    viewModel.errorMessage?.isEmpty == false ?
                     RoundedRectangle(cornerRadius: 4).stroke(.red, lineWidth: 0.5) : nil
                 )
 
@@ -39,8 +39,8 @@ struct BaseFieldContainerView<Control: View>: View {
                 .padding(.leading, 0) // Adjust leading padding as needed to match the control
 
             /// Warning View
-            WarningCardView(message: fieldEntity.errorMessage ?? "")
-                .opacity(fieldEntity.errorMessage == nil ? 0 : 1)
+            WarningCardView(message: viewModel.errorMessage ?? "")
+                .opacity(viewModel.errorMessage == nil ? 0 : 1)
         }
         .padding(6)
         .background(fieldEntity.errorMessage == nil || fieldEntity.errorMessage == "" ? Color.clear : Color.red.opacity(0.05))

@@ -22,7 +22,6 @@ class FormViewModel: ObservableObject {
         }
     }
     @Published var rulesImp: RuleImp!
-    @Published var errorMessage: String = ""
 
     func fetchForm() async {
         do {

@@ -7,7 +7,7 @@
 import Foundation
 
 final class BaseFieldViewModel: ObservableObject {
-    @Published var errorMessage: String = ""
+    @Published var errorMessage: String? = ""
 
     init(errorMessage: String = "") {
         self.errorMessage = errorMessage
