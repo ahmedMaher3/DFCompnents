@@ -44,7 +44,6 @@ struct PageView: View {
                     .frame(maxWidth: .infinity, minHeight: geometry.size.height) // Uses container height
                 }
             }
-
         }
     }
 
@@ -69,12 +68,13 @@ struct PageView: View {
             case .number((_, let numberViewModel)):
                 BaseFieldContainerView(
                     fieldEntity: field,
-                    controlType: {  NumberFieldComponent(viewModel: numberViewModel)
+                    controlType: { NumberFieldComponent(viewModel: numberViewModel)
                             .onReceive(numberViewModel.$warningsMessagesDictionary) { newValue in
                                 Task { @MainActor in
                                     viewModel.warningsMessagesDictionary = newValue
                                 }
-                            }}
+                            }
+                    }
                 )
             case .page((_, _)):
                 EmptyView()
@@ -85,5 +85,4 @@ struct PageView: View {
                     }
         }
     }
-
 }

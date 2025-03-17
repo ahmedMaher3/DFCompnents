@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct BaseFieldContainerView<Control: View>: View {
+
     let control: () -> Control
     let fieldEntity: FieldEntity
-
+    
     init(fieldEntity: FieldEntity,
         @ViewBuilder controlType: @escaping () -> Control) {
         self.control = controlType
@@ -18,6 +19,7 @@ struct BaseFieldContainerView<Control: View>: View {
     }
 
     var body: some View {
+        let _ = print("Display the error message:\(fieldEntity.errorMessage)")
         LazyVStack(alignment: .leading, spacing: 8) {
             /// Header View
             BaseHeaderControlView(viewModel: BaseHeaderViewModel(fieldEntity: fieldEntity))

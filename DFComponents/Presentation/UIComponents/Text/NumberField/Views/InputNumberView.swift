@@ -34,6 +34,11 @@ struct InputNumberView: View {
             .foregroundStyle(Color(red: 158 / 255, green: 179 / 255, blue: 194 / 255, opacity: 1))
             .keyboardType(.decimalPad)
             .focused($isTextFieldFocused)
+//            .onReceive(viewModel.$warningsMessagesDictionary) { newValue in
+//                Task { @MainActor in
+//                    print("newValue is\(newValue)")
+//                }
+//            }
             .toolbar {
                 ToolbarItem(placement: .keyboard) {
                     HStack {

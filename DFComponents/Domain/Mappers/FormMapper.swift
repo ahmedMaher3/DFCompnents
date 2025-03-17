@@ -98,60 +98,37 @@ class FormMapper: EntityMapper {
 
     func map(from dto: Warnings) -> WarningsEntity {
         return WarningsEntity(
-            formValidation: FormValidationEntity(
-                expired: dto.formWarning.formValidation.expired,
-                notAvailable: dto.formWarning.formValidation.notAvailable,
-                multipleSubmission: dto.formWarning.formValidation.multipleSubmission,
-                notStarted: dto.formWarning.formValidation.notStarted
-            ),
-            fieldValidation: FieldValidationEntity(
-                emptyForm: dto.formWarning.fieldValidation.emptyForm,
-                required: dto.formWarning.fieldValidation.required,
-                maxAttachment: dto.formWarning.fieldValidation.maxAttachment,
-                input: InputValidationEntity(
-                    minimumCharacterLength:
-                        dto.formWarning.fieldValidation.input.minimumCharacterLength,
-                    maximumCharacterLength: dto.formWarning.fieldValidation.input.maximumCharacterLength,
-                    minimumWordLength: dto.formWarning.fieldValidation.input.minimumWordLength,
-                    maximumWordLength: dto.formWarning.fieldValidation.input.maximumWordLength,
-                    email: dto.formWarning.fieldValidation.input.email,
-                    url: dto.formWarning.fieldValidation.input.url,
-                    numeric: dto.formWarning.fieldValidation.input.numeric,
-                    alphabetic: dto.formWarning.fieldValidation.input.alphabetic,
-                    alphanumeric: dto.formWarning.fieldValidation.input.alphanumeric,
-                    custom: dto.formWarning.fieldValidation.input.custom
-                ),
-                number: NumberValidationEntity(
-                    minimumValue: dto.formWarning.fieldValidation.number.minimumValue,
-                    maximumValue: dto.formWarning.fieldValidation.number.maximumValue,
-                    minimumDigits: dto.formWarning.fieldValidation.number.minimumDigits,
-                    maximumDigits: dto.formWarning.fieldValidation.number.maximumDigits
-                ),
-                dateTime: DateTimeValidationEntity(
-                    dateTime: dto.formWarning.fieldValidation.dateTime.dateTime,
-                    dateRange: dto.formWarning.fieldValidation.dateTime.dateRange
-                ),
-                mcq: MCQValidationEntity(
-                    minimumNumberOfSelectedOptions: dto.formWarning.fieldValidation.mcq.minimumNumberOfSelectedOptions,
-                    maximumNumberOfSelectedOptions: dto.formWarning.fieldValidation.mcq.maximumNumberOfSelectedOptions
-                ),
-                fileUpload: FileUploadValidationEntity(
-                    maxFilesSize: dto.formWarning.fieldValidation.fileUpload.maxFilesSize,
-                    maxSizePerFile: dto.formWarning.fieldValidation.fileUpload.maxSizePerFile,
-                    minNumberOfFiles: dto.formWarning.fieldValidation.fileUpload.minNumberOfFiles,
-                    maxNumberOfFiles: dto.formWarning.fieldValidation.fileUpload.maxNumberOfFiles,
-                    allowedExtensions: dto.formWarning.fieldValidation.fileUpload.allowedExtensions,
-                    invalidLink: dto.formWarning.fieldValidation.fileUpload.invalidLink
-                ),
-                location: LocationValidationEntity(
-                    maximumLocations: dto.formWarning.fieldValidation.location.maximumLocations,
-                    minimumLocations: dto.formWarning.fieldValidation.location.minimumLocations,
-                    notInRange: dto.formWarning.fieldValidation.location.notInRange
-                )
-            )
+            formValidation: mapFormValidation(from: dto.formWarning.formValidation),
+            fieldValidation: mapFieldValidation(from: dto.formWarning.fieldValidation)
         )
     }
 
+    private func mapFormValidation(from dto: FormValidation) -> FormValidationEntity {
+        return FormValidationEntity(
+            expired: dto.expired,
+            notAvailable: dto.notAvailable,
+            multipleSubmission: dto.multipleSubmission,
+            notStarted: dto.notStarted
+        )
+    }
+
+    private func mapFieldValidation(from dto: FieldValidation) -> FieldValidationEntity {
+        return FieldValidationEntity(
+            emptyForm: dto.emptyForm,
+            required: dto.required,
+            maxAttachment: dto.maxAttachment,
+            input: mapValidation(from: dto.input, using: InputValidationEntity.init),
+            number: mapValidation(from: dto.number, using: NumberValidationEntity.init),
+            dateTime: mapValidation(from: dto.dateTime, using: DateTimeValidationEntity.init),
+            mcq: mapValidation(from: dto.mcq, using: MCQValidationEntity.init),
+            fileUpload: mapValidation(from: dto.fileUpload, using: FileUploadValidationEntity.init),
+            location: mapValidation(from: dto.location, using: LocationValidationEntity.init)
+        )
+    }
+
+    private func mapValidation<DTO, Entity>(from dto: DTO, using transform: (DTO) -> Entity) -> Entity {
+        return transform(dto)
+    }
 }
 
 struct PageModel: Identifiable {
@@ -222,7 +199,7 @@ enum FieldEntity: Identifiable {
     var type: FieldType { baseField.type }
 
     var errorMessage: String? { baseField.errorMessage }
-    
+
     var validatorField: FieldValidationStrategy? {
         switch self {
             case .number:

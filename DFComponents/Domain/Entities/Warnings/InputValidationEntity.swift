@@ -16,3 +16,19 @@ struct InputValidationEntity {
     let alphanumeric: String
     let custom: String
 }
+extension InputValidationEntity {
+    init(from dto: InputValidation) {
+        self.init(
+            minimumCharacterLength: dto.minimumCharacterLength,
+            maximumCharacterLength: dto.maximumCharacterLength,
+            minimumWordLength: dto.minimumWordLength,
+            maximumWordLength: dto.maximumWordLength,
+            email: dto.email,
+            url: dto.url,
+            numeric: dto.numeric,
+            alphabetic: dto.alphabetic,
+            alphanumeric: dto.alphanumeric,
+            custom: dto.custom
+        )
+    }
+}
