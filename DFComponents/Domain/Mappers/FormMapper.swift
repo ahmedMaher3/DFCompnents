@@ -221,6 +221,8 @@ enum FieldEntity: Identifiable {
 
     var type: FieldType { baseField.type }
 
+    var errorMessage: String? { baseField.errorMessage }
+    
     var validatorField: FieldValidationStrategy? {
         switch self {
             case .number:

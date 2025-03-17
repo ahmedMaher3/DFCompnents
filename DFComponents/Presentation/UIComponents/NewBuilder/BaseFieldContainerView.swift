@@ -10,7 +10,6 @@ import SwiftUI
 struct BaseFieldContainerView<Control: View>: View {
     let control: () -> Control
     let fieldEntity: FieldEntity
-    @EnvironmentObject var viewModel: FormViewModel
 
     init(fieldEntity: FieldEntity,
         @ViewBuilder controlType: @escaping () -> Control) {
@@ -19,7 +18,6 @@ struct BaseFieldContainerView<Control: View>: View {
     }
 
     var body: some View {
-
         LazyVStack(alignment: .leading, spacing: 8) {
             /// Header View
             BaseHeaderControlView(viewModel: BaseHeaderViewModel(fieldEntity: fieldEntity))
@@ -27,7 +25,7 @@ struct BaseFieldContainerView<Control: View>: View {
             /// Control with overlay for warnings
             control()
                 .overlay(
-                    viewModel.warningsMessagesDictionary?[fieldEntity.id]?.isEmpty == false ?
+                    fieldEntity.errorMessage?.isEmpty == false ?
                     RoundedRectangle(cornerRadius: 4).stroke(.red, lineWidth: 0.5) : nil
                 )
 
@@ -35,13 +33,13 @@ struct BaseFieldContainerView<Control: View>: View {
             BaseFooterControlView(viewModel: BaseFooterViewModel(control: fieldEntity))
                 .frame(maxWidth: .infinity, alignment: .leading) // Ensures left alignment
                 .padding(.leading, 0) // Adjust leading padding as needed to match the control
-            
+
             /// Warning View
-            WarningCardView(message: viewModel.warningsMessagesDictionary?[fieldEntity.id]?.joined(separator: "") ?? "")
-                .opacity(viewModel.warningsMessagesDictionary?[fieldEntity.id] == nil ? 0 : 1)
+            WarningCardView(message: fieldEntity.errorMessage ?? "")
+                .opacity(fieldEntity.errorMessage == nil ? 0 : 1)
         }
         .padding(6)
-        .background(viewModel.warningsMessagesDictionary?[fieldEntity.id] == nil ? Color.clear : Color.red.opacity(0.05))
+        .background(fieldEntity.errorMessage == nil || fieldEntity.errorMessage == "" ? Color.clear : Color.red.opacity(0.05))
         .cornerRadius(8)
     }
 }
