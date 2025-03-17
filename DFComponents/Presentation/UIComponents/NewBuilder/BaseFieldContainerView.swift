@@ -6,20 +6,22 @@
 //
 
 import SwiftUI
+import Combine
 
 struct BaseFieldContainerView<Control: View>: View {
 
     let control: () -> Control
     let fieldEntity: FieldEntity
-    
+
+    @StateObject var viewModel: BaseFieldViewModel = BaseFieldViewModel()
+
     init(fieldEntity: FieldEntity,
-        @ViewBuilder controlType: @escaping () -> Control) {
+         @ViewBuilder controlType: @escaping () -> Control) {
         self.control = controlType
         self.fieldEntity = fieldEntity
     }
 
     var body: some View {
-        let _ = print("Display the error message:\(fieldEntity.errorMessage)")
         LazyVStack(alignment: .leading, spacing: 8) {
             /// Header View
             BaseHeaderControlView(viewModel: BaseHeaderViewModel(fieldEntity: fieldEntity))
@@ -43,6 +45,11 @@ struct BaseFieldContainerView<Control: View>: View {
         .padding(6)
         .background(fieldEntity.errorMessage == nil || fieldEntity.errorMessage == "" ? Color.clear : Color.red.opacity(0.05))
         .cornerRadius(8)
+        .onReceive(Just(fieldEntity.errorMessage)) { errorMessage in
+            Task { @MainActor in
+                viewModel.errorMessage = errorMessage ?? ""
+            }
+        }
     }
 }
 

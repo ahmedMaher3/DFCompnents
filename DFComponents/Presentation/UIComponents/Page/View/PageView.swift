@@ -69,11 +69,6 @@ struct PageView: View {
                 BaseFieldContainerView(
                     fieldEntity: field,
                     controlType: { NumberFieldComponent(viewModel: numberViewModel)
-                            .onReceive(numberViewModel.$warningsMessagesDictionary) { newValue in
-                                Task { @MainActor in
-                                    viewModel.warningsMessagesDictionary = newValue
-                                }
-                            }
                     }
                 )
             case .page((_, _)):
