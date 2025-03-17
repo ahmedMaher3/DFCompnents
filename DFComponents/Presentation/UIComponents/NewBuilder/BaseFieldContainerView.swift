@@ -10,19 +10,16 @@ import SwiftUI
 struct BaseFieldContainerView<Control: View>: View {
     let control: () -> Control
     let fieldEntity: FieldEntity
-    @Binding var warningMessage: String?
+    @EnvironmentObject var viewModel: FormViewModel
 
-    init(
-        fieldEntity: FieldEntity,
-        @ViewBuilder controlType: @escaping () -> Control,
-        warningMessage: Binding<String?>
-    ) {
+    init(fieldEntity: FieldEntity,
+        @ViewBuilder controlType: @escaping () -> Control) {
         self.control = controlType
         self.fieldEntity = fieldEntity
-        self._warningMessage = warningMessage
     }
 
     var body: some View {
+
         LazyVStack(alignment: .leading, spacing: 8) {
             /// Header View
             BaseHeaderControlView(viewModel: BaseHeaderViewModel(fieldEntity: fieldEntity))
@@ -30,7 +27,7 @@ struct BaseFieldContainerView<Control: View>: View {
             /// Control with overlay for warnings
             control()
                 .overlay(
-                    warningMessage?.isEmpty == false ?
+                    viewModel.warningsMessagesDictionary?[fieldEntity.id]?.isEmpty == false ?
                     RoundedRectangle(cornerRadius: 4).stroke(.red, lineWidth: 0.5) : nil
                 )
 
@@ -40,11 +37,11 @@ struct BaseFieldContainerView<Control: View>: View {
                 .padding(.leading, 0) // Adjust leading padding as needed to match the control
             
             /// Warning View
-            WarningCardView(message: warningMessage ?? "")
-                .opacity(warningMessage == nil ? 0 : 1)
+            WarningCardView(message: viewModel.warningsMessagesDictionary?[fieldEntity.id]?.joined(separator: "") ?? "")
+                .opacity(viewModel.warningsMessagesDictionary?[fieldEntity.id] == nil ? 0 : 1)
         }
         .padding(6)
-        .background(warningMessage == nil ? Color.clear : Color.red.opacity(0.05))
+        .background(viewModel.warningsMessagesDictionary?[fieldEntity.id] == nil ? Color.clear : Color.red.opacity(0.05))
         .cornerRadius(8)
     }
 }

@@ -14,7 +14,7 @@ struct SectionView: View {
     var fields: [FieldEntity]
     
     @State private var isExpanded: Bool = false
-        
+    
     init(sectionViewModel: SectionViewModel, fields: [FieldEntity], isExpanded: Bool) {
         self.sectionViewModel = sectionViewModel
         self.fields = sectionViewModel.controls
@@ -35,7 +35,7 @@ struct SectionView: View {
         }
         .listRowInsets(EdgeInsets())
     }
-        
+    
     // MARK: - Section Header
     @ViewBuilder
     private func sectionHeader() -> some View {
@@ -49,9 +49,9 @@ struct SectionView: View {
                     if let iconURLString = self.sectionViewModel.sectionField.icon, let iconURL = URL(string: iconURLString) {
                         AsyncImage(url: iconURL) { image in
                             image.resizable()
-                                 .scaledToFit()
-                                 .frame(width: 24, height: 24)
-                                 .foregroundColor(isExpanded ? Color(hex: "#E6EDFD") : Color(hex: "#5989EF"))
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(isExpanded ? Color(hex: "#E6EDFD") : Color(hex: "#5989EF"))
                         } placeholder: {
                             ProgressView()
                         }
@@ -77,47 +77,29 @@ struct SectionView: View {
     @ViewBuilder
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
-        case .radio((_, let radioViewModel)):
-            BaseFieldContainerView(
-                fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
-                warningMessage: Binding<String?>(
-                    get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                    set: { newValue in
-                        viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                        ? [newValue!] : nil
-                    }
-                ))
-            .onReceive(radioViewModel.$control) { _ in
-                self.sectionViewModel.controls[0].value = radioViewModel.control.defaultAnswer?.value?.first
-            }
-            .opacity(radioViewModel.control.hidden ? 0 : 1)
-            
-        case .textBox((_, let textBoxViewModel)):
-            BaseFieldContainerView(
-                fieldEntity: field, controlType: {TextBoxComponent(viewModel: textBoxViewModel) },
-                warningMessage: Binding<String?>(
-                    get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                    set: { newValue in
-                        viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                        ? [newValue!] : nil
-                    }
-                ))
-            .opacity(textBoxViewModel.control.hidden ? 0 : 1)
-            
-        case .number((_, let numberViewModel)):
-            BaseFieldContainerView(
-                fieldEntity: field, controlType: {NumberFieldComponent(viewModel: numberViewModel) },
-                warningMessage: Binding<String?>(
-                    get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                    set: { newValue in
-                        viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                        ? [newValue!] : nil
-                    }
-                ))
-        case .page((_, _)):
-            EmptyView()
-        case .section((_, _)):
-            EmptyView()
+            case .radio((_, let radioViewModel)):
+                BaseFieldContainerView(
+                    fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) }
+                )
+                .onReceive(radioViewModel.$control) { _ in
+                    self.sectionViewModel.controls[0].value = radioViewModel.control.defaultAnswer?.value?.first
+                }
+                .opacity(radioViewModel.control.hidden ? 0 : 1)
+                
+            case .textBox((_, let textBoxViewModel)):
+                BaseFieldContainerView(
+                    fieldEntity: field, controlType: {TextBoxComponent(viewModel: textBoxViewModel) }
+                )
+                .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+                
+            case .number((_, let numberViewModel)):
+                BaseFieldContainerView(
+                    fieldEntity: field, controlType: {NumberFieldComponent(viewModel: numberViewModel) }
+                )
+            case .page((_, _)):
+                EmptyView()
+            case .section((_, _)):
+                EmptyView()
         }
     }
 }

@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct PageView: View {
-    
+
     @EnvironmentObject var viewModel: FormViewModel
     @ObservedObject var pageViewModel: PageViewModel
-    
+
     init(pageViewModel: PageViewModel) {
         self.pageViewModel = pageViewModel
     }
-    
+
     var body: some View {
-        
+
         if self.viewModel.mode == .classic {
             List {
                 ForEach(self.pageViewModel.controls, id: \.id) { field in
@@ -29,7 +29,7 @@ struct PageView: View {
             .listStyle(PlainListStyle())
             .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
         } else {
-            
+
             GeometryReader { geometry in
                 ScrollView {
                     VStack {
@@ -44,10 +44,10 @@ struct PageView: View {
                     .frame(maxWidth: .infinity, minHeight: geometry.size.height) // Uses container height
                 }
             }
-            
+
         }
     }
-    
+
     /// Controls
     @ViewBuilder
     private func renderField(for field: FieldEntity) -> some View {
@@ -55,29 +55,17 @@ struct PageView: View {
             case .radio((_, let radioViewModel)):
                 BaseFieldContainerView(
                     fieldEntity: field,
-                    controlType: {RadioButtonView(radioButtonVM: radioViewModel) },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                        set: { newValue in
-                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                        }
-                    ))
+                    controlType: {RadioButtonView(radioButtonVM: radioViewModel) }
+                )
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
-                
+
             case .textBox((_, let textBoxViewModel)):
                 BaseFieldContainerView(
                     fieldEntity: field,
-                    controlType: { TextBoxComponent(viewModel: textBoxViewModel) },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                        set: { newValue in
-                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                        }
-                    ))
+                    controlType: { TextBoxComponent(viewModel: textBoxViewModel) }
+                )
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
-                
+
             case .number((_, let numberViewModel)):
                 BaseFieldContainerView(
                     fieldEntity: field,
@@ -86,14 +74,8 @@ struct PageView: View {
                                 Task { @MainActor in
                                     viewModel.warningsMessagesDictionary = newValue
                                 }
-                            }},
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                        set: { newValue in
-                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                        }
-                    ))
+                            }}
+                )
             case .page((_, _)):
                 EmptyView()
             case .section((_, let sectionViewModel)):
@@ -103,5 +85,5 @@ struct PageView: View {
                     }
         }
     }
-    
+
 }
