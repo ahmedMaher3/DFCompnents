@@ -4,7 +4,7 @@
 //
 //  Created by Eslam on 11/03/2025.
 //
-import Foundation
+import SwiftUI
 struct FormValidator {
     private let strategy: FieldValidationStrategy
 
@@ -25,3 +25,5 @@ struct FormValidator {
         )
     }
 }
+
+

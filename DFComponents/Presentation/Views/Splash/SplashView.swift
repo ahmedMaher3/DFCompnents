@@ -15,6 +15,7 @@ struct SplashView: View {
            ZStack {
                if isActive {
                    FormView()
+//                   ParentFormBuilder()
                } else {
                    SplashContentView()
                        
@@ -46,6 +47,6 @@ struct SplashContentView: View {
         }
     }
 }
-#Preview {
-    SplashView()
-}
+//#Preview {
+//    SplashView()
+//}

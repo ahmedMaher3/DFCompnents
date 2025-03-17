@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InputNumberView: View {
     @ObservedObject var viewModel: NumberFieldViewModel
-    @FocusState.Binding var isTextFieldFocused: Bool
+    @FocusState private var isTextFieldFocused: Bool
 
     private var textNumberBinding: Binding<String> {
         Binding(

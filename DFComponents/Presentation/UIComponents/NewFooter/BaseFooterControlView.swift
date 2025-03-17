@@ -168,7 +168,6 @@ struct BaseFooterControlView: View {
     private func updateAnswer() {
         if case .number((_, let numberViewModel)) = viewModel.field {
             numberViewModel.numberFieldModel.answer = BaseAnswerNumber(value:numberViewModel.baseAnswer?.value ?? "" ,note: savedNote ?? "", attachments: attachments)
-            
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StepperNumberFieldView: View {
     @ObservedObject var viewModel: NumberFieldViewModel
-    @FocusState.Binding var isTextFieldFocused: Bool
+//    @FocusState.Binding var isTextFieldFocused: Bool
 
     var body: some View {
         HStack {
@@ -35,7 +35,7 @@ struct StepperNumberFieldView: View {
             .onTapGesture {
                 viewModel.changeValueStepper(action: action)
                 viewModel.validateInput(value: viewModel.baseAnswer?.value ?? "", warnings: viewModel.numberFieldModel.fieldWarning)
-                isTextFieldFocused = false
+//                isTextFieldFocused = false
         }
     }
 }

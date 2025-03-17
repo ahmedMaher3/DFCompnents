@@ -17,7 +17,7 @@ class StepProgressViewModel: ObservableObject {
     @Published var totalPages: Int = 0
     @Published var currentPage: Int = 0
     @Published private(set) var progress: Double = 0.0
-    @Published private(set) var completionPercentage: Int = 0
+    @Published private(set) var completionPercentage: Double = 0
 
 
     func updateCurrentPage(_ index: Int) {
@@ -27,7 +27,7 @@ class StepProgressViewModel: ObservableObject {
 
      func updateProgress(){
          self.progress = Double(currentPage + 1) / Double(totalPages)
-         self.completionPercentage = Int((Double(currentPage + 1) / Double(totalPages)) * 100)
+         self.completionPercentage = Double((Double(currentPage + 1) / Double(totalPages)) * 100)
     }
 
 }

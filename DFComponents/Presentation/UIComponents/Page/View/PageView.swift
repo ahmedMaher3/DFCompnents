@@ -99,8 +99,7 @@ struct PageView: View {
                 SectionView(sectionViewModel: sectionViewModel, fields: sectionViewModel.controls, isExpanded: sectionViewModel.sectionField.isExpandedStatus)
                     .onReceive(sectionViewModel.objectWillChange) { updatedValue in
                         print("updated Values:- \(sectionViewModel.controls)")
-                    }
+                }
         }
     }
-
 }
