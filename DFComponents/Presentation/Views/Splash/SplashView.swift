@@ -14,11 +14,13 @@ struct SplashView: View {
     var body: some View {
            ZStack {
                if isActive {
-                   FormView()
-//                   ParentFormBuilder()
+//                   FormView()
+                   FormBuilderView()
+                       .render()
+                   //MARK: - Composite Pattern
+//                   FormBuilderWrapperView()
                } else {
                    SplashContentView()
-                       
                        .transition(.opacity)
                        .onAppear {
                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

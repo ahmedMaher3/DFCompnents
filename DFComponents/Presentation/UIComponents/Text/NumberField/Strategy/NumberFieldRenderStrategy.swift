@@ -7,7 +7,6 @@
 import SwiftUI
 
 final class NumberFieldRenderStrategy: RenderStrategy {
-
     @ViewBuilder
     func render(field: FieldEntity) -> some View {
         if case .number((_, let numberViewModel)) = field {
