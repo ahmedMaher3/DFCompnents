@@ -52,53 +52,55 @@ struct PageView: View {
     @ViewBuilder
     private func renderField(for field: FieldEntity) -> some View {
         switch field {
-        case .radio((_, let radioViewModel)):
-            BaseFieldContainerView(
-                fieldEntity: field,
-                controlType: {RadioButtonView(radioButtonVM: radioViewModel) },
-                warningMessage: Binding<String?>(
-                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
-                    set: { newValue in
-                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                        ? [newValue!] : nil
+            case .radio((_, let radioViewModel)):
+                BaseFieldContainerView(
+                    fieldEntity: field,
+                    controlType: {RadioButtonView(radioButtonVM: radioViewModel) },
+                    warningMessage: Binding<String?>(
+                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
+                        set: { newValue in
+                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
+                            ? [newValue!] : nil
+                        }
+                    ))
+                .opacity(radioViewModel.control.hidden ? 0 : 1)
+                
+            case .textBox((_, let textBoxViewModel)):
+                BaseFieldContainerView(
+                    fieldEntity: field,
+                    controlType: { TextBoxComponent(viewModel: textBoxViewModel) },
+                    warningMessage: Binding<String?>(
+                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
+                        set: { newValue in
+                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
+                            ? [newValue!] : nil
+                        }
+                    ))
+                .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+                
+            case .number((_, let numberViewModel)):
+                BaseFieldContainerView(
+                    fieldEntity: field,
+                    controlType: {  NumberFieldComponent(viewModel: numberViewModel)
+                            .onReceive(numberViewModel.$warningsMessagesDictionary) { newValue in
+                                Task { @MainActor in
+                                    viewModel.warningsMessagesDictionary = newValue
+                                }
+                            }},
+                    warningMessage: Binding<String?>(
+                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
+                        set: { newValue in
+                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
+                            ? [newValue!] : nil
+                        }
+                    ))
+            case .page((_, _)):
+                EmptyView()
+            case .section((_, let sectionViewModel)):
+                SectionView(sectionViewModel: sectionViewModel, fields: sectionViewModel.controls, isExpanded: sectionViewModel.sectionField.isExpandedStatus)
+                    .onReceive(sectionViewModel.objectWillChange) { updatedValue in
+                        print("updated Values:- \(sectionViewModel.controls)")
                     }
-                ))
-            .onAppear {
-                viewModel.checkingWarning(for: field.id, value: nil)
-            }
-            .opacity(radioViewModel.control.hidden ? 0 : 1)
-            
-        case .textBox((_, let textBoxViewModel)):
-            BaseFieldContainerView(
-                fieldEntity: field,
-                controlType: { TextBoxComponent(viewModel: textBoxViewModel) },
-                warningMessage: Binding<String?>(
-                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
-                    set: { newValue in
-                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                        ? [newValue!] : nil
-                    }
-                ))
-            .opacity(textBoxViewModel.control.hidden ? 0 : 1)
-            
-        case .number((_, let numberViewModel)):
-            BaseFieldContainerView(
-                fieldEntity: field,
-                controlType: {  NumberFieldComponent(viewModel: numberViewModel) },
-                warningMessage: Binding<String?>(
-                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
-                    set: { newValue in
-                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
-                        ? [newValue!] : nil
-                    }
-                ))
-        case .page((_, _)):
-            EmptyView()
-        case .section((_, let sectionViewModel)):
-            SectionView(sectionViewModel: sectionViewModel, fields: sectionViewModel.controls, isExpanded: sectionViewModel.sectionField.isExpandedStatus)
-                .onReceive(sectionViewModel.objectWillChange) { updatedValue in
-                    print("updated Values:- \(sectionViewModel.controls)")
-                }
         }
     }
     

@@ -22,9 +22,9 @@ struct FieldsListView: View {
             BaseFieldContainerView(
                 fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                 warningMessage: Binding<String?>(
-                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                    get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
                     set: { newValue in
-                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
+                        viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
                         ? [newValue!] : nil
                     }
                 ))
@@ -34,9 +34,9 @@ struct FieldsListView: View {
             BaseFieldContainerView(
                 fieldEntity: field, controlType: { TextBoxComponent(viewModel: textBoxViewModel) },
                 warningMessage: Binding<String?>(
-                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                    get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
                     set: { newValue in
-                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
+                        viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
                         ? [newValue!] : nil
                     }
                 ))
@@ -48,12 +48,12 @@ struct FieldsListView: View {
                         NumberFieldComponent(viewModel: numberViewModel)
                     },
                     warningMessage: Binding<String?>(
-                        get: { viewModel.warningsDictionary[field.id]?.joined(separator: "\n") },
+                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "\n") },
                         set: { newValue in
                             if let newValue = newValue, !newValue.isEmpty {
-                                viewModel.warningsDictionary[field.id] = [newValue]
+                                viewModel.warningsMessagesDictionary?[field.id] = [newValue]
                             } else {
-                                viewModel.warningsDictionary[field.id] = nil
+                                viewModel.warningsMessagesDictionary?[field.id] = nil
                             }
                         }
                     )

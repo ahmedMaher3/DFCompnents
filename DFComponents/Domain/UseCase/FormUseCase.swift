@@ -14,7 +14,6 @@ protocol FormBuildUseCaseProtocol {
     func map(dto: Warnings) -> WarningsEntity
 }
 
-
 class FormBuildUseCase: FormBuildUseCaseProtocol {
 
     private let repository: FormBuildRepository

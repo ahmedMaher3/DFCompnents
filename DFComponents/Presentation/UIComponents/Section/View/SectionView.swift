@@ -81,15 +81,12 @@ struct SectionView: View {
             BaseFieldContainerView(
                 fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) },
                 warningMessage: Binding<String?>(
-                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                    get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
                     set: { newValue in
-                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
+                        viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
                         ? [newValue!] : nil
                     }
                 ))
-            .onAppear {
-                viewModel.checkingWarning(for: field.id, value: nil)
-            }
             .onReceive(radioViewModel.$control) { _ in
                 self.sectionViewModel.controls[0].value = radioViewModel.control.defaultAnswer?.value?.first
             }
@@ -99,9 +96,9 @@ struct SectionView: View {
             BaseFieldContainerView(
                 fieldEntity: field, controlType: {TextBoxComponent(viewModel: textBoxViewModel) },
                 warningMessage: Binding<String?>(
-                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                    get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
                     set: { newValue in
-                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
+                        viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
                         ? [newValue!] : nil
                     }
                 ))
@@ -111,9 +108,9 @@ struct SectionView: View {
             BaseFieldContainerView(
                 fieldEntity: field, controlType: {NumberFieldComponent(viewModel: numberViewModel) },
                 warningMessage: Binding<String?>(
-                    get: { viewModel.warningsDictionary[field.id]?.joined(separator: "") },
+                    get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
                     set: { newValue in
-                        viewModel.warningsDictionary[field.id] = newValue?.isEmpty == false
+                        viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
                         ? [newValue!] : nil
                     }
                 ))

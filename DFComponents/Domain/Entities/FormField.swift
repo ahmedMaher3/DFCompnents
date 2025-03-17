@@ -33,10 +33,10 @@ protocol SectionFieldProtocol: BaseFieldProtocol {
 }
 
 class SectionField: SectionFieldProtocol {
-    
+
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? { nil }
     func getAnswerString() -> String { "" }
-    
+
     var allowCollapse: Bool?
     var defaultMode: String?
     var icon: String?
@@ -52,10 +52,10 @@ class SectionField: SectionFieldProtocol {
     var hidden: Bool!
     var disabled: Bool!
     var errorMessage: String!
-    
+
     init(field: Field?) {
         guard let field = field else { return }
-        
+
         // Initialize base properties
         self.type = field.type
         self.fieldId = field.id
@@ -66,14 +66,14 @@ class SectionField: SectionFieldProtocol {
         self.rules = field.rules
         self.hidden = false
         self.disabled = false
-        
+
         // Initialize interactive properties
         if let properties = field.properties as? SectionPropertiesProtocol {
             self.allowCollapse = properties.allowCollapse
             self.defaultMode = properties.defaultMode
             self.icon = properties.icon
         }
-        
+
     }
 }
 
@@ -317,31 +317,31 @@ class TextBoxField: TextBaseDelegate {
 
 class PageField: BaseFieldProtocol {
     var type: FieldType!
-    
+
     var fieldId: String!
-    
+
     var label: String!
-    
+
     var parentId: String?
-    
+
     var index: Int!
-    
+
     var answer: Any?
-    
+
     var isError: Bool!
 
     var errorMessage: String!
 
     var rules: FieldRules?
-    
+
     var hidden: Bool!
-    
+
     var disabled: Bool!
-    
+
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
         return nil
     }
-    
+
     func getAnswerString() -> String {
         return ""
     }

@@ -10,7 +10,8 @@ protocol NumberBaseDelegate: InteractiveFieldDelegate {
 
 class NumberBase: InteractiveFieldDelegate {
     var base: InteractiveField
-    var baseProperties: BaseProperties? 
+    var baseProperties: BaseProperties?
+
     let step: Int?
     let decimalPlaces: Int?
     let minimumDigits: Int?

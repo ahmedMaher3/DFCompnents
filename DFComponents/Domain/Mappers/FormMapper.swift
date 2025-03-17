@@ -31,7 +31,7 @@ class FormMapper: EntityMapper {
     private func convertToPages(fields: [Field], mode: FormType) -> [PageModel] {
         return mode == .classic ? convertToPagesInClassicMode(fields: fields, mode: mode) : convertToPagesInCardsMode(fields: fields, mode: mode)
     }
-            
+
     func convertToPagesInClassicMode(fields: [Field], mode: FormType) -> [PageModel] {
         let pageIds = fields.compactMap { $0.type == .page ? $0.id : nil } // collect pageIds
 
@@ -82,17 +82,17 @@ class FormMapper: EntityMapper {
     // 🔹 Helper Function to Map a Single Field
     private func mapSingleField(field: Field) -> FieldEntity? {
         switch field.type {
-        case .textBox:
-            let control = TextBoxField(field: field)
-            return .textBox((control, TextBoxViewModel(control: control)))
-        case .radio:
-            let control = RadioButtonField(field: field)
-            return .radio((control, RadioButtonViewModel(control: control)))
-        case .number:
-            let control = NumberField(field: field)
-            return .number((control, NumberFieldViewModel(numberFieldModel: control)))
-        default:
-            return nil
+            case .textBox:
+                let control = TextBoxField(field: field)
+                return .textBox((control, TextBoxViewModel(control: control)))
+            case .radio:
+                let control = RadioButtonField(field: field)
+                return .radio((control, RadioButtonViewModel(control: control)))
+            case .number:
+                let control = NumberField(field: field)
+                return .number((control, NumberFieldViewModel(numberFieldModel: control)))
+            default:
+                return nil
         }
     }
 
@@ -109,7 +109,8 @@ class FormMapper: EntityMapper {
                 required: dto.formWarning.fieldValidation.required,
                 maxAttachment: dto.formWarning.fieldValidation.maxAttachment,
                 input: InputValidationEntity(
-                    minimumCharacterLength: dto.formWarning.fieldValidation.input.minimumCharacterLength,
+                    minimumCharacterLength:
+                        dto.formWarning.fieldValidation.input.minimumCharacterLength,
                     maximumCharacterLength: dto.formWarning.fieldValidation.input.maximumCharacterLength,
                     minimumWordLength: dto.formWarning.fieldValidation.input.minimumWordLength,
                     maximumWordLength: dto.formWarning.fieldValidation.input.maximumWordLength,
@@ -159,8 +160,6 @@ struct PageModel: Identifiable {
     var mode: FormType
 }
 
-
-
 enum FieldEntity: Identifiable {
     case textBox((BaseFieldProtocol, TextBoxViewModel))
     case radio((BaseFieldProtocol, RadioButtonViewModel))
@@ -170,48 +169,48 @@ enum FieldEntity: Identifiable {
 
     private var baseField: BaseFieldProtocol {
         switch self {
-        case .textBox((let field, _)),
-                .radio((let field, _)),
-                .page((let field, _)),
-                .section((let field, _)),
-                .number((let field, _)):
-            return field
-        }
-    }
-
-        var value: String? {
-        get {
-            switch self {
             case .textBox((let field, _)),
                     .radio((let field, _)),
                     .page((let field, _)),
                     .section((let field, _)),
                     .number((let field, _)):
-                return field.answer as? String
+                return field
+        }
+    }
+
+    var value: String? {
+        get {
+            switch self {
+                case .textBox((let field, _)),
+                        .radio((let field, _)),
+                        .page((let field, _)),
+                        .section((let field, _)),
+                        .number((let field, _)):
+                    return field.answer as? String
             }
         }
         set {
             guard let newValue = newValue else { return }
             switch self {
-            case .textBox((var field, let id)):
-                field.answer = newValue
-                self = .textBox((field, id))
-                
-            case .radio((var field, let id)):
-                field.answer = newValue
-                self = .radio((field, id))
-                
-            case .page((var field, let id)):
-                field.answer = newValue
-                self = .page((field, id))
-                
-            case .section((var field, let id)):
-                field.answer = newValue
-                self = .section((field, id))
-                
-            case .number((var field, let id)):
-                field.answer = newValue
-                self = .number((field, id))
+                case .textBox((var field, let id)):
+                    field.answer = newValue
+                    self = .textBox((field, id))
+
+                case .radio((var field, let id)):
+                    field.answer = newValue
+                    self = .radio((field, id))
+
+                case .page((var field, let id)):
+                    field.answer = newValue
+                    self = .page((field, id))
+
+                case .section((var field, let id)):
+                    field.answer = newValue
+                    self = .section((field, id))
+
+                case .number((var field, let id)):
+                    field.answer = newValue
+                    self = .number((field, id))
             }
         }
     }
@@ -221,6 +220,31 @@ enum FieldEntity: Identifiable {
     var parentId: String? { baseField.parentId }
 
     var type: FieldType { baseField.type }
+
+    var validatorField: FieldValidationStrategy? {
+        switch self {
+            case .number:
+                return NumberValidationStrategy()
+            default:
+                return nil
+        }
+    }
+
+    var validateViewModel: ValidateFieldStrategy? {
+        switch self {
+            case .number((_, let viewModel)):
+                return viewModel
+            case .textBox((_,_)):
+                break
+            case .radio((_,_)):
+                break
+            case .page((_,_)):
+                break
+            case .section((_,_)):
+                break
+        }
+        return nil
+    }
 }
 
 

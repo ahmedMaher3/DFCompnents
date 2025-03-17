@@ -9,7 +9,6 @@ import SwiftUI
 
 struct StepperNumberFieldView: View {
     @ObservedObject var viewModel: NumberFieldViewModel
-    @EnvironmentObject var formViewModel:FormViewModel
     @FocusState.Binding var isTextFieldFocused: Bool
 
     var body: some View {
@@ -35,9 +34,8 @@ struct StepperNumberFieldView: View {
             .foregroundStyle(.gray)
             .onTapGesture {
                 viewModel.changeValueStepper(action: action)
-                formViewModel.checkingWarning(for: viewModel.numberFieldModel.base.fieldId,
-                                              value: viewModel.baseAnswer?.value ?? "")
+                viewModel.validateInput(value: viewModel.baseAnswer?.value ?? "", warnings: viewModel.numberFieldModel.fieldWarning)
                 isTextFieldFocused = false
-            }
+        }
     }
 }
