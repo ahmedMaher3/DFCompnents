@@ -54,8 +54,13 @@ struct FormView: View {
                     }
                     Spacer()
                     
-                    let page = (self.viewModel.pages[currentPage].pageField as? PageRenderer)?.field as! PageField
-                    let pageProperties = PageProperties(submit: page.submit ?? "", next: page.next ?? "", back: page.back ?? "", backVisibility: page.backVisibility ?? true)
+                    let page = self.viewModel.pages[currentPage].pageField?.field as? PageField
+                    let pageProperties = PageProperties(
+                        submit: page?.submit ?? "",
+                        next: page?.next ?? "",
+                        back: page?.back ?? "",
+                        backVisibility: page?.backVisibility ?? true
+                    )
                     
                     FooterView(
                         currentPage: $currentPage,

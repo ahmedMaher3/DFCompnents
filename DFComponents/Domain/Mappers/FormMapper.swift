@@ -193,7 +193,7 @@ class FormMapper: EntityMapper {
 }
 
 struct PageModel: Identifiable { // [Page Model]
-    var pageField: PageRenderable?
+    var pageField: (any PageRenderable)?
     var id: String
     var fields: [any FieldRenderable]
     var mode: FormType
@@ -388,26 +388,30 @@ struct NumberFieldRenderer: FieldRenderable {
 
 }
 
-struct PageRenderer: PageRenderable { // Concrete Class
+struct PageRenderer: PageRenderable {
+    
+    var field: PageField
+    var viewModel: PageViewModel
+    // Concrete Class
 
-    var field: BaseFieldProtocol!
-    var controls: [FieldRenderable]!
+    var controls: [any FieldRenderable]!
 
-    init(field: BaseFieldProtocol,controls: [FieldRenderable]) {
+    init(field: PageField,controls: [any FieldRenderable]) {
         self.field = field
         self.controls = controls
+        self.viewModel = PageViewModel(controls: controls, pageField: field)
     }
     var id: String { field.fieldId}
     var errorMessage: String? { field.errorMessage }
     
     func render() -> AnyView {
 
-        return AnyView(PageView(pageViewModel: PageViewModel(controls: controls, pageField: field as! PageField)))
+        return AnyView(PageView(pageViewModel: PageViewModel(controls: controls, pageField: field)))
             //.environmentObject(viewModel)
     }
     
     func renderPage(viewModel: FormViewModel, index: Int) -> AnyView {
-        return AnyView(PageView(pageViewModel: PageViewModel(controls: controls, pageField: field as! PageField)).environmentObject(viewModel).tag(index))
+        return AnyView(PageView(pageViewModel: PageViewModel(controls: controls, pageField: field)).environmentObject(viewModel).tag(index))
     }
 
     func renderHeader() -> AnyView {

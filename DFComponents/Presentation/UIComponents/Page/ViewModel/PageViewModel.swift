@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class PageViewModel: ObservableObject {
+final class PageViewModel: ObservableObject, BaseViewModel {
     @Published var pageField: PageField
     @Published var controls: [any FieldRenderable]
     
