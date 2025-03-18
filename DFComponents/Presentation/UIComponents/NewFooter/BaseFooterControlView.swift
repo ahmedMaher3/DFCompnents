@@ -1,10 +1,3 @@
-//
-//  BaseFooterControlView.swift
-//  DFComponents
-//
-//  Created by hassan elshaer on 11/03/2025.
-//
-
 import SwiftUI
 import PhotosUI
 import UniformTypeIdentifiers
@@ -21,31 +14,31 @@ struct BaseFooterControlView: View {
     @State private var showImagePicker = false
     @State private var isExpanded: Bool = false
     @State private var showPopover = false
-    
+
     init(viewModel: BaseFooterViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     var body: some View {
-        renderFooter(fieldEntity: viewModel.field)
+        renderFooter(field: viewModel.field)
     }
-    
+
     /// **Reusable Footer Stack**
     @ViewBuilder
-    private func footerStack(sublabel: String?, characterCountText: String?, addNote: Bool, addAttachment: Bool, tooltip: String) -> some View {
+    func footerStack(fieldProperties: InteractiveField, charactersCount: String) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            if let sublabel = sublabel {
+            if let sublabel = fieldProperties.sublabel {
                 HStack(alignment: .center, spacing: 8) {
                     Text(sublabel)
-                    
+
                     Spacer()
-                    
+
                     HStack(alignment: .center,spacing: 4) {
-                        if !(tooltip.isEmpty ) {
-                            ToolTipFooterView(tooltip: tooltip)
+                        if !(fieldProperties.tooltip?.isEmpty ?? true ) {
+                            ToolTipFooterView(tooltip: fieldProperties.tooltip ?? "")
                         }
-                        if let characterCountText = characterCountText {
-                            Text(characterCountText)
+                        if !charactersCount.isEmpty {
+                            Text(charactersCount)
                                 .foregroundStyle(.gray)
                                 .font(.system(size: 13))
                                 .fontWeight(.bold)
@@ -56,7 +49,7 @@ struct BaseFooterControlView: View {
                     .padding(.trailing, 2)
                 }
             }
-            if addNote || addAttachment {
+            if fieldProperties.addNote || fieldProperties.addAttachment {
                 HStack {
                     renderNoteButton()
                     renderAttachmentButton()
@@ -107,25 +100,22 @@ struct BaseFooterControlView: View {
             .presentationCornerRadius(20)
         }
     }
-    
+
     /// **Render Footer Based on Field Type**
     @ViewBuilder
-    private func renderFooter(fieldEntity: FieldEntity) -> some View {
-        switch fieldEntity {
+    private func renderFooter(field: (any FieldRenderable)?) -> some View {
+        switch field?.field.type {
         case .page, .section, .radio, .textBox:
             EmptyView()
-        case .number((_, let numberViewModel)):
-            let interactiveProperties = numberViewModel.numberFieldModel.base
-            footerStack(
-                sublabel: interactiveProperties.sublabel,
-                characterCountText: "\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)",
-                addNote: interactiveProperties.addNote,
-                addAttachment: interactiveProperties.addAttachment,
-                tooltip: interactiveProperties.tooltip ?? "test test test"
-            )
+        case .number:
+            if let numberField = field?.field as? NumberField {
+                footerStack(fieldProperties: numberField.base, charactersCount: "")
+            }
+        default :
+            EmptyView()
         }
     }
-    
+
     @ViewBuilder
     private func renderNoteButton() -> some View {
         Button(action: { showNotePopup.toggle() }) {
@@ -151,7 +141,7 @@ struct BaseFooterControlView: View {
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(8)
                     .lineLimit(isExpanded ? nil : 2)
-                
+
                 if note.count > 80 {
                     Button(action: { isExpanded.toggle() }) {
                         Text(isExpanded ? "Less" : "More")
@@ -166,9 +156,9 @@ struct BaseFooterControlView: View {
     }
     /// **Update Answer in ViewModel**
     private func updateAnswer() {
-        if case .number((_, let numberViewModel)) = viewModel.field {
-            numberViewModel.numberFieldModel.answer = BaseAnswerNumber(value:numberViewModel.baseAnswer?.value ?? "" ,note: savedNote ?? "", attachments: attachments)
-            
-        }
+//        if case .number((_, let numberViewModel)) = viewModel.field {
+//            numberViewModel.numberFieldModel.answer = BaseAnswerNumber(value:numberViewModel.baseAnswer?.value ?? "" ,note: savedNote ?? "", attachments: attachments)
+//
+//        }
     }
 }

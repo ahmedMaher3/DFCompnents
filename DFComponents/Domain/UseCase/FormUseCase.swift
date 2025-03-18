@@ -10,7 +10,6 @@ import Foundation
 protocol FormBuildUseCaseProtocol {
     func excute() async throws -> FormEntity
     func map(dto: Schema) -> [PageModel]
-//    func map(dto: Schema) -> [FieldEntity]
     func map(dto: Warnings) -> WarningsEntity
 }
 

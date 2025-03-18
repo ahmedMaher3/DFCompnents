@@ -6,7 +6,7 @@
 //
 import Foundation
 
-final class NumberFieldViewModel: ObservableObject {
+final class NumberFieldViewModel: ObservableObject,BaseViewModel {
     @Published var numberFieldModel: NumberField
     @Published var characterCount: Int = 0
     @Published var warningsMessagesDictionary: [String: [String]] = [:]

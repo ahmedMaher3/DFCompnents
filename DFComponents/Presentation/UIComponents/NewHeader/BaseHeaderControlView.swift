@@ -20,49 +20,11 @@ struct BaseHeaderControlView: View {
 
     // HeaderView
     @ViewBuilder
-    private func renderHeader(for field: FieldRenderable?) -> some View {
+    private func renderHeader(for field: (any FieldRenderable)?) -> some View {
         field?.renderHeader()
-//        if let fieldEntity = control {
-//            switch fieldEntity {
-//            case .page, .section, .radio, .textBox:
-//                EmptyView()
-//            case .number((_, let numberViewModel)):
-//                let properties = numberViewModel.numberFieldModel.basePropertiesNotInteractive
-//                labelView(baseProperties: properties)
-//            }
-//        }
     }
-    /// HeaderView
-//    @ViewBuilder
-//    private func renderHeader(for control: FieldEntity?) -> some View {
-//        if let fieldEntity = control {
-//            switch fieldEntity {
-//            case .page, .section, .radio, .textBox:
-//                EmptyView()
-//            case .number((_, let numberViewModel)):
-//                let properties = numberViewModel.numberFieldModel.basePropertiesNotInteractive
-//                labelView(baseProperties: properties)
-//            }
-//        }
-//    }
-    ///Label
-//    @ViewBuilder
-//     func labelView(baseProperties: BaseProperties) -> some View {
-//        if baseProperties.required ?? false {
-//            HStack(alignment: .center) {
-//                Text(baseProperties.label ?? "")
-//                    .font(.headline)
-//                    .foregroundColor(.primary)
-//                Text("* ")
-//                    .foregroundStyle(.red)
-//            }
-//        } else {
-//            Text(baseProperties.label ?? "")
-//                .font(.headline)
-//                .foregroundColor(.primary)
-//        }
-//    }
 }
+
 @ViewBuilder
  func labelView(baseProperties: BaseProperties) -> some View {
     if baseProperties.required ?? false {
