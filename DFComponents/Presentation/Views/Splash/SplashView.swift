@@ -10,28 +10,39 @@ import Alamofire
 
 struct SplashView: View {
     @State private var isActive = false
+    @StateObject  var formViewModel = FormViewModel()
+    @StateObject  var stepProgressViewModel = StepProgressViewModel()
+    @StateObject private var styleManagerVM = StyleManagerViewModel()
+    @State private var currentLocale: Locale = .current
+    @State private var showingAppearanceSheet = false
+    @State private var currentPage: Int = 0
 
     var body: some View {
-           ZStack {
-               if isActive {
-//                   FormView()
-                   FormBuilderView()
-                       .render()
-                   //MARK: - Composite Pattern
-//                   FormBuilderWrapperView()
-               } else {
-                   SplashContentView()
-                       .transition(.opacity)
-                       .onAppear {
-                           DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                               withAnimation {
-                                   isActive = true
-                               }
-                           }
+        ZStack {
+            if isActive {
+                FormBuilderView(
+                    viewModel: formViewModel,
+                    stepProgressViewModel: stepProgressViewModel,
+                    styleManagerVM: styleManagerVM,
+                    currentLocale: $currentLocale,
+                    showingAppearanceSheet: $showingAppearanceSheet,
+                    currentPage: $currentPage)
+                .render()
+                //MARK: - Composite Pattern
+                //                   FormBuilderWrapperView()
+            } else {
+                SplashContentView()
+                    .transition(.opacity)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            withAnimation {
+                                isActive = true
+                            }
+                        }
                     }
-               }
-           }
-       }
+            }
+        }
+    }
 }
 
 // MARK: - Splash Content

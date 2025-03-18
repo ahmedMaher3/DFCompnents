@@ -9,8 +9,8 @@ import SwiftUI
 
 @main
 struct DFComponentsApp: App {
-    
     @State var appearanceManager = AppearanceManager()
+
     @State private var currentLocale: Locale = {
         if let savedLocale = UserDefaults.standard.string(forKey: "selectedLocale") {
             return Locale(identifier: savedLocale)
@@ -25,8 +25,7 @@ struct DFComponentsApp: App {
                 .environment(\.locale, currentLocale)
                 .onAppear {
                     appearanceManager.initAppearanceStyle()
-                }
-            // test commit/push
+            }
         }
     }
 }

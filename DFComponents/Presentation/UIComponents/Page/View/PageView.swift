@@ -54,26 +54,13 @@ struct PageView: View {
         switch field {
             case .radio((_, let radioViewModel)):
                 BaseFieldContainerView(
-                    fieldEntity: field, controlType: {RadioButtonView(radioButtonVM: radioViewModel) },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                        set: { newValue in
-                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                        }
-                    ))
+                    fieldEntity: field, controlType: {RadioButtonView(radioButtonVM: radioViewModel) }, warningMessage: .constant("")
+                )
                 .opacity(radioViewModel.control.hidden ? 0 : 1)
 
             case .textBox((_, let textBoxViewModel)):
                 BaseFieldContainerView(
-                    fieldEntity: field, controlType: { TextBoxComponent(viewModel: textBoxViewModel) },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                        set: { newValue in
-                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                        }
-                    ))
+                    fieldEntity: field, controlType: { TextBoxComponent(viewModel: textBoxViewModel) }, warningMessage: .constant(""))
                 .opacity(textBoxViewModel.control.hidden ? 0 : 1)
 
             case .number((_, let numberViewModel)):
@@ -85,14 +72,7 @@ struct PageView: View {
                                     viewModel.warningsMessagesDictionary = newValue
                                 }
                             }
-                    },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                        set: { newValue in
-                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                        }
-                    ))
+                    }, warningMessage: .constant(""))
             case .page((_, _)):
                 EmptyView()
             case .section((_, let sectionViewModel)):

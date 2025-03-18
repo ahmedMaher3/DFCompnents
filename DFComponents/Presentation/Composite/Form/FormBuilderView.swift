@@ -5,44 +5,20 @@
 //  Created by Eslam on 16/03/2025.
 //
 import SwiftUI
-/*
-struct FormBuilderWrapperView: View {
-    @StateObject private var viewModel = FormViewModel()
-    @StateObject private var stepProgressViewModel = StepProgressViewModel()
-    @StateObject private var styleManagerVM = StyleManagerViewModel()
-    @State private var currentLocale: Locale = .current
-    @State private var showingAppearanceSheet = false
-    @State private var currentPage: Int = 0
-    var body: some View {
-        FormBuilderView(
-            id: UUID().uuidString,
-            stepProgressViewModel: stepProgressViewModel,
-            styleManagerVM: styleManagerVM,
-            currentLocale: $currentLocale,
-            showingAppearanceSheet: $showingAppearanceSheet,
-            currentPage: $currentPage
-        ).render()
-    }
-}
-*/
 
 struct FormBuilderView: FormComponent {
+
     var id = UUID().uuidString  // Unique identifier
-    @StateObject private var viewModel = FormViewModel()
-    @StateObject private var stepProgressViewModel = StepProgressViewModel()
-    @StateObject private var styleManagerVM = StyleManagerViewModel()
-    @State private var currentLocale: Locale = .current
-    @State private var showingAppearanceSheet = false
-    @State private var currentPage: Int = 0
 
+    @ObservedObject var viewModel: FormViewModel
+    @ObservedObject var stepProgressViewModel: StepProgressViewModel
+    @ObservedObject var styleManagerVM: StyleManagerViewModel
+    @Binding var currentLocale: Locale
+    @Binding var showingAppearanceSheet: Bool
+    @Binding var currentPage: Int
     @Environment(\.locale) private var locale
+
     var title: String = "FormView"
-
-
-
-    var body: some View {
-        render()
-    }
 
     // MARK: - FormComponent Protocol Implementation
     @ViewBuilder
@@ -89,11 +65,8 @@ struct FormBuilderView: FormComponent {
             .onAppear {
                 //                currentLocale = locale
                 Task {
-                    //                    await viewModel.fetchForm()
+                    await viewModel.fetchForm()
                     updateStepProgress()
-                    //                    viewModel.warnings.map { entity in
-                    //                        print(entity)
-                    //                    }
                 }
             }
         }
