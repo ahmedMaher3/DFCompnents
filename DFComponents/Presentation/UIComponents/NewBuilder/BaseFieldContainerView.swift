@@ -32,9 +32,9 @@ struct BaseFieldContainerView: View {
 //
 
            // Footer View - Aligned to Control
-//            BaseFooterControlView(viewModel: BaseFooterViewModel(field: field))
-//                .frame(maxWidth: .infinity, alignment: .leading) // Ensures left alignment
-//                .padding(.leading, 0) // Adjust leading padding as needed to match the control
+            BaseFooterControlView(viewModel: BaseFooterViewModel(field: field))
+                .frame(maxWidth: .infinity, alignment: .leading) // Ensures left alignment
+                .padding(.leading, 0) // Adjust leading padding as needed to match the control
 
             /// Warning View
             WarningCardView(message: field.errorMessage ?? "" )

@@ -27,25 +27,25 @@ struct BaseFooterControlView: View {
     }
     
     var body: some View {
-        renderFooter(fieldEntity: viewModel.field)
+        renderFooter(field: viewModel.field)
     }
     
     /// **Reusable Footer Stack**
     @ViewBuilder
-    private func footerStack(sublabel: String?, characterCountText: String?, addNote: Bool, addAttachment: Bool, tooltip: String) -> some View {
+    func footerStack(fieldProperties: InteractiveField, charactersCount: String) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            if let sublabel = sublabel {
+            if let sublabel = fieldProperties.sublabel {
                 HStack(alignment: .center, spacing: 8) {
                     Text(sublabel)
                     
                     Spacer()
                     
                     HStack(alignment: .center,spacing: 4) {
-                        if !(tooltip.isEmpty ) {
-                            ToolTipFooterView(tooltip: tooltip)
+                        if !(fieldProperties.tooltip?.isEmpty ?? true ) {
+                            ToolTipFooterView(tooltip: fieldProperties.tooltip ?? "")
                         }
-                        if let characterCountText = characterCountText {
-                            Text(characterCountText)
+                        if !charactersCount.isEmpty {
+                            Text(charactersCount)
                                 .foregroundStyle(.gray)
                                 .font(.system(size: 13))
                                 .fontWeight(.bold)
@@ -56,7 +56,7 @@ struct BaseFooterControlView: View {
                     .padding(.trailing, 2)
                 }
             }
-            if addNote || addAttachment {
+            if fieldProperties.addNote || fieldProperties.addAttachment {
                 HStack {
                     renderNoteButton()
                     renderAttachmentButton()
@@ -110,20 +110,21 @@ struct BaseFooterControlView: View {
     
     /// **Render Footer Based on Field Type**
     @ViewBuilder
-    private func renderFooter(fieldEntity: FieldEntity) -> some View {
-        switch fieldEntity {
-        case .page, .section, .radio, .textBox:
-            EmptyView()
-        case .number((_, let numberViewModel)):
-            let interactiveProperties = numberViewModel.numberFieldModel.base
-            footerStack(
-                sublabel: interactiveProperties.sublabel,
-                characterCountText: "\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)",
-                addNote: interactiveProperties.addNote,
-                addAttachment: interactiveProperties.addAttachment,
-                tooltip: interactiveProperties.tooltip ?? "test test test"
-            )
-        }
+    private func renderFooter(field: FieldRenderable?) -> some View {
+        field?.renderFooter()
+//        switch fieldEntity {
+//        case .page, .section, .radio, .textBox:
+//            EmptyView()
+//        case .number((_, let numberViewModel)):
+//            let interactiveProperties = numberViewModel.numberFieldModel.base
+//            footerStack(
+//                sublabel: interactiveProperties.sublabel,
+//                characterCountText: "\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)",
+//                addNote: interactiveProperties.addNote,
+//                addAttachment: interactiveProperties.addAttachment,
+//                tooltip: interactiveProperties.tooltip ?? "test test test"
+//            )
+//        }
     }
     
     @ViewBuilder
@@ -166,9 +167,9 @@ struct BaseFooterControlView: View {
     }
     /// **Update Answer in ViewModel**
     private func updateAnswer() {
-        if case .number((_, let numberViewModel)) = viewModel.field {
-            numberViewModel.numberFieldModel.answer = BaseAnswerNumber(value:numberViewModel.baseAnswer?.value ?? "" ,note: savedNote ?? "", attachments: attachments)
-            
-        }
+//        if case .number((_, let numberViewModel)) = viewModel.field {
+//            numberViewModel.numberFieldModel.answer = BaseAnswerNumber(value:numberViewModel.baseAnswer?.value ?? "" ,note: savedNote ?? "", attachments: attachments)
+//            
+//        }
     }
 }

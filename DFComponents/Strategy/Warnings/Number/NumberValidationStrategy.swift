@@ -68,7 +68,7 @@ final class NumberValidationStrategy: FieldValidationStrategy {
 
         warningsMessagesDictionary[fieldId] = fieldWarnings.isEmpty ? nil : fieldWarnings
 
-        Task { @MainActor in
+        DispatchQueue.main.async {
             numberViewModel.numberFieldModel.isError = !fieldWarnings.isEmpty
             numberViewModel.numberFieldModel.errorMessage = fieldWarnings.isEmpty ? nil : fieldWarnings.joined(separator: "\n")
         }

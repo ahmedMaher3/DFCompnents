@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import SwiftUICore
+import SwiftUI
+//import SwiftUICore
 
 protocol EntityMapper {
     associatedtype DTO
@@ -275,9 +276,14 @@ protocol FieldRenderable {
     var errorMessage: String? { get }
     func render() -> AnyView
     func renderHeader() -> AnyView
+    func renderFooter() -> AnyView
 }
 
 struct RadioButtonRenderer: FieldRenderable {
+    func renderFooter() -> AnyView {
+        return AnyView(EmptyView())
+    }
+    
 
     var field: BaseFieldProtocol!
 
@@ -301,6 +307,10 @@ struct RadioButtonRenderer: FieldRenderable {
 }
 
 struct TextBoxRenderer: FieldRenderable {
+    func renderFooter() -> AnyView {
+        return AnyView(EmptyView())
+    }
+    
     var field: BaseFieldProtocol!
 
     init(field: BaseFieldProtocol) {
@@ -340,11 +350,21 @@ struct NumberFieldRenderer: FieldRenderable {
         let properties = viewModel.numberFieldModel.basePropertiesNotInteractive
        return AnyView(labelView(baseProperties: properties))
     }
+    func renderFooter() -> AnyView {
+        let viewModel = NumberFieldViewModel(numberFieldModel: field as! NumberField)
+         let interactiveProperties = viewModel.numberFieldModel.base
+        let charactersCount = "\(viewModel.characterCount)/\(viewModel.numberFieldModel.maximumDigits ?? 0)"
+        let baseFooterView = BaseFooterControlView(viewModel: BaseFooterViewModel(field: self ))
+        return AnyView( baseFooterView.footerStack(fieldProperties: interactiveProperties, charactersCount: charactersCount))
+    }
 
 }
 
 struct SectionButtonRenderer: FieldRenderable {
-
+    func renderFooter() -> AnyView {
+        return AnyView(EmptyView())
+    }
+    
     var field: BaseFieldProtocol!
     var controls: [FieldRenderable]!
 
