@@ -71,6 +71,13 @@ protocol SectionPropertiesProtocol: BasePropertiesProtocol {
     var icon: String? { get }
 }
 
+protocol PagePropertiesProtocol: BasePropertiesProtocol {
+    var submit: String { get }
+    var next: String { get }
+    var back: String { get }
+    var backVisibility: Bool { get }
+}
+
 protocol MCQPropertiesProtocol: InteractivePropertiesProtocol {
     var options: [MCQOption] { get }
     var defaultAnswer: BaseAnswerMCQ? { get }
@@ -92,6 +99,19 @@ struct SectionProperties: SectionPropertiesProtocol {
     let allowCollapse: Bool?
     let defaultMode: String?
     let icon: String?
+}
+
+struct PageProperties: PagePropertiesProtocol {
+    var submit: String
+    var next: String
+    var back: String
+    var backVisibility: Bool
+    var sublabel: String?
+    var label: String?
+    var labelPosition: String?
+    var tooltip: String?
+    var hidden: Bool?
+    var required: Bool?
 }
 
 struct TextBoxProperties: TextBaseProperties {

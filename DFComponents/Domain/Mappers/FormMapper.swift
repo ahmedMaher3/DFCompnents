@@ -29,17 +29,26 @@ class FormMapper: EntityMapper {
     private func convertToPages(fields: [Field], mode: FormType) -> [PageModel] {
         return mode == .classic ? convertToPagesInClassicMode(fields: fields, mode: mode) : convertToPagesInCardsMode(fields: fields, mode: mode)
     }
-
+    
     func convertToPagesInClassicMode(fields: [Field], mode: FormType) -> [PageModel] {
-        let pageIds = fields.compactMap { $0.type == .page ? $0.id : nil } // collect pageIds
-
+        let pagesData = fields.filter { $0.type == .page } // Extract page fields
+        
         let groupedFields = Dictionary(grouping: fields.filter { $0.parentId != nil }) { $0.parentId! }
 
         // 🔹 Recursively process pages & sections
-        let pages = pageIds.compactMap { pageId -> PageModel? in
-            guard let pageFields = groupedFields[pageId] else { return nil }
-            let mappedFields = mapFieldsRecursively(fields: pageFields, groupedFields: groupedFields)
-            return PageModel(id: pageId, fields: mappedFields, mode: mode)
+        let pages = pagesData.compactMap { page -> PageModel? in
+            guard let pageId = page.id else { return nil }
+            let mappedFields = mapFieldsRecursively(fields: groupedFields[pageId] ?? [], groupedFields: groupedFields)
+
+            let control = PageField(field: page)
+            let pageRenderer = PageRenderer(field: control, controls: mappedFields)
+
+            return PageModel(
+                pageField: pageRenderer,
+                id: pageId,
+                fields: mappedFields,
+                mode: mode
+            )
         }
 
         return pages
@@ -56,7 +65,16 @@ class FormMapper: EntityMapper {
 
             let mappedFields = mapFieldsRecursively(fields: [field], groupedFields: [:])
 
-            let pageModel = PageModel(id: pageId, fields: mappedFields, mode: mode)
+            let control = PageField(field: field)
+            let pageRenderer = PageRenderer(field: control, controls: mappedFields)
+
+            let pageModel = PageModel(
+                pageField: pageRenderer,
+                id: pageId,
+                fields: mappedFields,
+                mode: mode
+            )
+            
             pages.append(pageModel)
 
             cardIndex += 1
@@ -93,7 +111,7 @@ class FormMapper: EntityMapper {
             case .number:
                 let control = NumberField(field: field)
             return NumberFieldRenderer(field: control)
-
+            
             default:
                 return nil
         }
@@ -174,7 +192,8 @@ class FormMapper: EntityMapper {
 
 }
 
-struct PageModel: Identifiable {
+struct PageModel: Identifiable { // [Page Model]
+    var pageField: PageRenderable?
     var id: String
     var fields: [any FieldRenderable]
     var mode: FormType
@@ -270,14 +289,18 @@ enum FieldEntity: Identifiable {
 }
 
 
-protocol FieldRenderable {
+protocol FieldRenderable { // Factory Protocol
     var id: String { get }
     var errorMessage: String? { get }
     func render() -> AnyView
     func renderHeader() -> AnyView
 }
+    
+protocol PageRenderable: FieldRenderable {
+    func renderPage(viewModel: FormViewModel, index: Int) -> AnyView
+}
 
-struct RadioButtonRenderer: FieldRenderable {
+struct RadioButtonRenderer: FieldRenderable { // Concrete Class
 
     var field: BaseFieldProtocol!
 
@@ -300,7 +323,7 @@ struct RadioButtonRenderer: FieldRenderable {
     
 }
 
-struct TextBoxRenderer: FieldRenderable {
+struct TextBoxRenderer: FieldRenderable { // Concrete Class
     var field: BaseFieldProtocol!
 
     init(field: BaseFieldProtocol) {
@@ -321,7 +344,7 @@ struct TextBoxRenderer: FieldRenderable {
     
 }
 
-struct NumberFieldRenderer: FieldRenderable {
+struct NumberFieldRenderer: FieldRenderable { // Concrete Class
     var field: BaseFieldProtocol!
     
     init(field: BaseFieldProtocol) {
@@ -343,7 +366,35 @@ struct NumberFieldRenderer: FieldRenderable {
 
 }
 
-struct SectionButtonRenderer: FieldRenderable {
+struct PageRenderer: PageRenderable { // Concrete Class
+
+    var field: BaseFieldProtocol!
+    var controls: [FieldRenderable]!
+
+    init(field: BaseFieldProtocol,controls: [FieldRenderable]) {
+        self.field = field
+        self.controls = controls
+    }
+    var id: String { field.fieldId}
+    var errorMessage: String? { field.errorMessage }
+    
+    func render() -> AnyView {
+
+        return AnyView(PageView(pageViewModel: PageViewModel(controls: controls, pageField: field as! PageField)))
+            //.environmentObject(viewModel)
+    }
+    
+    func renderPage(viewModel: FormViewModel, index: Int) -> AnyView {
+        return AnyView(PageView(pageViewModel: PageViewModel(controls: controls, pageField: field as! PageField)).environmentObject(viewModel).tag(index))
+    }
+
+    func renderHeader() -> AnyView {
+        return AnyView(EmptyView())
+    }
+
+}
+
+struct SectionButtonRenderer: FieldRenderable { // Concrete Class
 
     var field: BaseFieldProtocol!
     var controls: [FieldRenderable]!

@@ -28,16 +28,16 @@ struct FormView: View {
                     Spacer()
                     TabView(selection: $currentPage) {
                         ForEach(viewModel.pages.indices, id: \.self) { index in
-                            PageView(pageViewModel: PageViewModel(controls: viewModel.pages[index].fields))
-                                .environmentObject(viewModel)
-                                .tag(index)
+                            viewModel.pages[index].pageField?.renderPage(viewModel: viewModel, index: index)
+//                            PageView(pageViewModel: PageViewModel(controls: viewModel.pages[index].fields, pageField: viewModel.pages[index].pageField))
+//                                .environmentObject(viewModel)
+//                                .tag(index)
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
                     .onChange(of: currentPage) { oldValue,newPage in
                         stepProgressViewModel.updateCurrentPage(newPage)
                         stepProgressViewModel.updateProgress()
-
                     }
 
                     .if(self.viewModel.mode == .card) { tab in
@@ -53,7 +53,15 @@ struct FormView: View {
                         tab.frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
                     }
                     Spacer()
-                    FooterView(currentPage: $currentPage, totalPages: viewModel.pages.count)
+                    
+                    let page = (self.viewModel.pages[currentPage].pageField as? PageRenderer)?.field as! PageField
+                    let pageProperties = PageProperties(submit: page.submit ?? "", next: page.next ?? "", back: page.back ?? "", backVisibility: page.backVisibility ?? true)
+                    
+                    FooterView(
+                        currentPage: $currentPage,
+                        totalPages: viewModel.pages.count,
+                        pageProperties: pageProperties
+                    )
 
                 } else {
                     loadingView()
@@ -93,48 +101,56 @@ struct FormView: View {
         }
     }
 
+}
 
-    struct FooterView: View {
-        @Binding var currentPage: Int
-        let totalPages: Int
 
-        var body: some View {
-            HStack {
-                Button(action: {
-                    if currentPage > 0 {
-                        currentPage -= 1
+struct FooterView: View {
+    @Binding var currentPage: Int
+    let totalPages: Int
+    let pageProperties: PageProperties
+    
+    var body: some View {
+        HStack {
+            
+            if pageProperties.backVisibility {
+                if currentPage != 0 {
+                    Button(action: {
+                        if currentPage > 0 {
+                            currentPage -= 1
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: "chevron.left")
+                            Text(pageProperties.back)
+                        }
+                        .foregroundColor(currentPage > 0 ? .blue : .gray)
                     }
-                }) {
-                    HStack {
-                        Image(systemName: "chevron.left")
-                        Text("Back")
-                    }
-                    .foregroundColor(currentPage > 0 ? .blue : .gray)
+                    //                .disabled(currentPage == 0)
                 }
-                .disabled(currentPage == 0)
+            }
 
-                Spacer()
+            Spacer()
 
+            if currentPage < totalPages - 1 {
                 Button(action: {
                     if currentPage < totalPages - 1 {
                         currentPage += 1
                     }
                 }) {
                     HStack {
-                        Text("Next")
+                        Text(pageProperties.next)
                         Image(systemName: "chevron.right")
                     }
                     .foregroundColor(currentPage < totalPages - 1 ? .blue : .gray)
                 }
-                .disabled(currentPage >= totalPages - 1)
+                //            .disabled(currentPage >= totalPages - 1)
             }
-            .padding()
-            .frame(height: 55)
-            .background(Color(.systemGray6))
-
         }
+            
+        .padding()
+        .frame(height: 55)
+        .background(Color(.systemGray6))
+
     }
-
-
 }
 
