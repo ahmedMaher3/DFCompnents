@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct BaseFieldContainerView: View {
   //  let control: () -> Control
@@ -43,6 +44,11 @@ struct BaseFieldContainerView: View {
         .padding(6)
        .background(field.errorMessage == nil || field.errorMessage == "" ? Color.clear : Color.red.opacity(0.05))
         .cornerRadius(8)
+        .onReceive(Just(fieldEntity.errorMessage)) { errorMessage in
+            Task { @MainActor in
+                viewModel.errorMessage = errorMessage ?? ""
+            }
+        }
     }
 }
 

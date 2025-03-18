@@ -53,6 +53,7 @@
 		AA0CF63C2D8061BB00F4D452 /* NumberValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF63B2D8061BB00F4D452 /* NumberValidationStrategy.swift */; };
 		AA0CF63E2D80698300F4D452 /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF63D2D80698300F4D452 /* FormValidator.swift */; };
 		AA0CF6412D806A1500F4D452 /* RequiredValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0CF6402D806A1500F4D452 /* RequiredValidationStrategy.swift */; };
+		AA0DCCC22D88B45E00452A08 /* BaseFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0DCCC12D88B45E00452A08 /* BaseFieldViewModel.swift */; };
 		AA3F83AA2D4B7DDD00C7A6C0 /* CheckBoxDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */; };
 		AA84AE152D4B8BAF0057D161 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */; };
 		AA9A22182D80AF6600150E62 /* EntryLimitValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A22172D80AF6500150E62 /* EntryLimitValidationStrategy.swift */; };
@@ -241,6 +242,7 @@
 		AA0CF63B2D8061BB00F4D452 /* NumberValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberValidationStrategy.swift; sourceTree = "<group>"; };
 		AA0CF63D2D80698300F4D452 /* FormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
 		AA0CF6402D806A1500F4D452 /* RequiredValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredValidationStrategy.swift; sourceTree = "<group>"; };
+		AA0DCCC12D88B45E00452A08 /* BaseFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFieldViewModel.swift; sourceTree = "<group>"; };
 		AA3F83A82D4B7DDD00C7A6C0 /* CheckBoxDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxDTO.swift; sourceTree = "<group>"; };
 		AA84AE142D4B8BAF0057D161 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		AA9A22172D80AF6500150E62 /* EntryLimitValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryLimitValidationStrategy.swift; sourceTree = "<group>"; };
@@ -670,6 +672,14 @@
 			path = Required;
 			sourceTree = "<group>";
 		};
+		AA0DCCC02D88B45100452A08 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AA0DCCC12D88B45E00452A08 /* BaseFieldViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		AA9A221D2D80B02C00150E62 /* General */ = {
 			isa = PBXGroup;
 			children = (
@@ -1038,6 +1048,7 @@
 		E472DCB22D8058A000B8FAF3 /* NewBuilder */ = {
 			isa = PBXGroup;
 			children = (
+				AA0DCCC02D88B45100452A08 /* ViewModel */,
 				E472DCB32D8058B500B8FAF3 /* BaseFieldContainerView.swift */,
 			);
 			path = NewBuilder;
@@ -1765,6 +1776,7 @@
 				04C1DE352D5DFB970034B704 /* AppearanceSheetView.swift in Sources */,
 				E48CA0012D5374D300A519ED /* AKMaskField.swift in Sources */,
 				AAD964112D4AE3D300302958 /* ShowMoreButton.swift in Sources */,
+				AA0DCCC22D88B45E00452A08 /* BaseFieldViewModel.swift in Sources */,
 				AAF1B17F2D7648FB00DC44B4 /* MCQValidationEntity.swift in Sources */,
 				A9474BD62D5CEF7E00031047 /* GlobalErrorHandler.swift in Sources */,
 				E48CA1172D5CC72300A519ED /* BorderStyling.swift in Sources */,

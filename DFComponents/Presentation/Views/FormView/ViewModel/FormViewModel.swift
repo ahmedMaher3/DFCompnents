@@ -22,8 +22,6 @@ class FormViewModel: ObservableObject {
         }
     }
     @Published var rulesImp: RuleImp!
-    @Published var warningsMessagesDictionary: [String: [String]]? = [:]
-
 
     func fetchForm() async {
         do {

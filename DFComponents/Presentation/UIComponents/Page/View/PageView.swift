@@ -44,7 +44,6 @@ struct PageView: View {
                     .frame(maxWidth: .infinity, minHeight: geometry.size.height) // Uses container height
                 }
             }
-
         }
     }
 
