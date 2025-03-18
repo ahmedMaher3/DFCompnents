@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RadioButtonViewModel: ObservableObject {
+final class RadioButtonViewModel: ObservableObject,BaseViewModel {
 
     @Published var control: RadioButtonField
     let id: String
