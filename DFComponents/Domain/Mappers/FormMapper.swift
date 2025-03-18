@@ -66,33 +66,33 @@ class FormMapper: EntityMapper {
     }
 
     // 🔹 Recursive function to map fields & handle sections dynamically
-    private func mapFieldsRecursively(fields: [Field], groupedFields: [String: [Field]]) -> [FieldRenderable] {
+    private func mapFieldsRecursively(fields: [Field], groupedFields: [String: [Field]]) -> [any FieldRenderable] {
         return fields.compactMap { field in
-            if field.type == .section {
-                let sectionControls = mapFieldsRecursively(fields: groupedFields[field.id!] ?? [], groupedFields: groupedFields)
-                let control = SectionField(field: field)
-                return SectionButtonRenderer(field: control,controls:sectionControls)
-               // return .section((control, SectionViewModel(controls: sectionControls, sectionField: control)))
-            }
+//            if field.type == .section {
+//                let sectionControls = mapFieldsRecursively(fields: groupedFields[field.id!] ?? [], groupedFields: groupedFields)
+//                let control = SectionField(field: field)
+//                return SectionButtonRenderer(field: control,controls:sectionControls)
+//               // return .section((control, SectionViewModel(controls: sectionControls, sectionField: control)))
+//            }
             return mapSingleField(field: field)
         }
     }
 
     // 🔹 Helper Function to Map a Single Field
 
-    private func mapSingleField(field: Field) ->  FieldRenderable? {
+    private func mapSingleField(field: Field) ->  (any FieldRenderable)? {
         switch field.type {
-            case .textBox:
-            let control = TextBoxField(field: field)
-            return TextBoxRenderer(field: control)
+//            case .textBox:
+//            let control = TextBoxField(field: field)
+//            return TextBoxRenderer(field: control)
 
             case .radio:
             let control = RadioButtonField(field: field)
             return RadioButtonRenderer(field: control)
 
-            case .number:
-                let control = NumberField(field: field)
-            return NumberFieldRenderer(field: control)
+//            case .number:
+//                let control = NumberField(field: field)
+//            return NumberFieldRenderer(field: control)
 
             default:
                 return nil
@@ -271,6 +271,8 @@ enum FieldEntity: Identifiable {
 
 
 protocol FieldRenderable {
+    associatedtype FieldType: BaseFieldProtocol
+    var field: FieldType! { get }
     var id: String { get }
     var errorMessage: String? { get }
     func render() -> AnyView
@@ -279,9 +281,9 @@ protocol FieldRenderable {
 
 struct RadioButtonRenderer: FieldRenderable {
 
-    var field: BaseFieldProtocol!
+    var field: RadioButtonField!
 
-    init(field: BaseFieldProtocol) {
+    init(field: RadioButtonField) {
         self.field = field
     }
 
@@ -290,81 +292,80 @@ struct RadioButtonRenderer: FieldRenderable {
 
 
     func render() -> AnyView {
-        guard let radioField = field as? RadioButtonField else { return AnyView(EmptyView()) }
-        return AnyView(RadioButtonView(radioButtonVM: RadioButtonViewModel(control: radioField)))
+//        guard let radioField = field as? RadioButtonField else { return AnyView(EmptyView()) }
+        return AnyView(RadioButtonView(radioButtonVM: RadioButtonViewModel(control: field)))
     }
 
     func renderHeader() -> AnyView {
         return AnyView(EmptyView())
     }
-    
 }
 
-struct TextBoxRenderer: FieldRenderable {
-    var field: BaseFieldProtocol!
-
-    init(field: BaseFieldProtocol) {
-        self.field = field
-    }
-    var id: String { field.fieldId}
-    var errorMessage: String? { field.errorMessage }
-
-    func render() -> AnyView {
-        guard let textBoxField = field as? TextBoxField else { return AnyView(EmptyView())}
-        return AnyView(TextBoxComponent(viewModel: TextBoxViewModel(control: textBoxField)))
-    }
-
-    func renderHeader() -> AnyView {
-
-        return AnyView(EmptyView())
-    }
-    
-}
-
-struct NumberFieldRenderer: FieldRenderable {
-    var field: BaseFieldProtocol!
-    
-    init(field: BaseFieldProtocol) {
-        self.field = field
-    }
-    var id: String { field.fieldId}
-    var errorMessage: String? { field.errorMessage }
-
-    func render() -> AnyView {
-        guard let numberField = field as? NumberField else { return AnyView(EmptyView()) }
-        return AnyView(NumberFieldComponent(viewModel: NumberFieldViewModel(numberFieldModel: numberField)))
-    }
-
-    func renderHeader() -> AnyView {
-       let viewModel = NumberFieldViewModel(numberFieldModel: field as! NumberField)
-        let properties = viewModel.numberFieldModel.basePropertiesNotInteractive
-       return AnyView(labelView(baseProperties: properties))
-    }
-
-}
-
-struct SectionButtonRenderer: FieldRenderable {
-
-    var field: BaseFieldProtocol!
-    var controls: [FieldRenderable]!
-
-    init(field: BaseFieldProtocol,controls: [FieldRenderable]) {
-        self.field = field
-        self.controls = controls
-    }
-    var id: String { field.fieldId}
-    var errorMessage: String? { field.errorMessage }
-    
-    func render() -> AnyView {
-
-        return AnyView(SectionView(sectionViewModel: SectionViewModel(controls: controls, sectionField: field as! SectionField), isExpanded: false))
-    }
-
-    func renderHeader() -> AnyView {
-        return AnyView(EmptyView())
-    }
-
-
-}
+//struct TextBoxRenderer: FieldRenderable {
+//    var field: BaseFieldProtocol!
+//
+//    init(field: BaseFieldProtocol) {
+//        self.field = field
+//    }
+//    var id: String { field.fieldId}
+//    var errorMessage: String? { field.errorMessage }
+//
+//    func render() -> AnyView {
+//        guard let textBoxField = field as? TextBoxField else { return AnyView(EmptyView())}
+//        return AnyView(TextBoxComponent(viewModel: TextBoxViewModel(control: textBoxField)))
+//    }
+//
+//    func renderHeader() -> AnyView {
+//
+//        return AnyView(EmptyView())
+//    }
+//    
+//}
+//
+//struct NumberFieldRenderer: FieldRenderable {
+//    var field: BaseFieldProtocol!
+//    
+//    init(field: BaseFieldProtocol) {
+//        self.field = field
+//    }
+//    var id: String { field.fieldId}
+//    var errorMessage: String? { field.errorMessage }
+//
+//    func render() -> AnyView {
+//        guard let numberField = field as? NumberField else { return AnyView(EmptyView()) }
+//        return AnyView(NumberFieldComponent(viewModel: NumberFieldViewModel(numberFieldModel: numberField)))
+//    }
+//
+//    func renderHeader() -> AnyView {
+//       let viewModel = NumberFieldViewModel(numberFieldModel: field as! NumberField)
+//        let properties = viewModel.numberFieldModel.basePropertiesNotInteractive
+//       return AnyView(labelView(baseProperties: properties))
+//    }
+//
+//}
+//
+//struct SectionButtonRenderer: FieldRenderable {
+//
+//    var field: BaseFieldProtocol!
+//    var controls: [FieldRenderable]!
+//
+//    init(field: BaseFieldProtocol,controls: [FieldRenderable]) {
+//        self.field = field
+//        self.controls = controls
+//    }
+//    var id: String { field.fieldId}
+//    var errorMessage: String? { field.errorMessage }
+//    
+//    func render() -> AnyView {
+//
+//        return AnyView(SectionView(sectionViewModel: SectionViewModel(controls: controls, sectionField: field as! SectionField), isExpanded: false))
+//    }
+//
+//    func renderHeader() -> AnyView {
+//        return AnyView(EmptyView())
+//    }
+//
+//
+//}
 
 

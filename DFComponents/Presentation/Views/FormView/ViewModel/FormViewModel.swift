@@ -75,6 +75,7 @@ class FormViewModel: ObservableObject {
     }
 
     func applyFieldRules(by id: String) {
-        rulesImp.getAffectedRules(forControlId: id)
+        print("id: \(id)")
+//        rulesImp.getAffectedRules(forControlId: id)
     }
 }

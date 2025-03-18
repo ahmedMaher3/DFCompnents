@@ -9,11 +9,11 @@ import SwiftUI
 
 struct BaseFieldContainerView: View {
   //  let control: () -> Control
-    let field: FieldRenderable
+    let field: any FieldRenderable
    // let fieldEntity: FieldEntity
 
     init(
-        field: FieldRenderable )
+        field: any FieldRenderable )
         //fieldEntity: FieldEntity,
         //@ViewBuilder controlType: @escaping () -> Control)
     {
