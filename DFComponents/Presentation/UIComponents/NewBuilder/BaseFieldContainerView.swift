@@ -10,7 +10,7 @@ import Combine
 
 struct BaseFieldContainerView: View {
     let field: any FieldRenderable
-
+     
     init(
         field: any FieldRenderable )
     {
@@ -18,7 +18,9 @@ struct BaseFieldContainerView: View {
     }
 
     var body: some View {
+
         LazyVStack(alignment: .leading, spacing: 8) {
+            
             /// Header View
             BaseHeaderControlView(viewModel: BaseHeaderViewModel(field: field))
 
@@ -38,9 +40,11 @@ struct BaseFieldContainerView: View {
         .padding(6)
         .background(field.errorMessage == nil || field.errorMessage == "" ? Color.clear : Color.red.opacity(0.05))
         .cornerRadius(8)
-        .onReceive(Just(fieldEntity.errorMessage)) { errorMessage in
+
+        .onReceive(Just(field.field.errorMessage)) { errorMessage in
             Task { @MainActor in
-                viewModel.errorMessage = errorMessage ?? ""
+                print("fjeowifheifhewufhewiufiewh\(errorMessage)")
+//                viewModel.errorMessage = errorMessage ?? ""
             }
         }
     }

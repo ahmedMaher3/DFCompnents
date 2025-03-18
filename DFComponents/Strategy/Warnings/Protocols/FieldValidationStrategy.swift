@@ -8,7 +8,7 @@ import Foundation
 
 protocol FieldValidationStrategy {
     func validate(
-        fieldEntity: FieldEntity,
+        fieldRender: any FieldRenderable,
         value: Any?,
         warnings: WarningsEntity?,
         warningsMessagesDictionary: inout [String: [String]]

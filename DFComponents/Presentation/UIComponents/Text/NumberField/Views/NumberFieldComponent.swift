@@ -12,6 +12,7 @@ struct NumberFieldComponent: View {
     @FocusState private var isTextFieldFocused: Bool
 
     var body: some View {
+        
         VStack {
             ZStack {
                 InputNumberView(viewModel: viewModel, isTextFieldFocused: $isTextFieldFocused)
