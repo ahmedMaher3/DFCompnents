@@ -6,20 +6,18 @@
 //
 
 import Foundation
+import SwiftUICore
 
 protocol EntityMapper {
     associatedtype DTO
-    associatedtype Entity
     func map (from dto: DTO) -> [PageModel]
     associatedtype Warnings
-    //    func map (from dto: DTO) -> [FieldEntity]
     func map (from dto: Warnings) -> WarningsEntity
 }
 
 class FormMapper: EntityMapper {
 
     typealias DTO = Schema
-    typealias Entity = FieldEntity
     typealias formWarnings = WarningsEntity
 
     func map(from dto: Schema) -> [PageModel] {
@@ -35,7 +33,7 @@ class FormMapper: EntityMapper {
     func convertToPagesInClassicMode(fields: [Field], mode: FormType) -> [PageModel] {
         let pageIds = fields.compactMap { $0.type == .page ? $0.id : nil } // collect pageIds
 
-        let groupedFields = Dictionary(grouping: fields.filter { $0.parentId != nil }) { $0.parentId! } // Collect fields with same parent id in group
+        let groupedFields = Dictionary(grouping: fields.filter { $0.parentId != nil }) { $0.parentId! }
 
         // 🔹 Recursively process pages & sections
         let pages = pageIds.compactMap { pageId -> PageModel? in
@@ -51,12 +49,12 @@ class FormMapper: EntityMapper {
         var pages: [PageModel] = []
         var cardIndex = 1
 
-        let cardFields = fields.filter { $0.type != .page && $0.type != .section } // Exclude pages & sections
+        let cardFields = fields.filter { $0.type != .page && $0.type != .section }
 
         for field in cardFields {
-            let pageId = "page_\(cardIndex)" // Manually assigning unique page IDs
+            let pageId = "page_\(cardIndex)"
 
-            let mappedFields = mapFieldsRecursively(fields: [field], groupedFields: [:]) // Map single field
+            let mappedFields = mapFieldsRecursively(fields: [field], groupedFields: [:])
 
             let pageModel = PageModel(id: pageId, fields: mappedFields, mode: mode)
             pages.append(pageModel)
@@ -68,33 +66,55 @@ class FormMapper: EntityMapper {
     }
 
     // 🔹 Recursive function to map fields & handle sections dynamically
-    private func mapFieldsRecursively(fields: [Field], groupedFields: [String: [Field]]) -> [FieldEntity] {
+    private func mapFieldsRecursively(fields: [Field], groupedFields: [String: [Field]]) -> [FieldRenderable] {
         return fields.compactMap { field in
             if field.type == .section {
                 let sectionControls = mapFieldsRecursively(fields: groupedFields[field.id!] ?? [], groupedFields: groupedFields)
                 let control = SectionField(field: field)
-                return .section((control, SectionViewModel(controls: sectionControls, sectionField: control)))
+                return SectionButtonRenderer(field: control,controls:sectionControls)
+               // return .section((control, SectionViewModel(controls: sectionControls, sectionField: control)))
             }
             return mapSingleField(field: field)
         }
     }
 
     // 🔹 Helper Function to Map a Single Field
-    private func mapSingleField(field: Field) -> FieldEntity? {
+
+    private func mapSingleField(field: Field) ->  FieldRenderable? {
         switch field.type {
             case .textBox:
-                let control = TextBoxField(field: field)
-                return .textBox((control, TextBoxViewModel(control: control)))
+            let control = TextBoxField(field: field)
+            return TextBoxRenderer(field: control)
+
             case .radio:
-                let control = RadioButtonField(field: field)
-                return .radio((control, RadioButtonViewModel(control: control)))
+            let control = RadioButtonField(field: field)
+            return RadioButtonRenderer(field: control)
+
             case .number:
                 let control = NumberField(field: field)
-                return .number((control, NumberFieldViewModel(numberFieldModel: control)))
+            return NumberFieldRenderer(field: control)
+
             default:
                 return nil
         }
     }
+
+
+//    private func mapSingleField(field: Field) -> FieldEntity? {
+//        switch field.type {
+//            case .textBox:
+//                let control = TextBoxField(field: field)
+//                return .textBox((control, TextBoxViewModel(control: control)))
+//            case .radio:
+//                let control = RadioButtonField(field: field)
+//                return .radio((control, RadioButtonViewModel(control: control)))
+//            case .number:
+//                let control = NumberField(field: field)
+//                return .number((control, NumberFieldViewModel(numberFieldModel: control)))
+//            default:
+//                return nil
+//        }
+//    }
 
     func map(from dto: Warnings) -> WarningsEntity {
         return WarningsEntity(
@@ -156,7 +176,7 @@ class FormMapper: EntityMapper {
 
 struct PageModel: Identifiable {
     var id: String
-    var fields: [FieldEntity]
+    var fields: [any FieldRenderable]
     var mode: FormType
 }
 
@@ -250,8 +270,101 @@ enum FieldEntity: Identifiable {
 }
 
 
+protocol FieldRenderable {
+    var id: String { get }
+    var errorMessage: String? { get }
+    func render() -> AnyView
+    func renderHeader() -> AnyView
+}
+
+struct RadioButtonRenderer: FieldRenderable {
+
+    var field: BaseFieldProtocol!
+
+    init(field: BaseFieldProtocol) {
+        self.field = field
+    }
+
+    var id: String { field.fieldId}
+    var errorMessage: String? { field.errorMessage }
 
 
+    func render() -> AnyView {
+        guard let radioField = field as? RadioButtonField else { return AnyView(EmptyView()) }
+        return AnyView(RadioButtonView(radioButtonVM: RadioButtonViewModel(control: radioField)))
+    }
 
+    func renderHeader() -> AnyView {
+        return AnyView(EmptyView())
+    }
+    
+}
+
+struct TextBoxRenderer: FieldRenderable {
+    var field: BaseFieldProtocol!
+
+    init(field: BaseFieldProtocol) {
+        self.field = field
+    }
+    var id: String { field.fieldId}
+    var errorMessage: String? { field.errorMessage }
+
+    func render() -> AnyView {
+        guard let textBoxField = field as? TextBoxField else { return AnyView(EmptyView())}
+        return AnyView(TextBoxComponent(viewModel: TextBoxViewModel(control: textBoxField)))
+    }
+
+    func renderHeader() -> AnyView {
+
+        return AnyView(EmptyView())
+    }
+    
+}
+
+struct NumberFieldRenderer: FieldRenderable {
+    var field: BaseFieldProtocol!
+    
+    init(field: BaseFieldProtocol) {
+        self.field = field
+    }
+    var id: String { field.fieldId}
+    var errorMessage: String? { field.errorMessage }
+
+    func render() -> AnyView {
+        guard let numberField = field as? NumberField else { return AnyView(EmptyView()) }
+        return AnyView(NumberFieldComponent(viewModel: NumberFieldViewModel(numberFieldModel: numberField)))
+    }
+
+    func renderHeader() -> AnyView {
+       let viewModel = NumberFieldViewModel(numberFieldModel: field as! NumberField)
+        let properties = viewModel.numberFieldModel.basePropertiesNotInteractive
+       return AnyView(labelView(baseProperties: properties))
+    }
+
+}
+
+struct SectionButtonRenderer: FieldRenderable {
+
+    var field: BaseFieldProtocol!
+    var controls: [FieldRenderable]!
+
+    init(field: BaseFieldProtocol,controls: [FieldRenderable]) {
+        self.field = field
+        self.controls = controls
+    }
+    var id: String { field.fieldId}
+    var errorMessage: String? { field.errorMessage }
+    
+    func render() -> AnyView {
+
+        return AnyView(SectionView(sectionViewModel: SectionViewModel(controls: controls, sectionField: field as! SectionField), isExpanded: false))
+    }
+
+    func renderHeader() -> AnyView {
+        return AnyView(EmptyView())
+    }
+
+
+}
 
 

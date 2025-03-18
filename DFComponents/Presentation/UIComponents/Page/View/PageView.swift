@@ -48,42 +48,17 @@ struct PageView: View {
         }
     }
 
-    /// Controls
+
     @ViewBuilder
-    private func renderField(for field: FieldEntity) -> some View {
-        switch field {
-            case .radio((_, let radioViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field,
-                    controlType: {RadioButtonView(radioButtonVM: radioViewModel) }
-                )
-                .opacity(radioViewModel.control.hidden ? 0 : 1)
+    private func renderField(for field:  FieldRenderable) -> some View {
+        BaseFieldContainerView(
+            field: field
 
-            case .textBox((_, let textBoxViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field,
-                    controlType: { TextBoxComponent(viewModel: textBoxViewModel) }
-                )
-                .opacity(textBoxViewModel.control.hidden ? 0 : 1)
+        )
+        //.opacity(radioViewModel.control.hidden ? 0 : 1)
 
-            case .number((_, let numberViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field,
-                    controlType: {  NumberFieldComponent(viewModel: numberViewModel)
-                            .onReceive(numberViewModel.$warningsMessagesDictionary) { newValue in
-                                Task { @MainActor in
-                                    viewModel.warningsMessagesDictionary = newValue
-                                }
-                            }}
-                )
-            case .page((_, _)):
-                EmptyView()
-            case .section((_, let sectionViewModel)):
-                SectionView(sectionViewModel: sectionViewModel, fields: sectionViewModel.controls, isExpanded: sectionViewModel.sectionField.isExpandedStatus)
-                    .onReceive(sectionViewModel.objectWillChange) { updatedValue in
-                        print("updated Values:- \(sectionViewModel.controls)")
-                    }
-        }
     }
 
+
 }
+

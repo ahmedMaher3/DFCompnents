@@ -9,9 +9,9 @@ import Foundation
 
 final class SectionViewModel: ObservableObject {
     @Published var sectionField: SectionField
-    @Published var controls: [FieldEntity]
+    @Published var controls: [FieldRenderable]
 
-    init(controls: [FieldEntity], sectionField: SectionField) {
+    init(controls: [FieldRenderable], sectionField: SectionField) {
         self.controls = controls
         self.sectionField = sectionField
     }

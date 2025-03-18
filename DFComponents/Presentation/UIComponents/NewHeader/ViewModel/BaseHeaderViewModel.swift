@@ -8,10 +8,10 @@
 import Foundation
 
 final class BaseHeaderViewModel: ObservableObject {
-    @Published var field: FieldEntity
+    @Published var field: FieldRenderable
 
-    init(fieldEntity: FieldEntity) {
-        self.field = fieldEntity
+    init(field: FieldRenderable) {
+        self.field = field
     }
 }
 

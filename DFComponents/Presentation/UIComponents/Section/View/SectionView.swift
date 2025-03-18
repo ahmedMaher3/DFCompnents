@@ -11,13 +11,13 @@ struct SectionView: View {
     
     @ObservedObject var sectionViewModel: SectionViewModel
     @EnvironmentObject var viewModel: FormViewModel
-    var fields: [FieldEntity]
+    //var fields: [FieldEntity]
     
     @State private var isExpanded: Bool = false
     
-    init(sectionViewModel: SectionViewModel, fields: [FieldEntity], isExpanded: Bool) {
+    init(sectionViewModel: SectionViewModel, isExpanded: Bool) {
         self.sectionViewModel = sectionViewModel
-        self.fields = sectionViewModel.controls
+       // self.fields = sectionViewModel.controls
         self.isExpanded = isExpanded
     }
     
@@ -72,34 +72,13 @@ struct SectionView: View {
             }
         }
     }
-    
-    /// Controls
+
     @ViewBuilder
-    private func renderField(for field: FieldEntity) -> some View {
-        switch field {
-            case .radio((_, let radioViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) }
-                )
-                .onReceive(radioViewModel.$control) { _ in
-                    self.sectionViewModel.controls[0].value = radioViewModel.control.defaultAnswer?.value?.first
-                }
-                .opacity(radioViewModel.control.hidden ? 0 : 1)
-                
-            case .textBox((_, let textBoxViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field, controlType: {TextBoxComponent(viewModel: textBoxViewModel) }
-                )
-                .opacity(textBoxViewModel.control.hidden ? 0 : 1)
-                
-            case .number((_, let numberViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field, controlType: {NumberFieldComponent(viewModel: numberViewModel) }
-                )
-            case .page((_, _)):
-                EmptyView()
-            case .section((_, _)):
-                EmptyView()
-        }
+    private func renderField(for field:  FieldRenderable) -> some View {
+        BaseFieldContainerView(
+            field: field
+        )
+        //.opacity(radioViewModel.control.hidden ? 0 : 1)
+
     }
 }
