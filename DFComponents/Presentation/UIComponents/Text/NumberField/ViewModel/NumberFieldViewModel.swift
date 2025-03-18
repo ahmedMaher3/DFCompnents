@@ -187,14 +187,14 @@ final class NumberFieldViewModel: ObservableObject, BaseViewModel {
         return numberOfDecimals ?? 0 <= decimalPlaces
     }
 
-    func validateInput(value: String, warnings: WarningsEntity?) {
+    func validateInput(value: Double?, warnings: WarningsEntity?) {
         validator.validate(
             fieldRender: NumberFieldRenderer(field: numberFieldModel),
             value: value,
             warnings: warnings,
             warningsMessagesDictionary: &warningsMessagesDictionary
         )
-
+        baseAnswer?.value = String(value ?? 0.0)
         let fieldId = numberFieldModel.fieldId ?? ""
         let numberWarnings = warningsMessagesDictionary[fieldId] ?? []
 

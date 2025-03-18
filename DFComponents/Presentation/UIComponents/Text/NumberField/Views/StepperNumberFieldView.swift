@@ -34,7 +34,7 @@ struct StepperNumberFieldView: View {
             .foregroundStyle(.gray)
             .onTapGesture {
                 viewModel.changeValueStepper(action: action)
-                viewModel.validateInput(value: viewModel.baseAnswer?.value ?? "", warnings: viewModel.numberFieldModel.fieldWarning)
+//                viewModel.validateInput(value: viewModel.baseAnswer?.value ?? "", warnings: viewModel.numberFieldModel.fieldWarning)
                 isTextFieldFocused = false
         }
     }

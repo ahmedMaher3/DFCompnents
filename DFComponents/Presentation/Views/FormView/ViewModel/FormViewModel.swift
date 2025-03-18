@@ -31,6 +31,7 @@ class FormViewModel: ObservableObject {
           //  fields = pages.flatMap { $0.fields }
             rules = response.rules
             warnings = response.warnings
+            assignWarningsToFields()
            // self.doRules()
         }
         catch let error as NSError {
@@ -70,6 +71,15 @@ class FormViewModel: ObservableObject {
 //        }
       //  rulesImp = RuleImp(controls: fields, rules: rules)
         rulesImp.handleAllRules()
+    }
+
+    private func assignWarningsToFields() {
+        for pageIndex in pages.indices {
+            for fieldIndex in pages[pageIndex].fields.indices {
+                var field = pages[pageIndex].fields[fieldIndex].field
+                field.fieldWarning = warnings
+            }
+        }
     }
 
     func applyFieldRules(by id: String) {

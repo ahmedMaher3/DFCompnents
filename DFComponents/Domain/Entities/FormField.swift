@@ -20,6 +20,7 @@ protocol BaseFieldProtocol {
     var rules: FieldRules? { get }
     var hidden: Bool! { get set }
     var disabled: Bool! { get set }
+    var fieldWarning: WarningsEntity? { get set }
 
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer?
     func getAnswerString() -> String
@@ -53,6 +54,7 @@ class PageField: PageFieldProtocol {
     var isError: Bool!
     var errorMessage: String!
     var rules: FieldRules?
+    var fieldWarning: WarningsEntity?
     var hidden: Bool!
     var disabled: Bool!
     
@@ -110,6 +112,7 @@ class SectionField: SectionFieldProtocol {
     var hidden: Bool!
     var disabled: Bool!
     var errorMessage: String!
+    var fieldWarning: WarningsEntity?
 
     init(field: Field?) {
         guard let field = field else { return }
@@ -176,10 +179,10 @@ struct InteractiveField: InteractiveFieldProtocol {
     var addAttachment: Bool!
     var attachmentType: AttachmentType!
     var attachmentExtensions: String!
+    var fieldWarning: WarningsEntity?
 
     init(field: Field?) {
         guard let field = field else { return }
-
         // Initialize base properties
         self.type = field.type
         self.fieldId = field.id
@@ -289,6 +292,7 @@ extension InteractiveFieldDelegate {
 
 class TextBase: InteractiveFieldDelegate {
     var base: InteractiveField
+    var fieldWarning: WarningsEntity?
 
     let allowSpellCheck: Bool?
     let maximumLength: Int?
@@ -333,6 +337,7 @@ extension TextBaseDelegate {
 // 5. Implementation of specific field types becomes very clean
 class TextBoxField: TextBaseDelegate {
     var textBase: TextBase
+    var fieldWarning: WarningsEntity?
 
     // TextBox specific properties only
     let regex: String?
@@ -378,6 +383,7 @@ class TextAreaField: TextBaseDelegate {
     var fullScreen: Bool?
     var autoExpand: Bool?
     var defaultAnswer: TextAreaAnswer?
+    var fieldWarning: WarningsEntity?
 
     init(field: Field?) {
         textBase = TextBase(field: field)
@@ -393,6 +399,7 @@ class TextAreaField: TextBaseDelegate {
 
 class MCQBase: InteractiveFieldDelegate {
     var base: InteractiveField
+    var fieldWarning: WarningsEntity?
 
     var options: [MCQOption]
     var defaultAnswer: BaseAnswerMCQ?
@@ -454,6 +461,7 @@ extension MCQBaseDelegate {
 
 class RadioButtonField: MCQBaseDelegate,Equatable {
     var mcqBase: MCQBase
+    var fieldWarning: WarningsEntity?
 
     init(field: Field?) {
         mcqBase = MCQBase(field: field)

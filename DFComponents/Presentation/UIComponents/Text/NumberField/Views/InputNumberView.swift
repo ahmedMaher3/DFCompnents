@@ -15,9 +15,8 @@ struct InputNumberView: View {
         Binding(
             get: { viewModel.baseAnswer?.value ?? "" },
             set: { newValue in
-                viewModel.baseAnswer?.value = newValue
                 viewModel.characterCount = newValue.count
-                viewModel.validateInput(value: viewModel.baseAnswer?.value ?? "",
+                viewModel.validateInput(value: Double(newValue),
                                         warnings: viewModel.numberFieldModel.fieldWarning)
             }
         )

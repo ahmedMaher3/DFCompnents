@@ -92,13 +92,16 @@ final class NumberValidationStrategy: FieldValidationStrategy {
                   value: Any?,
                   warnings: WarningsEntity?,
                   warningsMessagesDictionary: inout [String: [String]]) {
+        guard let numberFieldRender = fieldRender as? NumberFieldRenderer else {
+            return
+        }
 
-        // Ensure fieldRender is a NumberFieldRenderer
-        guard let numberFieldRender = fieldRender as? NumberFieldRenderer else { return }
         let numberField = numberFieldRender.field
-        let numberViewModel = numberFieldRender.viewModel
-        print("fepogjergoejgiorejgiorejgierojg\(numberFieldRender.viewModel.baseAnswer)")
         let fieldId = numberField.fieldId ?? ""
+        let numberViewModel = numberFieldRender.viewModel
+        
+        numberFieldRender.viewModel.baseAnswer?.value = (value as? String)
+
         var fieldWarnings: [String] = []
 
         guard let numberWarnings = numberViewModel.numberFieldModel.fieldWarning?.fieldValidation.input else {
@@ -146,7 +149,7 @@ final class NumberValidationStrategy: FieldValidationStrategy {
         // Store warnings in dictionary
         warningsMessagesDictionary[fieldId] = fieldWarnings.isEmpty ? nil : fieldWarnings
 
-        print("grjgiorehgrehgeirughueirg\(warningsMessagesDictionary[fieldId])")
+        print("warningsMessagesDictionary: \(warningsMessagesDictionary[fieldId])")
         DispatchQueue.main.async {
             numberViewModel.numberFieldModel.isError = !fieldWarnings.isEmpty
             numberViewModel.numberFieldModel.errorMessage = fieldWarnings.isEmpty ? nil : fieldWarnings.joined(separator: "\n")

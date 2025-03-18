@@ -68,12 +68,8 @@ struct FormView: View {
                 Task {
                     await viewModel.fetchForm()
                     updateStepProgress()
-                    viewModel.warnings.map { entity in
-                        print(entity)
-                    }
                 }
             }
-
         }
     }
 

@@ -327,21 +327,23 @@ struct TextBoxRenderer: FieldRenderable {
 
         return AnyView(EmptyView())
     }
-
 }
 
 struct NumberFieldRenderer: FieldRenderable {
     var validatorField: (any FieldValidationStrategy)? = NumberValidationStrategy()
-
     var validateViewModel: (any ValidateFieldStrategy)?
-    
 
     var field: NumberField
     var viewModel: NumberFieldViewModel
 
+    var numberWarning: WarningsEntity? {
+        self.viewModel.numberFieldModel.fieldWarning = field.fieldWarning
+        return self.viewModel.numberFieldModel.fieldWarning
+    }
     init(field: NumberField) {
         self.field = field
         self.viewModel = NumberFieldViewModel(numberFieldModel: field)
+//        self.viewModel.numberFieldModel.fieldWarning = field.fieldWarning
         validateViewModel = self.viewModel
     }
     var id: String { field.fieldId}

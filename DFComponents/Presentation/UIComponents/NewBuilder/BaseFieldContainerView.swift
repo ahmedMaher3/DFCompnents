@@ -10,7 +10,8 @@ import Combine
 
 struct BaseFieldContainerView: View {
     let field: any FieldRenderable
-     
+    @StateObject var viewModel: BaseFieldViewModel = BaseFieldViewModel()
+
     init(
         field: any FieldRenderable )
     {
@@ -40,13 +41,14 @@ struct BaseFieldContainerView: View {
         .padding(6)
         .background(field.errorMessage == nil || field.errorMessage == "" ? Color.clear : Color.red.opacity(0.05))
         .cornerRadius(8)
-
+/*
         .onReceive(Just(field.field.errorMessage)) { errorMessage in
             Task { @MainActor in
-                print("fjeowifheifhewufhewiufiewh\(errorMessage)")
+                print("grejgrejgerioegrhgiorehgioer\(errorMessage)")
 //                viewModel.errorMessage = errorMessage ?? ""
             }
         }
+*/
     }
 }
 
