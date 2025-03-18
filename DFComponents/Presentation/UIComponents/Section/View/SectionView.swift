@@ -11,7 +11,6 @@ struct SectionView: View {
     
     @ObservedObject var sectionViewModel: SectionViewModel
     @EnvironmentObject var viewModel: FormViewModel
-    //var fields: [FieldEntity]
     
     @State private var isExpanded: Bool = false
     
@@ -74,7 +73,7 @@ struct SectionView: View {
     }
 
     @ViewBuilder
-    private func renderField(for field:  FieldRenderable) -> some View {
+    private func renderField(for field:  any FieldRenderable) -> some View {
         BaseFieldContainerView(
             field: field
         )
