@@ -22,12 +22,12 @@ class FormMapper: EntityMapper {
 
     func map(from dto: Schema) -> [PageModel] {
         let pages = convertToPages(fields: dto.fields,
-                                   mode: dto.settings.format )
+                                   mode: dto.settings.format, schemaProperties: dto.properties)
         return pages
     }
 
-    private func convertToPages(fields: [Field], mode: FormType) -> [PageModel] {
-        return mode == .classic ? convertToPagesInClassicMode(fields: fields, mode: mode) : convertToPagesInCardsMode(fields: fields, mode: mode)
+    private func convertToPages(fields: [Field], mode: FormType, schemaProperties: SchemaProperties) -> [PageModel] {
+        return mode == .classic ? convertToPagesInClassicMode(fields: fields, mode: mode) : convertToPagesInCardsMode(fields: fields, mode: mode, schemaProperties: schemaProperties)
     }
     
     func convertToPagesInClassicMode(fields: [Field], mode: FormType) -> [PageModel] {
@@ -41,10 +41,10 @@ class FormMapper: EntityMapper {
             let mappedFields = mapFieldsRecursively(fields: groupedFields[pageId] ?? [], groupedFields: groupedFields)
 
             let control = PageField(field: page)
-            let pageRenderer = PageRenderer(field: control, controls: mappedFields)
+            control.pageProperties = PageProperties(pageField: control)
 
             return PageModel(
-                pageField: pageRenderer,
+                pageField: PageRenderer(field: control, controls: mappedFields),
                 id: pageId,
                 fields: mappedFields,
                 mode: mode
@@ -54,7 +54,7 @@ class FormMapper: EntityMapper {
         return pages
     }
 
-    private func convertToPagesInCardsMode(fields: [Field], mode: FormType) -> [PageModel] {
+    private func convertToPagesInCardsMode(fields: [Field], mode: FormType, schemaProperties: SchemaProperties) -> [PageModel] {
         var pages: [PageModel] = []
         var cardIndex = 1
 
@@ -66,6 +66,8 @@ class FormMapper: EntityMapper {
             let mappedFields = mapFieldsRecursively(fields: [field], groupedFields: [:])
 
             let control = PageField(field: field)
+            control.pageProperties = PageProperties(schemaProperties: schemaProperties)
+
             let pageRenderer = PageRenderer(field: control, controls: mappedFields)
 
             let pageModel = PageModel(
@@ -192,11 +194,12 @@ class FormMapper: EntityMapper {
 
 }
 
-struct PageModel: Identifiable { // [Page Model]
-    var pageField: (any PageRenderable)?
+struct PageModel: Identifiable {
+    var pageField: (any PageRenderable)? // PageField
     var id: String
     var fields: [any FieldRenderable]
     var mode: FormType
+    // properties
 }
 
 enum FieldEntity: Identifiable {
@@ -367,7 +370,6 @@ struct NumberFieldRenderer: FieldRenderable {
     var field: NumberField
     var viewModel: NumberFieldViewModel
 
-
     init(field: NumberField) {
         self.field = field
         self.viewModel = NumberFieldViewModel(numberFieldModel: field)
@@ -392,7 +394,6 @@ struct PageRenderer: PageRenderable {
     
     var field: PageField
     var viewModel: PageViewModel
-    // Concrete Class
 
     var controls: [any FieldRenderable]!
 

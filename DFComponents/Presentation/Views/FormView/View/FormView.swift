@@ -53,21 +53,7 @@ struct FormView: View {
                         tab.frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
                     }
                     Spacer()
-                    
-                    let page = self.viewModel.pages[currentPage].pageField?.field as? PageField
-                    let pageProperties = PageProperties(
-                        submit: page?.submit ?? "",
-                        next: page?.next ?? "",
-                        back: page?.back ?? "",
-                        backVisibility: page?.backVisibility ?? true
-                    )
-                    
-                    FooterView(
-                        currentPage: $currentPage,
-                        totalPages: viewModel.pages.count,
-                        pageProperties: pageProperties
-                    )
-
+                    handleFooter(mode: self.viewModel.mode ?? .classic)
                 } else {
                     loadingView()
                 }
@@ -104,6 +90,19 @@ struct FormView: View {
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle())
         }
+    }
+    
+    private func handleFooter(mode: FormType) -> FooterView {
+        return FooterView(
+            currentPage: $currentPage,
+            totalPages: viewModel.pages.count,
+            pageProperties: (self.viewModel.pages[currentPage].pageField?.field as? PageField)?.pageProperties ?? PageProperties(
+                submit: "",
+                next: "",
+                back: "",
+                backVisibility: true
+            )
+        )
     }
 
 }

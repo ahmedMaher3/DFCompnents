@@ -112,6 +112,27 @@ struct PageProperties: PagePropertiesProtocol {
     var tooltip: String?
     var hidden: Bool?
     var required: Bool?
+    
+    init(submit: String, next: String, back: String, backVisibility: Bool) {
+        self.back = back
+        self.backVisibility = backVisibility
+        self.next = next
+        self.submit = submit
+    }
+    
+    init(pageField: PageField?) {
+        self.next = pageField?.next ?? ""
+        self.back = pageField?.back ?? ""
+        self.backVisibility = pageField?.backVisibility ?? true
+        self.submit = pageField?.submit ?? ""
+    }
+    
+    init(schemaProperties: SchemaProperties?) {
+        self.next = schemaProperties?.next ?? ""
+        self.back = schemaProperties?.back ?? ""
+        self.backVisibility = schemaProperties?.backVisibility ?? true
+        self.submit = schemaProperties?.submit ?? ""
+    }
 }
 
 struct TextBoxProperties: TextBaseProperties {

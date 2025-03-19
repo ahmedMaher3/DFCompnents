@@ -136,8 +136,8 @@
             "properties": {
                 "localization": {},
                 "submit": "",
-                "next": "",
-                "back": "",
+                "next": "card next",
+                "back": "card back",
                 "start": "",
                 "backVisibility": true,
                 "viewResults": "",

@@ -48,6 +48,7 @@ class PageField: PageFieldProtocol {
     var rules: FieldRules?
     var hidden: Bool!
     var disabled: Bool!
+    var pageProperties: PageProperties?
     
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
         nil

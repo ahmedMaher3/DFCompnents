@@ -16,19 +16,21 @@ class FormViewModel: ObservableObject {
 
     @Published var mode: FormType?
    // @Published var fields: [FieldEntity] = []
-    @Published var pages: [PageModel] = [] {
-        didSet {
-            print("pages changed:- \(pages)")
-        }
-    }
+    @Published var pages: [PageModel] = []
     @Published var rulesImp: RuleImp!
     @Published var warningsMessagesDictionary: [String: [String]]? = [:]
-
+    
+    @Published var header: ClassicPageHeader?
+    @Published var footer: ClassicPageFooter?
+    @Published var welcomeData: CardWelcomeData?
 
     func fetchForm() async {
         do {
             let response = try await formBuildUseCase.excute()
             mode = response.pages.first?.mode
+            header = response.header
+            footer = response.footer
+            welcomeData = response.welcome
             pages = response.pages
           //  fields = pages.flatMap { $0.fields }
             rules = response.rules

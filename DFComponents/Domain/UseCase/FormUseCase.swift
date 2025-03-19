@@ -27,13 +27,23 @@ class FormBuildUseCase: FormBuildUseCaseProtocol {
     func excute() async throws -> FormEntity {
         do {
             let response = try await repository.fetchForm()
+            let header: ClassicPageHeader? = response.campaign?.header
+            let footer: ClassicPageFooter? = response.campaign?.footer
+            let welcomeData: CardWelcomeData? = response.campaign?.welcome
             let pages: [PageModel] = map(dto: response)
             let warnings = map(dto: response.warnings) // Map warnings
-            return FormEntity(pages: pages, rules: response.rules ?? [], warnings: warnings)
+            return FormEntity(
+                pages: pages,
+                rules: response.rules ?? [],
+                warnings: warnings,
+                header: header,
+                footer: footer,
+                welcome: welcomeData
+            )
         }
         catch let error as NSError {
             print(error.localizedDescription)
-            return FormEntity(pages: [], rules: [], warnings: nil)
+            return FormEntity(pages: [], rules: [], warnings: nil, header: nil, footer: nil, welcome: nil)
         }
     }
 
@@ -47,6 +57,5 @@ class FormBuildUseCase: FormBuildUseCaseProtocol {
         let entityMapper = mapper as! FormMapper
         return entityMapper.map(from: dto)
     }
-
 
 }
