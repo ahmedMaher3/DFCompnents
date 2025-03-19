@@ -72,7 +72,6 @@ final class NumberValidationStrategy: FieldValidationStrategy {
             numberViewModel.numberFieldModel.isError = !fieldWarning.isEmpty
             numberViewModel.numberFieldModel.errorMessage = fieldWarning.isEmpty ? nil : fieldWarning
         }
-
     }
 
     private func validateDecimalPlaces(_ value: String, maxDecimals: Int?) -> Bool {

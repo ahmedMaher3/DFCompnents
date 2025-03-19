@@ -72,9 +72,3 @@ final class NumberFieldViewModel: ObservableObject {
         }
     }
 }
-//        self.numberFieldModel = numberFieldModel
-//        if numberFieldModel.numberProperties.defaultAnswer?.value != nil {
-//            baseAnswer = BaseAnswerNumber(value: numberFieldModel.numberProperties.defaultAnswer?.value ?? "")
-//            self.numberFieldModel.base.answer = numberFieldModel.numberAnswer
-//            self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
-//        }

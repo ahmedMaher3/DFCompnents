@@ -21,15 +21,15 @@ struct BaseFooterControlView: View {
     @State private var showImagePicker = false
     @State private var isExpanded: Bool = false
     @State private var showPopover = false
-    
+
     init(viewModel: BaseFooterViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     var body: some View {
         renderFooter(fieldEntity: viewModel.field)
     }
-    
+
     /// **Reusable Footer Stack**
     @ViewBuilder
     private func footerStack(sublabel: String?, characterCountText: String?, addNote: Bool, addAttachment: Bool, tooltip: String) -> some View {
@@ -37,9 +37,9 @@ struct BaseFooterControlView: View {
             if let sublabel = sublabel {
                 HStack(alignment: .center, spacing: 8) {
                     Text(sublabel)
-                    
+
                     Spacer()
-                    
+
                     HStack(alignment: .center,spacing: 4) {
                         if !(tooltip.isEmpty ) {
                             ToolTipFooterView(tooltip: tooltip)
@@ -107,25 +107,56 @@ struct BaseFooterControlView: View {
             .presentationCornerRadius(20)
         }
     }
-    
+
     /// **Render Footer Based on Field Type**
     @ViewBuilder
     private func renderFooter(fieldEntity: FieldEntity) -> some View {
         switch fieldEntity {
-        case .page, .section, .radio, .textBox:
-            EmptyView()
-        case .number((_, let numberViewModel)):
-            let interactiveProperties = numberViewModel.numberFieldModel.base
-            footerStack(
-                sublabel: interactiveProperties.sublabel,
-                characterCountText: "\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)",
-                addNote: interactiveProperties.addNote,
-                addAttachment: interactiveProperties.addAttachment,
-                tooltip: interactiveProperties.tooltip ?? "test test test"
-            )
+            case .page, .section, .radio, .textBox:
+                EmptyView()
+            case .number((_, let numberViewModel)):
+                let interactiveProperties = numberViewModel.numberFieldModel.base
+                /*
+                 footerStack(
+                 sublabel: interactiveProperties.sublabel,
+                 characterCountText: "\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)",
+                 addNote: interactiveProperties.addNote,
+                 addAttachment: interactiveProperties.addAttachment,
+                 tooltip: interactiveProperties.tooltip ?? "test test test"
+                 )
+                 */
+                footerStack(
+                    sublabel: interactiveProperties.sublabel,
+                    characterCountText:  calculateDigitDisplay(currentValue: numberViewModel.baseAnswer?.value ?? "", minDigits: numberViewModel.numberFieldModel.minimumDigits ?? numberViewModel.numberFieldModel.maximumDigits, maxDigits: numberViewModel.numberFieldModel.maximumDigits ?? numberViewModel.numberFieldModel.minimumDigits),
+                    addNote: interactiveProperties.addNote,
+                    addAttachment: interactiveProperties.addAttachment,
+                    tooltip: interactiveProperties.tooltip ?? "test test test"
+                )
         }
     }
-    
+
+    func calculateDigitDisplay(currentValue: String, minDigits: Int?, maxDigits: Int?) -> String {
+        let currentDigitCount = currentValue.count
+
+        if let minDigits = minDigits, let maxDigits = maxDigits {
+            if currentDigitCount < minDigits {
+                return "\(currentDigitCount)/\(minDigits)"
+            } else if currentDigitCount < maxDigits {
+                return "\(currentDigitCount)/\(maxDigits)"
+            } else {
+                return "\(currentDigitCount)/\(maxDigits)"
+            }
+        } else if let minDigits = minDigits {
+            return "\(currentDigitCount)/\(minDigits)"
+        } else if let maxDigits = maxDigits {
+            return "\(currentDigitCount)/\(maxDigits)"
+        }
+        return "\(currentDigitCount)"
+    }
+
+
+
+
     @ViewBuilder
     private func renderNoteButton() -> some View {
         Button(action: { showNotePopup.toggle() }) {
@@ -151,7 +182,7 @@ struct BaseFooterControlView: View {
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(8)
                     .lineLimit(isExpanded ? nil : 2)
-                
+
                 if note.count > 80 {
                     Button(action: { isExpanded.toggle() }) {
                         Text(isExpanded ? "Less" : "More")
@@ -168,7 +199,7 @@ struct BaseFooterControlView: View {
     private func updateAnswer() {
         if case .number((_, let numberViewModel)) = viewModel.field {
             numberViewModel.numberFieldModel.answer = BaseAnswerNumber(value:numberViewModel.baseAnswer?.value ?? "" ,note: savedNote ?? "", attachments: attachments)
-            
+
         }
     }
 }
