@@ -15,16 +15,16 @@ final class ValueLimitValidationStrategy: GeneralValidationStrategyProtocol {
 
     func validate(
         value: String?,
-        fieldWarnings: inout [String]) {
+        fieldWarning: inout String) {
         guard
             let valueField = value,
             let inputValue = Double(valueField) else { return }
 
         if inputValue < minimumValue {
-            fieldWarnings.append("Minimum value allowed is \(minimumValue)")
+            fieldWarning = "Minimum value allowed is \(minimumValue)"
         }
         if inputValue > maximumValue {
-            fieldWarnings.append("Maximum value allowed is \(maximumValue)")
+            fieldWarning = "Maximum value allowed is \(maximumValue)"
         }
     }
 }
