@@ -78,6 +78,7 @@ class PageField: PageFieldProtocol {
             self.next = properties.next
             self.back = properties.back
             self.backVisibility = properties.backVisibility
+            self.pageProperties = properties as? PageProperties
         }
 
     }
