@@ -23,12 +23,12 @@ struct RequiredValidationStrategy: FieldValidationStrategy {
         let isError = warningMessages != nil
         let errorMessage = warningMessages?.joined(separator: "\n")
         warningsMessagesDictionary[fieldId] = warningMessages
-            if let validateViewModel = fieldRender.validateViewModel {
-            Task { @MainActor in
-                validateViewModel.updateValidationState(
-                    isError: isError, errorMessage: errorMessage)
-            }
-        }
+//            if let validateViewModel = fieldRender.validateViewModel {
+//            Task { @MainActor in
+//                validateViewModel.updateValidationState(
+//                    isError: isError, errorMessage: errorMessage)
+//            }
+//        }
     }
 
     private func checkValueIsEmpty(value: Any?) -> Bool {

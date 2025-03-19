@@ -258,11 +258,8 @@ protocol FieldRenderable {
     var field: Field { get }
     var viewModel: ViewModel { get }
 
-    var validatorField: FieldValidationStrategy? { get }
-    var validateViewModel: ValidateFieldStrategy? { get }  // No need for `set`
-
     var id: String { get }
-    var errorMessage: String? { get }
+    var errorMessage: String? { get set }
 
     func render() -> AnyView
     func renderHeader() -> AnyView
@@ -270,12 +267,8 @@ protocol FieldRenderable {
 
 
 
-
 struct RadioButtonRenderer: FieldRenderable {
-    var validatorField: (any FieldValidationStrategy)?
-    
-    var validateViewModel: (any ValidateFieldStrategy)?
-    
+    var errorMessage: String?
 
     var field: RadioButtonField
     var viewModel: RadioButtonViewModel
@@ -287,7 +280,6 @@ struct RadioButtonRenderer: FieldRenderable {
     }
 
     var id: String { field.fieldId}
-    var errorMessage: String? { field.errorMessage }
 
 
     func render() -> AnyView {
@@ -303,21 +295,18 @@ struct RadioButtonRenderer: FieldRenderable {
 }
 
 struct TextBoxRenderer: FieldRenderable {
-    var validatorField: (any FieldValidationStrategy)?
-    
-    var validateViewModel: (any ValidateFieldStrategy)?
-    
     var field: TextBoxField
     var viewModel: TextBoxViewModel
-
 
     init(field: TextBoxField) {
         self.field = field
         self.viewModel = TextBoxViewModel(control: field)
     }
     var id: String { field.fieldId}
-    var errorMessage: String? { field.errorMessage }
-
+    var errorMessage: String? {
+        get { field.errorMessage }
+        set { field.errorMessage = newValue }
+    }
     func render() -> AnyView {
         //  guard let textBoxField = field  else { return AnyView(EmptyView())}
         return AnyView(TextBoxComponent(viewModel: TextBoxViewModel(control: field)))
@@ -330,24 +319,22 @@ struct TextBoxRenderer: FieldRenderable {
 }
 
 struct NumberFieldRenderer: FieldRenderable {
-    var validatorField: (any FieldValidationStrategy)? = NumberValidationStrategy()
-    var validateViewModel: (any ValidateFieldStrategy)?
 
     var field: NumberField
     var viewModel: NumberFieldViewModel
 
-    var numberWarning: WarningsEntity? {
-        self.viewModel.numberFieldModel.fieldWarning = field.fieldWarning
-        return self.viewModel.numberFieldModel.fieldWarning
-    }
     init(field: NumberField) {
         self.field = field
         self.viewModel = NumberFieldViewModel(numberFieldModel: field)
-//        self.viewModel.numberFieldModel.fieldWarning = field.fieldWarning
-        validateViewModel = self.viewModel
     }
     var id: String { field.fieldId}
-    var errorMessage: String? { field.errorMessage }
+    var errorMessage: String? {
+        get { field.errorMessage }
+        set {
+            print("Called: \(newValue)")
+            field.errorMessage = newValue }
+    }
+
 
     func render() -> AnyView {
         //        guard let numberField = field else { return AnyView(EmptyView()) }
@@ -372,7 +359,10 @@ struct SectionButtonRenderer: FieldRenderable {
     var controls: [any FieldRenderable]!
     var viewModel: SectionViewModel
 
-
+    var errorMessage: String? {
+        get { field.errorMessage }   // Get the current error message
+        set { field.errorMessage = newValue } // ✅ Allow setting a new error message
+    }
 
 
     init(field: SectionField,controls: [any FieldRenderable]) {
@@ -381,7 +371,6 @@ struct SectionButtonRenderer: FieldRenderable {
         self.viewModel = SectionViewModel(controls: controls, sectionField: field)
     }
     var id: String { field.fieldId}
-    var errorMessage: String? { field.errorMessage }
 
     func render() -> AnyView {
 

@@ -13,3 +13,21 @@ final class BaseFieldViewModel: ObservableObject {
         self.errorMessage = errorMessage
     }
 }
+//final class BaseFieldViewModel: ObservableObject {
+//    @Published var errorMessage: String?
+//    private var cancellables = Set<AnyCancellable>()
+//
+//    init(field: any FieldRenderable) {
+//        self.errorMessage = field.errorMessage
+//        observeField(field)
+//    }
+//
+//    private func observeField(_ field: any FieldRenderable) {
+//        // Re-evaluate errorMessage when field.errorMessage changes
+//        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { [weak self] _ in
+//            DispatchQueue.main.async {
+//                self?.errorMessage = field.errorMessage
+//            }
+//        }
+//    }
+//}
