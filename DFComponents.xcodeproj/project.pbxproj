@@ -97,7 +97,6 @@
 		AAF1B1872D76490D00DC44B4 /* NumberValidationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1B1862D76490D00DC44B4 /* NumberValidationEntity.swift */; };
 		AAF297102D7DA6C800E7B0C3 /* BindingExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2970F2D7DA6C800E7B0C3 /* BindingExtenstion.swift */; };
 		AAF297122D7E272C00E7B0C3 /* InputNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF297112D7E272C00E7B0C3 /* InputNumberView.swift */; };
-		AAF8308A2D78C84F001B0CAC /* FieldsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF830892D78C84F001B0CAC /* FieldsListView.swift */; };
 		AAF8308D2D7909D2001B0CAC /* WarningCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF8308C2D7909D2001B0CAC /* WarningCardView.swift */; };
 		E44278722D7F1C17003BAA46 /* StepProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442786F2D7F1C17003BAA46 /* StepProgressViewModel.swift */; };
 		E44278732D7F1C17003BAA46 /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442786D2D7F1C17003BAA46 /* StepProgressView.swift */; };
@@ -174,6 +173,8 @@
 		E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD01F2D4A49BC004AA735 /* SearchBarView.swift */; };
 		E4BBD0232D4A4A29004AA735 /* DropDownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD0222D4A4A29004AA735 /* DropDownViewModel.swift */; };
 		E4BBD0272D4A4A7F004AA735 /* CountryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD0262D4A4A7F004AA735 /* CountryDTO.swift */; };
+		E4C8711F2D8B15E60060C39C /* FullFileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8711E2D8B15E60060C39C /* FullFileListView.swift */; };
+		E4C871212D8B163B0060C39C /* FileRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C871202D8B163B0060C39C /* FileRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,7 +289,6 @@
 		AAF1B1862D76490D00DC44B4 /* NumberValidationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberValidationEntity.swift; sourceTree = "<group>"; };
 		AAF2970F2D7DA6C800E7B0C3 /* BindingExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtenstion.swift; sourceTree = "<group>"; };
 		AAF297112D7E272C00E7B0C3 /* InputNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputNumberView.swift; sourceTree = "<group>"; };
-		AAF830892D78C84F001B0CAC /* FieldsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsListView.swift; sourceTree = "<group>"; };
 		AAF8308C2D7909D2001B0CAC /* WarningCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningCardView.swift; sourceTree = "<group>"; };
 		E442786D2D7F1C17003BAA46 /* StepProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
 		E442786F2D7F1C17003BAA46 /* StepProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepProgressViewModel.swift; sourceTree = "<group>"; };
@@ -367,6 +367,8 @@
 		E4BBD01F2D4A49BC004AA735 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		E4BBD0222D4A4A29004AA735 /* DropDownViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownViewModel.swift; sourceTree = "<group>"; };
 		E4BBD0262D4A4A7F004AA735 /* CountryDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryDTO.swift; sourceTree = "<group>"; };
+		E4C8711E2D8B15E60060C39C /* FullFileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullFileListView.swift; sourceTree = "<group>"; };
+		E4C871202D8B163B0060C39C /* FileRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -957,7 +959,6 @@
 		E44926C52D4B8AF000EA5D5E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AAF830892D78C84F001B0CAC /* FieldsListView.swift */,
 				E44926C32D4B8AD200EA5D5E /* FormView.swift */,
 			);
 			path = View;
@@ -996,6 +997,8 @@
 			isa = PBXGroup;
 			children = (
 				E472DC9B2D802FD100B8FAF3 /* FilesListView.swift */,
+				E4C8711E2D8B15E60060C39C /* FullFileListView.swift */,
+				E4C871202D8B163B0060C39C /* FileRowView.swift */,
 			);
 			path = FilesListView;
 			sourceTree = "<group>";
@@ -1755,6 +1758,7 @@
 				AAD099692D5CC911007A6CE9 /* RulesControlsView.swift in Sources */,
 				E4BBD0232D4A4A29004AA735 /* DropDownViewModel.swift in Sources */,
 				E48CA0052D5374D300A519ED /* AKMaskFieldStatus.swift in Sources */,
+				E4C871212D8B163B0060C39C /* FileRowView.swift in Sources */,
 				A9474D802D64AD8700031047 /* DefaultAnswer.swift in Sources */,
 				A9BF46A72D53992A003F2333 /* CameraPicker.swift in Sources */,
 				E472DC972D802F4500B8FAF3 /* ImageDetailsView.swift in Sources */,
@@ -1812,7 +1816,6 @@
 				A9474BC52D5CE3CC00031047 /* NetworkClient.swift in Sources */,
 				E48C9FEF2D5374A900A519ED /* MaskedTextField.swift in Sources */,
 				AAD1E7C02D4B7F9400442BA4 /* RadioButtonDTO.swift in Sources */,
-				AAF8308A2D78C84F001B0CAC /* FieldsListView.swift in Sources */,
 				E4A9015C2D52CD73007080AC /* SectionViewModell.swift in Sources */,
 				E48CA0022D5374D300A519ED /* AKMaskFieldUtility.swift in Sources */,
 				A9474D7C2D64ACC200031047 /* APIResponse.swift in Sources */,
@@ -1886,6 +1889,7 @@
 				AAB857332D6CA2080013027A /* RuleEvaluator.swift in Sources */,
 				E472DCA02D803A7E00B8FAF3 /* ImagePicker.swift in Sources */,
 				A9BF46972D53887B003F2333 /* DateRangePickerView.swift in Sources */,
+				E4C8711F2D8B15E60060C39C /* FullFileListView.swift in Sources */,
 				E4A901CA2D65E873007080AC /* FormMapper.swift in Sources */,
 				A9EA54322D6C899500C2A9E2 /* FormEntity.swift in Sources */,
 				AAE5CAC62D4A61FD00FDA699 /* QuestionsRadioButton.swift in Sources */,

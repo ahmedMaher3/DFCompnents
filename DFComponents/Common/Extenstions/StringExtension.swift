@@ -16,3 +16,9 @@ extension String {
         LocalizedStringKey(self)
     }
 }
+
+extension String {
+func replaceValidationWith(_ value: Any?) -> String {
+        return self.replacingOccurrences(of: "{0}", with: "\(value!)")
+    }
+}

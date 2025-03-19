@@ -93,6 +93,9 @@
     "File Type: %@" : {
 
     },
+    "Files" : {
+
+    },
     "First Name: %@" : {
 
     },
@@ -192,10 +195,7 @@
     "Settings" : {
 
     },
-    "Show %lld more files" : {
-
-    },
-    "Show less" : {
+    "Show (%lld) more files" : {
 
     },
     "Show Less" : {
