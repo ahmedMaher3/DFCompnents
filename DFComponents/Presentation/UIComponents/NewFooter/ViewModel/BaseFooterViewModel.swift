@@ -10,8 +10,8 @@ import Foundation
 final class BaseFooterViewModel: ObservableObject {
      @Published var field: any FieldRenderable
 
-    init(field: any FieldRenderable) {
-        self.field = field
+    init(control: any FieldRenderable) {
+        self.field = control
     }
 }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - TextBoxViewModel
-class TextBoxViewModel: ObservableObject {
+class TextBoxViewModel: ObservableObject,BaseViewModel {
     @Published var text: String = ""
     @Published var errorMessage: String?
     @Published var isValid: Bool = false

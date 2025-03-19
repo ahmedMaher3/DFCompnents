@@ -1,10 +1,3 @@
-//
-//  BaseFooterControlView.swift
-//  DFComponents
-//
-//  Created by hassan elshaer on 11/03/2025.
-//
-
 import SwiftUI
 import PhotosUI
 import UniformTypeIdentifiers
@@ -21,15 +14,15 @@ struct BaseFooterControlView: View {
     @State private var showImagePicker = false
     @State private var isExpanded: Bool = false
     @State private var showPopover = false
-    
+
     init(viewModel: BaseFooterViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     var body: some View {
         renderFooter(field: viewModel.field)
     }
-    
+
     /// **Reusable Footer Stack**
     @ViewBuilder
     func footerStack(fieldProperties: InteractiveField, charactersCount: String) -> some View {
@@ -37,9 +30,9 @@ struct BaseFooterControlView: View {
             if let sublabel = fieldProperties.sublabel {
                 HStack(alignment: .center, spacing: 8) {
                     Text(sublabel)
-                    
+
                     Spacer()
-                    
+
                     HStack(alignment: .center,spacing: 4) {
                         if !(fieldProperties.tooltip?.isEmpty ?? true ) {
                             ToolTipFooterView(tooltip: fieldProperties.tooltip ?? "")
@@ -107,7 +100,7 @@ struct BaseFooterControlView: View {
             .presentationCornerRadius(20)
         }
     }
-    
+
     /// **Render Footer Based on Field Type**
     @ViewBuilder
     private func renderFooter(field: (any FieldRenderable)?) -> some View {
@@ -122,7 +115,7 @@ struct BaseFooterControlView: View {
             EmptyView()
         }
     }
-    
+
     @ViewBuilder
     private func renderNoteButton() -> some View {
         Button(action: { showNotePopup.toggle() }) {
@@ -148,7 +141,7 @@ struct BaseFooterControlView: View {
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(8)
                     .lineLimit(isExpanded ? nil : 2)
-                
+
                 if note.count > 80 {
                     Button(action: { isExpanded.toggle() }) {
                         Text(isExpanded ? "Less" : "More")

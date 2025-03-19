@@ -7,12 +7,11 @@
 
 import Foundation
 
-final class RadioButtonViewModel: ObservableObject {
+final class RadioButtonViewModel: ObservableObject,BaseViewModel {
 
     @Published var control: RadioButtonField
     let id: String
     @Published var selectedValue: String = ""
-
      init(control: RadioButtonField) {
          self.control = control
          self.id = control.fieldId

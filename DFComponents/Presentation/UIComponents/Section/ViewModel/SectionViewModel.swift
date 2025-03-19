@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class SectionViewModel: ObservableObject {
+final class SectionViewModel: ObservableObject,BaseViewModel {
     @Published var sectionField: SectionField
     @Published var controls: [any FieldRenderable]
 

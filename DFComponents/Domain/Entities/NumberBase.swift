@@ -9,6 +9,7 @@ protocol NumberBaseDelegate: InteractiveFieldDelegate {
 }
 
 class NumberBase: InteractiveFieldDelegate {
+    var fieldWarning: WarningsEntity?
     var base: InteractiveField
     var baseProperties: BaseProperties?
 

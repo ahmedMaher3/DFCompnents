@@ -13,12 +13,12 @@ struct FormValidator {
     }
 
     func validate(
-        fieldEntity: FieldEntity,
+        fieldRender: any FieldRenderable,
         value: Any?,
         warnings: WarningsEntity?,
         warningsMessagesDictionary: inout [String: [String]]) {
         strategy.validate(
-            fieldEntity: fieldEntity,
+            fieldRender: fieldRender,
             value: value,
             warnings: warnings,
             warningsMessagesDictionary: &warningsMessagesDictionary

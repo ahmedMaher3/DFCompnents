@@ -11,7 +11,6 @@ struct SectionView: View {
     
     @ObservedObject var sectionViewModel: SectionViewModel
     @EnvironmentObject var viewModel: FormViewModel
-    //var fields: [FieldEntity]
     
     @State private var isExpanded: Bool = false
     
