@@ -69,7 +69,6 @@
 		AAC3874E2D77185200118896 /* InputFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3874D2D77185200118896 /* InputFieldComponent.swift */; };
 		AAC387522D772F1900118896 /* InputFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC387512D772F1900118896 /* InputFieldViewModel.swift */; };
 		AAC387552D772F3A00118896 /* NumberFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC387542D772F3A00118896 /* NumberFieldViewModel.swift */; };
-		AAC387572D77412100118896 /* NumberBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC387562D77412100118896 /* NumberBase.swift */; };
 		AAC387592D77413F00118896 /* NumberFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC387582D77413F00118896 /* NumberFieldModel.swift */; };
 		AAD099692D5CC911007A6CE9 /* RulesControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD099682D5CC911007A6CE9 /* RulesControlsView.swift */; };
 		AAD0996B2D5CCA23007A6CE9 /* RulesControlsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0996A2D5CCA23007A6CE9 /* RulesControlsViewModel.swift */; };
@@ -258,7 +257,6 @@
 		AAC3874D2D77185200118896 /* InputFieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldComponent.swift; sourceTree = "<group>"; };
 		AAC387512D772F1900118896 /* InputFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldViewModel.swift; sourceTree = "<group>"; };
 		AAC387542D772F3A00118896 /* NumberFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFieldViewModel.swift; sourceTree = "<group>"; };
-		AAC387562D77412100118896 /* NumberBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberBase.swift; sourceTree = "<group>"; };
 		AAC387582D77413F00118896 /* NumberFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFieldModel.swift; sourceTree = "<group>"; };
 		AAD099682D5CC911007A6CE9 /* RulesControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesControlsView.swift; sourceTree = "<group>"; };
 		AAD0996A2D5CCA23007A6CE9 /* RulesControlsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesControlsViewModel.swift; sourceTree = "<group>"; };
@@ -525,7 +523,6 @@
 			isa = PBXGroup;
 			children = (
 				AAC387582D77413F00118896 /* NumberFieldModel.swift */,
-				AAC387562D77412100118896 /* NumberBase.swift */,
 				AAF1B1752D7648D400DC44B4 /* Warnings */,
 				A9474D8C2D64B4A800031047 /* FormField.swift */,
 				A9EA54312D6C899500C2A9E2 /* FormEntity.swift */,
@@ -1820,7 +1817,6 @@
 				E4A901CF2D6B478E007080AC /* FormBuilderRepo.swift in Sources */,
 				AAF1B17D2D7648F700DC44B4 /* DateTimeValidationEntity.swift in Sources */,
 				AAE5CA8C2D4A448B00FDA699 /* RadioButtonView.swift in Sources */,
-				AAC387572D77412100118896 /* NumberBase.swift in Sources */,
 				04C847C92D79D20D0078B18F /* WelcomeViewModel.swift in Sources */,
 				AAE5CAC42D4A561000FDA699 /* RadioButtonViewModel.swift in Sources */,
 				AAE9E1F42D779599009E5EDF /* StepperNumberFieldView.swift in Sources */,

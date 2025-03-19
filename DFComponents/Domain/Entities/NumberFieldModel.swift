@@ -5,11 +5,9 @@
 //  Created by Eslam on 04/03/2025.
 //
 
-class NumberField: NumberBaseDelegate {
-    var numberProperties: NumberBase
-    var numberAnswer: BaseAnswerNumber?
+final class NumberField: InteractiveFieldDelegate {
+    var base: InteractiveField
     var fieldWarning: WarningsEntity?
-
     let step: Int?
     let decimalPlaces: Int?
     let minimumDigits: Int?
@@ -18,7 +16,7 @@ class NumberField: NumberBaseDelegate {
     let maximumValue: Double?
 
     init(field: Field?) {
-        self.numberProperties = NumberBase(field: field)
+        self.base = InteractiveField(field: field)
         if let properties = field?.properties as? NumberProperties {
             self.step = properties.step
             self.decimalPlaces = properties.decimalPlaces
@@ -26,7 +24,7 @@ class NumberField: NumberBaseDelegate {
             self.maximumDigits = properties.maximumDigits
             self.minimumValue = properties.minimumValue
             self.maximumValue = properties.maximumValue
-            self.numberAnswer = properties.defaultAnswer
+            self.base.answer = properties.defaultAnswer
         } else {
             self.step = nil
             self.decimalPlaces = nil
@@ -34,7 +32,6 @@ class NumberField: NumberBaseDelegate {
             self.maximumDigits = nil
             self.minimumValue = nil
             self.maximumValue = nil
-            self.numberAnswer = nil
             self.fieldWarning = nil
         }
     }

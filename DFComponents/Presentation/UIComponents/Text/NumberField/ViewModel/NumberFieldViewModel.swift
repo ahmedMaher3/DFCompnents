@@ -7,32 +7,35 @@
 import Foundation
 
 final class NumberFieldViewModel: ObservableObject {
+
     @Published var numberFieldModel: NumberField
     @Published var characterCount: Int = 0
     @Published var warningsMessagesDictionary: [String: [String]] = [:]
+
     private var validator: FieldValidationStrategy {
         return FieldEntity.number((numberFieldModel, self)).validatorField!
     }
     private var validateErrorMessage: ValidateFieldStrategy {
         return FieldEntity.number((numberFieldModel, self)).validateViewModel!
     }
+
     var baseAnswer: BaseAnswerNumber? {
         get { return numberFieldModel.base.answer as? BaseAnswerNumber }
         set {
-            numberFieldModel.base.answer = newValue
-            numberFieldModel.numberAnswer = newValue
-            guard let countDigit = numberFieldModel.numberAnswer?.value?.count
+            numberFieldModel.answer = newValue
+
+            guard let numberOfDigits = newValue?.value?.count
             else { return print("Value not valid") }
-            characterCount = countDigit > 0 ? countDigit : 0
+
+            characterCount = numberOfDigits > 0 ? numberOfDigits : 0
         }
     }
 
     init(numberFieldModel: NumberField) {
         self.numberFieldModel = numberFieldModel
-        if numberFieldModel.numberProperties.defaultAnswer?.value != nil {
-            baseAnswer = BaseAnswerNumber(value: numberFieldModel.numberProperties.defaultAnswer?.value ?? "")
-            self.numberFieldModel.base.answer = numberFieldModel.numberAnswer
-            self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
+        if numberFieldModel.answer != nil {
+            baseAnswer = BaseAnswerNumber(value: baseAnswer?.value ?? "")
+            characterCount = baseAnswer?.value?.count ?? 0
         }
     }
 
@@ -49,7 +52,7 @@ final class NumberFieldViewModel: ObservableObject {
     func validateDecimalPlaces() -> Bool {
         guard let decimalPlaces = numberFieldModel.decimalPlaces else { return true }
         let numberOfDecimals = baseAnswer?.value?.split(separator: ".").count ?? 0 > 1
-        ? numberFieldModel.numberAnswer?.value?.split(separator: ".")[1].count : 0
+        ? baseAnswer?.value?.split(separator: ".")[1].count : 0
         return numberOfDecimals ?? 0 <= decimalPlaces
     }
     
@@ -69,3 +72,9 @@ final class NumberFieldViewModel: ObservableObject {
         }
     }
 }
+//        self.numberFieldModel = numberFieldModel
+//        if numberFieldModel.numberProperties.defaultAnswer?.value != nil {
+//            baseAnswer = BaseAnswerNumber(value: numberFieldModel.numberProperties.defaultAnswer?.value ?? "")
+//            self.numberFieldModel.base.answer = numberFieldModel.numberAnswer
+//            self.characterCount = numberFieldModel.numberProperties.defaultAnswer?.value?.count ?? 0
+//        }

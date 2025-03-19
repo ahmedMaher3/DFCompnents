@@ -89,7 +89,9 @@ protocol InteractiveFieldProtocol: BaseFieldProtocol {
     var addAttachment: Bool! { get set }
     var attachmentType: AttachmentType! { get }
     var attachmentExtensions: String! { get }
-
+    associatedtype AnswerType
+    var defaultAnswer: AnswerType? { get }
+    var answer: Any? { get set }
     func isAnswered() -> Bool
 }
 
@@ -118,6 +120,7 @@ struct InteractiveField: InteractiveFieldProtocol {
     var addAttachment: Bool!
     var attachmentType: AttachmentType!
     var attachmentExtensions: String!
+    var defaultAnswer: BaseAnswer?
 
     init(field: Field?) {
         guard let field = field else { return }
@@ -176,7 +179,7 @@ extension InteractiveFieldDelegate {
     var tooltip: String? { base.tooltip }
     var attachmentType: AttachmentType! { base.attachmentType }
     var attachmentExtensions: String! { base.attachmentExtensions }
-
+    var defaultAnswer: BaseAnswer? { base.defaultAnswer }
     // Mutable properties
     var label: String! {
         get { base.label }
@@ -230,6 +233,7 @@ extension InteractiveFieldDelegate {
 }
 
 class TextBase: InteractiveFieldDelegate {
+
     var base: InteractiveField
 
     let allowSpellCheck: Bool?

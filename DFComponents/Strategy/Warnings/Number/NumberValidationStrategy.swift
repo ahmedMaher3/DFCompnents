@@ -31,7 +31,7 @@ final class NumberValidationStrategy: FieldValidationStrategy {
 
         let numberValue = numberViewModel.baseAnswer?.value?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
 
-        if numberValue.isEmpty && numberViewModel.numberFieldModel.basePropertiesNotInteractive.required == true {
+        if numberValue.isEmpty && numberViewModel.numberFieldModel.base.required == true {
             requiredValidator.validate(
                 fieldEntity: fieldEntity,
                 value: numberValue,

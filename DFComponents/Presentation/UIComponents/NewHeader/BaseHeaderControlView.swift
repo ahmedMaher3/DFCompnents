@@ -26,8 +26,9 @@ struct BaseHeaderControlView: View {
             case .page, .section, .radio, .textBox:
                 EmptyView()
             case .number((_, let numberViewModel)):
-                let properties = numberViewModel.numberFieldModel.basePropertiesNotInteractive
-                labelView(baseProperties: properties)
+//                let properties = numberViewModel.numberFieldModel.basePropertiesNotInteractive
+//                labelView(baseProperties: properties)
+                    EmptyView()
             }
         }
     }

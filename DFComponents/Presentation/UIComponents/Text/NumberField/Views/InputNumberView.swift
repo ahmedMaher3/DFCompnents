@@ -24,6 +24,7 @@ struct InputNumberView: View {
     }
 
     var body: some View {
+        
         TextField(viewModel.numberFieldModel.placeHolder, text: textNumberBinding)
             .padding(8)
             .frame(height: 48)
