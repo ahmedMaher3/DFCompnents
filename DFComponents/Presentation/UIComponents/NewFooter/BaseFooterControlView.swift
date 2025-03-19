@@ -131,12 +131,12 @@ struct BaseFooterControlView: View {
                 .font(.title2)
         }
     }
-
+    
     @ViewBuilder
     private func renderAttachmentButton() -> some View {
         AttachmentButton(showImagePicker: $showImagePicker, showFilePicker: $showFilePicker, selectedPhotos: $selectedPhotos)
     }
-
+    
     @ViewBuilder
     private func renderSavedNote() -> some View {
         if let note = savedNote, !(note.isEmpty ) {
@@ -163,9 +163,12 @@ struct BaseFooterControlView: View {
     }
     /// **Update Answer in ViewModel**
     private func updateAnswer() {
-//        if case .number((_, let numberViewModel)) = viewModel.field {
-//            numberViewModel.numberFieldModel.answer = BaseAnswerNumber(value:numberViewModel.baseAnswer?.value ?? "" ,note: savedNote ?? "", attachments: attachments)
-//            
+        
+//        if viewModel.field.field.type == .number  {
+//            if var numberField = viewModel.field.field as? NumberField {
+//            let answerValue = (numberField.base.answer as? BaseAnswerNumber)?.value
+//                numberField.answer = BaseAnswerNumber(value: answerValue ?? "" ,note: savedNote ?? "", attachments: attachments)
+//            }
 //        }
     }
 }
