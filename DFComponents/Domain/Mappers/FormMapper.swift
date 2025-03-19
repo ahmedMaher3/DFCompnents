@@ -67,7 +67,7 @@ class FormMapper: EntityMapper {
     }
 
     // 🔹 Recursive function to map fields & handle sections dynamically
-    private func mapFieldsRecursively(fields: [Field], groupedFields: [String: [Field]]) -> [FieldRenderable] {
+    private func mapFieldsRecursively(fields: [Field], groupedFields: [String: [Field]]) -> [any FieldRenderable] {
         return fields.compactMap { field in
             if field.type == .section {
                 let sectionControls = mapFieldsRecursively(fields: groupedFields[field.id!] ?? [], groupedFields: groupedFields)
@@ -81,7 +81,7 @@ class FormMapper: EntityMapper {
 
     // 🔹 Helper Function to Map a Single Field
 
-    private func mapSingleField(field: Field) ->  FieldRenderable? {
+    private func mapSingleField(field: Field) ->  (any FieldRenderable)? {
         switch field.type {
             case .textBox:
             let control = TextBoxField(field: field)
@@ -272,119 +272,104 @@ enum FieldEntity: Identifiable {
 
 
 protocol FieldRenderable {
+    associatedtype Field: BaseFieldProtocol
+    var field: Field { get }
     var id: String { get }
     var errorMessage: String? { get }
     func render() -> AnyView
     func renderHeader() -> AnyView
-    func renderFooter() -> AnyView
 }
 
 struct RadioButtonRenderer: FieldRenderable {
-    func renderFooter() -> AnyView {
-        return AnyView(EmptyView())
-    }
+    typealias Field = RadioButtonField
     
+    var field: RadioButtonField
 
-    var field: BaseFieldProtocol!
-
-    init(field: BaseFieldProtocol) {
+    init(field: RadioButtonField) {
         self.field = field
     }
 
-    var id: String { field.fieldId}
+    var id: String { field.fieldId }
     var errorMessage: String? { field.errorMessage }
 
-
     func render() -> AnyView {
-        guard let radioField = field as? RadioButtonField else { return AnyView(EmptyView()) }
-        return AnyView(RadioButtonView(radioButtonVM: RadioButtonViewModel(control: radioField)))
+        AnyView(RadioButtonView(radioButtonVM: RadioButtonViewModel(control: field)))
     }
 
     func renderHeader() -> AnyView {
-        return AnyView(EmptyView())
+        AnyView(EmptyView()) // Update this if needed
     }
-    
 }
 
-struct TextBoxRenderer: FieldRenderable {
-    func renderFooter() -> AnyView {
-        return AnyView(EmptyView())
-    }
-    
-    var field: BaseFieldProtocol!
 
-    init(field: BaseFieldProtocol) {
+struct TextBoxRenderer: FieldRenderable {
+    typealias Field = TextBoxField
+    
+    var field: TextBoxField
+
+    init(field: TextBoxField) {
         self.field = field
     }
-    var id: String { field.fieldId}
+
+    var id: String { field.fieldId }
     var errorMessage: String? { field.errorMessage }
 
     func render() -> AnyView {
-        guard let textBoxField = field as? TextBoxField else { return AnyView(EmptyView())}
-        return AnyView(TextBoxComponent(viewModel: TextBoxViewModel(control: textBoxField)))
+        AnyView(TextBoxComponent(viewModel: TextBoxViewModel(control: field)))
     }
 
     func renderHeader() -> AnyView {
-
-        return AnyView(EmptyView())
+        AnyView(EmptyView()) // Update if needed
     }
-    
 }
 
 struct NumberFieldRenderer: FieldRenderable {
-    var field: BaseFieldProtocol!
+    typealias Field = NumberField
     
-    init(field: BaseFieldProtocol) {
+    var field: NumberField
+
+    init(field: NumberField) {
         self.field = field
     }
-    var id: String { field.fieldId}
+
+    var id: String { field.fieldId }
     var errorMessage: String? { field.errorMessage }
 
     func render() -> AnyView {
-        guard let numberField = field as? NumberField else { return AnyView(EmptyView()) }
-        return AnyView(NumberFieldComponent(viewModel: NumberFieldViewModel(numberFieldModel: numberField)))
+        AnyView(NumberFieldComponent(viewModel: NumberFieldViewModel(numberFieldModel: field)))
     }
 
     func renderHeader() -> AnyView {
-       let viewModel = NumberFieldViewModel(numberFieldModel: field as! NumberField)
+        let viewModel = NumberFieldViewModel(numberFieldModel: field)
         let properties = viewModel.numberFieldModel.basePropertiesNotInteractive
-       return AnyView(labelView(baseProperties: properties))
+        return AnyView(labelView(baseProperties: properties))
     }
-    func renderFooter() -> AnyView {
-        let viewModel = NumberFieldViewModel(numberFieldModel: field as! NumberField)
-         let interactiveProperties = viewModel.numberFieldModel.base
-        let charactersCount = "\(viewModel.characterCount)/\(viewModel.numberFieldModel.maximumDigits ?? 0)"
-        let baseFooterView = BaseFooterControlView(viewModel: BaseFooterViewModel(field: self ))
-        return AnyView( baseFooterView.footerStack(fieldProperties: interactiveProperties, charactersCount: charactersCount))
-    }
-
 }
 
 struct SectionButtonRenderer: FieldRenderable {
-    func renderFooter() -> AnyView {
-        return AnyView(EmptyView())
-    }
-    
-    var field: BaseFieldProtocol!
-    var controls: [FieldRenderable]!
+    typealias Field = SectionField
 
-    init(field: BaseFieldProtocol,controls: [FieldRenderable]) {
+    var field: SectionField
+    var controls: [any FieldRenderable]
+
+    init(field: SectionField, controls: [any FieldRenderable]) {
         self.field = field
         self.controls = controls
     }
-    var id: String { field.fieldId}
-    var errorMessage: String? { field.errorMessage }
-    
-    func render() -> AnyView {
 
-        return AnyView(SectionView(sectionViewModel: SectionViewModel(controls: controls, sectionField: field as! SectionField), isExpanded: false))
+    var id: String { field.fieldId }
+    var errorMessage: String? { field.errorMessage }
+
+    func render() -> AnyView {
+        AnyView(SectionView(sectionViewModel: SectionViewModel(controls: controls, sectionField: field), isExpanded: false))
     }
 
     func renderHeader() -> AnyView {
-        return AnyView(EmptyView())
+        AnyView(EmptyView())
     }
 
-
+    func renderFooter() -> AnyView {
+        AnyView(EmptyView())
+    }
 }
-
 

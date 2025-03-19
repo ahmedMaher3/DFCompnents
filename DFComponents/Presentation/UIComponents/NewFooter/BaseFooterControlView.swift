@@ -110,21 +110,17 @@ struct BaseFooterControlView: View {
     
     /// **Render Footer Based on Field Type**
     @ViewBuilder
-    private func renderFooter(field: FieldRenderable?) -> some View {
-        field?.renderFooter()
-//        switch fieldEntity {
-//        case .page, .section, .radio, .textBox:
-//            EmptyView()
-//        case .number((_, let numberViewModel)):
-//            let interactiveProperties = numberViewModel.numberFieldModel.base
-//            footerStack(
-//                sublabel: interactiveProperties.sublabel,
-//                characterCountText: "\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)",
-//                addNote: interactiveProperties.addNote,
-//                addAttachment: interactiveProperties.addAttachment,
-//                tooltip: interactiveProperties.tooltip ?? "test test test"
-//            )
-//        }
+    private func renderFooter(field: (any FieldRenderable)?) -> some View {
+        switch field?.field.type {
+        case .page, .section, .radio, .textBox:
+            EmptyView()
+        case .number:
+            if let numberField = field?.field as? NumberField {
+                footerStack(fieldProperties: numberField.base, charactersCount: "")
+            }
+        default :
+            EmptyView()
+        }
     }
     
     @ViewBuilder
