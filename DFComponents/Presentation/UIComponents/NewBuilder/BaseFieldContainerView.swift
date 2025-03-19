@@ -69,15 +69,13 @@ struct BaseFieldContainerView: View {
         LazyVStack(alignment: .leading, spacing: 8) {
             /// Header View
             BaseHeaderControlView(viewModel: BaseHeaderViewModel(field: field))
-
             /// Control with overlay for warnings
             field.render()
-//
-
             /// Footer View - Aligned to Control
-            BaseFooterControlView(viewModel: BaseFooterViewModel(control: field))
-                .frame(maxWidth: .infinity, alignment: .leading)
-
+            if let interactiveControl = field.field as? InteractiveFieldProtocol {
+                BaseFooterControlView(viewModel: BaseFooterViewModel(control: interactiveControl))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
             /// Warning View
             WarningCardView(message: viewModel.errorMessage ?? "")
                 .opacity(viewModel.errorMessage == nil ? 0 : 1)
@@ -85,12 +83,12 @@ struct BaseFieldContainerView: View {
         .padding(6)
         .background(field.errorMessage == nil || field.errorMessage == "" ? Color.clear : Color.red.opacity(0.05))
         .cornerRadius(8)
-        .onReceive(Just(field.errorMessage)) { errorMessage in
-            Task { @MainActor in
-                print("Display please error message:\(errorMessage ?? "nil")")
+//        .onReceive(Just(field.errorMessage)) { errorMessage in
+//            Task { @MainActor in
+//                print("Display please error message:\(errorMessage ?? "nil")")
 //                viewModel.errorMessage = errorMessage ?? ""
-            }
-        }
+//            }
+//        }
         .padding(6)
        .background(field.errorMessage == nil || field.errorMessage == "" ? Color.clear : Color.red.opacity(0.05))
         .cornerRadius(8)

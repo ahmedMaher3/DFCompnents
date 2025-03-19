@@ -269,20 +269,20 @@ protocol FieldRenderable {
 
 
 struct RadioButtonRenderer: FieldRenderable {
+    var errorMessage: String? {
+        get { field.errorMessage }
+        set {
+            print("Called: \(newValue)")
+            field.errorMessage = newValue }
+    }
     typealias Field = RadioButtonField
-    
     var field: RadioButtonField
     var viewModel: RadioButtonViewModel
-
-
     init(field: RadioButtonField) {
         self.field = field
         self.viewModel = RadioButtonViewModel(control: field)
     }
-
     var id: String { field.fieldId }
-    var errorMessage: String? { field.errorMessage }
-
     func render() -> AnyView {
         AnyView(RadioButtonView(radioButtonVM: RadioButtonViewModel(control: field)))
     }
@@ -305,10 +305,13 @@ struct TextBoxRenderer: FieldRenderable {
         self.field = field
         self.viewModel = TextBoxViewModel(control: field)
     }
-
     var id: String { field.fieldId }
-    var errorMessage: String? { field.errorMessage }
-
+    var errorMessage: String? {
+        get { field.errorMessage }
+        set {
+            print("Called: \(newValue)")
+            field.errorMessage = newValue }
+    }
     func render() -> AnyView {
         AnyView(TextBoxComponent(viewModel: TextBoxViewModel(control: field)))
     }
@@ -334,10 +337,6 @@ struct NumberFieldRenderer: FieldRenderable {
             print("Called: \(newValue)")
             field.errorMessage = newValue }
     }
-
-    var id: String { field.fieldId }
-    var errorMessage: String? { field.errorMessage }
-
     func render() -> AnyView {
         AnyView(NumberFieldComponent(viewModel: NumberFieldViewModel(numberFieldModel: field)))
     }
@@ -345,7 +344,8 @@ struct NumberFieldRenderer: FieldRenderable {
     func renderHeader() -> AnyView {
         let viewModel = NumberFieldViewModel(numberFieldModel: field )
         let properties = viewModel.numberFieldModel.basePropertiesNotInteractive
-        return AnyView(labelView(baseProperties: properties))
+        let tooltip = viewModel.numberFieldModel.tooltip ?? ""
+        return AnyView(labelView(baseProperties: properties, tooltip: tooltip))
     }
 }
 

@@ -4,15 +4,26 @@
 //
 //  Created by Eslam on 17/03/2025.
 //
+import Combine
 import Foundation
 
 final class BaseFieldViewModel: ObservableObject {
     @Published var errorMessage: String? = ""
 
-    init(errorMessage: String = "") {
-        self.errorMessage = errorMessage
+    private var cancellables = Set<AnyCancellable>()
+
+    func bindErrorMessage(_ publisher: Published<String?>.Publisher) {
+        publisher
+            .receive(on: DispatchQueue.main) // Ensure UI updates happen on the main thread
+            .removeDuplicates() // Prevent unnecessary updates
+            .sink { [weak self] newError in
+                self?.errorMessage = newError ?? ""
+                print("Updated error message: \(newError ?? "nil")")
+            }
+            .store(in: &cancellables)
     }
 }
+
 //final class BaseFieldViewModel: ObservableObject {
 //    @Published var errorMessage: String?
 //    private var cancellables = Set<AnyCancellable>()

@@ -26,7 +26,7 @@ struct BaseHeaderControlView: View {
 }
 
 @ViewBuilder
- func labelView(baseProperties: BaseProperties) -> some View {
+func labelView(baseProperties: BaseProperties, tooltip: String) -> some View {
     if baseProperties.required ?? false {
         HStack(alignment: .center) {
             Text(baseProperties.label ?? "")
@@ -34,6 +34,10 @@ struct BaseHeaderControlView: View {
                 .foregroundColor(.primary)
             Text("* ")
                 .foregroundStyle(.red)
+            Spacer()
+            if !(tooltip.isEmpty ) {
+                ToolTipFooterView(tooltip: tooltip )
+            }
         }
     } else {
         Text(baseProperties.label ?? "")

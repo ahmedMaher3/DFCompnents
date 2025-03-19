@@ -8,9 +8,9 @@
 import Foundation
 
 final class BaseFooterViewModel: ObservableObject {
-     @Published var field: any FieldRenderable
+     @Published var field: InteractiveFieldProtocol
 
-    init(control: any FieldRenderable) {
+    init(control: InteractiveFieldProtocol) {
         self.field = control
     }
 }

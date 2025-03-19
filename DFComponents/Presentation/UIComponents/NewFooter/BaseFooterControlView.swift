@@ -25,7 +25,7 @@ struct BaseFooterControlView: View {
 
     /// **Reusable Footer Stack**
     @ViewBuilder
-    func footerStack(fieldProperties: InteractiveField, charactersCount: String) -> some View {
+    func footerStack(fieldProperties: InteractiveFieldProtocol, charactersCount: String) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             if let sublabel = fieldProperties.sublabel {
                 HStack(alignment: .center, spacing: 8) {
@@ -103,17 +103,20 @@ struct BaseFooterControlView: View {
 
     /// **Render Footer Based on Field Type**
     @ViewBuilder
-    private func renderFooter(field: (any FieldRenderable)?) -> some View {
-        switch field?.field.type {
-        case .page, .section, .radio, .textBox:
-            EmptyView()
-        case .number:
-            if let numberField = field?.field as? NumberField {
-                footerStack(fieldProperties: numberField.base, charactersCount: "")
-            }
-        default :
-            EmptyView()
-        }
+    private func renderFooter(field: InteractiveFieldProtocol) -> some View {
+//        let field =
+        footerStack(fieldProperties: field, charactersCount: "")
+
+//        switch field?.field.type {
+//        case .page, .section, .radio, .textBox:
+//            EmptyView()
+//        case .number:
+//            if let numberField = field?.field as? NumberField {
+//                let characterText = "\(numberField.minimumDigits ?? 0)/\(numberField.maximumDigits ?? 0)"
+//            }
+//        default :
+//            EmptyView()
+//        }
     }
 
     @ViewBuilder
