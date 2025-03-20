@@ -9,17 +9,15 @@ import Foundation
 
 protocol FormBuildUseCaseProtocol {
     func excute() async throws -> FormEntity
-    func map(dto: Schema) -> [PageModel]
-//    func map(dto: Schema) -> [FieldEntity]
-    func map(dto: Warnings) -> WarningsEntity
+    func map(dto: Schema) -> FormEntity
 }
 
 class FormBuildUseCase: FormBuildUseCaseProtocol {
 
-    private let repository: FormBuildRepository
+    private let repository: FormBuildRepositoryProtocol
     private let mapper: any EntityMapper
 
-    init(repository: FormBuildRepository = LocalFormRepository(),
+    init(repository: FormBuildRepositoryProtocol = FormBuilderRepository(),
          mapper: any EntityMapper = FormMapper()) {
         self.repository = repository
         self.mapper = mapper
@@ -28,9 +26,8 @@ class FormBuildUseCase: FormBuildUseCaseProtocol {
     func excute() async throws -> FormEntity {
         do {
             let response = try await repository.fetchForm()
-            let pages: [PageModel] = map(dto: response)
-            let warnings = map(dto: response.warnings) // Map warnings
-            return FormEntity(pages: pages, rules: response.rules ?? [], warnings: warnings)
+            let formEntity: FormEntity = map(dto: response)
+            return formEntity
         }
         catch let error as NSError {
             print(error.localizedDescription)
@@ -38,13 +35,7 @@ class FormBuildUseCase: FormBuildUseCaseProtocol {
         }
     }
 
-    func map(dto: Schema) -> [PageModel] {
-        let entityMapper = mapper as! FormMapper
-        return entityMapper.map(from: dto)
-    }
-
-    //MARK: - Map Warning
-    func map(dto: Warnings) -> WarningsEntity {
+    func map(dto: Schema) -> FormEntity {
         let entityMapper = mapper as! FormMapper
         return entityMapper.map(from: dto)
     }
