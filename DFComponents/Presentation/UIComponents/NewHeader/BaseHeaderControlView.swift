@@ -34,18 +34,26 @@ struct BaseHeaderControlView: View {
     ///Label
     @ViewBuilder
     private func labelView(baseProperties: BaseProperties) -> some View {
-        if baseProperties.required ?? false {
-            HStack(alignment: .center) {
+        HStack(alignment: .center) {
+            if baseProperties.required ?? false {
+                HStack(alignment: .center) {
+                    Text(baseProperties.label ?? "")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    Text("* ")
+                        .foregroundStyle(.red)
+                }
+            } else {
                 Text(baseProperties.label ?? "")
                     .font(.headline)
                     .foregroundColor(.primary)
-                Text("* ")
-                    .foregroundStyle(.red)
             }
-        } else {
-            Text(baseProperties.label ?? "")
-                .font(.headline)
-                .foregroundColor(.primary)
+            
+            Spacer()
+            
+            if let tooltip = baseProperties.tooltip, !tooltip.isEmpty {
+                ToolTipFooterView(tooltip: tooltip)
+            }
         }
     }
 }
