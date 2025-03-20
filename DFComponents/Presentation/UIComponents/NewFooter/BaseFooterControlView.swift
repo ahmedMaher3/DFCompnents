@@ -118,7 +118,18 @@ struct BaseFooterControlView: View {
             let characterCountText = numberViewModel.characterCountText
             let tooltip: String = {
                 guard let fieldValidation = numberViewModel.numberFieldModel.fieldWarning?.fieldValidation else { return "" }
-                return "\(getErrorMessage(for: fieldValidation, validationKey: .minimumDigits, value: numberViewModel.numberFieldModel.minimumDigits) ?? "")\n \(getErrorMessage(for: fieldValidation, validationKey: .maximumDigits, value: numberViewModel.numberFieldModel.maximumDigits) ?? "")"
+                var messages: [String] = []
+                if let minDigits = numberViewModel.numberFieldModel.minimumDigits {
+                    if let minMessage = getErrorMessage(for: fieldValidation, validationKey: .minimumDigits, value: minDigits), !minMessage.isEmpty {
+                        messages.append(minMessage)
+                    }
+                }
+                if let maxDigits = numberViewModel.numberFieldModel.maximumDigits {
+                    if let maxMessage = getErrorMessage(for: fieldValidation, validationKey: .maximumDigits, value: maxDigits), !maxMessage.isEmpty {
+                        messages.append(maxMessage)
+                    }
+                }
+                return messages.joined(separator: "\n")
             }()
             footerStack(
                 interactiveControl: interactiveProperties,
