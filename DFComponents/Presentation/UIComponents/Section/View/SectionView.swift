@@ -27,7 +27,7 @@ struct SectionView: View {
                 ScrollView {
                     LazyVStack(spacing: 10) {
                         ForEach(self.sectionViewModel.controls, id: \.id) { field in
-                            renderField(for: field)
+                            FieldRenderer(field: field)
                         }
                     }
                 }
@@ -73,33 +73,5 @@ struct SectionView: View {
         }
     }
     
-    /// Controls
-    @ViewBuilder
-    private func renderField(for field: FieldEntity) -> some View {
-        switch field {
-            case .radio((_, let radioViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field, controlType: { RadioButtonView(radioButtonVM: radioViewModel) }
-                )
-                .onReceive(radioViewModel.$control) { _ in
-                    self.sectionViewModel.controls[0].value = radioViewModel.control.defaultAnswer?.value?.first
-                }
-                .opacity(radioViewModel.control.hidden ? 0 : 1)
-                
-            case .textBox((_, let textBoxViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field, controlType: {TextBoxComponent(viewModel: textBoxViewModel) }
-                )
-                .opacity(textBoxViewModel.control.hidden ? 0 : 1)
-                
-            case .number((_, let numberViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field, controlType: {NumberFieldComponent(viewModel: numberViewModel) }
-                )
-            case .page((_, _)):
-                EmptyView()
-            case .section((_, _)):
-                EmptyView()
-        }
-    }
+
 }

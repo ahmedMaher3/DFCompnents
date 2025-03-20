@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+enum FormState {
+    case loading
+    case loaded
+    case error
+}
+
 @MainActor
 class FormViewModel: ObservableObject {
 
@@ -14,56 +20,45 @@ class FormViewModel: ObservableObject {
     var rules = [Rule]()
     var warnings: WarningsEntity?
 
+    @Published var state: FormState = .loading
     @Published var mode: FormType?
     @Published var fields: [FieldEntity] = []
-    @Published var pages: [PageModel] = [] {
+    @Published var pages: [PageEntity] = [] {
         didSet {
             print("pages changed:- \(pages)")
         }
     }
     @Published var rulesImp: RuleImp!
 
-    func fetchForm() async {
-        do {
-            let response = try await formBuildUseCase.excute()
-            mode = response.pages.first?.mode
-            pages = response.pages
-            fields = pages.flatMap { $0.fields }
-            rules = response.rules
-            warnings = response.warnings
-            self.doRules()
-        }
-        catch let error as NSError {
-            print(error.localizedDescription)
-        }
-    }
-
-    func updateTextBoxValue(fieldId: String, newValue: String) {
-        pages = pages.map { page in
-            var updatedPage = page
-            updatedPage.fields = updatedPage.fields.map { field in
-                if case .textBox((let textBoxField, let textBoxViewModel)) = field,
-                   textBoxField.fieldId == fieldId {
-                    textBoxViewModel.control.label = newValue
-                }
-                return field
+        func fetchForm() async {
+            state = .loading
+            do {
+                let response = try await formBuildUseCase.excute()
+                mode = response.pages.first?.mode
+                pages = response.pages
+                fields = pages.flatMap { $0.fields }
+                rules = response.rules
+                warnings = response.warnings
+                handleRules()
+                state = .loaded
+            } catch {
+                state = .error
             }
-            return updatedPage
         }
-    }
 
-    private func doRules() {
+
+    private func handleRules() {
         let fields: [BaseFieldProtocol] = fields.map { fieldEntity in
             switch fieldEntity {
-                case .textBox((let field, _)):
+            case .textBox(let field, _):
                     return field
-                case .radio((let field, _)):
+            case .radio(let field, _):
                     return field
-                case .page((let field, _)):
+            case .page(let field, _):
                     return field
-                case .section((let field, _)):
+            case .section(let field, _):
                     return field
-                case .number((let field,let numberViewModel)):
+            case .number(let field,let numberViewModel):
                     numberViewModel.numberFieldModel.fieldWarning = warnings
                     return field
             }
@@ -76,3 +71,4 @@ class FormViewModel: ObservableObject {
         rulesImp.getAffectedRules(forControlId: id)
     }
 }
+

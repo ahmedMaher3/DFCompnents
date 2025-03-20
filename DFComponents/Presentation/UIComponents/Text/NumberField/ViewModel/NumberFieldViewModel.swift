@@ -12,11 +12,11 @@ final class NumberFieldViewModel: ObservableObject {
     @Published var warningsMessagesDictionary: [String: [String]] = [:]
     
     private var validator: FieldValidationStrategy {
-        return FieldEntity.number((numberFieldModel, self)).validatorField!
+        return FieldEntity.number(numberFieldModel, self).validatorField!
     }
     
     private var validateErrorMessage: ValidateFieldStrategy {
-        return FieldEntity.number((numberFieldModel, self)).validateViewModel!
+        return FieldEntity.number(numberFieldModel, self).validateViewModel!
     }
     
     var baseAnswer: BaseAnswerNumber? {
@@ -63,7 +63,7 @@ final class NumberFieldViewModel: ObservableObject {
     
     func validateInput(value: String, warnings: WarningsEntity?) {
         validator.validate(
-            fieldEntity: .number((numberFieldModel, self)),
+            fieldEntity: .number(numberFieldModel, self),
             value: value,
             warnings: warnings,
             warningsMessagesDictionary: &warningsMessagesDictionary)
