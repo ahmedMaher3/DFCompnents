@@ -28,10 +28,10 @@ struct FormView: View {
                     Spacer()
                     TabView(selection: $currentPage) {
                         ForEach(viewModel.pages.indices, id: \.self) { index in
-                            viewModel.pages[index].pageField?.renderPage(viewModel: viewModel, index: index)
-//                            PageView(pageViewModel: PageViewModel(controls: viewModel.pages[index].fields, pageField: viewModel.pages[index].pageField))
-//                                .environmentObject(viewModel)
-//                                .tag(index)
+//                            viewModel.pages[index].pageField?.renderPage(viewModel: viewModel, index: index)
+                            PageView(pageViewModel: PageViewModel(controls: viewModel.pages[index].fields, pageField: viewModel.pages[index].pageField))
+                                .environmentObject(viewModel)
+                                .tag(index)
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: self.viewModel.mode == .card ? .always : .never ))
@@ -53,7 +53,7 @@ struct FormView: View {
                         tab.frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
                     }
                     Spacer()
-                    handleFooter(mode: self.viewModel.mode ?? .classic)
+                    handleFooter(pageField: self.viewModel.pages[currentPage].pageField)
                 } else {
                     loadingView()
                 }
@@ -92,11 +92,11 @@ struct FormView: View {
         }
     }
     
-    private func handleFooter(mode: FormType) -> FooterView {
+    private func handleFooter(pageField: PageField) -> FooterView {
         return FooterView(
             currentPage: $currentPage,
             totalPages: viewModel.pages.count,
-            pageProperties: (self.viewModel.pages[currentPage].pageField?.field as? PageField)?.pageProperties ?? PageProperties(
+            pageProperties: pageField.pageProperties ?? PageProperties(
                 submit: "",
                 next: "",
                 back: "",

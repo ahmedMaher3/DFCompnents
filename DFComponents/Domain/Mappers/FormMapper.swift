@@ -41,7 +41,7 @@ class FormMapper: EntityMapper {
             let mappedFields = mapFieldsRecursively(fields: groupedFields[pageId] ?? [], groupedFields: groupedFields)
 
             return PageModel(
-                pageField: PageRenderer(field: PageField(field: page), controls: mappedFields),
+                pageField: PageField(field: page),
                 id: pageId,
                 fields: mappedFields,
                 mode: mode
@@ -68,7 +68,7 @@ class FormMapper: EntityMapper {
             let pageRenderer = PageRenderer(field: control, controls: mappedFields)
 
             let pageModel = PageModel(
-                pageField: pageRenderer,
+                pageField: control,
                 id: pageId,
                 fields: mappedFields,
                 mode: mode
@@ -192,7 +192,7 @@ class FormMapper: EntityMapper {
 }
 
 struct PageModel: Identifiable {
-    var pageField: (any PageRenderable)?
+    var pageField: PageField // PageField
     var id: String
     var fields: [any FieldRenderable]
     var mode: FormType
