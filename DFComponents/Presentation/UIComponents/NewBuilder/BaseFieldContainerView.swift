@@ -32,15 +32,15 @@ struct BaseFieldContainerView<Control: View>: View {
                     viewModel.errorMessage?.isEmpty == false ?
                     RoundedRectangle(cornerRadius: 4).stroke(.red, lineWidth: 0.5) : nil
                 )
+            
+            /// Warning View
+            WarningCardView(message: viewModel.errorMessage ?? "")
+                .opacity(viewModel.errorMessage == nil ? 0 : 1)
 
             /// Footer View - Aligned to Control
             BaseFooterControlView(viewModel: BaseFooterViewModel(control: fieldEntity))
                 .frame(maxWidth: .infinity, alignment: .leading) // Ensures left alignment
                 .padding(.leading, 0) // Adjust leading padding as needed to match the control
-
-            /// Warning View
-            WarningCardView(message: viewModel.errorMessage ?? "")
-                .opacity(viewModel.errorMessage == nil ? 0 : 1)
         }
         .padding(6)
         .background(fieldEntity.errorMessage == nil || fieldEntity.errorMessage == "" ? Color.clear : Color.red.opacity(0.05))

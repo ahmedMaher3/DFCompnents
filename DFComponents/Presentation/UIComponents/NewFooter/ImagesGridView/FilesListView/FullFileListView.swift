@@ -39,6 +39,7 @@ struct FullFileListView: View {
             List {
                 ForEach(attachments) { attachment in
                     FileRowView(attachment: attachment, attachments: $attachments)
+                        .listRowSeparator(.hidden)
                 }
             }
             .listStyle(PlainListStyle())
