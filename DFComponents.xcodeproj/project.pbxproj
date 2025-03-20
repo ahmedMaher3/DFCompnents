@@ -975,11 +975,11 @@
 		E472DC902D802EB900B8FAF3 /* ImagesGridView */ = {
 			isa = PBXGroup;
 			children = (
+				E472DC912D802ED200B8FAF3 /* ImagesGridView.swift */,
 				E472DCB52D81938D00B8FAF3 /* AttachmentButton */,
 				E472DC9A2D802FC100B8FAF3 /* FilesListView */,
 				E472DC932D802F0300B8FAF3 /* ImagesListView */,
-				E472DC912D802ED200B8FAF3 /* ImagesGridView.swift */,
-				E472DC9F2D803A7E00B8FAF3 /* ImagePicker.swift */,
+				E4C871222D8C0AD30060C39C /* ImagePickerWrapper */,
 			);
 			path = ImagesGridView;
 			sourceTree = "<group>";
@@ -1014,8 +1014,8 @@
 		E472DCA62D80550700B8FAF3 /* NewFooter */ = {
 			isa = PBXGroup;
 			children = (
-				E472DCB62D82C82200B8FAF3 /* ToolTipFooterView */,
 				E472DCA72D8056DB00B8FAF3 /* BaseFooterControlView.swift */,
+				E472DCB62D82C82200B8FAF3 /* ToolTipFooterView */,
 				E472DCAF2D80581300B8FAF3 /* ViewModel */,
 				E472DC902D802EB900B8FAF3 /* ImagesGridView */,
 				E472DCA32D80491D00B8FAF3 /* AddNote */,
@@ -1608,6 +1608,14 @@
 				E4BBD01F2D4A49BC004AA735 /* SearchBarView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		E4C871222D8C0AD30060C39C /* ImagePickerWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				E472DC9F2D803A7E00B8FAF3 /* ImagePicker.swift */,
+			);
+			path = ImagePickerWrapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
