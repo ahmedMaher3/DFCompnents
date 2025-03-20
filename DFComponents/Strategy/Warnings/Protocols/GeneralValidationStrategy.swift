@@ -8,7 +8,7 @@
 protocol GeneralValidationStrategyProtocol {
     func validate(
         value: String?,
-        fieldWarnings: inout [String]
+        fieldWarning: inout String
     )
 }
 

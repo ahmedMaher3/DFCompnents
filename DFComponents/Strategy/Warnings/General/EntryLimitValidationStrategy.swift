@@ -17,16 +17,16 @@ final class EntryLimitValidationStrategy: GeneralValidationStrategyProtocol {
 
     func validate(
         value: String?,
-        fieldWarnings: inout [String]) {
+        fieldWarning: inout String) {
             guard let valueField = value else { return print("") }
             let inputValue = valueField.replacingOccurrences(of: ".", with: "")
             if let minimumDigits = minimumDigits,
                inputValue.count < minimumDigits && minimumDigits != 0 {
-                fieldWarnings.append("Minimum digits required: \(minimumDigits)")
+                fieldWarning = "Minimum digits required: \(minimumDigits)"
             }
             if let maximumDigits = maximumDigits,
                inputValue.count > maximumDigits && maximumDigits != 0 {
-                fieldWarnings.append("Maximum digits allowed: \(maximumDigits)")
+                fieldWarning = "Maximum digits allowed: \(maximumDigits)"
             }
         }
 }
