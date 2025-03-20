@@ -11,6 +11,11 @@ struct FullFileListView: View {
     @Binding var attachments: [AttachmentModel]
     @Environment(\.presentationMode) var presentationMode
 
+    // Computed property to filter non-image attachments
+    private var nonImageAttachments: [AttachmentModel] {
+        attachments.filter { !$0.isImage }
+    }
+
     var body: some View {
         VStack {
             // Header with "Files" and close button
@@ -37,7 +42,7 @@ struct FullFileListView: View {
 
             // File List
             List {
-                ForEach(attachments) { attachment in
+                ForEach(nonImageAttachments) { attachment in
                     FileRowView(attachment: attachment, attachments: $attachments)
                         .listRowSeparator(.hidden)
                 }
