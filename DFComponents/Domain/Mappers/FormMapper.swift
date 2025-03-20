@@ -100,21 +100,21 @@ class FormMapper: EntityMapper {
     }
 
 
-//    private func mapSingleField(field: Field) -> FieldEntity? {
-//        switch field.type {
-//            case .textBox:
-//                let control = TextBoxField(field: field)
-//                return .textBox((control, TextBoxViewModel(control: control)))
-//            case .radio:
-//                let control = RadioButtonField(field: field)
-//                return .radio((control, RadioButtonViewModel(control: control)))
-//            case .number:
-//                let control = NumberField(field: field)
-//                return .number((control, NumberFieldViewModel(numberFieldModel: control)))
-//            default:
-//                return nil
-//        }
-//    }
+    private func mapSingleField(field: Field) -> FieldEntity? {
+        switch field.type {
+            case .textBox:
+                let control = TextBoxField(field: field)
+                return .textBox((control, TextBoxViewModel(control: control)))
+            case .radio:
+                let control = RadioButtonField(field: field)
+                return .radio((control, RadioButtonViewModel(control: control)))
+            case .number:
+                let control = NumberField(field: field)
+                return .number((control, NumberFieldViewModel(numberFieldModel: control)))
+            default:
+                return nil
+        }
+    }
 
     func map(from dto: Warnings) -> WarningsEntity {
         return WarningsEntity(
@@ -270,16 +270,11 @@ enum FieldEntity: Identifiable {
 }
 
 
-protocol BaseViewModel {
-
-}
 
 protocol FieldRenderable {
     associatedtype Field: BaseFieldProtocol
-    associatedtype ViewModel: BaseViewModel
 
     var field: Field { get }
-    var viewModel: ViewModel { get }
 
     var id: String { get }
     var errorMessage: String? { get }
@@ -290,16 +285,13 @@ protocol FieldRenderable {
 
 
 
-
 struct RadioButtonRenderer: FieldRenderable {
 
     var field: RadioButtonField
-    var viewModel: RadioButtonViewModel
 
 
     init(field: RadioButtonField) {
         self.field = field
-        self.viewModel = RadioButtonViewModel(control: field)
      }
 
    var id: String { field.fieldId}
@@ -307,7 +299,6 @@ struct RadioButtonRenderer: FieldRenderable {
 
 
     func render() -> AnyView {
-        //guard let radioField = field  else { return AnyView(EmptyView()) }
         return AnyView(RadioButtonView(radioButtonVM: RadioButtonViewModel(control: field)))
     }
 
@@ -332,7 +323,6 @@ struct TextBoxRenderer: FieldRenderable {
     var errorMessage: String? { field.errorMessage }
 
     func render() -> AnyView {
-      //  guard let textBoxField = field  else { return AnyView(EmptyView())}
         return AnyView(TextBoxComponent(viewModel: TextBoxViewModel(control: field)))
     }
 
