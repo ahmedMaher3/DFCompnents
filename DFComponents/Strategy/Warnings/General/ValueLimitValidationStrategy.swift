@@ -20,10 +20,12 @@ final class ValueLimitValidationStrategy: GeneralValidationStrategyProtocol {
             let valueField = value,
             let inputValue = Double(valueField) else { return }
 
-        if inputValue < minimumValue {
+        if inputValue < minimumValue,
+           minimumValue != 0  {
             fieldWarning = "Minimum value allowed is \(minimumValue)"
         }
-        if inputValue > maximumValue {
+        if inputValue > maximumValue,
+           maximumValue != 0  {
             fieldWarning = "Maximum value allowed is \(maximumValue)"
         }
     }
