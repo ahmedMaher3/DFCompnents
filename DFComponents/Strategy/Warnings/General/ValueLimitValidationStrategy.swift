@@ -5,10 +5,10 @@
 //  Created by Eslam on 11/03/2025.
 
 final class ValueLimitValidationStrategy: GeneralValidationStrategyProtocol {
-    private let minimumValue: Double
-    private let maximumValue: Double
+    private let minimumValue: Double?
+    private let maximumValue: Double?
 
-    init(minimumValue: Double, maximumValue: Double) {
+    init(minimumValue: Double?, maximumValue: Double?) {
         self.minimumValue = minimumValue
         self.maximumValue = maximumValue
     }
@@ -20,10 +20,12 @@ final class ValueLimitValidationStrategy: GeneralValidationStrategyProtocol {
             let valueField = value,
             let inputValue = Double(valueField) else { return }
 
-        if inputValue < minimumValue {
+        if let minimumValue = minimumValue,
+           inputValue < minimumValue && minimumValue != 0 {
             fieldWarnings.append("Minimum value allowed is \(minimumValue)")
         }
-        if inputValue > maximumValue {
+            if let maximumValue = maximumValue,
+            inputValue > maximumValue &&  maximumValue != 0 {
             fieldWarnings.append("Maximum value allowed is \(maximumValue)")
         }
     }
