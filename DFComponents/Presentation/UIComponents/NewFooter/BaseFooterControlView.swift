@@ -116,46 +116,16 @@ struct BaseFooterControlView: View {
                 EmptyView()
             case .number((_, let numberViewModel)):
                 let interactiveProperties = numberViewModel.numberFieldModel.base
-                /*
-                 footerStack(
-                 sublabel: interactiveProperties.sublabel,
-                 characterCountText: "\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)",
-                 addNote: interactiveProperties.addNote,
-                 addAttachment: interactiveProperties.addAttachment,
-                 tooltip: interactiveProperties.tooltip ?? "test test test"
-                 )
-                 */
+
                 footerStack(
                     sublabel: interactiveProperties.sublabel,
-                    characterCountText:  calculateDigitDisplay(currentValue: numberViewModel.baseAnswer?.value ?? "", minDigits: numberViewModel.numberFieldModel.minimumDigits ?? numberViewModel.numberFieldModel.maximumDigits, maxDigits: numberViewModel.numberFieldModel.maximumDigits ?? numberViewModel.numberFieldModel.minimumDigits),
+                    characterCountText: "\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)",
                     addNote: interactiveProperties.addNote,
                     addAttachment: interactiveProperties.addAttachment,
                     tooltip: interactiveProperties.tooltip ?? "test test test"
                 )
         }
     }
-
-    func calculateDigitDisplay(currentValue: String, minDigits: Int?, maxDigits: Int?) -> String {
-        let currentDigitCount = currentValue.count
-
-        if let minDigits = minDigits, let maxDigits = maxDigits {
-            if currentDigitCount < minDigits {
-                return "\(currentDigitCount)/\(minDigits)"
-            } else if currentDigitCount < maxDigits {
-                return "\(currentDigitCount)/\(maxDigits)"
-            } else {
-                return "\(currentDigitCount)/\(maxDigits)"
-            }
-        } else if let minDigits = minDigits {
-            return "\(currentDigitCount)/\(minDigits)"
-        } else if let maxDigits = maxDigits {
-            return "\(currentDigitCount)/\(maxDigits)"
-        }
-        return "\(currentDigitCount)"
-    }
-
-
-
 
     @ViewBuilder
     private func renderNoteButton() -> some View {

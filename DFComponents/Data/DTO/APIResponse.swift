@@ -150,6 +150,8 @@ enum FieldType: String, Codable {
     case fileUpload = "fileupload"
     case location = "location"
     case section = "Section"
+    case slider = "Slider"
+    case multiChoice = "multiChoice"
 }
 
 struct Option: Decodable, Identifiable {
