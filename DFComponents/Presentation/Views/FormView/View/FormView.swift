@@ -11,10 +11,11 @@ struct FormView: View {
     @StateObject private var viewModel = FormViewModel()
     @StateObject private var stepProgressViewModel = StepProgressViewModel()
     @StateObject private var styleManagerVM = StyleManagerViewModel()
-
+    @StateObject private var router = Router()
+    
     @State private var currentPage: Int = 0
     var title: String = "FormView"
-
+    
     var body: some View {
         NavigationStack {
             content
@@ -22,7 +23,8 @@ struct FormView: View {
                 .background(Color(hex: "#FAFBFF"))
                 .navigationBarTitle(title, displayMode: .inline)
                 .environmentObject(styleManagerVM)
-
+                .environmentObject(router)
+            
                 .onAppear {
                     Task {
                         await viewModel.fetchForm()
@@ -31,7 +33,7 @@ struct FormView: View {
                 }
         }
     }
-
+    
     @ViewBuilder
     private var content: some View {
         switch viewModel.state {
@@ -47,10 +49,7 @@ struct FormView: View {
             )
         }
     }
-
-
-
-
+    
     private func updateStepProgress() {
         stepProgressViewModel.totalPages = viewModel.pages.count
         stepProgressViewModel.updateProgress()
@@ -61,17 +60,23 @@ struct FormView: View {
 private struct FormContentView: View {
     @ObservedObject var viewModel: FormViewModel
     @ObservedObject var stepProgressViewModel: StepProgressViewModel
+    @ObservedObject private var router = Router()
     @Binding var currentPage: Int
-
+    
     var body: some View {
         VStack {
             StepProgressView(viewModel: stepProgressViewModel)
             Spacer()
             TabView(selection: $currentPage) {
                 ForEach(viewModel.pages.indices, id: \.self) { index in
-                    PageView(pageViewModel: PageViewModel(controls: viewModel.pages[index].fields))
-                        .environmentObject(viewModel)
-                        .tag(index)
+                    PageView(pageViewModel: PageViewModel(
+                            controls: viewModel.pages[index].fields,
+                            showFooter: index == (viewModel.pages.indices.last ?? 0),
+                            pageFooter: PageFooterEntity(classicPageFooter: self.viewModel.footer!)
+                        )
+                    )
+                    .environmentObject(viewModel)
+                    .tag(index)
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: viewModel.mode == .card ? .always : .never))
@@ -80,12 +85,20 @@ private struct FormContentView: View {
                 stepProgressViewModel.updateProgress()
             }
             .frameModifier(for: viewModel.mode!)
-
+            
             Spacer()
             PageFooterView(currentPage: $currentPage, totalPages: viewModel.pages.count)
         }
+        .onAppear {
+            if viewModel.mode == .card {
+                if let welcomeCardData: CardWelcomeData = viewModel.welcomeData {
+                    router.present(.welcomeView(viewModel: WelcomeViewModel(welcomeData: WelcomeEntity(cardWelcomeData: welcomeCardData, questionCount: self.viewModel.pages.count))))
+                }
+            }
+        }
+        .fullScreenCover(item: $router.presentedRoute) { route in
+            router.destination(for: route)
+        }
+        .environmentObject(router)
     }
 }
-
-
-

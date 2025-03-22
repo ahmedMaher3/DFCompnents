@@ -25,6 +25,34 @@ struct Schema: Decodable {
     let fields: [Field]
     let rules: [Rule]?
     let settings: Settings
+    let campaign: Campaign?
+}
+
+struct Campaign: Codable {
+    let header: ClassicPageHeader?
+    let footer: ClassicPageFooter?
+    let welcome: CardWelcomeData?
+}
+
+struct ClassicPageHeader: Codable {
+    let logo: String?
+    let title: String?
+    let description: String?
+    let showQuestionsCount: Bool?
+}
+
+struct ClassicPageFooter: Codable {
+    let logo: String?
+    let title: String?
+    let description: String?
+    let showQuestionsCount: Bool?
+}
+
+struct CardWelcomeData: Codable {
+    let logo: String?
+    let title: String?
+    let description: String?
+    let showQuestionsCount: Bool?
 }
 
 struct Settings: Decodable {

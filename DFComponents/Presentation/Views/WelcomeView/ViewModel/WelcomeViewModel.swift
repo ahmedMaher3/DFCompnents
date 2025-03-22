@@ -7,28 +7,39 @@
 
 import Foundation
 
-struct WelcomeData: Codable {
+class WelcomeViewModel: ObservableObject {
+    let id = UUID() // Ensure each instance is uniquely identifiable
+    @Published var welcomeData: WelcomeEntity
+    
+    init(welcomeData: WelcomeEntity) {
+        self.welcomeData = welcomeData
+    }
+
+}
+
+struct WelcomeEntity {
     let logoURL: String
     let title: String
     let subtitle: String
     let questionCount: Int
     let buttonText: String
     let showQuestionCount: Bool
-}
-
-class WelcomeViewModel: ObservableObject {
-    @Published var welcomeData: WelcomeData?
-
-    func fetchWelcomeData() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.welcomeData = WelcomeData(
-                logoURL: "https://example.com/ibm-logo.png",
-                title: "Welcome",
-                subtitle: "Hi there, please fill out and submit this form.",
-                questionCount: 50,
-                buttonText: "Start",
-                showQuestionCount: true
-            )
-        }
+        
+    init(logoURL: String, title: String, subtitle: String, questionCount: Int, buttonText: String, showQuestionCount: Bool) {
+        self.logoURL = logoURL
+        self.title = title
+        self.subtitle = subtitle
+        self.questionCount = questionCount
+        self.buttonText = buttonText
+        self.showQuestionCount = showQuestionCount
+    }
+    
+    init(cardWelcomeData: CardWelcomeData, questionCount: Int) {
+        self.logoURL = cardWelcomeData.logo ?? ""
+        self.title = cardWelcomeData.title ?? ""
+        self.subtitle = cardWelcomeData.description ?? ""
+        self.showQuestionCount = cardWelcomeData.showQuestionsCount ?? false
+        self.questionCount = questionCount
+        self.buttonText = "Start"
     }
 }

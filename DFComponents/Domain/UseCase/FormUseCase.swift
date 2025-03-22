@@ -31,7 +31,7 @@ class FormBuildUseCase: FormBuildUseCaseProtocol {
         }
         catch let error as NSError {
             print(error.localizedDescription)
-            return FormEntity(pages: [], rules: [], warnings: nil)
+            return FormEntity(pages: [], rules: [], warnings: nil, header: nil, footer: nil, welcome: nil)
         }
     }
 

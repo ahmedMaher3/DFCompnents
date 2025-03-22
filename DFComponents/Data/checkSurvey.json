@@ -214,8 +214,8 @@
                 },
                 "footer": {
                     "logo": "c9c5e1eb-29a7-4552-8db0-41511f8e05cc",
-                    "title": "footer title",
-                    "description": "footer desc",
+                    "title": "All Inspection Findings Must Be Documented Accurately",
+                    "description": "By submitting this form, you confirm that the inspection was conducted in accordance with applicable LNG safety and regulatory standards.",
                     "showQuestionsCount": false,
                     "localization": {}
                 },
@@ -223,7 +223,7 @@
                     "logo": "f375a403-1d90-4779-b6d3-7e48dd0833e9",
                     "title": "welcome title",
                     "description": "welcome desc",
-                    "showQuestionsCount": false,
+                    "showQuestionsCount": true,
                     "localization": {}
                 },
                 "submission": {
