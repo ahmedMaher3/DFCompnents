@@ -17,7 +17,6 @@ struct PageView: View {
         Group {
             if viewModel.mode == .classic {
                 PageListView(controls: pageViewModel.controls,
-                             showHeader: pageViewModel.showHeader,
                              showFooter: pageViewModel.showFooter,
                              classicPageFooter: pageViewModel.pageFooter,
                              headerVisible: $headerVisible,
@@ -34,7 +33,6 @@ struct PageView: View {
 /// List-based layout for `.classic` mode
 private struct PageListView: View {
     let controls: [FieldEntity]
-    let showHeader: Bool
     let showFooter: Bool
     let classicPageFooter: PageFooterEntity
     @Binding var headerVisible: Bool

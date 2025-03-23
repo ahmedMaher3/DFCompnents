@@ -65,7 +65,7 @@ private struct FormContentView: View {
 
     var body: some View {
         VStack {
-            if headerVisible && currentPage == viewModel.pages.indices.last {
+            if headerVisible && self.viewModel.pages.first?.mode == .classic && currentPage == viewModel.pages.indices.first {
                 Text("Header View")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -81,7 +81,6 @@ private struct FormContentView: View {
                 ForEach(viewModel.pages.indices, id: \.self) { index in
                     PageView(pageViewModel: PageViewModel(
                         controls: viewModel.pages[index].fields,
-                        showHeader: false,
                         showFooter: index == (viewModel.pages.indices.last ?? 0),
                         pageFooter: PageFooterEntity(classicPageFooter: self.viewModel.footer!)
                     ), onScroll: { offset in
