@@ -100,7 +100,7 @@ private struct PageListView: View {
                 }
             }
         }
-        .buttonStyle(PlainButtonStyle()) // Ensure buttons work within the List
+        .buttonStyle(PlainButtonStyle())
         .listStyle(PlainListStyle())
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         // allowing other views (such as GeometryReader or .preference) to measure positions relative to that space instead of the default global or local coordinate system
