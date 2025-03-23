@@ -14,7 +14,9 @@ struct PageView: View {
     var body: some View {
         Group {
             if viewModel.mode == .classic {
-                PageListView(controls: pageViewModel.controls, showFooter: pageViewModel.showFooter, classicPageFooter: pageViewModel.pageFooter)
+                PageListView(controls: pageViewModel.controls,
+                             showFooter: pageViewModel.showFooter,
+                             classicPageFooter: pageViewModel.pageFooter)
             } else {
                 PageScrollView(controls: pageViewModel.controls)
             }
@@ -28,6 +30,7 @@ struct PageView: View {
 /// List-based layout for `.classic` mode
 private struct PageListView: View {
     let controls: [FieldEntity]
+
     let showFooter: Bool
     let classicPageFooter: PageFooterEntity
     
@@ -39,6 +42,7 @@ private struct PageListView: View {
 
     var body: some View {
         List {
+
             ForEach(controls, id: \.id) { field in
                 FieldRenderer(field: field)
             }
@@ -54,6 +58,7 @@ private struct PageListView: View {
         .buttonStyle(PlainButtonStyle()) // Ensure buttons work within the List
         .listStyle(PlainListStyle())
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .scrollDisabled(true) // ✅ Disable List scrolling
     }
 }
 
