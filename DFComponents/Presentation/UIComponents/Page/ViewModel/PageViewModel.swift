@@ -14,6 +14,9 @@ final class PageViewModel: ObservableObject {
     @Published var pageField: PageField
     
     init(controls: [FieldEntity], showFooter: Bool, pageFooter: PageFooterEntity, pageField: PageField) {
+//        init(controls: [FieldEntity], pageField: PageField) {
+//        self.pageField = pageField
+
         self.controls = controls
         self.showFooter = showFooter
         self.pageFooter = pageFooter

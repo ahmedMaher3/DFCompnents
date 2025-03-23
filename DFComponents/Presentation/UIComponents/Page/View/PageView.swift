@@ -22,7 +22,9 @@ struct PageView: View {
                              headerVisible: $headerVisible,
                              onScroll: onScroll)
             } else {
-                PageScrollView(controls: pageViewModel.controls)
+                PageScrollView(controls: pageViewModel.controls,
+                               headerVisible: $headerVisible,
+                               onScroll: onScroll)
             }
         }
         .environmentObject(viewModel)
@@ -104,10 +106,34 @@ private struct PageListView: View {
 //    }
 //}
 /// ScrollView-based layout for `.card` mode
+///
+//MARK: - Old Implementation
+/*
 private struct PageScrollView: View {
     let controls: [FieldEntity]
 
     var body: some View {
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: 16) {
+                    ForEach(controls, id: \.id) { field in
+                        FieldRenderer(field: field)
+                    }
+                }
+                .frame(maxWidth: .infinity, minHeight: geometry.size.height)
+                .padding()
+            }
+        }
+    }
+}
+*/
+private struct PageScrollView: View {
+    let controls: [FieldEntity]
+    @Binding var headerVisible: Bool
+    var onScroll: ((CGFloat) -> Void)?
+
+    var body: some View {
+
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: 16) {
