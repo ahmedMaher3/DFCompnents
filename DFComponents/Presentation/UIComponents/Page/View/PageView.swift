@@ -51,7 +51,7 @@ private struct PageListView: View {
                                     value: proxy.frame(in: .named("scrollView")).minY)
                         .onChange(of: proxy.frame(in: .named("scrollView")).minY) { _, newValue in
                             print("Scroll Offset Changed: \(newValue)")
-                            headerVisible = newValue > -50 // Adjust threshold as needed
+                            headerVisible = newValue > -50
                             onScroll?(newValue)
                         }
                 }
@@ -67,6 +67,7 @@ private struct PageListView: View {
                 }
             }
         }
+        // allowing other views (such as GeometryReader or .preference) to measure positions relative to that space instead of the default global or local coordinate system
         .coordinateSpace(name: "scrollView")
     }
 }
