@@ -9,30 +9,30 @@ import SwiftUI
 
 //MARK: - Old Implementation
 /*
-struct PageView: View {
-    @EnvironmentObject var viewModel: FormViewModel
-    @ObservedObject var pageViewModel: PageViewModel
-    var onScroll: ((CGFloat) -> Void)?
-    @Binding var headerVisible: Bool
+ struct PageView: View {
+ @EnvironmentObject var viewModel: FormViewModel
+ @ObservedObject var pageViewModel: PageViewModel
+ var onScroll: ((CGFloat) -> Void)?
+ @Binding var headerVisible: Bool
 
-    var body: some View {
-        Group {
-            if viewModel.mode == .classic {
-                PageListView(controls: pageViewModel.controls,
-                             showFooter: pageViewModel.showFooter,
-                             classicPageFooter: pageViewModel.pageFooter,
-                             headerVisible: $headerVisible,
-                             onScroll: onScroll)
-            } else {
-                PageScrollView(controls: pageViewModel.controls,
-                               headerVisible: $headerVisible,
-                               onScroll: onScroll)
-            }
-        }
-        .environmentObject(viewModel)
-    }
-}
-*/
+ var body: some View {
+ Group {
+ if viewModel.mode == .classic {
+ PageListView(controls: pageViewModel.controls,
+ showFooter: pageViewModel.showFooter,
+ classicPageFooter: pageViewModel.pageFooter,
+ headerVisible: $headerVisible,
+ onScroll: onScroll)
+ } else {
+ PageScrollView(controls: pageViewModel.controls,
+ headerVisible: $headerVisible,
+ onScroll: onScroll)
+ }
+ }
+ .environmentObject(viewModel)
+ }
+ }
+ */
 
 struct PageView: View {
     @EnvironmentObject var viewModel: FormViewModel
@@ -66,6 +66,7 @@ struct PageView: View {
 }
 // MARK: - Page Layouts
 /// List-based layout for `.classic` mode
+
 private struct PageListView: View {
     let controls: [FieldEntity]
     let showFooter: Bool
@@ -76,28 +77,26 @@ private struct PageListView: View {
 
     var body: some View {
         ScrollView {
-            VStack {
-                GeometryReader { proxy in
-                    Color.clear
-                        .frame(height: 0)
-                        .preference(key: ScrollOffsetPreferenceKey.self,
-                                    value: proxy.frame(in: .named("scrollView")).minY)
-                        .onChange(of: proxy.frame(in: .named("scrollView")).minY) { _, newValue in
-                            print("Scroll Offset Changed: \(newValue)")
-                            headerVisible = newValue > -50
-                            onScroll?(newValue)
-                        }
-                }
-                .frame(height: 0)
-
+            GeometryReader { proxy in
+                Color.clear
+                    .frame(height: 0)
+                    .preference(key: ScrollOffsetPreferenceKey.self,
+                                value: proxy.frame(in: .named("scrollView")).minY)
+                    .onChange(of: proxy.frame(in: .named("scrollView")).minY) { _, newValue in
+                        headerVisible = newValue > -50
+                        onScroll?(newValue)
+                    }
+            }
+            .frame(height: 0)
+            LazyVStack {
                 ForEach(controls, id: \.id) { field in
                     FieldRenderer(field: field)
                 }
-                if showFooter {
-                    PageFooterV(viewModel: FooterViewModel(footerData: classicPageFooter))
-                        .frame(maxWidth: .infinity)
-                        .background(Color(hex: "#FAFBFF"))
-                }
+            }
+            if showFooter {
+                PageFooterV(viewModel: FooterViewModel(footerData: classicPageFooter))
+                    .frame(maxWidth: .infinity)
+                    .background(Color(hex: "#FAFBFF"))
             }
         }
         .buttonStyle(PlainButtonStyle())
