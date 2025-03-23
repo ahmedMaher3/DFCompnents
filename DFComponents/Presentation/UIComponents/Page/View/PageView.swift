@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//MARK: - Old Implementation
+/*
 struct PageView: View {
     @EnvironmentObject var viewModel: FormViewModel
     @ObservedObject var pageViewModel: PageViewModel
@@ -30,7 +32,38 @@ struct PageView: View {
         .environmentObject(viewModel)
     }
 }
+*/
 
+struct PageView: View {
+    @EnvironmentObject var viewModel: FormViewModel
+    @ObservedObject var pageViewModel: PageViewModel
+    var onScroll: ((CGFloat) -> Void)?
+    @Binding var headerVisible: Bool
+
+    var body: some View {
+        pageContent
+            .environmentObject(viewModel)
+    }
+
+    @ViewBuilder
+    private var pageContent: some View {
+        if viewModel.mode == .classic {
+            PageListView(
+                controls: pageViewModel.controls,
+                showFooter: pageViewModel.showFooter,
+                classicPageFooter: pageViewModel.pageFooter,
+                headerVisible: $headerVisible,
+                onScroll: onScroll
+            )
+        } else {
+            PageScrollView(
+                controls: pageViewModel.controls,
+                headerVisible: $headerVisible,
+                onScroll: onScroll
+            )
+        }
+    }
+}
 // MARK: - Page Layouts
 /// List-based layout for `.classic` mode
 private struct PageListView: View {
@@ -106,27 +139,6 @@ private struct PageListView: View {
 //    }
 //}
 /// ScrollView-based layout for `.card` mode
-///
-//MARK: - Old Implementation
-/*
-private struct PageScrollView: View {
-    let controls: [FieldEntity]
-
-    var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
-                VStack(spacing: 16) {
-                    ForEach(controls, id: \.id) { field in
-                        FieldRenderer(field: field)
-                    }
-                }
-                .frame(maxWidth: .infinity, minHeight: geometry.size.height)
-                .padding()
-            }
-        }
-    }
-}
-*/
 private struct PageScrollView: View {
     let controls: [FieldEntity]
     @Binding var headerVisible: Bool
