@@ -93,7 +93,7 @@ private struct FormContentView: View {
         }
         .onAppear {
             if viewModel.mode == .card {
-                if let welcomeCardData: CardWelcomeData = viewModel.welcomeData {
+                if let welcomeCardData: CampaignItem = viewModel.welcomeData {
                     router.present(.welcomeView(viewModel: WelcomeViewModel(welcomeData: WelcomeEntity(cardWelcomeData: welcomeCardData, questionCount: self.viewModel.pages.count))))
                 }
             }

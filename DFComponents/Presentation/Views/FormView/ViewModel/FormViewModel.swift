@@ -25,9 +25,9 @@ class FormViewModel: ObservableObject {
     @Published var fields: [FieldEntity] = []
     @Published var pages: [PageEntity] = []
     @Published var rulesImp: RuleImp!
-    @Published var header: ClassicPageHeader?
-    @Published var footer: ClassicPageFooter?
-    @Published var welcomeData: CardWelcomeData?
+    @Published var header: CampaignItem?
+    @Published var footer: CampaignItem?
+    @Published var welcomeData: CampaignItem?
 
         func fetchForm() async {
             state = .loading

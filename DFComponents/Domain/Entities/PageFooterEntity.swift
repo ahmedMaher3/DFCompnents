@@ -14,7 +14,7 @@ struct PageFooterEntity {
     let showQuestionsCount: Bool
     var isExpanded: Bool
     
-    init(classicPageFooter: ClassicPageFooter) {
+    init(classicPageFooter: CampaignItem) {
         self.logo = classicPageFooter.logo ?? ""
         self.title = classicPageFooter.title ?? ""
         self.description = classicPageFooter.description ?? ""

@@ -24,7 +24,7 @@ struct WelcomeEntity {
         self.showQuestionCount = showQuestionCount
     }
     
-    init(cardWelcomeData: CardWelcomeData, questionCount: Int) {
+    init(cardWelcomeData: CampaignItem, questionCount: Int) {
         self.logoURL = cardWelcomeData.logo ?? ""
         self.title = cardWelcomeData.title ?? ""
         self.subtitle = cardWelcomeData.description ?? ""

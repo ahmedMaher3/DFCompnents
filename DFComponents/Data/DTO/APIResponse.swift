@@ -29,26 +29,12 @@ struct Schema: Decodable {
 }
 
 struct Campaign: Codable {
-    let header: ClassicPageHeader?
-    let footer: ClassicPageFooter?
-    let welcome: CardWelcomeData?
+    let header: CampaignItem?
+    let footer: CampaignItem?
+    let welcome: CampaignItem?
 }
 
-struct ClassicPageHeader: Codable {
-    let logo: String?
-    let title: String?
-    let description: String?
-    let showQuestionsCount: Bool?
-}
-
-struct ClassicPageFooter: Codable {
-    let logo: String?
-    let title: String?
-    let description: String?
-    let showQuestionsCount: Bool?
-}
-
-struct CardWelcomeData: Codable {
+struct CampaignItem: Codable {
     let logo: String?
     let title: String?
     let description: String?
