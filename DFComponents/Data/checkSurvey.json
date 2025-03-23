@@ -105,7 +105,7 @@
                 "identifier": "N5DsWvjD/rxSnR2ozqx"
             },
             "settings": {
-                "format": "Classic",
+                "format": "Card",
                 "enableScoreCalculation": true,
                 "enableViewResults": true,
                 "enablePageValidation": true,
@@ -139,7 +139,7 @@
                 "next": "next card",
                 "back": "previous card",
                 "start": "",
-                "backVisibility": false,
+                "backVisibility": true,
                 "viewResults": "",
                 "session": {
                     "timesUp": "",

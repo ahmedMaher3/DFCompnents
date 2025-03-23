@@ -82,7 +82,7 @@ private struct FormContentView: View {
                     PageView(pageViewModel: PageViewModel(
                         controls: viewModel.pages[index].fields,
                         showFooter: index == (viewModel.pages.indices.last ?? 0),
-                        pageFooter: PageFooterEntity(classicPageFooter: self.viewModel.footer!)
+                        pageFooter: PageFooterEntity(classicPageFooter: self.viewModel.footer!),
                         pageField: viewModel.pages[index].page
                     ), onScroll: { offset in
                         withAnimation {
