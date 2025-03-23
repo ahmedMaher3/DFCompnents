@@ -9,4 +9,5 @@ struct PageEntity: Identifiable {
     var id: String
     var fields: [FieldEntity]
     var mode: FormType
+    var page: PageField
 }

@@ -148,6 +148,8 @@ struct Field: Codable {
             properties = try container.decode(NumberProperties.self, forKey: .properties)
         case .section:
             properties = try container.decode(SectionProperties.self, forKey: .properties)
+        case .page:
+            properties = try container.decode(PageProperties.self, forKey: .properties)
         default:
             properties = try container.decode(BaseProperties.self, forKey: .properties)
         }

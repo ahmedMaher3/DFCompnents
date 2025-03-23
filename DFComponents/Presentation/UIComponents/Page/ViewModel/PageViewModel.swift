@@ -8,16 +8,15 @@
 import Foundation
 
 final class PageViewModel: ObservableObject {
-//    @Published var pageField: PageField
     @Published var controls: [FieldEntity]
     @Published var showFooter: Bool
     @Published var pageFooter: PageFooterEntity
+    @Published var pageField: PageField
     
-    init(controls: [FieldEntity], showFooter: Bool, pageFooter: PageFooterEntity) {
-//        init(controls: [FieldEntity], pageField: PageField) {
-//        self.pageField = pageField
+    init(controls: [FieldEntity], showFooter: Bool, pageFooter: PageFooterEntity, pageField: PageField) {
         self.controls = controls
         self.showFooter = showFooter
         self.pageFooter = pageFooter
+        self.pageField = pageField
     }
 }

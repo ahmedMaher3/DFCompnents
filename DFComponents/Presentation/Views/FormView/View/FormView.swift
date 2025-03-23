@@ -72,7 +72,8 @@ private struct FormContentView: View {
                     PageView(pageViewModel: PageViewModel(
                             controls: viewModel.pages[index].fields,
                             showFooter: index == (viewModel.pages.indices.last ?? 0),
-                            pageFooter: PageFooterEntity(classicPageFooter: self.viewModel.footer!)
+                            pageFooter: PageFooterEntity(classicPageFooter: self.viewModel.footer!),
+                            pageField: viewModel.pages[index].page
                         )
                     )
                     .environmentObject(viewModel)
@@ -87,7 +88,8 @@ private struct FormContentView: View {
             .frameModifier(for: viewModel.mode!)
             
             Spacer()
-            PageFooterView(currentPage: $currentPage, totalPages: viewModel.pages.count)
+            
+            handleFooter(pageField: self.viewModel.pages[currentPage].page)
         }
         .onAppear {
             if viewModel.mode == .card {
@@ -101,4 +103,18 @@ private struct FormContentView: View {
         }
         .environmentObject(router)
     }
+    
+    private func handleFooter(pageField: PageField) -> PageFooterView {
+        return PageFooterView(
+            currentPage: $currentPage,
+            totalPages: viewModel.pages.count,
+            pageProperties: pageField.pageProperties ?? PageProperties(
+                submit: "",
+                next: "",
+                back: "",
+                backVisibility: true
+            )
+        )
+    }
+
 }
