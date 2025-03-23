@@ -61,6 +61,7 @@
 		AA9A22182D80AF6600150E62 /* EntryLimitValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A22172D80AF6500150E62 /* EntryLimitValidationStrategy.swift */; };
 		AA9A221A2D80AF7100150E62 /* ValueLimitValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A22192D80AF7100150E62 /* ValueLimitValidationStrategy.swift */; };
 		AA9A221C2D80AF7C00150E62 /* GeneralValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategy.swift */; };
+		AAB3F4992D908D8700B5C614 /* ScrollOffsetPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3F4982D908D8700B5C614 /* ScrollOffsetPreferenceKey.swift */; };
 		AAB8572F2D6CA1A60013027A /* RuleFormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */; };
 		AAB857312D6CA2040013027A /* RuleExecuterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */; };
 		AAB857332D6CA2080013027A /* RuleEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857322D6CA2080013027A /* RuleEvaluator.swift */; };
@@ -259,6 +260,7 @@
 		AA9A22172D80AF6500150E62 /* EntryLimitValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryLimitValidationStrategy.swift; sourceTree = "<group>"; };
 		AA9A22192D80AF7100150E62 /* ValueLimitValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueLimitValidationStrategy.swift; sourceTree = "<group>"; };
 		AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralValidationStrategy.swift; sourceTree = "<group>"; };
+		AAB3F4982D908D8700B5C614 /* ScrollOffsetPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollOffsetPreferenceKey.swift; sourceTree = "<group>"; };
 		AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleFormBuilder.swift; sourceTree = "<group>"; };
 		AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleExecuterProtocol.swift; sourceTree = "<group>"; };
 		AAB857322D6CA2080013027A /* RuleEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEvaluator.swift; sourceTree = "<group>"; };
@@ -1009,6 +1011,7 @@
 		E44279392D8B0EC9003BAA46 /* UIHelpers */ = {
 			isa = PBXGroup;
 			children = (
+				AAB3F4982D908D8700B5C614 /* ScrollOffsetPreferenceKey.swift */,
 				E44279372D8B0E52003BAA46 /* FieldRenderer.swift */,
 			);
 			path = UIHelpers;
@@ -1848,6 +1851,7 @@
 				E48CA0132D537D5000A519ED /* SignatureDTO.swift in Sources */,
 				AAF1B1852D76490900DC44B4 /* InputValidationEntity.swift in Sources */,
 				AAD099722D5CF4C6007A6CE9 /* DisplayDataFormView.swift in Sources */,
+				AAB3F4992D908D8700B5C614 /* ScrollOffsetPreferenceKey.swift in Sources */,
 				E4A901582D525BB2007080AC /* SectionVieww.swift in Sources */,
 				A95D7A2C2D4B813D004FB6CA /* DateTimeView.swift in Sources */,
 				04C1DE352D5DFB970034B704 /* AppearanceSheetView.swift in Sources */,

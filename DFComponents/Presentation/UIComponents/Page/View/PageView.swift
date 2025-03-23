@@ -10,13 +10,18 @@ import SwiftUI
 struct PageView: View {
     @EnvironmentObject var viewModel: FormViewModel
     @ObservedObject var pageViewModel: PageViewModel
+    var onScroll: ((CGFloat) -> Void)?
+    @Binding var headerVisible: Bool
 
     var body: some View {
         Group {
             if viewModel.mode == .classic {
                 PageListView(controls: pageViewModel.controls,
+                             showHeader: pageViewModel.showHeader,
                              showFooter: pageViewModel.showFooter,
-                             classicPageFooter: pageViewModel.pageFooter)
+                             classicPageFooter: pageViewModel.pageFooter,
+                             headerVisible: $headerVisible,
+                             onScroll: onScroll)
             } else {
                 PageScrollView(controls: pageViewModel.controls)
             }
@@ -26,42 +31,79 @@ struct PageView: View {
 }
 
 // MARK: - Page Layouts
-
 /// List-based layout for `.classic` mode
 private struct PageListView: View {
     let controls: [FieldEntity]
-
+    let showHeader: Bool
     let showFooter: Bool
     let classicPageFooter: PageFooterEntity
-    
-    init(controls: [FieldEntity], showFooter: Bool, classicPageFooter: PageFooterEntity) {
-        self.controls = controls
-        self.showFooter = showFooter
-        self.classicPageFooter = classicPageFooter
-    }
+    @Binding var headerVisible: Bool
+
+    var onScroll: ((CGFloat) -> Void)?
 
     var body: some View {
-        List {
+        ScrollView {
+            VStack {
+                GeometryReader { proxy in
+                    Color.clear
+                        .frame(height: 0)
+                        .preference(key: ScrollOffsetPreferenceKey.self,
+                                    value: proxy.frame(in: .named("scrollView")).minY)
+                        .onChange(of: proxy.frame(in: .named("scrollView")).minY) { _, newValue in
+                            print("Scroll Offset Changed: \(newValue)")
+                            headerVisible = newValue > -50 // Adjust threshold as needed
+                            onScroll?(newValue)
+                        }
+                }
+                .frame(height: 0)
 
-            ForEach(controls, id: \.id) { field in
-                FieldRenderer(field: field)
-            }
-            if showFooter {
-                Section {
+                ForEach(controls, id: \.id) { field in
+                    FieldRenderer(field: field)
+                }
+                if showFooter {
                     PageFooterV(viewModel: FooterViewModel(footerData: classicPageFooter))
-                        .listRowInsets(EdgeInsets())
                         .frame(maxWidth: .infinity)
                         .background(Color(hex: "#FAFBFF"))
                 }
             }
         }
-        .buttonStyle(PlainButtonStyle()) // Ensure buttons work within the List
-        .listStyle(PlainListStyle())
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .scrollDisabled(true) // ✅ Disable List scrolling
+        .coordinateSpace(name: "scrollView")
     }
 }
 
+//MARK: - Old Implementation
+//private struct PageListView: View {
+//    let controls: [FieldEntity]
+//    let showHeader: Bool
+//    let showFooter: Bool
+//    let classicPageFooter: PageFooterEntity
+//
+//    init(controls: [FieldEntity],showHeader: Bool, showFooter: Bool, classicPageFooter: PageFooterEntity) {
+//        self.controls = controls
+//        self.showHeader = showHeader
+//        self.showFooter = showFooter
+//        self.classicPageFooter = classicPageFooter
+//    }
+//
+//    var body: some View {
+//        List {
+//            ForEach(controls, id: \.id) { field in
+//                FieldRenderer(field: field)
+//            }
+//            if showFooter {
+//                Section {
+//                    PageFooterV(viewModel: FooterViewModel(footerData: classicPageFooter))
+//                        .listRowInsets(EdgeInsets())
+//                        .frame(maxWidth: .infinity)
+//                        .background(Color(hex: "#FAFBFF"))
+//                }
+//            }
+//        }
+//        .buttonStyle(PlainButtonStyle()) // Ensure buttons work within the List
+//        .listStyle(PlainListStyle())
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//    }
+//}
 /// ScrollView-based layout for `.card` mode
 private struct PageScrollView: View {
     let controls: [FieldEntity]
@@ -80,4 +122,3 @@ private struct PageScrollView: View {
         }
     }
 }
-
