@@ -19,19 +19,3 @@ class FooterViewModel: ObservableObject {
     }
     
 }
-
-struct PageFooterEntity {
-    let logo: String
-    let title: String
-    let description: String
-    let showQuestionsCount: Bool
-    var isExpanded: Bool
-    
-    init(classicPageFooter: ClassicPageFooter) {
-        self.logo = classicPageFooter.logo ?? ""
-        self.title = classicPageFooter.title ?? ""
-        self.description = classicPageFooter.description ?? ""
-        self.showQuestionsCount = classicPageFooter.showQuestionsCount ?? false
-        self.isExpanded = true
-    }
-}

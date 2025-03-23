@@ -55,6 +55,7 @@ class PageField: PageFieldProtocol {
     var rules: FieldRules?
     var hidden: Bool!
     var disabled: Bool!
+    var pageProperties: PageProperties?
     
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
         nil
@@ -84,6 +85,7 @@ class PageField: PageFieldProtocol {
             self.next = properties.next
             self.back = properties.back
             self.backVisibility = properties.backVisibility
+            self.pageProperties = properties as? PageProperties
         }
 
     }

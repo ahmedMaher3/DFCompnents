@@ -136,10 +136,10 @@
             "properties": {
                 "localization": {},
                 "submit": "",
-                "next": "",
-                "back": "",
+                "next": "next card",
+                "back": "previous card",
                 "start": "",
-                "backVisibility": true,
+                "backVisibility": false,
                 "viewResults": "",
                 "session": {
                     "timesUp": "",

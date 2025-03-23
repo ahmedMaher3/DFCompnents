@@ -83,6 +83,7 @@ private struct FormContentView: View {
                         controls: viewModel.pages[index].fields,
                         showFooter: index == (viewModel.pages.indices.last ?? 0),
                         pageFooter: PageFooterEntity(classicPageFooter: self.viewModel.footer!)
+                        pageField: viewModel.pages[index].page
                     ), onScroll: { offset in
                         withAnimation {
                             self.headerVisible = offset > -50
@@ -99,11 +100,12 @@ private struct FormContentView: View {
             }
             .frameModifier(for: viewModel.mode!)
             Spacer()
-            PageFooterView(currentPage: $currentPage, totalPages: viewModel.pages.count)
+            
+            handleFooter(pageField: self.viewModel.pages[currentPage].page)
         }
         .onAppear {
             if viewModel.mode == .card {
-                if let welcomeCardData: CardWelcomeData = viewModel.welcomeData {
+                if let welcomeCardData: CampaignItem = viewModel.welcomeData {
                     router.present(.welcomeView(viewModel: WelcomeViewModel(welcomeData: WelcomeEntity(cardWelcomeData: welcomeCardData, questionCount: self.viewModel.pages.count))))
                 }
             }
@@ -113,6 +115,20 @@ private struct FormContentView: View {
         }
         .environmentObject(router)
     }
+    
+    private func handleFooter(pageField: PageField) -> PageFooterView {
+        return PageFooterView(
+            currentPage: $currentPage,
+            totalPages: viewModel.pages.count,
+            pageProperties: pageField.pageProperties ?? PageProperties(
+                submit: "",
+                next: "",
+                back: "",
+                backVisibility: true
+            )
+        )
+    }
+
 }
 
 //MARK: - Old Implementation for FormContentView

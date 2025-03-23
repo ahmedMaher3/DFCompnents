@@ -71,6 +71,6 @@ struct PageFooterV: View {
 }
 
 #Preview {
-    let classicFooter = ClassicPageFooter(logo: "", title: "", description: "", showQuestionsCount: true)
+    let classicFooter = CampaignItem(logo: "", title: "", description: "", showQuestionsCount: true)
     PageFooterV(viewModel: FooterViewModel(footerData: PageFooterEntity(classicPageFooter: classicFooter)))
 }
