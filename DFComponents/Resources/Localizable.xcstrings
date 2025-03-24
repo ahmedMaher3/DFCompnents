@@ -78,6 +78,9 @@
     "Done" : {
 
     },
+    "Edit Image" : {
+
+    },
     "Email: %@" : {
 
     },
@@ -222,6 +225,9 @@
     "Tap to select an image" : {
 
     },
+    "Undo" : {
+
+    },
     "Upload File" : {
 
     },
@@ -229,6 +235,9 @@
 
     },
     "Upper: %.2f" : {
+
+    },
+    "Use your finger to draw on the image and show us where the problem is" : {
 
     },
     "What is your name?" : {
