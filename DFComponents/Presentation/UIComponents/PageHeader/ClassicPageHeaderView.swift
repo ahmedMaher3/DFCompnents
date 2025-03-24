@@ -44,7 +44,7 @@ struct ClassicPageHeaderView: View {
             if let iconURL = URL(string: viewModel.headerData.logo) {
                 AsyncImage(url: iconURL) { image in
                     image.resizable()
-                        .frame(width: 20, height: 20)
+                        .frame(width: 24, height: 24)
                 } placeholder: {
                     ProgressView()
                 }
