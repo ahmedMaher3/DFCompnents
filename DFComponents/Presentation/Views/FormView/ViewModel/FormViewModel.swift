@@ -25,8 +25,8 @@ class FormViewModel: ObservableObject {
     @Published var fields: [FieldEntity] = []
     @Published var pages: [PageEntity] = []
     @Published var rulesImp: RuleImp!
-    @Published var header: PageHeaderEntity?
-    @Published var footer: PageFooterEntity?
+    @Published var header: PageHeaderFooterEntity?
+    @Published var footer: PageHeaderFooterEntity?
     @Published var welcomeEntity: WelcomeEntity?
 
         func fetchForm() async {

@@ -8,9 +8,9 @@
 import Foundation
 
 class ClassicPageHeaderViewModel: ObservableObject {
-    @Published var headerData: PageHeaderEntity
+    @Published var headerData: PageHeaderFooterEntity
 
-    init(headerData: PageHeaderEntity) {
+    init(headerData: PageHeaderFooterEntity) {
         self.headerData = headerData
     }
 

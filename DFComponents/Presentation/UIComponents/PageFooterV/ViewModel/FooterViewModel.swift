@@ -8,9 +8,9 @@
 import Foundation
 
 class FooterViewModel: ObservableObject {
-    @Published var footerEntity: PageFooterEntity
+    @Published var footerEntity: PageHeaderFooterEntity
     
-    init(footerEntity: PageFooterEntity) {
+    init(footerEntity: PageHeaderFooterEntity) {
         self.footerEntity = footerEntity
     }
     

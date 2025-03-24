@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PageFooterEntity {
+struct PageHeaderFooterEntity {
     let logo: String
     let title: String
     let description: String

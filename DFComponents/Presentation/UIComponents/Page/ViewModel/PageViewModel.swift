@@ -10,10 +10,10 @@ import Foundation
 final class PageViewModel: ObservableObject {
     @Published var controls: [FieldEntity]
     @Published var showFooter: Bool
-    @Published var pageFooter: PageFooterEntity
+    @Published var pageFooter: PageHeaderFooterEntity
     @Published var pageField: PageField
     
-    init(controls: [FieldEntity], showFooter: Bool, pageFooter: PageFooterEntity, pageField: PageField) {
+    init(controls: [FieldEntity], showFooter: Bool, pageFooter: PageHeaderFooterEntity, pageField: PageField) {
 //        init(controls: [FieldEntity], pageField: PageField) {
 //        self.pageField = pageField
 

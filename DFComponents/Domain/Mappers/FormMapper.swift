@@ -26,8 +26,8 @@ class FormMapper: EntityMapper {
     func map(from dto: Schema) -> FormEntity {
         let pages = mapToPages(fields: dto.fields,
                                mode: dto.settings.format, schemaProperties: dto.properties)
-        let header: PageHeaderEntity? = PageHeaderMapper().map(from: dto.campaign?.header)
-        let footer: PageFooterEntity? = PageFooterMapper().map(from: dto.campaign?.footer)
+        let header: PageHeaderFooterEntity? = PageHeaderFooterMapper().map(from: dto.campaign?.header)
+        let footer: PageHeaderFooterEntity? = PageHeaderFooterMapper().map(from: dto.campaign?.footer)
         let welcomeEntity: WelcomeEntity? = WelcomeEntity(cardWelcomeData: dto.campaign?.welcome, questionCount: pages.count)
         let warnings = mapWarnings(from: dto.warnings)
         let rules =  dto.rules

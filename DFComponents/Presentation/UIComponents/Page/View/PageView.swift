@@ -43,7 +43,7 @@ struct PageView: View {
 private struct PageListView: View {
     let controls: [FieldEntity]
     let showFooter: Bool
-    let classicPageFooter: PageFooterEntity
+    let classicPageFooter: PageHeaderFooterEntity
     @Binding var headerVisible: Bool
 
     var onScroll: ((CGFloat) -> Void)?

@@ -71,6 +71,6 @@ struct PageFooterV: View {
 }
 
 #Preview {
-    let classicFooter = PageFooterEntity(logo: "", title: "", description: "", showQuestionsCount: true, isExpanded: true)
+    let classicFooter = PageHeaderFooterEntity(logo: "", title: "", description: "", showQuestionsCount: true, isExpanded: true)
     PageFooterV(viewModel: FooterViewModel(footerEntity: classicFooter))
 }

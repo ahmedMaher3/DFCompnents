@@ -7,13 +7,13 @@
 
 import Foundation
 
-class PageFooterMapper: OptionalEntityMapper {
+class PageHeaderFooterMapper: OptionalEntityMapper {
 
     typealias DTO = CampaignItem
-    typealias Entity = PageFooterEntity
+    typealias Entity = PageHeaderFooterEntity
 
-    func map(from dto: CampaignItem?) -> PageFooterEntity? {
-        return PageFooterEntity(
+    func map(from dto: CampaignItem?) -> PageHeaderFooterEntity? {
+        return PageHeaderFooterEntity(
             logo: dto?.logo ?? "",
             title: dto?.title ?? "",
             description: dto?.description ?? "",
