@@ -8,14 +8,14 @@
 import Foundation
 
 class FooterViewModel: ObservableObject {
-    @Published var footerData: PageFooterEntity
+    @Published var footerEntity: PageFooterEntity
     
-    init(footerData: PageFooterEntity) {
-        self.footerData = footerData
+    init(footerEntity: PageFooterEntity) {
+        self.footerEntity = footerEntity
     }
     
     func toggleExpanded() {
-        self.footerData.isExpanded.toggle()
+        self.footerEntity.isExpanded.toggle()
     }
     
 }

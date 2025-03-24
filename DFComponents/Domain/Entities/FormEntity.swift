@@ -10,6 +10,6 @@ struct FormEntity {
     var rules: [Rule]
     let warnings: WarningsEntity?
     let header: CampaignItem?
-    let footer: CampaignItem?
-    let welcome: CampaignItem?
+    let footer: PageFooterEntity?
+    let welcome: WelcomeEntity?
 }

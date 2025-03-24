@@ -24,11 +24,11 @@ struct WelcomeEntity {
         self.showQuestionCount = showQuestionCount
     }
     
-    init(cardWelcomeData: CampaignItem, questionCount: Int) {
-        self.logoURL = cardWelcomeData.logo ?? ""
-        self.title = cardWelcomeData.title ?? ""
-        self.subtitle = cardWelcomeData.description ?? ""
-        self.showQuestionCount = cardWelcomeData.showQuestionsCount ?? false
+    init(cardWelcomeData: CampaignItem?, questionCount: Int) {
+        self.logoURL = cardWelcomeData?.logo ?? ""
+        self.title = cardWelcomeData?.title ?? ""
+        self.subtitle = cardWelcomeData?.description ?? ""
+        self.showQuestionCount = cardWelcomeData?.showQuestionsCount ?? false
         self.questionCount = questionCount
         self.buttonText = "Start"
     }

@@ -65,11 +65,11 @@ private struct PageListView: View {
                 ForEach(controls, id: \.id) { field in
                     FieldRenderer(field: field)
                 }
-            }
-            if showFooter {
-                PageFooterV(viewModel: FooterViewModel(footerData: classicPageFooter))
-                    .frame(maxWidth: .infinity)
-                    .background(Color(hex: "#FAFBFF"))
+                if showFooter {
+                    PageFooterV(viewModel: FooterViewModel(footerEntity: classicPageFooter))
+                        .frame(maxWidth: .infinity)
+                        .background(Color(hex: "#FAFBFF"))
+                }
             }
         }
         .buttonStyle(PlainButtonStyle())

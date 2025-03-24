@@ -9,19 +9,26 @@ import Foundation
 
 protocol EntityMapper {
     associatedtype DTO
-    func map (from dto: DTO) -> FormEntity
+    associatedtype Entity
+    func map(from dto: DTO) -> Entity
+}
+
+protocol OptionalEntityMapper {
+    associatedtype DTO
+    associatedtype Entity
+    func map(from dto: DTO?) -> Entity?
 }
 
 class FormMapper: EntityMapper {
-
+    
     typealias DTO = Schema
 
     func map(from dto: Schema) -> FormEntity {
         let pages = mapToPages(fields: dto.fields,
                                mode: dto.settings.format, schemaProperties: dto.properties)
         let header: CampaignItem? = dto.campaign?.header
-        let footer: CampaignItem? = dto.campaign?.footer
-        let welcomeData: CampaignItem? = dto.campaign?.welcome
+        let footer: PageFooterEntity? = PageFooterMapper().map(from: dto.campaign?.footer)
+        let welcomeEntity: WelcomeEntity? = WelcomeEntity(cardWelcomeData: dto.campaign?.welcome, questionCount: pages.count)
         let warnings = mapWarnings(from: dto.warnings)
         let rules =  dto.rules
         return FormEntity(
@@ -30,7 +37,7 @@ class FormMapper: EntityMapper {
             warnings: warnings,
             header: header,
             footer: footer,
-            welcome: welcomeData
+            welcome: welcomeEntity
         )
     }
 
@@ -63,8 +70,7 @@ class FormMapper: EntityMapper {
             let pageId = "page_\(cardIndex)"
             let mappedFields = mapFieldsRecursively(fields: [field], groupedFields: [:]) // Map single field
             
-            let page = PageField(field: field)
-            page.pageProperties = PageProperties(schemaProperties: schemaProperties)
+            let page = PageField(field: field, schemaProperties: schemaProperties)
 
             let PageEntity = PageEntity(
                 id: pageId,
