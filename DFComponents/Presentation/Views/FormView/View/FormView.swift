@@ -66,7 +66,7 @@ private struct FormContentView: View {
     var body: some View {
         VStack {
             if headerVisible && self.viewModel.pages.first?.mode == .classic && currentPage == viewModel.pages.indices.first {
-                Text("Header View")
+                Text(self.viewModel.header?.title ?? "")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
@@ -128,55 +128,4 @@ private struct FormContentView: View {
             )
         )
     }
-
 }
-
-//MARK: - Old Implementation for FormContentView
-/*
- private struct FormContentView: View {
- @ObservedObject var viewModel: FormViewModel
- @ObservedObject var stepProgressViewModel: StepProgressViewModel
- @ObservedObject private var router = Router()
- @Binding var currentPage: Int
-
- var body: some View {
- VStack {
- StepProgressView(viewModel: stepProgressViewModel)
- Spacer()
- TabView(selection: $currentPage) {
- ForEach(viewModel.pages.indices, id: \.self) { index in
- PageView(pageViewModel: PageViewModel(
- controls: viewModel.pages[index].fields,
- showHeader: false,
- showFooter: index == (viewModel.pages.indices.last ?? 0),
- pageFooter: PageFooterEntity(classicPageFooter: self.viewModel.footer!)
- )
- )
- .environmentObject(viewModel)
- .tag(index)
- }
- }
- .tabViewStyle(PageTabViewStyle(indexDisplayMode: viewModel.mode == .card ? .always : .never))
- .onChange(of: currentPage) { oldpage,newPage in
- stepProgressViewModel.updateCurrentPage(newPage)
- stepProgressViewModel.updateProgress()
- }
- .frameModifier(for: viewModel.mode!)
-
- Spacer()
- PageFooterView(currentPage: $currentPage, totalPages: viewModel.pages.count)
- }
- .onAppear {
- if viewModel.mode == .card {
- if let welcomeCardData: CardWelcomeData = viewModel.welcomeData {
- router.present(.welcomeView(viewModel: WelcomeViewModel(welcomeData: WelcomeEntity(cardWelcomeData: welcomeCardData, questionCount: self.viewModel.pages.count))))
- }
- }
- }
- .fullScreenCover(item: $router.presentedRoute) { route in
- router.destination(for: route)
- }
- .environmentObject(router)
- }
- }
- */

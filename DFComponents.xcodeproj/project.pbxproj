@@ -63,6 +63,8 @@
 		AA9A22182D80AF6600150E62 /* EntryLimitValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A22172D80AF6500150E62 /* EntryLimitValidationStrategy.swift */; };
 		AA9A221A2D80AF7100150E62 /* ValueLimitValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A22192D80AF7100150E62 /* ValueLimitValidationStrategy.swift */; };
 		AA9A221C2D80AF7C00150E62 /* GeneralValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategy.swift */; };
+		AAB0F38F2D9158D90045848D /* ClassicPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0F38E2D9158D90045848D /* ClassicPageHeaderView.swift */; };
+		AAB0F3912D91591D0045848D /* PageHeaderEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0F3902D91591D0045848D /* PageHeaderEntity.swift */; };
 		AAB3F4992D908D8700B5C614 /* ScrollOffsetPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3F4982D908D8700B5C614 /* ScrollOffsetPreferenceKey.swift */; };
 		AAB8572F2D6CA1A60013027A /* RuleFormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */; };
 		AAB857312D6CA2040013027A /* RuleExecuterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */; };
@@ -264,6 +266,8 @@
 		AA9A22172D80AF6500150E62 /* EntryLimitValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryLimitValidationStrategy.swift; sourceTree = "<group>"; };
 		AA9A22192D80AF7100150E62 /* ValueLimitValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueLimitValidationStrategy.swift; sourceTree = "<group>"; };
 		AA9A221B2D80AF7C00150E62 /* GeneralValidationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralValidationStrategy.swift; sourceTree = "<group>"; };
+		AAB0F38E2D9158D90045848D /* ClassicPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPageHeaderView.swift; sourceTree = "<group>"; };
+		AAB0F3902D91591D0045848D /* PageHeaderEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageHeaderEntity.swift; sourceTree = "<group>"; };
 		AAB3F4982D908D8700B5C614 /* ScrollOffsetPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollOffsetPreferenceKey.swift; sourceTree = "<group>"; };
 		AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleFormBuilder.swift; sourceTree = "<group>"; };
 		AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleExecuterProtocol.swift; sourceTree = "<group>"; };
@@ -582,6 +586,7 @@
 				A9EA54312D6C899500C2A9E2 /* FormEntity.swift */,
 				04AD567A2D90490700799EAB /* WelcomeEntity.swift */,
 				04AD567C2D90494000799EAB /* PageFooterEntity.swift */,
+				AAB0F3902D91591D0045848D /* PageHeaderEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -756,6 +761,14 @@
 				AA0CF63D2D80698300F4D452 /* FormValidator.swift */,
 			);
 			path = main;
+			sourceTree = "<group>";
+		};
+		AAB0F38D2D9158BE0045848D /* PageHeader */ = {
+			isa = PBXGroup;
+			children = (
+				AAB0F38E2D9158D90045848D /* ClassicPageHeaderView.swift */,
+			);
+			path = PageHeader;
 			sourceTree = "<group>";
 		};
 		AAB8572D2D6CA19C0013027A /* Rules */ = {
@@ -1589,6 +1602,7 @@
 		E4BBD0192D4A2AFF004AA735 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				AAB0F38D2D9158BE0045848D /* PageHeader */,
 				04AD56732D8F7C5100799EAB /* PageFooterV */,
 				04C847B42D79D04A0078B18F /* Section */,
 				04C847B32D79D0410078B18F /* Page */,
@@ -1908,6 +1922,7 @@
 				E48CA0002D5374D300A519ED /* AKMaskFieldBlock.swift in Sources */,
 				E4A901CF2D6B478E007080AC /* FormBuilderRepo.swift in Sources */,
 				04AD567D2D90494000799EAB /* PageFooterEntity.swift in Sources */,
+				AAB0F3912D91591D0045848D /* PageHeaderEntity.swift in Sources */,
 				E44279332D8B0194003BAA46 /* LoadingView.swift in Sources */,
 				AAF1B17D2D7648F700DC44B4 /* DateTimeValidationEntity.swift in Sources */,
 				AAE5CA8C2D4A448B00FDA699 /* RadioButtonView.swift in Sources */,
@@ -1996,6 +2011,7 @@
 				E48CA1142D5CC72300A519ED /* AppColors.swift in Sources */,
 				A9474BC92D5CE42100031047 /* RequestModifier.swift in Sources */,
 				04C847BA2D79D0B70078B18F /* SectionView.swift in Sources */,
+				AAB0F38F2D9158D90045848D /* ClassicPageHeaderView.swift in Sources */,
 				AAB8572F2D6CA1A60013027A /* RuleFormBuilder.swift in Sources */,
 				AAB857312D6CA2040013027A /* RuleExecuterProtocol.swift in Sources */,
 				04C1DE322D5DFA120034B704 /* AppearanceManager.swift in Sources */,
