@@ -66,14 +66,9 @@ private struct FormContentView: View {
     var body: some View {
         VStack {
             if headerVisible && self.viewModel.pages.first?.mode == .classic && currentPage == viewModel.pages.indices.first {
-                Text(self.viewModel.header?.title ?? "")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity)
-                    .transition(.move(edge: .top)
-                        .combined(with: .opacity))
-                    .animation(.easeInOut(duration: 0.3),
-                               value: headerVisible)
+                if let pageHeader = self.viewModel.header {
+                    ClassicPageHeaderView(viewModel: ClassicPageHeaderViewModel(headerData: PageHeaderEntity(classicPageHeader: pageHeader)))
+                }
             }
             StepProgressView(viewModel: stepProgressViewModel)
             Spacer()

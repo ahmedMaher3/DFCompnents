@@ -14,11 +14,11 @@ struct PageHeaderEntity {
     let showQuestionsCount: Bool
     var isExpanded: Bool
 
-    init(classicPageFooter: CampaignItem) {
-        self.logo = classicPageFooter.logo ?? ""
-        self.title = classicPageFooter.title ?? ""
-        self.description = classicPageFooter.description ?? ""
-        self.showQuestionsCount = classicPageFooter.showQuestionsCount ?? false
+    init(classicPageHeader: CampaignItem) {
+        self.logo = classicPageHeader.logo ?? ""
+        self.title = classicPageHeader.title ?? ""
+        self.description = classicPageHeader.description ?? ""
+        self.showQuestionsCount = classicPageHeader.showQuestionsCount ?? false
         self.isExpanded = true
     }
 }

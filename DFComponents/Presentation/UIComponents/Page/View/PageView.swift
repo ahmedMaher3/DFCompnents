@@ -7,33 +7,6 @@
 
 import SwiftUI
 
-//MARK: - Old Implementation
-/*
- struct PageView: View {
- @EnvironmentObject var viewModel: FormViewModel
- @ObservedObject var pageViewModel: PageViewModel
- var onScroll: ((CGFloat) -> Void)?
- @Binding var headerVisible: Bool
-
- var body: some View {
- Group {
- if viewModel.mode == .classic {
- PageListView(controls: pageViewModel.controls,
- showFooter: pageViewModel.showFooter,
- classicPageFooter: pageViewModel.pageFooter,
- headerVisible: $headerVisible,
- onScroll: onScroll)
- } else {
- PageScrollView(controls: pageViewModel.controls,
- headerVisible: $headerVisible,
- onScroll: onScroll)
- }
- }
- .environmentObject(viewModel)
- }
- }
- */
-
 struct PageView: View {
     @EnvironmentObject var viewModel: FormViewModel
     @ObservedObject var pageViewModel: PageViewModel
@@ -64,9 +37,9 @@ struct PageView: View {
         }
     }
 }
+
 // MARK: - Page Layouts
 /// List-based layout for `.classic` mode
-
 private struct PageListView: View {
     let controls: [FieldEntity]
     let showFooter: Bool
@@ -107,39 +80,6 @@ private struct PageListView: View {
     }
 }
 
-//MARK: - Old Implementation
-//private struct PageListView: View {
-//    let controls: [FieldEntity]
-//    let showHeader: Bool
-//    let showFooter: Bool
-//    let classicPageFooter: PageFooterEntity
-//
-//    init(controls: [FieldEntity],showHeader: Bool, showFooter: Bool, classicPageFooter: PageFooterEntity) {
-//        self.controls = controls
-//        self.showHeader = showHeader
-//        self.showFooter = showFooter
-//        self.classicPageFooter = classicPageFooter
-//    }
-//
-//    var body: some View {
-//        List {
-//            ForEach(controls, id: \.id) { field in
-//                FieldRenderer(field: field)
-//            }
-//            if showFooter {
-//                Section {
-//                    PageFooterV(viewModel: FooterViewModel(footerData: classicPageFooter))
-//                        .listRowInsets(EdgeInsets())
-//                        .frame(maxWidth: .infinity)
-//                        .background(Color(hex: "#FAFBFF"))
-//                }
-//            }
-//        }
-//        .buttonStyle(PlainButtonStyle()) // Ensure buttons work within the List
-//        .listStyle(PlainListStyle())
-//        .frame(maxWidth: .infinity, maxHeight: .infinity)
-//    }
-//}
 /// ScrollView-based layout for `.card` mode
 private struct PageScrollView: View {
     let controls: [FieldEntity]
