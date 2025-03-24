@@ -63,13 +63,19 @@ private struct FormContentView: View {
     @State private var headerVisible = true
     @Binding var currentPage: Int
 
+    private var shouldShowHeader: Bool {
+        headerVisible &&
+        viewModel.pages.first?.mode == .classic &&
+        currentPage == viewModel.pages.indices.first
+    }
+
     var body: some View {
         VStack {
-            if headerVisible && self.viewModel.pages.first?.mode == .classic && currentPage == viewModel.pages.indices.first {
-                if let pageHeader = self.viewModel.header {
-                    ClassicPageHeaderView(viewModel: ClassicPageHeaderViewModel(headerData: PageHeaderEntity(classicPageHeader: pageHeader)))
-                }
+
+            if let pageHeader = viewModel.header, shouldShowHeader {
+                ClassicPageHeaderView(viewModel: ClassicPageHeaderViewModel(headerData: PageHeaderEntity(classicPageHeader: pageHeader)))
             }
+
             StepProgressView(viewModel: stepProgressViewModel)
             Spacer()
             TabView(selection: $currentPage) {

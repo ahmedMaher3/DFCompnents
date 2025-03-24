@@ -43,12 +43,12 @@ struct ClassicPageHeaderView: View {
         VStack(alignment: .leading, spacing: 6) {
             Text(viewModel.headerData.title)
                 .font(.system(size: 18, weight: .bold))
-                .foregroundColor(.primaryBlue)
+                .foregroundStyle(.primaryBlue)
                 .lineLimit(2)
 
             Text(viewModel.headerData.description)
                 .font(.system(size: 14))
-                .foregroundColor(.primaryBlue)
+                .foregroundStyle(.primaryBlue)
                 .lineLimit(5)
                 .fixedSize(horizontal: false, vertical: true)
         }
@@ -71,7 +71,7 @@ struct ClassicPageHeaderView: View {
 
             Text(viewModel.headerData.title)
                 .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.primaryBlue)
+                .foregroundStyle(.primaryBlue)
                 .lineLimit(1)
         }
     }
