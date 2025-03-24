@@ -73,7 +73,7 @@ private struct FormContentView: View {
         VStack {
 
             if let pageHeader = viewModel.header, shouldShowHeader {
-                ClassicPageHeaderView(viewModel: ClassicPageHeaderViewModel(headerData: PageHeaderEntity(classicPageHeader: pageHeader)))
+                ClassicPageHeaderView(viewModel: ClassicPageHeaderViewModel(headerData: pageHeader))
             }
 
             StepProgressView(viewModel: stepProgressViewModel)

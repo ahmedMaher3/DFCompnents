@@ -25,7 +25,7 @@ class FormViewModel: ObservableObject {
     @Published var fields: [FieldEntity] = []
     @Published var pages: [PageEntity] = []
     @Published var rulesImp: RuleImp!
-    @Published var header: CampaignItem?
+    @Published var header: PageHeaderEntity?
     @Published var footer: PageFooterEntity?
     @Published var welcomeEntity: WelcomeEntity?
 

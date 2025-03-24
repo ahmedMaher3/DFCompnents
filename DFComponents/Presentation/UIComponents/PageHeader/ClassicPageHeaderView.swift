@@ -40,17 +40,30 @@ struct ClassicPageHeaderView: View {
 
     /// Expanded View
     private var expandedView: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(viewModel.headerData.title)
-                .font(.system(size: 18, weight: .bold))
-                .foregroundStyle(.primaryBlue)
-                .lineLimit(2)
+        HStack(alignment: .top, spacing: 12) {
+            if let iconURL = URL(string: viewModel.headerData.logo) {
+                AsyncImage(url: iconURL) { image in
+                    image.resizable()
+                        .frame(width: 20, height: 20)
+                } placeholder: {
+                    ProgressView()
+                }
+            } else {
+                Image(systemName: "info.circle.fill")
+                    .foregroundColor(.primaryBlue)
+            }
+            VStack(alignment: .leading, spacing: 6) {
+                Text(viewModel.headerData.title)
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundStyle(.primaryBlue)
+                    .lineLimit(2)
 
-            Text(viewModel.headerData.description)
-                .font(.system(size: 14))
-                .foregroundStyle(.primaryBlue)
-                .lineLimit(5)
-                .fixedSize(horizontal: false, vertical: true)
+                Text(viewModel.headerData.description)
+                    .font(.system(size: 14))
+                    .foregroundStyle(.primaryBlue)
+                    .lineLimit(5)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
     }
 

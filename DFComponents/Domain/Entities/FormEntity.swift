@@ -9,7 +9,7 @@ struct FormEntity {
     var pages: [PageEntity]
     var rules: [Rule]
     let warnings: WarningsEntity?
-    let header: CampaignItem?
+    let header: PageHeaderEntity?
     let footer: PageFooterEntity?
     let welcome: WelcomeEntity?
 }

@@ -67,6 +67,7 @@
 		AAB0F38F2D9158D90045848D /* ClassicPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0F38E2D9158D90045848D /* ClassicPageHeaderView.swift */; };
 		AAB0F3912D91591D0045848D /* PageHeaderEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0F3902D91591D0045848D /* PageHeaderEntity.swift */; };
 		AAB0F3942D915A100045848D /* ClassicPageHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0F3932D915A100045848D /* ClassicPageHeaderViewModel.swift */; };
+		AAB0F3962D9197C20045848D /* PageHeaderMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0F3952D9197C20045848D /* PageHeaderMapper.swift */; };
 		AAB3F4992D908D8700B5C614 /* ScrollOffsetPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3F4982D908D8700B5C614 /* ScrollOffsetPreferenceKey.swift */; };
 		AAB8572F2D6CA1A60013027A /* RuleFormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */; };
 		AAB857312D6CA2040013027A /* RuleExecuterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */; };
@@ -272,6 +273,7 @@
 		AAB0F38E2D9158D90045848D /* ClassicPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPageHeaderView.swift; sourceTree = "<group>"; };
 		AAB0F3902D91591D0045848D /* PageHeaderEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageHeaderEntity.swift; sourceTree = "<group>"; };
 		AAB0F3932D915A100045848D /* ClassicPageHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPageHeaderViewModel.swift; sourceTree = "<group>"; };
+		AAB0F3952D9197C20045848D /* PageHeaderMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageHeaderMapper.swift; sourceTree = "<group>"; };
 		AAB3F4982D908D8700B5C614 /* ScrollOffsetPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollOffsetPreferenceKey.swift; sourceTree = "<group>"; };
 		AAB8572E2D6CA1A60013027A /* RuleFormBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleFormBuilder.swift; sourceTree = "<group>"; };
 		AAB857302D6CA2040013027A /* RuleExecuterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleExecuterProtocol.swift; sourceTree = "<group>"; };
@@ -575,6 +577,7 @@
 			children = (
 				E4A901C92D65E873007080AC /* FormMapper.swift */,
 				04AD567E2D91898D00799EAB /* PageFooterMapper.swift */,
+				AAB0F3952D9197C20045848D /* PageHeaderMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -1907,6 +1910,7 @@
 				A9474BCF2D5CE4E500031047 /* ContentType.swift in Sources */,
 				AAD562372D4AABF300C19A11 /* MultiChoiceQuestion.swift in Sources */,
 				A9BF46A22D538896003F2333 /* ImageFileView.swift in Sources */,
+				AAB0F3962D9197C20045848D /* PageHeaderMapper.swift in Sources */,
 				04AD56792D8F7D7D00799EAB /* FooterViewModel.swift in Sources */,
 				E44279302D8B012A003BAA46 /* PageFooterView.swift in Sources */,
 				E4A901A52D5E01E9007080AC /* GuestAuthorizationImpl.swift in Sources */,
