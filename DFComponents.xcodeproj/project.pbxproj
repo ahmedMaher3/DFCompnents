@@ -98,7 +98,6 @@
 		AAF297102D7DA6C800E7B0C3 /* BindingExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2970F2D7DA6C800E7B0C3 /* BindingExtenstion.swift */; };
 		AAF297122D7E272C00E7B0C3 /* InputNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF297112D7E272C00E7B0C3 /* InputNumberView.swift */; };
 		AAF8308D2D7909D2001B0CAC /* WarningCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF8308C2D7909D2001B0CAC /* WarningCardView.swift */; };
-		E43D1B1D2D90302E009079AE /* ZLImageEditor in Frameworks */ = {isa = PBXBuildFile; productRef = E43D1B1C2D90302E009079AE /* ZLImageEditor */; };
 		E43D1B212D915DA2009079AE /* ImageEditorContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D1B202D915D99009079AE /* ImageEditorContainerView.swift */; };
 		E44278722D7F1C17003BAA46 /* StepProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442786F2D7F1C17003BAA46 /* StepProgressViewModel.swift */; };
 		E44278732D7F1C17003BAA46 /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442786D2D7F1C17003BAA46 /* StepProgressView.swift */; };
@@ -181,6 +180,7 @@
 		E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD01F2D4A49BC004AA735 /* SearchBarView.swift */; };
 		E4BBD0232D4A4A29004AA735 /* DropDownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD0222D4A4A29004AA735 /* DropDownViewModel.swift */; };
 		E4BBD0272D4A4A7F004AA735 /* CountryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD0262D4A4A7F004AA735 /* CountryDTO.swift */; };
+		E4C5A9D82D91899100CFEBEF /* ZLImageEditor in Frameworks */ = {isa = PBXBuildFile; productRef = E4C5A9D72D91899100CFEBEF /* ZLImageEditor */; };
 		E4C8711F2D8B15E60060C39C /* FullFileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8711E2D8B15E60060C39C /* FullFileListView.swift */; };
 		E4C871212D8B163B0060C39C /* FileRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C871202D8B163B0060C39C /* FileRowView.swift */; };
 /* End PBXBuildFile section */
@@ -393,7 +393,7 @@
 			files = (
 				E4A901A82D5E02D3007080AC /* KeychainSwift in Frameworks */,
 				E4A901AE2D61CF07007080AC /* Alamofire in Frameworks */,
-				E43D1B1D2D90302E009079AE /* ZLImageEditor in Frameworks */,
+				E4C5A9D82D91899100CFEBEF /* ZLImageEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1692,7 +1692,7 @@
 			packageProductDependencies = (
 				E4A901A72D5E02D3007080AC /* KeychainSwift */,
 				E4A901AD2D61CF07007080AC /* Alamofire */,
-				E43D1B1C2D90302E009079AE /* ZLImageEditor */,
+				E4C5A9D72D91899100CFEBEF /* ZLImageEditor */,
 			);
 			productName = DFComponents;
 			productReference = E4BBCFE12D4A24BF004AA735 /* DFComponents.app */;
@@ -1770,7 +1770,7 @@
 			packageReferences = (
 				E4A901A62D5E02D3007080AC /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				E4A901AB2D61CEF5007080AC /* XCRemoteSwiftPackageReference "Alamofire" */,
-				E43D1B1B2D902FA5009079AE /* XCRemoteSwiftPackageReference "ZLImageEditor" */,
+				E4C5A9D62D91899100CFEBEF /* XCRemoteSwiftPackageReference "ZLImageEditor" */,
 			);
 			productRefGroup = E4BBCFE22D4A24BF004AA735 /* Products */;
 			projectDirPath = "";
@@ -2344,14 +2344,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E43D1B1B2D902FA5009079AE /* XCRemoteSwiftPackageReference "ZLImageEditor" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/longitachi/ZLImageEditor.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.3;
-			};
-		};
 		E4A901A62D5E02D3007080AC /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
@@ -2368,14 +2360,17 @@
 				minimumVersion = 5.10.2;
 			};
 		};
+		E4C5A9D62D91899100CFEBEF /* XCRemoteSwiftPackageReference "ZLImageEditor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hassanelshairr/ZLImageEditor.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E43D1B1C2D90302E009079AE /* ZLImageEditor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E43D1B1B2D902FA5009079AE /* XCRemoteSwiftPackageReference "ZLImageEditor" */;
-			productName = ZLImageEditor;
-		};
 		E4A901A72D5E02D3007080AC /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E4A901A62D5E02D3007080AC /* XCRemoteSwiftPackageReference "keychain-swift" */;
@@ -2385,6 +2380,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E4A901AB2D61CEF5007080AC /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		E4C5A9D72D91899100CFEBEF /* ZLImageEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4C5A9D62D91899100CFEBEF /* XCRemoteSwiftPackageReference "ZLImageEditor" */;
+			productName = ZLImageEditor;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -42,13 +42,9 @@ struct ImageEditorContainerView: View {
             // Navigation Bar
             HStack {
                 Button(action: {
-                    if editedImage == nil {
-                        onClose(originalImage)
-                    } else {
-                        onClose(editedImage)
-                    }
+                    onClose(originalImage)
                     DispatchQueue.main.async {
-                        presentationMode.wrappedValue.dismiss() 
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }) { // Close button with edited image
                     Image(systemName: "chevron.left")
