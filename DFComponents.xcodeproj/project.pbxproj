@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04AD56812D921F8300799EAB /* dpSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD56802D921F8300799EAB /* dpSolution.swift */; };
 		04C1DE322D5DFA120034B704 /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DE312D5DFA120034B704 /* AppearanceManager.swift */; };
 		04C1DE352D5DFB970034B704 /* AppearanceSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DE342D5DFB970034B704 /* AppearanceSheetView.swift */; };
 		04C1DE372D5DFBDC0034B704 /* AppearanceSelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DE362D5DFBDC0034B704 /* AppearanceSelectionPicker.swift */; };
@@ -192,6 +193,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04AD56802D921F8300799EAB /* dpSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dpSolution.swift; sourceTree = "<group>"; };
 		04C1DE312D5DFA120034B704 /* AppearanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
 		04C1DE342D5DFB970034B704 /* AppearanceSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSheetView.swift; sourceTree = "<group>"; };
 		04C1DE362D5DFBDC0034B704 /* AppearanceSelectionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSelectionPicker.swift; sourceTree = "<group>"; };
@@ -1470,6 +1472,7 @@
 				E4BBD0192D4A2AFF004AA735 /* UIComponents */,
 				E4BBD0102D4A24FE004AA735 /* Views */,
 				E4BBD0112D4A250D004AA735 /* Modifiers */,
+				04AD56802D921F8300799EAB /* dpSolution.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1863,6 +1866,7 @@
 				E4A901A42D5E01E9007080AC /* AuthorizationHandler.swift in Sources */,
 				A9474D8D2D64B4AC00031047 /* FormField.swift in Sources */,
 				E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */,
+				04AD56812D921F8300799EAB /* dpSolution.swift in Sources */,
 				AAC387522D772F1900118896 /* InputFieldViewModel.swift in Sources */,
 				E489E81E2D4A6A15007EA370 /* ColorExtension.swift in Sources */,
 				E48CA1192D5CC72300A519ED /* StyleManagerViewModel.swift in Sources */,
