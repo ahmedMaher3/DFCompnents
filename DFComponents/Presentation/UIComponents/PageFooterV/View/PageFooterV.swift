@@ -16,14 +16,14 @@ struct PageFooterV: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: viewModel.footerData.isExpanded ? 0 : 8) {
-            if viewModel.footerData.isExpanded {
-                Text(viewModel.footerData.title)
+        VStack(alignment: .leading, spacing: viewModel.footerEntity.isExpanded ? 0 : 8) {
+            if viewModel.footerEntity.isExpanded {
+                Text(viewModel.footerEntity.title)
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(Color(hex: "#173E67"))
                     .lineLimit(2)
                 
-                Text(viewModel.footerData.description)
+                Text(viewModel.footerEntity.description)
                     .font(.system(size: 14))
                     .foregroundColor(Color(hex: "#173E67"))
                     .lineLimit(5)
@@ -37,7 +37,7 @@ struct PageFooterV: View {
             } else {
                 HStack(spacing: 8) {
                     
-                    if let iconURL = URL(string: self.viewModel.footerData.logo) {
+                    if let iconURL = URL(string: self.viewModel.footerEntity.logo) {
                         AsyncImage(url: iconURL) { image in
                             image.resizable()
                                 .resizable()
@@ -51,7 +51,7 @@ struct PageFooterV: View {
                             .foregroundColor(Color(hex: "#173E67"))
                     }
                                         
-                    Text(viewModel.footerData.title)
+                    Text(viewModel.footerEntity.title)
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(Color(hex: "#173E67"))
                         .lineLimit(1)
@@ -71,6 +71,6 @@ struct PageFooterV: View {
 }
 
 #Preview {
-    let classicFooter = CampaignItem(logo: "", title: "", description: "", showQuestionsCount: true)
-    PageFooterV(viewModel: FooterViewModel(footerData: PageFooterEntity(classicPageFooter: classicFooter)))
+    let classicFooter = PageFooterEntity(logo: "", title: "", description: "", showQuestionsCount: true, isExpanded: true)
+    PageFooterV(viewModel: FooterViewModel(footerEntity: classicFooter))
 }

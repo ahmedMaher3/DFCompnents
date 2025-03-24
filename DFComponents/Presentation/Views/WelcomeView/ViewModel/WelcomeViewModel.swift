@@ -9,10 +9,10 @@ import Foundation
 
 class WelcomeViewModel: ObservableObject {
     let id = UUID() // Ensure each instance is uniquely identifiable
-    @Published var welcomeData: WelcomeEntity
+    @Published var welcomeEntity: WelcomeEntity
     
-    init(welcomeData: WelcomeEntity) {
-        self.welcomeData = welcomeData
+    init(welcomeEntity: WelcomeEntity) {
+        self.welcomeEntity = welcomeEntity
     }
 
 }

@@ -26,15 +26,15 @@ class FormViewModel: ObservableObject {
     @Published var pages: [PageEntity] = []
     @Published var rulesImp: RuleImp!
     @Published var header: CampaignItem?
-    @Published var footer: CampaignItem?
-    @Published var welcomeData: CampaignItem?
+    @Published var footer: PageFooterEntity?
+    @Published var welcomeEntity: WelcomeEntity?
 
         func fetchForm() async {
             state = .loading
             do {
                 let response = try await formBuildUseCase.excute()
                 mode = response.pages.first?.mode
-                welcomeData = response.welcome
+                welcomeEntity = response.welcome
                 header = response.header
                 footer = response.footer
                 pages = response.pages
@@ -66,7 +66,7 @@ class FormViewModel: ObservableObject {
             }
         }
         rulesImp = RuleImp(controls: fields, rules: rules)
-        rulesImp.handleAllRules()
+//        rulesImp.handleAllRules()
     }
 
     func applyFieldRules(by id: String) {

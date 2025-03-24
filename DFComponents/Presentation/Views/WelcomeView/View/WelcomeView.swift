@@ -19,7 +19,7 @@ struct WelcomeView: View {
         VStack {
             Spacer()
             
-            let data = viewModel.welcomeData
+            let data = viewModel.welcomeEntity
             // Logo
             AsyncImage(url: URL(string: data.logoURL)) { image in
                 image.resizable()
@@ -72,7 +72,7 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView(viewModel: WelcomeViewModel(welcomeData: WelcomeEntity(
+    WelcomeView(viewModel: WelcomeViewModel(welcomeEntity: WelcomeEntity(
         logoURL: "https://example.com/ibm-logo.png",
         title: "Welcome",
         subtitle: "Hi there, please fill out and submit this form.",

@@ -59,7 +59,7 @@ private struct PageListView: View {
                     FieldRenderer(field: field)
                 }
                 if showFooter {
-                    PageFooterV(viewModel: FooterViewModel(footerData: classicPageFooter))
+                    PageFooterV(viewModel: FooterViewModel(footerEntity: classicPageFooter))
                         .frame(maxWidth: .infinity)
                         .background(Color(hex: "#FAFBFF"))
                 }

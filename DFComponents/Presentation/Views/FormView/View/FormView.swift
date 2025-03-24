@@ -82,7 +82,7 @@ private struct FormContentView: View {
                     PageView(pageViewModel: PageViewModel(
                         controls: viewModel.pages[index].fields,
                         showFooter: index == (viewModel.pages.indices.last ?? 0),
-                        pageFooter: PageFooterEntity(classicPageFooter: self.viewModel.footer!),
+                        pageFooter: self.viewModel.footer!,
                         pageField: viewModel.pages[index].page
                     ), onScroll: { offset in
                         withAnimation {
@@ -105,8 +105,8 @@ private struct FormContentView: View {
         }
         .onAppear {
             if viewModel.mode == .card {
-                if let welcomeCardData: CampaignItem = viewModel.welcomeData {
-                    router.present(.welcomeView(viewModel: WelcomeViewModel(welcomeData: WelcomeEntity(cardWelcomeData: welcomeCardData, questionCount: self.viewModel.pages.count))))
+                if let welcomeCardData = viewModel.welcomeEntity {
+                    router.present(.welcomeView(viewModel: WelcomeViewModel(welcomeEntity: welcomeCardData)))
                 }
             }
         }
@@ -120,11 +120,11 @@ private struct FormContentView: View {
         return PageFooterView(
             currentPage: $currentPage,
             totalPages: viewModel.pages.count,
-            pageProperties: pageField.pageProperties ?? PageProperties(
-                submit: "",
-                next: "",
-                back: "",
-                backVisibility: true
+            pageProperties: PageProperties(
+                submit: pageField.submit ?? "",
+                next: pageField.next ?? "",
+                back: pageField.back ?? "",
+                backVisibility: pageField.backVisibility ?? true
             )
         )
     }
