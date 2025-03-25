@@ -21,15 +21,15 @@ struct BaseFooterControlView: View {
     @State private var showImagePicker = false
     @State private var isExpanded: Bool = false
     @State private var showPopover = false
-
+    
     init(viewModel: BaseFooterViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-
+    
     var body: some View {
         renderFooter(fieldEntity: viewModel.field)
     }
-
+    
     /// **Reusable Footer Stack**
     @ViewBuilder
     private func footerStack(interactiveControl: InteractiveField, characterCountText: String?, tooltip: String) -> some View {
@@ -105,43 +105,31 @@ struct BaseFooterControlView: View {
             .presentationCornerRadius(20)
         }
     }
-
+    
     /// **Render Footer Based on Field Type**
     @ViewBuilder
     private func renderFooter(fieldEntity: FieldEntity) -> some View {
         switch fieldEntity {
             case .page, .section, .radio, .textBox:
                 EmptyView() // Ensure a valid View is returned
-
+                
             case .number((_, let numberViewModel)):
                 let interactiveProperties = numberViewModel.numberFieldModel.base
                 let characterCountText = numberViewModel.characterCountText
                 let tooltip: String = {
                     guard let fieldValidation = numberViewModel.numberFieldModel.fieldWarning?.fieldValidation else { return "" }
                     var messages: [String] = []
-                    /*
-                     if let minDigits = numberViewModel.numberFieldModel.minimumDigits {
-                     if let minMessage = getErrorMessage(for: fieldValidation, validationKey: .minimumDigits, value: minDigits), !minMessage.isEmpty {
-                     messages.append(minMessage)
-                     }
-                     }
-                     if let maxDigits = numberViewModel.numberFieldModel.maximumDigits {
-                     if let maxMessage = getErrorMessage(for: fieldValidation, validationKey: .maximumDigits, value: maxDigits), !maxMessage.isEmpty {
-                     messages.append(maxMessage)
-                     }
-                     }
-                     */
-                    if  let fieldValidation = numberViewModel.numberFieldModel.fieldWarning?.fieldValidation {
-                        if let minDigits = numberViewModel.numberFieldModel.minimumDigits {
-                            messages.append(ValidationMessageProvider.getErrorMessage(validationEntity: fieldValidation,
-                                                                                      validationKey: .minimumDigits, value: minDigits) ?? "")
-                        }
-                        if let maxDigits = numberViewModel.numberFieldModel.maximumDigits {
-                            messages.append(ValidationMessageProvider.getErrorMessage(validationEntity: fieldValidation,
-                                                                                      validationKey: .minimumDigits, value: maxDigits) ?? "")
+                    
+                    if let minDigits = numberViewModel.numberFieldModel.minimumDigits {
+                        if let minMessage = getErrorMessage(for: fieldValidation, validationKey: .minimumDigits, value: minDigits), !minMessage.isEmpty {
+                            messages.append(minMessage)
                         }
                     }
-
+                    if let maxDigits = numberViewModel.numberFieldModel.maximumDigits {
+                        if let maxMessage = getErrorMessage(for: fieldValidation, validationKey: .maximumDigits, value: maxDigits), !maxMessage.isEmpty {
+                            messages.append(maxMessage)
+                        }
+                    }
                     return messages.joined(separator: "\n")
                 }()
                 footerStack(
@@ -151,8 +139,8 @@ struct BaseFooterControlView: View {
                 )
         }
     }
-
-
+    
+    
     @ViewBuilder
     private func renderNoteButton() -> some View {
         Button(action: { showNotePopup.toggle() }) {
@@ -161,12 +149,12 @@ struct BaseFooterControlView: View {
                 .font(.title2)
         }
     }
-
+    
     @ViewBuilder
     private func renderAttachmentButton() -> some View {
         AttachmentButton(showImagePicker: $showImagePicker, showFilePicker: $showFilePicker, selectedPhotos: $selectedPhotos)
     }
-
+    
     @ViewBuilder
     private func renderSavedNote() -> some View {
         if let note = savedNote, !(note.isEmpty ) {
@@ -178,7 +166,7 @@ struct BaseFooterControlView: View {
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(8)
                     .lineLimit(isExpanded ? nil : 2)
-
+                
                 if note.count > 80 {
                     Button(action: { isExpanded.toggle() }) {
                         Text(isExpanded ? "Less" : "More")
@@ -197,7 +185,7 @@ struct BaseFooterControlView: View {
                 return validationEntity.required
             case .maxAttachment:
                 return validationEntity.maxAttachment
-
+                
                 // Input Validations
             case .minimumCharacterLength:
                 return validationEntity.input.minimumCharacterLength.replaceValidationWith(value)
@@ -219,7 +207,7 @@ struct BaseFooterControlView: View {
                 return validationEntity.input.alphanumeric
             case .custom:
                 return validationEntity.input.custom
-
+                
                 // Number Validations
             case .minimumValue:
                 return validationEntity.number.minimumValue?.replaceValidationWith(value)
@@ -229,19 +217,19 @@ struct BaseFooterControlView: View {
                 return validationEntity.number.minimumDigits?.replaceValidationWith(value)
             case .maximumDigits:
                 return validationEntity.number.maximumDigits?.replaceValidationWith(value)
-
+                
                 // DateTime Validations
             case .dateTime:
                 return validationEntity.dateTime.dateTime
             case .dateRange:
                 return validationEntity.dateTime.dateRange
-
+                
                 // MCQ Validations
             case .minimumNumberOfSelectedOptions:
                 return validationEntity.mcq.minimumNumberOfSelectedOptions
             case .maximumNumberOfSelectedOptions:
                 return validationEntity.mcq.maximumNumberOfSelectedOptions
-
+                
                 // File Upload Validations
             case .maxFilesSize:
                 return validationEntity.fileUpload.maxFilesSize
@@ -255,7 +243,7 @@ struct BaseFooterControlView: View {
                 return validationEntity.fileUpload.allowedExtensions
             case .invalidLink:
                 return validationEntity.fileUpload.invalidLink
-
+                
                 // Location Validations
             case .maximumLocations:
                 return validationEntity.location.maximumLocations
@@ -265,13 +253,13 @@ struct BaseFooterControlView: View {
                 return validationEntity.location.notInRange
         }
     }
-
-
+    
+    
     /// **Update Answer in ViewModel**
     private func updateAnswer() {
         if case .number((_, let numberViewModel)) = viewModel.field {
             numberViewModel.numberFieldModel.answer = BaseAnswerNumber(value:numberViewModel.baseAnswer?.value ?? "" ,note: savedNote ?? "", attachments: attachments)
-
+            
         }
     }
 }
