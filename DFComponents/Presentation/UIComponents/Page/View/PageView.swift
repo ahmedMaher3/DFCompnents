@@ -8,99 +8,55 @@
 import SwiftUI
 
 struct PageView: View {
-
     @EnvironmentObject var viewModel: FormViewModel
     @ObservedObject var pageViewModel: PageViewModel
 
-    init(pageViewModel: PageViewModel) {
-        self.pageViewModel = pageViewModel
+    var body: some View {
+        Group {
+            if viewModel.mode == .classic {
+                PageListView(controls: pageViewModel.controls)
+            } else {
+                PageScrollView(controls: pageViewModel.controls)
+            }
+        }
+        .environmentObject(viewModel)
     }
+}
+
+// MARK: - Page Layouts
+
+/// List-based layout for `.classic` mode
+private struct PageListView: View {
+    let controls: [FieldEntity]
 
     var body: some View {
-
-        if self.viewModel.mode == .classic {
-            List {
-                ForEach(self.pageViewModel.controls, id: \.id) { field in
-                    renderField(for: field)
-                        .environmentObject(viewModel)
-                }
+        List {
+            ForEach(controls, id: \.id) { field in
+                FieldRenderer(field: field)
             }
-            .buttonStyle(PlainButtonStyle()) // to make all button actions work properly within a list
-            .listStyle(PlainListStyle())
-            .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure it fills space
-        } else {
-
-            GeometryReader { geometry in
-                ScrollView {
-                    VStack {
-                        Spacer()
-                        ForEach(self.pageViewModel.controls, id: \.id) { field in
-                            renderField(for: field)
-                                .frame(maxWidth: .infinity)
-                                .environmentObject(viewModel)
-                        }
-                        Spacer()
-                    }
-                    .frame(maxWidth: .infinity, minHeight: geometry.size.height) // Uses container height
-                }
-            }
-
         }
+        .buttonStyle(PlainButtonStyle()) // Ensure buttons work within the List
+        .listStyle(PlainListStyle())
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-
-    /// Controls
-    @ViewBuilder
-    private func renderField(for field: FieldEntity) -> some View {
-        switch field {
-            case .radio((_, let radioViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field, controlType: {RadioButtonView(radioButtonVM: radioViewModel) },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                        set: { newValue in
-                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                        }
-                    ))
-                .opacity(radioViewModel.control.hidden ? 0 : 1)
-
-            case .textBox((_, let textBoxViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field, controlType: { TextBoxComponent(viewModel: textBoxViewModel) },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                        set: { newValue in
-                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                        }
-                    ))
-                .opacity(textBoxViewModel.control.hidden ? 0 : 1)
-
-            case .number((_, let numberViewModel)):
-                BaseFieldContainerView(
-                    fieldEntity: field, controlType: {
-                        NumberFieldComponent(viewModel: numberViewModel)
-                            .onReceive(numberViewModel.$warningsMessagesDictionary) { newValue in
-                                Task { @MainActor in
-                                    viewModel.warningsMessagesDictionary = newValue
-                                }
-                            }
-                    },
-                    warningMessage: Binding<String?>(
-                        get: { viewModel.warningsMessagesDictionary?[field.id]?.joined(separator: "") },
-                        set: { newValue in
-                            viewModel.warningsMessagesDictionary?[field.id] = newValue?.isEmpty == false
-                            ? [newValue!] : nil
-                        }
-                    ))
-            case .page((_, _)):
-                EmptyView()
-            case .section((_, let sectionViewModel)):
-                SectionView(sectionViewModel: sectionViewModel, fields: sectionViewModel.controls, isExpanded: sectionViewModel.sectionField.isExpandedStatus)
-                    .onReceive(sectionViewModel.objectWillChange) { updatedValue in
-                        print("updated Values:- \(sectionViewModel.controls)")
-                    }
-        }
-    }
-
 }
+
+/// ScrollView-based layout for `.card` mode
+private struct PageScrollView: View {
+    let controls: [FieldEntity]
+
+    var body: some View {
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: 16) {
+                    ForEach(controls, id: \.id) { field in
+                        FieldRenderer(field: field)
+                    }
+                }
+                .frame(maxWidth: .infinity, minHeight: geometry.size.height)
+                .padding()
+            }
+        }
+    }
+}
+

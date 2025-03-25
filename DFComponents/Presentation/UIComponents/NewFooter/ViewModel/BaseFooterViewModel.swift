@@ -14,4 +14,3 @@ final class BaseFooterViewModel: ObservableObject {
         self.field = control
     }
 }
-

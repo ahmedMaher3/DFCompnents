@@ -4,12 +4,11 @@
 //
 //  Created by hassan elshaer on 11/03/2025.
 //
-
 import SwiftUI
 
 struct FileListView: View {
     @Binding var attachments: [AttachmentModel]
-    @State private var showAllFiles = false
+    @State private var showFileList = false
 
     var body: some View {
         let nonImageAttachments = attachments.filter { !$0.isImage }
@@ -18,74 +17,26 @@ struct FileListView: View {
 
         if !nonImageAttachments.isEmpty {
             VStack(alignment: .leading, spacing: 8) {
-                ForEach(showAllFiles ? nonImageAttachments : Array(nonImageAttachments.prefix(maxVisibleFiles))) { attachment in
-                    HStack {
-                        // File Type Icon
-                        Image(attachment.iconName ?? "pdfIcon")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 32, height: 32)
-                            .padding(.trailing, 8)
-
-                        // File Info
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(attachment.fileName)
-                                .font(.body)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.primary)
-
-                            Text(formatFileSize(attachment.fileSize))
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
-
-                        Spacer()
-
-                        // Delete Button
-                        Button(action: {
-                            if let index = attachments.firstIndex(where: { $0.id == attachment.id }) {
-                                attachments.remove(at: index)
-                            }
-                        }) {
-                            Image(.delete)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 14, height: 14)
-                                .foregroundColor(.red)
-                        }
-                    }
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 4)
-                            .stroke(Color(red: 220/255, green: 220/255, blue: 220/255), lineWidth: 1) // Light gray border
-                    )
-                    .background(Color.clear) // Transparent background
+                ForEach(Array(nonImageAttachments.prefix(maxVisibleFiles))) { attachment in
+                    FileRowView(attachment: attachment, attachments: $attachments)
                 }
 
-                // Show More / Show Less Button
+                // Show More Button to Open Full List
                 if remainingCount > 0 {
                     Button(action: {
-                        withAnimation {
-                            showAllFiles.toggle()
-                        }
+                        showFileList.toggle()
                     }) {
-                        Text(showAllFiles ? "Show less" : "Show \(remainingCount) more files")
+                        Text("Show (\(remainingCount)) more files")
                             .font(.body)
                             .foregroundColor(.blue)
                             .padding(.top, 4)
+                    }
+                    .sheet(isPresented: $showFileList) {
+                        FullFileListView(attachments: $attachments)
                     }
                 }
             }
         }
     }
-
-    // Function to format file size dynamically
-    private func formatFileSize(_ size: Int) -> String {
-        let kb = Double(size) / 1024
-        if kb < 1024 {
-            return String(format: "%.1f KB", kb)
-        } else {
-            return String(format: "%.1f MB", kb / 1024)
-        }
-    }
 }
+

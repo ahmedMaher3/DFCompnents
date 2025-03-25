@@ -8,9 +8,12 @@
 import Foundation
 
 final class PageViewModel: ObservableObject {
+//    @Published var pageField: PageField
     @Published var controls: [FieldEntity]
     
     init(controls: [FieldEntity]) {
+//        init(controls: [FieldEntity], pageField: PageField) {
+//        self.pageField = pageField
         self.controls = controls
     }
 }

@@ -174,10 +174,10 @@
                             "custom": "value does not match the pattern {0}"
                         },
                         "number": {
-                            "minimumValue": "1",
-                            "maximumValue": "100",
-                            "minimumDigits": "1",
-                            "maximumDigits": "3"
+                            "minimumValue": "Minimum value Length is {0}",
+                            "maximumValue": "maximum value Length is {0}",
+                            "minimumDigits":  "Minimum digits Length is {0}",
+                            "maximumDigits":  "maximum digits Length is {0}"
                         },
                         "dateTime": {
                             "dateTime": "Enter date and time.",
@@ -344,7 +344,7 @@
                         "minimumValue": 1.0,
                         "maximumValue": 100.0,
                         "minimumDigits": 1,
-                        "maximumDigits": 3,
+                        "maximumDigits": null,
                         "required": true,
                         "unique": null,
                         "addAttachment": true,

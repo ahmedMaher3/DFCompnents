@@ -12,3 +12,15 @@ struct FileUploadValidationEntity {
     let allowedExtensions: String
     let invalidLink: String
 }
+extension FileUploadValidationEntity {
+    init(from dto: FileUploadValidation) {
+        self.init(
+            maxFilesSize: dto.maxFilesSize,
+            maxSizePerFile: dto.maxSizePerFile,
+            minNumberOfFiles: dto.minNumberOfFiles,
+            maxNumberOfFiles: dto.maxNumberOfFiles,
+            allowedExtensions: dto.allowedExtensions,
+            invalidLink: dto.invalidLink
+        )
+    }
+}

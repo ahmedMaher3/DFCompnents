@@ -7,19 +7,6 @@
 
 import SwiftUI
 
-//MARK: - Explain
-/*
- PreferenceKey and onPreferenceChange allow child views to pass data up to their parent views
- in our situation based on content size tooltip consider as child will send that to parent popOver
- for examples:-
-
- "test test" = 80 tooltip height
- "test test test testtest testtest testtest testtest testtest" = 180 tooltip height
-
- "test test test testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test" = x tooltip height
-
- */
-
 struct ContentLengthPreference: PreferenceKey {
     static var defaultValue: CGFloat { 0 }
 
@@ -91,8 +78,5 @@ struct ToolTipFooterView: View {
 }
 
 #Preview {
-    //        ToolTipFooterView(tooltip: "test test test testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test testtest testtest testtest testtest testtest testtest test")
-    //            ToolTipFooterView(tooltip: "test test test testtest testtest testtest testtest testtest")
     ToolTipFooterView(tooltip: "test test")
-
 }

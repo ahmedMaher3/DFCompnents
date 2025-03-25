@@ -6,20 +6,19 @@
 //
 
 import SwiftUI
+import Combine
 
 struct BaseFieldContainerView<Control: View>: View {
+
     let control: () -> Control
     let fieldEntity: FieldEntity
-    @Binding var warningMessage: String?
 
-    init(
-        fieldEntity: FieldEntity,
-        @ViewBuilder controlType: @escaping () -> Control,
-        warningMessage: Binding<String?>
-    ) {
+    @StateObject var viewModel: BaseFieldViewModel = BaseFieldViewModel()
+
+    init(fieldEntity: FieldEntity,
+         @ViewBuilder controlType: @escaping () -> Control) {
         self.control = controlType
         self.fieldEntity = fieldEntity
-        self._warningMessage = warningMessage
     }
 
     var body: some View {
@@ -30,22 +29,27 @@ struct BaseFieldContainerView<Control: View>: View {
             /// Control with overlay for warnings
             control()
                 .overlay(
-                    warningMessage?.isEmpty == false ?
+                    viewModel.errorMessage?.isEmpty == false ?
                     RoundedRectangle(cornerRadius: 4).stroke(.red, lineWidth: 0.5) : nil
                 )
+            
+            /// Warning View
+            WarningCardView(message: viewModel.errorMessage ?? "")
+                .opacity(viewModel.errorMessage == nil ? 0 : 1)
 
             /// Footer View - Aligned to Control
             BaseFooterControlView(viewModel: BaseFooterViewModel(control: fieldEntity))
                 .frame(maxWidth: .infinity, alignment: .leading) // Ensures left alignment
                 .padding(.leading, 0) // Adjust leading padding as needed to match the control
-            
-            /// Warning View
-            WarningCardView(message: warningMessage ?? "")
-                .opacity(warningMessage == nil ? 0 : 1)
         }
         .padding(6)
-        .background(warningMessage == nil ? Color.clear : Color.red.opacity(0.05))
+        .background(fieldEntity.errorMessage == nil || fieldEntity.errorMessage == "" ? Color.clear : Color.red.opacity(0.05))
         .cornerRadius(8)
+        .onReceive(Just(fieldEntity.errorMessage)) { errorMessage in
+            Task { @MainActor in
+                viewModel.errorMessage = errorMessage ?? ""
+            }
+        }
     }
 }
 

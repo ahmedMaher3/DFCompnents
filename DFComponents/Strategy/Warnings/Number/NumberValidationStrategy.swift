@@ -4,6 +4,7 @@
 //
 //  Created by Eslam on 11/03/2025.
 //
+
 import Foundation
 
 final class NumberValidationStrategy: FieldValidationStrategy {
@@ -18,10 +19,10 @@ final class NumberValidationStrategy: FieldValidationStrategy {
                   warnings: WarningsEntity?,
                   warningsMessagesDictionary: inout [String: [String]]) {
 
-        guard case .number((let numberField, let numberViewModel)) = fieldEntity else { return }
+        guard case .number(let numberField, let numberViewModel) = fieldEntity else { return }
 
         let fieldId = numberField.fieldId ?? ""
-        var fieldWarnings: [String] = []
+        var fieldWarning: String = ""
 
         guard let numberWarnings = numberViewModel.numberFieldModel.fieldWarning?.fieldValidation.input else {
             warningsMessagesDictionary[fieldId] = nil
@@ -41,13 +42,13 @@ final class NumberValidationStrategy: FieldValidationStrategy {
 
         // Numeric check
         if numberValue.rangeOfCharacter(from: CharacterSet.letters) != nil {
-            fieldWarnings.append(numberWarnings.numeric)
+            fieldWarning = numberWarnings.numeric
         }
 
         // Decimal Places
         if numberValue.contains("."),
            !validateDecimalPlaces(numberValue, maxDecimals: numberViewModel.numberFieldModel.decimalPlaces) {
-            fieldWarnings.append(numberWarnings.custom.replacingOccurrences(of: "{0}", with: "\(numberViewModel.numberFieldModel.decimalPlaces ?? 0)"))
+            fieldWarning = numberWarnings.custom.replacingOccurrences(of: "{0}", with: "\(numberViewModel.numberFieldModel.decimalPlaces ?? 0)")
         }
 
         /// Value Limits
@@ -56,21 +57,22 @@ final class NumberValidationStrategy: FieldValidationStrategy {
             maximumValue: numberViewModel.numberFieldModel.maximumValue ?? 0.0
         )
 
-        valueLimitValidator.validate(value: numberValue, fieldWarnings: &fieldWarnings)
+        valueLimitValidator.validate(value: numberValue, fieldWarning: &fieldWarning)
 
         /// Entry Limits
         let entryLimitValidator = EntryLimitValidationStrategy(
             minimumDigits: numberViewModel.numberFieldModel.minimumDigits ?? 0,
             maximumDigits: numberViewModel.numberFieldModel.maximumDigits ?? 0)
 
-        entryLimitValidator.validate(value: numberValue, fieldWarnings: &fieldWarnings)
+        entryLimitValidator.validate(value: numberValue, fieldWarning: &fieldWarning)
 
-        warningsMessagesDictionary[fieldId] = fieldWarnings.isEmpty ? nil : fieldWarnings
+        warningsMessagesDictionary[fieldId] = fieldWarning.isEmpty ? nil : [fieldWarning]
 
-        Task { @MainActor in
-            numberViewModel.numberFieldModel.isError = !fieldWarnings.isEmpty
-            numberViewModel.numberFieldModel.errorMessage = fieldWarnings.isEmpty ? nil : fieldWarnings.joined(separator: "\n")
+        DispatchQueue.main.async {
+            numberViewModel.numberFieldModel.isError = !fieldWarning.isEmpty
+            numberViewModel.numberFieldModel.errorMessage = fieldWarning.isEmpty ? nil : fieldWarning
         }
+
     }
 
     private func validateDecimalPlaces(_ value: String, maxDecimals: Int?) -> Bool {

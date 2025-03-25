@@ -32,17 +32,15 @@ struct BaseFooterControlView: View {
     
     /// **Reusable Footer Stack**
     @ViewBuilder
-    private func footerStack(sublabel: String?, characterCountText: String?, addNote: Bool, addAttachment: Bool, tooltip: String) -> some View {
+    private func footerStack(interactiveControl: InteractiveField, characterCountText: String?, tooltip: String) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            if let sublabel = sublabel {
+            if let sublabel = interactiveControl.sublabel {
                 HStack(alignment: .center, spacing: 8) {
                     Text(sublabel)
-                    
                     Spacer()
-                    
                     HStack(alignment: .center,spacing: 4) {
-                        if !(tooltip.isEmpty ) {
-                            ToolTipFooterView(tooltip: tooltip)
+                        if !(tooltip.isEmpty ?? false ) {
+                            ToolTipFooterView(tooltip: tooltip ?? "")
                         }
                         if let characterCountText = characterCountText {
                             Text(characterCountText)
@@ -56,7 +54,7 @@ struct BaseFooterControlView: View {
                     .padding(.trailing, 2)
                 }
             }
-            if addNote || addAttachment {
+            if interactiveControl.addNote || interactiveControl.addAttachment {
                 HStack {
                     renderNoteButton()
                     renderAttachmentButton()
@@ -113,19 +111,35 @@ struct BaseFooterControlView: View {
     private func renderFooter(fieldEntity: FieldEntity) -> some View {
         switch fieldEntity {
         case .page, .section, .radio, .textBox:
-            EmptyView()
+            EmptyView() // Ensure a valid View is returned
+
         case .number((_, let numberViewModel)):
             let interactiveProperties = numberViewModel.numberFieldModel.base
+            let characterCountText = numberViewModel.characterCountText
+            let tooltip: String = {
+                guard let fieldValidation = numberViewModel.numberFieldModel.fieldWarning?.fieldValidation else { return "" }
+                var messages: [String] = []
+                if let minDigits = numberViewModel.numberFieldModel.minimumDigits {
+                    if let minMessage = getErrorMessage(for: fieldValidation, validationKey: .minimumDigits, value: minDigits), !minMessage.isEmpty {
+                        messages.append(minMessage)
+                    }
+                }
+                if let maxDigits = numberViewModel.numberFieldModel.maximumDigits {
+                    if let maxMessage = getErrorMessage(for: fieldValidation, validationKey: .maximumDigits, value: maxDigits), !maxMessage.isEmpty {
+                        messages.append(maxMessage)
+                    }
+                }
+                return messages.joined(separator: "\n")
+            }()
             footerStack(
-                sublabel: interactiveProperties.sublabel,
-                characterCountText: "\(numberViewModel.characterCount)/\(numberViewModel.numberFieldModel.maximumDigits ?? 0)",
-                addNote: interactiveProperties.addNote,
-                addAttachment: interactiveProperties.addAttachment,
-                tooltip: interactiveProperties.tooltip ?? "test test test"
+                interactiveControl: interactiveProperties,
+                characterCountText: characterCountText,
+                tooltip: tooltip
             )
         }
     }
-    
+
+
     @ViewBuilder
     private func renderNoteButton() -> some View {
         Button(action: { showNotePopup.toggle() }) {
@@ -164,6 +178,82 @@ struct BaseFooterControlView: View {
             }
         }
     }
+    func getErrorMessage(for validationEntity: FieldValidationEntity, validationKey: ValidationKey, value: Any? = nil) -> String? {
+        switch validationKey {
+        case .required:
+            return validationEntity.required
+        case .maxAttachment:
+            return validationEntity.maxAttachment
+
+        // Input Validations
+        case .minimumCharacterLength:
+            return validationEntity.input.minimumCharacterLength.replaceValidationWith(value)
+        case .maximumCharacterLength:
+            return validationEntity.input.maximumCharacterLength.replaceValidationWith(value)
+        case .minimumWordLength:
+            return validationEntity.input.minimumWordLength.replaceValidationWith(value)
+        case .maximumWordLength:
+            return validationEntity.input.maximumWordLength.replaceValidationWith(value)
+        case .email:
+            return validationEntity.input.email
+        case .url:
+            return validationEntity.input.url
+        case .numeric:
+            return validationEntity.input.numeric
+        case .alphabetic:
+            return validationEntity.input.alphabetic
+        case .alphanumeric:
+            return validationEntity.input.alphanumeric
+        case .custom:
+            return validationEntity.input.custom
+
+        // Number Validations
+        case .minimumValue:
+            return validationEntity.number.minimumValue?.replaceValidationWith(value)
+        case .maximumValue:
+            return validationEntity.number.maximumValue?.replaceValidationWith(value)
+        case .minimumDigits:
+            return validationEntity.number.minimumDigits?.replaceValidationWith(value)
+        case .maximumDigits:
+            return validationEntity.number.maximumDigits?.replaceValidationWith(value)
+
+        // DateTime Validations
+        case .dateTime:
+            return validationEntity.dateTime.dateTime
+        case .dateRange:
+            return validationEntity.dateTime.dateRange
+
+        // MCQ Validations
+        case .minimumNumberOfSelectedOptions:
+            return validationEntity.mcq.minimumNumberOfSelectedOptions
+        case .maximumNumberOfSelectedOptions:
+            return validationEntity.mcq.maximumNumberOfSelectedOptions
+
+        // File Upload Validations
+        case .maxFilesSize:
+            return validationEntity.fileUpload.maxFilesSize
+        case .maxSizePerFile:
+            return validationEntity.fileUpload.maxSizePerFile
+        case .minNumberOfFiles:
+            return validationEntity.fileUpload.minNumberOfFiles
+        case .maxNumberOfFiles:
+            return validationEntity.fileUpload.maxNumberOfFiles
+        case .allowedExtensions:
+            return validationEntity.fileUpload.allowedExtensions
+        case .invalidLink:
+            return validationEntity.fileUpload.invalidLink
+
+        // Location Validations
+        case .maximumLocations:
+            return validationEntity.location.maximumLocations
+        case .minimumLocations:
+            return validationEntity.location.minimumLocations
+        case .notInRange:
+            return validationEntity.location.notInRange
+        }
+    }
+
+    
     /// **Update Answer in ViewModel**
     private func updateAnswer() {
         if case .number((_, let numberViewModel)) = viewModel.field {

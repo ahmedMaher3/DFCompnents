@@ -42,9 +42,6 @@
     "+%lld" : {
 
     },
-    "|| Attachment" : {
-
-    },
     "0" : {
 
     },
@@ -52,12 +49,6 @@
 
     },
     "Add Note" : {
-
-    },
-    "and Your Maximum Digit Length is %@" : {
-
-    },
-    "and Your Maximum Digit Length is %lld" : {
 
     },
     "Back" : {
@@ -100,6 +91,9 @@
 
     },
     "File Type: %@" : {
+
+    },
+    "Files" : {
 
     },
     "First Name: %@" : {
@@ -164,9 +158,6 @@
     "Next" : {
 
     },
-    "Note" : {
-
-    },
     "Page %lld / %lld" : {
       "localizations" : {
         "en" : {
@@ -204,10 +195,7 @@
     "Settings" : {
 
     },
-    "Show %lld more files" : {
-
-    },
-    "Show less" : {
+    "Show (%lld) more files" : {
 
     },
     "Show Less" : {
@@ -247,12 +235,6 @@
 
     },
     "Where do you live " : {
-
-    },
-    "Your Minimum Digit Length is %@" : {
-
-    },
-    "Your Minimum Digit Length is %lld" : {
 
     }
   },
