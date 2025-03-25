@@ -18,8 +18,8 @@ public enum NetworkError: Error {
     case notFound
     case validationError([String: String])
     case rateLimitExceeded
-    
-    var userMessage: String {
+
+   var localizedDescription: String {
         switch self {
         case .connectionFailed: return "No internet connection"
         case .unauthorized: return "Authentication required"
@@ -33,4 +33,5 @@ public enum NetworkError: Error {
         case .rateLimitExceeded: return "Too many requests. Please try again later"
         }
     }
+
 }

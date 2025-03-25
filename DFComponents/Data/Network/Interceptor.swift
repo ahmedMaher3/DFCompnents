@@ -48,12 +48,12 @@
 //}
 //
 
-protocol RequestInterceptor {
+protocol InterceptorChainProtocol {
     func modify(request: URLRequest) async -> URLRequest
 }
 
 
-struct RequestModifierInterceptor: RequestInterceptor {
+struct InterceptorChain: InterceptorChainProtocol {
     private let modifiers: [RequestModifier]
 
     init(modifiers: [RequestModifier]) {

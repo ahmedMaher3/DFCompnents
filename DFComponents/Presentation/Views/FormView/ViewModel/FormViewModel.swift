@@ -34,11 +34,11 @@ class FormViewModel: ObservableObject {
             state = .loading
             do {
                 let response = try await formBuildUseCase.excute()
-                mode = response.pages.first?.mode
-                pages = response.pages
-                fields = pages.flatMap { $0.fields }
-                rules = response.rules
-                warnings = response.warnings
+//                mode = response.pages.first?.mode
+//                pages = response.pages
+//                fields = pages.flatMap { $0.fields }
+//                rules = response.rules
+//                warnings = response.warnings
                 handleRules()
                 state = .loaded
             } catch {

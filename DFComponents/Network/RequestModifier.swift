@@ -11,23 +11,23 @@ public protocol RequestModifier {
     func modify(request: URLRequest) async -> URLRequest
 }
 
-// MARK: - Request Modifiers
-public struct DynamicHeaderModifier: RequestModifier {
-    private let headerProvider: () async -> [String: String]
-    
-    public init(headerProvider: @escaping () async -> [String: String]) {
-        self.headerProvider = headerProvider
-    }
-    
-    public func modify(request: URLRequest) async -> URLRequest {
-        var mutableRequest = request
-        let headers = await headerProvider()
-        headers.forEach { key, value in
-            mutableRequest.setValue(value, forHTTPHeaderField: key)
-        }
-        return mutableRequest
-    }
-}
+//// MARK: - Request Modifiers
+//public struct DynamicHeaderModifier: RequestModifier {
+//    private let headerProvider: () async -> [String: String]
+//    
+//    public init(headerProvider: @escaping () async -> [String: String]) {
+//        self.headerProvider = headerProvider
+//    }
+//    
+//    public func modify(request: URLRequest) async -> URLRequest {
+//        var mutableRequest = request
+//        let headers = await headerProvider()
+//        headers.forEach { key, value in
+//            mutableRequest.setValue(value, forHTTPHeaderField: key)
+//        }
+//        return mutableRequest
+//    }
+//}
 
 public struct AuthenticationModifier: RequestModifier {
     private let tokenProvider: () -> String?
@@ -41,5 +41,24 @@ public struct AuthenticationModifier: RequestModifier {
         var mutableRequest = request
         mutableRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return mutableRequest
+    }
+}
+
+
+struct AuthorizationModifier: RequestModifier {
+    func modify(request: URLRequest) async -> URLRequest {
+        var modifiedRequest = request
+        if let token = UserDefaults.standard.string(forKey: "accessToken") {
+            modifiedRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        return modifiedRequest
+    }
+}
+
+struct APIKeyModifier: RequestModifier {
+    func modify(request: URLRequest) async -> URLRequest {
+        var modifiedRequest = request
+        modifiedRequest.setValue("API_KEY_VALUE", forHTTPHeaderField: "x-api-key")
+        return modifiedRequest
     }
 }
