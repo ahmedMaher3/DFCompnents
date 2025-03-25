@@ -12,7 +12,7 @@ enum FieldEntity: Identifiable {
     case section(BaseFieldProtocol, SectionViewModel)
     case number(BaseFieldProtocol, NumberFieldViewModel)
 
-    private var baseField: BaseFieldProtocol {
+    var baseField: BaseFieldProtocol {
         switch self {
         case .textBox(let field, _),
              .radio(let field, _),
@@ -27,6 +27,7 @@ enum FieldEntity: Identifiable {
     var parentId: String? { baseField.parentId }
     var type: FieldType { baseField.type }
     var errorMessage: String? { baseField.errorMessage }
+    var label: String { baseField.label ?? "" }
 
     var value: String? {
         get { baseField.answer as? String }
