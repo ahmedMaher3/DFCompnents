@@ -8,3 +8,12 @@ struct DateTimeValidationEntity {
     let dateTime: String
     let dateRange: String
 }
+
+extension DateTimeValidationEntity {
+    init(from dto: DateTimeValidation) {
+        self.init(
+            dateTime: dto.dateTime,
+            dateRange: dto.dateRange
+        )
+    }
+}

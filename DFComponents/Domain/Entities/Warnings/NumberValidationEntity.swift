@@ -10,3 +10,13 @@ struct NumberValidationEntity {
     let minimumDigits: String?
     let maximumDigits: String?
 }
+extension NumberValidationEntity {
+    init(from dto: NumberValidation) {
+        self.init(
+            minimumValue: dto.minimumValue,
+            maximumValue: dto.maximumValue,
+            minimumDigits: dto.minimumDigits,
+            maximumDigits: dto.maximumDigits
+        )
+    }
+}

@@ -44,20 +44,19 @@ struct PageView: View {
                     .frame(maxWidth: .infinity, minHeight: geometry.size.height) // Uses container height
                 }
             }
-
         }
     }
 
 
     @ViewBuilder
     private func renderField(for field:  any FieldRenderable) -> some View {
+        let errorMessage = field.errorMessage // Access the errorMessage property
         BaseFieldContainerView(
             field: field
         )
+
         //.opacity(radioViewModel.control.hidden ? 0 : 1)
 
     }
-
-
 }
 

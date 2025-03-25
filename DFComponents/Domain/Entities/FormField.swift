@@ -20,9 +20,17 @@ protocol BaseFieldProtocol {
     var rules: FieldRules? { get }
     var hidden: Bool! { get set }
     var disabled: Bool! { get set }
+    var fieldWarning: WarningsEntity? { get set }
 
     func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer?
     func getAnswerString() -> String
+}
+
+protocol PageFieldProtocol: BaseFieldProtocol {
+    var submit: String? { get }
+    var next: String? { get }
+    var back: String? { get }
+    var backVisibility: Bool? { get }
 }
 
 protocol SectionFieldProtocol: BaseFieldProtocol {
@@ -30,6 +38,58 @@ protocol SectionFieldProtocol: BaseFieldProtocol {
     var defaultMode: String? { get }
     var icon: String? { get }
     var isExpandedStatus: Bool { get set }
+}
+
+class PageField: PageFieldProtocol {
+    var submit: String?
+    var next: String?
+    var back: String?
+    var backVisibility: Bool?
+    var type: FieldType!
+    var fieldId: String!
+    var label: String!
+    var parentId: String?
+    var index: Int!
+    var answer: Any?
+    var isError: Bool!
+    var errorMessage: String!
+    var rules: FieldRules?
+    var fieldWarning: WarningsEntity?
+    var hidden: Bool!
+    var disabled: Bool!
+    
+    func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
+        nil
+    }
+    
+    func getAnswerString() -> String {
+        ""
+    }
+    
+    init(field: Field?) {
+        guard let field = field else { return }
+
+        // Initialize base properties
+        self.type = field.type
+        self.fieldId = field.id
+        self.label = field.properties.label
+        self.parentId = field.parentId
+        self.index = 0
+        self.isError = false
+        self.rules = field.rules
+        self.hidden = false
+        self.disabled = false
+
+        // Initialize interactive properties
+        if let properties = field.properties as? PagePropertiesProtocol {
+            self.submit = properties.submit
+            self.next = properties.next
+            self.back = properties.back
+            self.backVisibility = properties.backVisibility
+        }
+
+    }
+
 }
 
 class SectionField: SectionFieldProtocol {
@@ -52,6 +112,7 @@ class SectionField: SectionFieldProtocol {
     var hidden: Bool!
     var disabled: Bool!
     var errorMessage: String!
+    var fieldWarning: WarningsEntity?
 
     init(field: Field?) {
         guard let field = field else { return }
@@ -118,10 +179,10 @@ struct InteractiveField: InteractiveFieldProtocol {
     var addAttachment: Bool!
     var attachmentType: AttachmentType!
     var attachmentExtensions: String!
+    var fieldWarning: WarningsEntity?
 
     init(field: Field?) {
         guard let field = field else { return }
-
         // Initialize base properties
         self.type = field.type
         self.fieldId = field.id
@@ -231,6 +292,7 @@ extension InteractiveFieldDelegate {
 
 class TextBase: InteractiveFieldDelegate {
     var base: InteractiveField
+    var fieldWarning: WarningsEntity?
 
     let allowSpellCheck: Bool?
     let maximumLength: Int?
@@ -275,6 +337,7 @@ extension TextBaseDelegate {
 // 5. Implementation of specific field types becomes very clean
 class TextBoxField: TextBaseDelegate {
     var textBase: TextBase
+    var fieldWarning: WarningsEntity?
 
     // TextBox specific properties only
     let regex: String?
@@ -315,50 +378,12 @@ class TextBoxField: TextBaseDelegate {
     }
 }
 
-class PageField: BaseFieldProtocol {
-    var type: FieldType!
-
-    var fieldId: String!
-
-    var label: String!
-
-    var parentId: String?
-
-    var index: Int!
-
-    var answer: Any?
-
-    var isError: Bool!
-
-    var errorMessage: String!
-
-    var rules: FieldRules?
-
-    var hidden: Bool!
-
-    var disabled: Bool!
-
-    func handleSavedAnswer(_ sAnswer: Any?) -> BaseAnswer? {
-        return nil
-    }
-
-    func getAnswerString() -> String {
-        return ""
-    }
-
-    init(field: Field?) {
-        self.type = field?.type
-        self.fieldId = field?.id ?? ""
-        self.parentId = field?.parentId ?? ""
-    }
-
-}
-
 class TextAreaField: TextBaseDelegate {
     var textBase: TextBase
     var fullScreen: Bool?
     var autoExpand: Bool?
     var defaultAnswer: TextAreaAnswer?
+    var fieldWarning: WarningsEntity?
 
     init(field: Field?) {
         textBase = TextBase(field: field)
@@ -374,6 +399,7 @@ class TextAreaField: TextBaseDelegate {
 
 class MCQBase: InteractiveFieldDelegate {
     var base: InteractiveField
+    var fieldWarning: WarningsEntity?
 
     var options: [MCQOption]
     var defaultAnswer: BaseAnswerMCQ?
@@ -435,6 +461,7 @@ extension MCQBaseDelegate {
 
 class RadioButtonField: MCQBaseDelegate,Equatable {
     var mcqBase: MCQBase
+    var fieldWarning: WarningsEntity?
 
     init(field: Field?) {
         mcqBase = MCQBase(field: field)

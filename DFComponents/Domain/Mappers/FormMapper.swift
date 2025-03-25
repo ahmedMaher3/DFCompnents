@@ -72,7 +72,7 @@ class FormMapper: EntityMapper {
                 let sectionControls = mapFieldsRecursively(fields: groupedFields[field.id!] ?? [], groupedFields: groupedFields)
                 let control = SectionField(field: field)
                 return SectionButtonRenderer(field: control,controls:sectionControls)
-               // return .section((control, SectionViewModel(controls: sectionControls, sectionField: control)))
+                // return .section((control, SectionViewModel(controls: sectionControls, sectionField: control)))
             }
             return mapSingleField(field: field)
         }
@@ -83,95 +83,72 @@ class FormMapper: EntityMapper {
     private func mapSingleField(field: Field) ->  (any FieldRenderable)? {
         switch field.type {
             case .textBox:
-            let control = TextBoxField(field: field)
-            return TextBoxRenderer(field: control)
-
-            case .radio:
-            let control = RadioButtonField(field: field)
-            return RadioButtonRenderer(field: control)
-
-            case .number:
-                let control = NumberField(field: field)
-            return NumberFieldRenderer(field: control)
-
-            default:
-                return nil
-        }
-    }
-
-
-    private func mapSingleField(field: Field) -> FieldEntity? {
-        switch field.type {
-            case .textBox:
                 let control = TextBoxField(field: field)
-                return .textBox((control, TextBoxViewModel(control: control)))
+                return TextBoxRenderer(field: control)
+
             case .radio:
                 let control = RadioButtonField(field: field)
-                return .radio((control, RadioButtonViewModel(control: control)))
+                return RadioButtonRenderer(field: control)
+
             case .number:
                 let control = NumberField(field: field)
-                return .number((control, NumberFieldViewModel(numberFieldModel: control)))
+                return NumberFieldRenderer(field: control)
+
             default:
                 return nil
         }
     }
+
+
+    //    private func mapSingleField(field: Field) -> FieldEntity? {
+    //        switch field.type {
+    //            case .textBox:
+    //                let control = TextBoxField(field: field)
+    //                return .textBox((control, TextBoxViewModel(control: control)))
+    //            case .radio:
+    //                let control = RadioButtonField(field: field)
+    //                return .radio((control, RadioButtonViewModel(control: control)))
+    //            case .number:
+    //                let control = NumberField(field: field)
+    //                return .number((control, NumberFieldViewModel(numberFieldModel: control)))
+    //            default:
+    //                return nil
+    //        }
+    //    }
 
     func map(from dto: Warnings) -> WarningsEntity {
         return WarningsEntity(
-            formValidation: FormValidationEntity(
-                expired: dto.formWarning.formValidation.expired,
-                notAvailable: dto.formWarning.formValidation.notAvailable,
-                multipleSubmission: dto.formWarning.formValidation.multipleSubmission,
-                notStarted: dto.formWarning.formValidation.notStarted
-            ),
-            fieldValidation: FieldValidationEntity(
-                emptyForm: dto.formWarning.fieldValidation.emptyForm,
-                required: dto.formWarning.fieldValidation.required,
-                maxAttachment: dto.formWarning.fieldValidation.maxAttachment,
-                input: InputValidationEntity(
-                    minimumCharacterLength:
-                        dto.formWarning.fieldValidation.input.minimumCharacterLength,
-                    maximumCharacterLength: dto.formWarning.fieldValidation.input.maximumCharacterLength,
-                    minimumWordLength: dto.formWarning.fieldValidation.input.minimumWordLength,
-                    maximumWordLength: dto.formWarning.fieldValidation.input.maximumWordLength,
-                    email: dto.formWarning.fieldValidation.input.email,
-                    url: dto.formWarning.fieldValidation.input.url,
-                    numeric: dto.formWarning.fieldValidation.input.numeric,
-                    alphabetic: dto.formWarning.fieldValidation.input.alphabetic,
-                    alphanumeric: dto.formWarning.fieldValidation.input.alphanumeric,
-                    custom: dto.formWarning.fieldValidation.input.custom
-                ),
-                number: NumberValidationEntity(
-                    minimumValue: dto.formWarning.fieldValidation.number.minimumValue,
-                    maximumValue: dto.formWarning.fieldValidation.number.maximumValue,
-                    minimumDigits: dto.formWarning.fieldValidation.number.minimumDigits,
-                    maximumDigits: dto.formWarning.fieldValidation.number.maximumDigits
-                ),
-                dateTime: DateTimeValidationEntity(
-                    dateTime: dto.formWarning.fieldValidation.dateTime.dateTime,
-                    dateRange: dto.formWarning.fieldValidation.dateTime.dateRange
-                ),
-                mcq: MCQValidationEntity(
-                    minimumNumberOfSelectedOptions: dto.formWarning.fieldValidation.mcq.minimumNumberOfSelectedOptions,
-                    maximumNumberOfSelectedOptions: dto.formWarning.fieldValidation.mcq.maximumNumberOfSelectedOptions
-                ),
-                fileUpload: FileUploadValidationEntity(
-                    maxFilesSize: dto.formWarning.fieldValidation.fileUpload.maxFilesSize,
-                    maxSizePerFile: dto.formWarning.fieldValidation.fileUpload.maxSizePerFile,
-                    minNumberOfFiles: dto.formWarning.fieldValidation.fileUpload.minNumberOfFiles,
-                    maxNumberOfFiles: dto.formWarning.fieldValidation.fileUpload.maxNumberOfFiles,
-                    allowedExtensions: dto.formWarning.fieldValidation.fileUpload.allowedExtensions,
-                    invalidLink: dto.formWarning.fieldValidation.fileUpload.invalidLink
-                ),
-                location: LocationValidationEntity(
-                    maximumLocations: dto.formWarning.fieldValidation.location.maximumLocations,
-                    minimumLocations: dto.formWarning.fieldValidation.location.minimumLocations,
-                    notInRange: dto.formWarning.fieldValidation.location.notInRange
-                )
-            )
+            formValidation: mapFormValidation(from: dto.formWarning.formValidation),
+            fieldValidation: mapFieldValidation(from: dto.formWarning.fieldValidation)
         )
     }
 
+    private func mapFormValidation(from dto: FormValidation) -> FormValidationEntity {
+        return FormValidationEntity(
+            expired: dto.expired,
+            notAvailable: dto.notAvailable,
+            multipleSubmission: dto.multipleSubmission,
+            notStarted: dto.notStarted
+        )
+    }
+
+    private func mapFieldValidation(from dto: FieldValidation) -> FieldValidationEntity {
+        return FieldValidationEntity(
+            emptyForm: dto.emptyForm,
+            required: dto.required,
+            maxAttachment: dto.maxAttachment,
+            input: mapValidation(from: dto.input, using: InputValidationEntity.init),
+            number: mapValidation(from: dto.number, using: NumberValidationEntity.init),
+            dateTime: mapValidation(from: dto.dateTime, using: DateTimeValidationEntity.init),
+            mcq: mapValidation(from: dto.mcq, using: MCQValidationEntity.init),
+            fileUpload: mapValidation(from: dto.fileUpload, using: FileUploadValidationEntity.init),
+            location: mapValidation(from: dto.location, using: LocationValidationEntity.init)
+        )
+    }
+
+    private func mapValidation<DTO, Entity>(from dto: DTO, using transform: (DTO) -> Entity) -> Entity {
+        return transform(dto)
+    }
 }
 
 struct PageModel: Identifiable {
@@ -242,7 +219,7 @@ enum FieldEntity: Identifiable {
     var type: FieldType { baseField.type }
 
     var errorMessage: String? { baseField.errorMessage }
-    
+
     var validatorField: FieldValidationStrategy? {
         switch self {
             case .number:
@@ -277,7 +254,7 @@ protocol FieldRenderable {
     var field: Field { get }
 
     var id: String { get }
-    var errorMessage: String? { get }
+    var errorMessage: String? { get set }
 
     func render() -> AnyView
     func renderHeader() -> AnyView
@@ -286,16 +263,17 @@ protocol FieldRenderable {
 
 
 struct RadioButtonRenderer: FieldRenderable {
+    var errorMessage: String?
 
     var field: RadioButtonField
 
 
     init(field: RadioButtonField) {
         self.field = field
-     }
+        self.viewModel = RadioButtonViewModel(control: field)
+    }
 
-   var id: String { field.fieldId}
-   var errorMessage: String? { field.errorMessage }
+    var id: String { field.fieldId}
 
 
     func render() -> AnyView {
@@ -310,19 +288,20 @@ struct RadioButtonRenderer: FieldRenderable {
 }
 
 struct TextBoxRenderer: FieldRenderable {
-
     var field: TextBoxField
     var viewModel: TextBoxViewModel
-
 
     init(field: TextBoxField) {
         self.field = field
         self.viewModel = TextBoxViewModel(control: field)
     }
     var id: String { field.fieldId}
-    var errorMessage: String? { field.errorMessage }
-
+    var errorMessage: String? {
+        get { field.errorMessage }
+        set { field.errorMessage = newValue }
+    }
     func render() -> AnyView {
+        //  guard let textBoxField = field  else { return AnyView(EmptyView())}
         return AnyView(TextBoxComponent(viewModel: TextBoxViewModel(control: field)))
     }
 
@@ -330,41 +309,53 @@ struct TextBoxRenderer: FieldRenderable {
 
         return AnyView(EmptyView())
     }
-    
 }
 
 struct NumberFieldRenderer: FieldRenderable {
+
     var field: NumberField
     var viewModel: NumberFieldViewModel
-
 
     init(field: NumberField) {
         self.field = field
         self.viewModel = NumberFieldViewModel(numberFieldModel: field)
     }
     var id: String { field.fieldId}
-    var errorMessage: String? { field.errorMessage }
+    var errorMessage: String? {
+        get { field.errorMessage }
+        set {
+            print("Called: \(newValue)")
+            field.errorMessage = newValue }
+    }
+
 
     func render() -> AnyView {
-//        guard let numberField = field else { return AnyView(EmptyView()) }
+        //        guard let numberField = field else { return AnyView(EmptyView()) }
         return AnyView(NumberFieldComponent(viewModel: NumberFieldViewModel(numberFieldModel: field)))
     }
 
     func renderHeader() -> AnyView {
-       let viewModel = NumberFieldViewModel(numberFieldModel: field )
+        let viewModel = NumberFieldViewModel(numberFieldModel: field )
         let properties = viewModel.numberFieldModel.basePropertiesNotInteractive
-       return AnyView(labelView(baseProperties: properties))
+        return AnyView(labelView(baseProperties: properties))
     }
 
 }
 
 struct SectionButtonRenderer: FieldRenderable {
+    var validatorField: (any FieldValidationStrategy)?
+
+    var validateViewModel: (any ValidateFieldStrategy)?
+
 
     var field: SectionField
     var controls: [any FieldRenderable]!
     var viewModel: SectionViewModel
 
-
+    var errorMessage: String? {
+        get { field.errorMessage }   // Get the current error message
+        set { field.errorMessage = newValue } // ✅ Allow setting a new error message
+    }
 
 
     init(field: SectionField,controls: [any FieldRenderable]) {
@@ -373,8 +364,7 @@ struct SectionButtonRenderer: FieldRenderable {
         self.viewModel = SectionViewModel(controls: controls, sectionField: field)
     }
     var id: String { field.fieldId}
-    var errorMessage: String? { field.errorMessage }
-    
+
     func render() -> AnyView {
 
         return AnyView(SectionView(sectionViewModel: SectionViewModel(controls: controls, sectionField: field), isExpanded: false))

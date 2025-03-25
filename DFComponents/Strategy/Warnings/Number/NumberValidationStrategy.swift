@@ -14,14 +14,20 @@ final class NumberValidationStrategy: FieldValidationStrategy {
         requiredValidator = FormValidator(strategy: RequiredValidationStrategy())
     }
 
-    func validate(fieldEntity: FieldEntity,
+    func validate(fieldRender: any FieldRenderable,
                   value: Any?,
                   warnings: WarningsEntity?,
                   warningsMessagesDictionary: inout [String: [String]]) {
+        guard var numberFieldRender = fieldRender as? NumberFieldRenderer else {
+            return
+        }
 
-        guard case .number((let numberField, let numberViewModel)) = fieldEntity else { return }
-
+        let numberField = numberFieldRender.field
         let fieldId = numberField.fieldId ?? ""
+        let numberViewModel = numberFieldRender.viewModel
+        
+        numberFieldRender.viewModel.baseAnswer?.value = (value as? String)
+
         var fieldWarnings: [String] = []
 
         guard let numberWarnings = numberViewModel.numberFieldModel.fieldWarning?.fieldValidation.input else {
@@ -29,11 +35,12 @@ final class NumberValidationStrategy: FieldValidationStrategy {
             return
         }
 
-        let numberValue = numberViewModel.baseAnswer?.value?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let numberValue = (numberViewModel.baseAnswer?.value as? String)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
 
-        if numberValue.isEmpty && numberViewModel.numberFieldModel.basePropertiesNotInteractive.required == true {
+        // Required field check
+        if numberValue.isEmpty, numberViewModel.numberFieldModel.basePropertiesNotInteractive.required == true {
             requiredValidator.validate(
-                fieldEntity: fieldEntity,
+                fieldRender: fieldRender,
                 value: numberValue,
                 warnings: warnings,
                 warningsMessagesDictionary: &warningsMessagesDictionary)
@@ -45,33 +52,38 @@ final class NumberValidationStrategy: FieldValidationStrategy {
             fieldWarnings.append(numberWarnings.numeric)
         }
 
-        // Decimal Places
+        // Decimal Places Validation
         if numberValue.contains("."),
            !validateDecimalPlaces(numberValue, maxDecimals: numberViewModel.numberFieldModel.decimalPlaces) {
             fieldWarnings.append(numberWarnings.custom.replacingOccurrences(of: "{0}", with: "\(numberViewModel.numberFieldModel.decimalPlaces ?? 0)"))
         }
 
-        /// Value Limits
+        // Value Limits Validation
         let valueLimitValidator = ValueLimitValidationStrategy(
             minimumValue: numberViewModel.numberFieldModel.minimumValue ?? 0.0,
             maximumValue: numberViewModel.numberFieldModel.maximumValue ?? 0.0
         )
-
         valueLimitValidator.validate(value: numberValue, fieldWarnings: &fieldWarnings)
 
-        /// Entry Limits
+        // Entry Limits Validation
         let entryLimitValidator = EntryLimitValidationStrategy(
             minimumDigits: numberViewModel.numberFieldModel.minimumDigits ?? 0,
-            maximumDigits: numberViewModel.numberFieldModel.maximumDigits ?? 0)
-
+            maximumDigits: numberViewModel.numberFieldModel.maximumDigits ?? 0
+        )
         entryLimitValidator.validate(value: numberValue, fieldWarnings: &fieldWarnings)
 
+        // Store warnings in dictionary
         warningsMessagesDictionary[fieldId] = fieldWarnings.isEmpty ? nil : fieldWarnings
 
-        Task { @MainActor in
+        DispatchQueue.main.async {
             numberViewModel.numberFieldModel.isError = !fieldWarnings.isEmpty
-            numberViewModel.numberFieldModel.errorMessage = fieldWarnings.isEmpty ? nil : fieldWarnings.joined(separator: "\n")
+            let newErrorMessage = fieldWarnings.isEmpty ? nil : fieldWarnings.joined(separator: "\n")
+            numberViewModel.numberFieldModel.errorMessage = newErrorMessage
+
+            // Make sure to update the field's errorMessage as well to propagate the change
+            numberFieldRender.errorMessage = newErrorMessage
         }
+
     }
 
     private func validateDecimalPlaces(_ value: String, maxDecimals: Int?) -> Bool {
