@@ -55,10 +55,10 @@ private struct PageListView: View {
                     .frame(height: 0)
                     .preference(key: ScrollOffsetPreferenceKey.self,
                                 value: proxy.frame(in: .named("scrollView")).minY)
-                    .onChange(of: proxy.frame(in: .named("scrollView")).minY) { _, newValue in
-                        headerVisible = newValue > -50
-                        onScroll?(newValue)
-                    }
+            }
+            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { newValue in
+                headerVisible = newValue > -50
+                onScroll?(newValue)
             }
             .frame(height: 0)
             LazyVStack {
