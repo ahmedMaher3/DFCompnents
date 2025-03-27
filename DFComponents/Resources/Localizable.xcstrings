@@ -60,6 +60,9 @@
     "Close" : {
 
     },
+    "completed/total questions" : {
+
+    },
     "Confirm Email: %@" : {
 
     },
@@ -162,7 +165,13 @@
         }
       }
     },
+    "Pages" : {
+
+    },
     "Pick a File" : {
+
+    },
+    "Questions" : {
 
     },
     "Save" : {

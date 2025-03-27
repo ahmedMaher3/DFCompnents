@@ -62,6 +62,7 @@ private struct FormContentView: View {
     @ObservedObject private var router = Router()
     @State private var headerVisible = true
     @Binding var currentPage: Int
+    @State private var pageListVisible: Bool = false
 
     private var shouldShowHeader: Bool {
         headerVisible &&
@@ -77,6 +78,9 @@ private struct FormContentView: View {
             }
 
             StepProgressView(viewModel: stepProgressViewModel)
+                .onTapGesture {
+                    pageListVisible.toggle()
+                }
             Spacer()
             TabView(selection: $currentPage) {
                 ForEach(viewModel.pages.indices, id: \.self) { index in
@@ -115,6 +119,17 @@ private struct FormContentView: View {
             router.destination(for: route)
         }
         .environmentObject(router)
+        .sheet(isPresented: $pageListVisible) {
+            let fieldsList = getFieldsList()
+            FieldsListView(fields: fieldsList, formType: viewModel.mode ?? .classic) { fieldId in
+                if let index = fieldsList.firstIndex(where: { $0.fieldId == fieldId }) {
+                    currentPage = index
+                }
+                pageListVisible = false
+            }
+            .presentationDetents([.large])
+            .presentationDragIndicator(.hidden)
+        }
     }
     
     private func handleFooter(pageField: PageField) -> PageFooterView {
@@ -128,5 +143,16 @@ private struct FormContentView: View {
                 backVisibility: pageField.backVisibility ?? true
             )
         )
+    }
+    
+    func getFieldsList() -> [BaseFieldProtocol] {
+        var fieldsList: [BaseFieldProtocol] = []
+        if viewModel.mode == .card {
+            let pagesFields = viewModel.pages.flatMap { $0.fields }
+            fieldsList = pagesFields.map { $0.baseField }
+        } else {
+            fieldsList = viewModel.pages.map { $0.page }
+        }
+        return fieldsList
     }
 }

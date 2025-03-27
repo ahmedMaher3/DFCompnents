@@ -45,6 +45,7 @@
 		A95D7A302D4B8B6F004FB6CA /* FormDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A2F2D4B8B6C004FB6CA /* FormDTO.swift */; };
 		A95D7A392D4BA59D004FB6CA /* ServicesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A362D4BA59D004FB6CA /* ServicesListViewModel.swift */; };
 		A95D7A3A2D4BA59D004FB6CA /* ServicesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95D7A352D4BA59D004FB6CA /* ServicesListView.swift */; };
+		A9B9675B2D92A72A00C26F36 /* FieldsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B9675A2D92A72600C26F36 /* FieldsListView.swift */; };
 		A9BF45D52D50DB15003F2333 /* SliderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF45D42D50DB0D003F2333 /* SliderDTO.swift */; };
 		A9BF46972D53887B003F2333 /* DateRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF46952D53887B003F2333 /* DateRangePickerView.swift */; };
 		A9BF469D2D538893003F2333 /* SliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF46982D538893003F2333 /* SliderViewModel.swift */; };
@@ -249,6 +250,7 @@
 		A95D7A2F2D4B8B6C004FB6CA /* FormDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDTO.swift; sourceTree = "<group>"; };
 		A95D7A352D4BA59D004FB6CA /* ServicesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListView.swift; sourceTree = "<group>"; };
 		A95D7A362D4BA59D004FB6CA /* ServicesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListViewModel.swift; sourceTree = "<group>"; };
+		A9B9675A2D92A72600C26F36 /* FieldsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsListView.swift; sourceTree = "<group>"; };
 		A9BF45D42D50DB0D003F2333 /* SliderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderDTO.swift; sourceTree = "<group>"; };
 		A9BF46952D53887B003F2333 /* DateRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangePickerView.swift; sourceTree = "<group>"; };
 		A9BF46982D538893003F2333 /* SliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewModel.swift; sourceTree = "<group>"; };
@@ -634,6 +636,14 @@
 				A95D7A2A2D4B813D004FB6CA /* DateTimeView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A9B967592D92A71A00C26F36 /* FieldsListView */ = {
+			isa = PBXGroup;
+			children = (
+				A9B9675A2D92A72600C26F36 /* FieldsListView.swift */,
+			);
+			path = FieldsListView;
 			sourceTree = "<group>";
 		};
 		A9BF46962D53887B003F2333 /* Data Range Picker */ = {
@@ -1597,6 +1607,7 @@
 		E4BBD0102D4A24FE004AA735 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A9B967592D92A71A00C26F36 /* FieldsListView */,
 				E44278712D7F1C17003BAA46 /* Stepper */,
 				04C847C22D79D1D00078B18F /* WelcomeView */,
 				AAF8308B2D7909C9001B0CAC /* Warning */,
@@ -1998,6 +2009,7 @@
 				E489E8142D4A3B17007EA370 /* TextBoxComponent.swift in Sources */,
 				E4A901A42D5E01E9007080AC /* AuthorizationHandler.swift in Sources */,
 				A9474D8D2D64B4AC00031047 /* FormField.swift in Sources */,
+				A9B9675B2D92A72A00C26F36 /* FieldsListView.swift in Sources */,
 				E489E8242D4B5BA0007EA370 /* CustomDropDownView.swift in Sources */,
 				AAC387522D772F1900118896 /* InputFieldViewModel.swift in Sources */,
 				E489E81E2D4A6A15007EA370 /* ColorExtension.swift in Sources */,
