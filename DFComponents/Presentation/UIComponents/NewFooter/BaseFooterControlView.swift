@@ -104,16 +104,16 @@ struct BaseFooterControlView: View {
     /// **Render Footer Based on Field Type**
     @ViewBuilder
     private func renderFooter(field: (any FieldRenderable)?) -> some View {
-        switch field?.field.type {
-        case .page, .section, .radio, .textBox:
-            EmptyView()
-        case .number:
-            if let numberField = field?.field as? NumberField {
-                footerStack(fieldProperties: numberField.base, charactersCount: "")
-            }
-        default :
-            EmptyView()
-        }
+//        switch field?.field.type {
+//        case .page, .section, .radio, .textBox:
+//            EmptyView()
+//        case .number:
+//            if let numberField = field?.field as? NumberField {
+//                footerStack(fieldProperties: numberField.base, charactersCount: "")
+//            }
+//        default :
+//            EmptyView()
+//        }
     }
 
     @ViewBuilder

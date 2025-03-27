@@ -8,9 +8,9 @@
 import Foundation
 
 final class PageViewModel: ObservableObject {
-    @Published var controls: [any FieldRenderable]
+    @Published var controls: [(BaseFieldProtocol, FieldRenderable)]
 
-    init(controls: [any FieldRenderable]) {
+    init(controls: [(BaseFieldProtocol, FieldRenderable)] ) {
         self.controls = controls
     }
 }

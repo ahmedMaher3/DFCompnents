@@ -24,11 +24,11 @@ struct SectionView: View {
         Section(header: sectionHeader().frame(height: 70)) {
             if isExpanded {
                 ScrollView {
-                    LazyVStack(spacing: 10) {
-                        ForEach(self.sectionViewModel.controls, id: \.id) { field in
-                            renderField(for: field)
-                        }
-                    }
+//                    LazyVStack(spacing: 10) {
+//                        ForEach(self.sectionViewModel.controls, id: \.id) { field in
+//                            renderField(for: field)
+//                        }
+//                    }
                 }
             }
         }
@@ -71,13 +71,13 @@ struct SectionView: View {
             }
         }
     }
-
-    @ViewBuilder
-    private func renderField(for field:  any FieldRenderable) -> some View {
-        BaseFieldContainerView(
-            field: field
-        )
-        //.opacity(radioViewModel.control.hidden ? 0 : 1)
-
-    }
+//
+//    @ViewBuilder
+//    private func renderField(for field:  any FieldRenderable) -> some View {
+//        BaseFieldContainerView(
+//            field: field
+//        )
+//        //.opacity(radioViewModel.control.hidden ? 0 : 1)
+//
+//    }
 }

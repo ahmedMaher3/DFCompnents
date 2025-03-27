@@ -20,9 +20,20 @@ struct PageView: View {
 
         if self.viewModel.mode == .classic {
             List {
-                ForEach(self.pageViewModel.controls, id: \.id) { field in
-                    renderField(for: field)
-                        .environmentObject(viewModel)
+                //                ForEach(viewModel.controls, id: \.0.fieldId) { field, renderer in
+                //                    Text("")
+                ////                    BaseFieldContainerView(
+                ////                        field: field
+                ////                    )
+                //                  //  BaseComponent(field: field, content: renderer.render(for: field))
+                //                }
+
+                ForEach(self.pageViewModel.controls, id: \.0.fieldId) { field,renderField in
+                    BaseFieldContainerView(
+                        field: field,content: renderField
+                    )
+                    //                    renderField(for: field)
+                    //                        .environmentObject(viewModel)
                 }
             }
             .buttonStyle(PlainButtonStyle()) // to make all button actions work properly within a list
@@ -34,11 +45,11 @@ struct PageView: View {
                 ScrollView {
                     VStack {
                         Spacer()
-                        ForEach(self.pageViewModel.controls, id: \.id) { field in
-                            renderField(for: field)
-                                .frame(maxWidth: .infinity)
-                                .environmentObject(viewModel)
-                        }
+//                        ForEach(self.pageViewModel.controls, id: \.id) { field in
+//                            renderField(for: field)
+//                                .frame(maxWidth: .infinity)
+//                                .environmentObject(viewModel)
+//                        }
                         Spacer()
                     }
                     .frame(maxWidth: .infinity, minHeight: geometry.size.height) // Uses container height
@@ -48,15 +59,15 @@ struct PageView: View {
     }
 
 
-    @ViewBuilder
-    private func renderField(for field:  any FieldRenderable) -> some View {
-        let errorMessage = field.errorMessage // Access the errorMessage property
-        BaseFieldContainerView(
-            field: field
-        )
+//    @ViewBuilder
+//    private func renderField(for field:  any FieldRenderable) -> some View {
+//        BaseFieldContainerView(
+//            field: field
+//        )
+//        //.opacity(radioViewModel.control.hidden ? 0 : 1)
+//
+//    }
 
-        //.opacity(radioViewModel.control.hidden ? 0 : 1)
 
-    }
 }
 

@@ -21,7 +21,7 @@ struct BaseHeaderControlView: View {
     // HeaderView
     @ViewBuilder
     private func renderHeader(for field: (any FieldRenderable)?) -> some View {
-        field?.renderHeader()
+        //field?.renderHeader()
     }
 }
 

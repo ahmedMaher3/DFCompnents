@@ -6,76 +6,33 @@
 //
 
 import SwiftUI
-import Combine
-/*
-final class ErrorMessageHandler: ObservableObject {
-    @Published var errorMessage: String?
 
-    init(field: any FieldRenderable) {
-        self.errorMessage = field.errorMessage
-    }
-
-    func updateErrorMessage(_ newMessage: String?) {
-        Task { @MainActor in
-            self.errorMessage = newMessage
-        }
-    }
-}
 struct BaseFieldContainerView: View {
-    let field: any FieldRenderable
-    @StateObject private var errorHandler: ErrorMessageHandler
+    let field: BaseFieldProtocol
+    let content: FieldRenderable
 
-    init(field: any FieldRenderable) {
+    init(
+        field:  BaseFieldProtocol,
+        content:  FieldRenderable
+    )
+    {
         self.field = field
-        _errorHandler = StateObject(wrappedValue: ErrorMessageHandler(field: field))
+        self.content = content
     }
 
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 8) {
             /// Header View
-            field.renderHeader()
+           // BaseHeaderControlView(viewModel: BaseHeaderViewModel(field: field))
 
             /// Control with overlay for warnings
-            field.render()
+            content.render(field: field)
+            //
 
-            /// Footer View
-            BaseFooterControlView(viewModel: BaseFooterViewModel(control: field))
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-            /// Warning View
-            WarningCardView(message: errorHandler.errorMessage ?? "")
-                .opacity(errorHandler.errorMessage?.isEmpty == false ? 1 : 0)
-        }
-        .padding(6)
-        .background(errorHandler.errorMessage?.isEmpty == false ? Color.red.opacity(0.05) : Color.clear)
-        .cornerRadius(8)
-        .onReceive(Just(field.errorMessage)) { newMessage in
-            errorHandler.updateErrorMessage(newMessage)
-        }
-    }
-}
-*/
-
-struct BaseFieldContainerView: View {
-    let field: any FieldRenderable
-    @StateObject var viewModel: BaseFieldViewModel = BaseFieldViewModel()
-    @State private var lastErrorMessage: String?
-
-    init(field: any FieldRenderable) {
-        self.field = field
-    }
-
-    var body: some View {
-        LazyVStack(alignment: .leading, spacing: 8) {
-            /// Header View
-            BaseHeaderControlView(viewModel: BaseHeaderViewModel(field: field))
-
-            /// Control with overlay for warnings
-            field.render()
-
-            /// Footer View - Aligned to Control
-            BaseFooterControlView(viewModel: BaseFooterViewModel(control: field))
-                .frame(maxWidth: .infinity, alignment: .leading)
+//             Footer View - Aligned to Control
+//            BaseFooterControlView(viewModel: BaseFooterViewModel(control: field))
+//                            .frame(maxWidth: .infinity, alignment: .leading) // Ensures left alignment
+//                            .padding(.leading, 0) // Adjust leading padding as needed to match the control
 
             /// Warning View
             WarningCardView(message: viewModel.errorMessage ?? "")
