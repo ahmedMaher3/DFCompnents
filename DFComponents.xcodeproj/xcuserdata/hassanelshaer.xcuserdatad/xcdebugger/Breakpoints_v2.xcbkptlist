@@ -7,49 +7,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "70AC6FA0-8B05-4C03-985D-4ED678422412"
+            uuid = "C86FACBA-8B6C-4843-97F8-FC4185092AC0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DFComponents/Presentation/UIComponents/NewBuilder/ViewModel/BaseFieldViewModel.swift"
+            filePath = "../../Library/Developer/Xcode/DerivedData/DFComponents-ciamcesmdukfmwgswwebnerqeopq/SourcePackages/checkouts/ZLImageEditor/Sources/General/ZLEditImageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7"
-            endingLineNumber = "7"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "44AEBF18-8D5E-4D61-BC57-D91DAEA6372E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DFComponents/Presentation/UIComponents/Text/NumberField/ViewModel/NumberFieldViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "calculateCharacterCountText()"
+            startingLineNumber = "947"
+            endingLineNumber = "947"
+            landmarkName = "clipBtnClick()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "39F9A393-07A3-4E9B-93A2-5B35D84D5ABD"
+            uuid = "C04652EE-3D52-45F3-81FE-B73638736DE6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DFComponents/Presentation/UIComponents/Text/NumberField/ViewModel/NumberFieldViewModel.swift"
+            filePath = "../../Library/Developer/Xcode/DerivedData/DFComponents-ciamcesmdukfmwgswwebnerqeopq/SourcePackages/checkouts/ZLImageEditor/Sources/General/ZLEditImageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "calculateCharacterCountText()"
+            startingLineNumber = "945"
+            endingLineNumber = "945"
+            landmarkName = "clipBtnClick()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C04652EE-3D52-45F3-81FE-B73638736DE6 - 4ed267b7b89d4415"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ZLImageEditor.ZLEditImageViewController.clipBtnClick() -&gt; ()"
+                  moduleName = "DFComponents.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hassanelshaer/Library/Developer/Xcode/DerivedData/DFComponents-ciamcesmdukfmwgswwebnerqeopq/SourcePackages/checkouts/ZLImageEditor/Sources/General/ZLEditImageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "945"
+                  endingLineNumber = "945">
+               </Location>
+               <Location
+                  uuid = "C04652EE-3D52-45F3-81FE-B73638736DE6 - c17f7c15d32e93e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (CoreGraphics.CGFloat, __C.CGRect, ZLImageEditor.ZLImageClipRatio) -&gt; () in ZLImageEditor.ZLEditImageViewController.clipBtnClick() -&gt; ()"
+                  moduleName = "DFComponents.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hassanelshaer/Library/Developer/Xcode/DerivedData/DFComponents-ciamcesmdukfmwgswwebnerqeopq/SourcePackages/checkouts/ZLImageEditor/Sources/General/ZLEditImageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "945"
+                  endingLineNumber = "945">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

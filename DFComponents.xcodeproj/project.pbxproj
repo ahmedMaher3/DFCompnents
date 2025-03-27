@@ -107,6 +107,7 @@
 		AAF297102D7DA6C800E7B0C3 /* BindingExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2970F2D7DA6C800E7B0C3 /* BindingExtenstion.swift */; };
 		AAF297122D7E272C00E7B0C3 /* InputNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF297112D7E272C00E7B0C3 /* InputNumberView.swift */; };
 		AAF8308D2D7909D2001B0CAC /* WarningCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF8308C2D7909D2001B0CAC /* WarningCardView.swift */; };
+		E43D1B212D915DA2009079AE /* ImageEditorContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D1B202D915D99009079AE /* ImageEditorContainerView.swift */; };
 		E44278722D7F1C17003BAA46 /* StepProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442786F2D7F1C17003BAA46 /* StepProgressViewModel.swift */; };
 		E44278732D7F1C17003BAA46 /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442786D2D7F1C17003BAA46 /* StepProgressView.swift */; };
 		E442792B2D8AF3F4003BAA46 /* FieldEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442792A2D8AF3EF003BAA46 /* FieldEntity.swift */; };
@@ -188,6 +189,7 @@
 		E4BBD0202D4A49BC004AA735 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD01F2D4A49BC004AA735 /* SearchBarView.swift */; };
 		E4BBD0232D4A4A29004AA735 /* DropDownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD0222D4A4A29004AA735 /* DropDownViewModel.swift */; };
 		E4BBD0272D4A4A7F004AA735 /* CountryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD0262D4A4A7F004AA735 /* CountryDTO.swift */; };
+		E4C5A9D82D91899100CFEBEF /* ZLImageEditor in Frameworks */ = {isa = PBXBuildFile; productRef = E4C5A9D72D91899100CFEBEF /* ZLImageEditor */; };
 		E4C8711F2D8B15E60060C39C /* FullFileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8711E2D8B15E60060C39C /* FullFileListView.swift */; };
 		E4C871212D8B163B0060C39C /* FileRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C871202D8B163B0060C39C /* FileRowView.swift */; };
 /* End PBXBuildFile section */
@@ -314,6 +316,7 @@
 		AAF2970F2D7DA6C800E7B0C3 /* BindingExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtenstion.swift; sourceTree = "<group>"; };
 		AAF297112D7E272C00E7B0C3 /* InputNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputNumberView.swift; sourceTree = "<group>"; };
 		AAF8308C2D7909D2001B0CAC /* WarningCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningCardView.swift; sourceTree = "<group>"; };
+		E43D1B202D915D99009079AE /* ImageEditorContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEditorContainerView.swift; sourceTree = "<group>"; };
 		E442786D2D7F1C17003BAA46 /* StepProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
 		E442786F2D7F1C17003BAA46 /* StepProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepProgressViewModel.swift; sourceTree = "<group>"; };
 		E442792A2D8AF3EF003BAA46 /* FieldEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldEntity.swift; sourceTree = "<group>"; };
@@ -408,6 +411,7 @@
 			files = (
 				E4A901A82D5E02D3007080AC /* KeychainSwift in Frameworks */,
 				E4A901AE2D61CF07007080AC /* Alamofire in Frameworks */,
+				E4C5A9D82D91899100CFEBEF /* ZLImageEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1006,6 +1010,22 @@
 			path = Warning;
 			sourceTree = "<group>";
 		};
+		E43D1B1E2D915D76009079AE /* ImageDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				E472DC962D802F4500B8FAF3 /* ImageDetailsView.swift */,
+			);
+			path = ImageDetailsView;
+			sourceTree = "<group>";
+		};
+		E43D1B1F2D915D85009079AE /* EditImageView */ = {
+			isa = PBXGroup;
+			children = (
+				E43D1B202D915D99009079AE /* ImageEditorContainerView.swift */,
+			);
+			path = EditImageView;
+			sourceTree = "<group>";
+		};
 		E442786E2D7F1C17003BAA46 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1091,6 +1111,8 @@
 				E472DCB52D81938D00B8FAF3 /* AttachmentButton */,
 				E472DC9A2D802FC100B8FAF3 /* FilesListView */,
 				E472DC932D802F0300B8FAF3 /* ImagesListView */,
+				E43D1B1E2D915D76009079AE /* ImageDetailsView */,
+				E43D1B1F2D915D85009079AE /* EditImageView */,
 				E4C871222D8C0AD30060C39C /* ImagePickerWrapper */,
 			);
 			path = ImagesGridView;
@@ -1100,7 +1122,6 @@
 			isa = PBXGroup;
 			children = (
 				E472DC942D802F1400B8FAF3 /* ImagesListView.swift */,
-				E472DC962D802F4500B8FAF3 /* ImageDetailsView.swift */,
 			);
 			path = ImagesListView;
 			sourceTree = "<group>";
@@ -1746,6 +1767,7 @@
 			packageProductDependencies = (
 				E4A901A72D5E02D3007080AC /* KeychainSwift */,
 				E4A901AD2D61CF07007080AC /* Alamofire */,
+				E4C5A9D72D91899100CFEBEF /* ZLImageEditor */,
 			);
 			productName = DFComponents;
 			productReference = E4BBCFE12D4A24BF004AA735 /* DFComponents.app */;
@@ -1823,6 +1845,7 @@
 			packageReferences = (
 				E4A901A62D5E02D3007080AC /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				E4A901AB2D61CEF5007080AC /* XCRemoteSwiftPackageReference "Alamofire" */,
+				E4C5A9D62D91899100CFEBEF /* XCRemoteSwiftPackageReference "ZLImageEditor" */,
 			);
 			productRefGroup = E4BBCFE22D4A24BF004AA735 /* Products */;
 			projectDirPath = "";
@@ -1930,6 +1953,7 @@
 				E472DC9E2D80300B00B8FAF3 /* AttachmentButton.swift in Sources */,
 				AAF1B1832D76490500DC44B4 /* LocationValidationEntity.swift in Sources */,
 				E4A9015A2D52C848007080AC /* SectionModel.swift in Sources */,
+				E43D1B212D915DA2009079AE /* ImageEditorContainerView.swift in Sources */,
 				AAF1B1792D7648E700DC44B4 /* FormValidationEntity.swift in Sources */,
 				E472DCA82D8056DB00B8FAF3 /* BaseFooterControlView.swift in Sources */,
 				E4A9017E2D5CCE90007080AC /* RouterManager.swift in Sources */,
@@ -2420,6 +2444,14 @@
 				minimumVersion = 5.10.2;
 			};
 		};
+		E4C5A9D62D91899100CFEBEF /* XCRemoteSwiftPackageReference "ZLImageEditor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hassanelshairr/ZLImageEditor.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2432,6 +2464,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E4A901AB2D61CEF5007080AC /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		E4C5A9D72D91899100CFEBEF /* ZLImageEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4C5A9D62D91899100CFEBEF /* XCRemoteSwiftPackageReference "ZLImageEditor" */;
+			productName = ZLImageEditor;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
