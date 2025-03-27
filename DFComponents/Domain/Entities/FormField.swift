@@ -87,6 +87,29 @@ class PageField: PageFieldProtocol {
         }
 
     }
+    
+    init(field: Field?, schemaProperties: SchemaProperties?) { // For cards mode
+        guard let field = field else { return }
+
+        // Initialize base properties
+        self.type = field.type
+        self.fieldId = field.id
+        self.label = field.properties.label
+        self.parentId = field.parentId
+        self.index = 0
+        self.isError = false
+        self.rules = field.rules
+        self.hidden = false
+        self.disabled = false
+
+        // Initialize interactive properties
+        if let schemaProperties = schemaProperties {
+            self.submit = schemaProperties.submit
+            self.next = schemaProperties.next
+            self.back = schemaProperties.back
+            self.backVisibility = schemaProperties.backVisibility
+        }
+    }
 
 }
 

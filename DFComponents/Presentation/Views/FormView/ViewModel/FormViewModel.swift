@@ -23,18 +23,20 @@ class FormViewModel: ObservableObject {
     @Published var state: FormState = .loading
     @Published var mode: FormType?
     @Published var fields: [FieldEntity] = []
-    @Published var pages: [PageEntity] = [] {
-        didSet {
-            print("pages changed:- \(pages)")
-        }
-    }
+    @Published var pages: [PageEntity] = []
     @Published var rulesImp: RuleImp!
+    @Published var header: PageHeaderFooterEntity?
+    @Published var footer: PageHeaderFooterEntity?
+    @Published var welcomeEntity: WelcomeEntity?
 
         func fetchForm() async {
             state = .loading
             do {
                 let response = try await formBuildUseCase.excute()
                 mode = response.pages.first?.mode
+                welcomeEntity = response.welcome
+                header = response.header
+                footer = response.footer
                 pages = response.pages
                 fields = pages.flatMap { $0.fields }
                 rules = response.rules
@@ -64,7 +66,7 @@ class FormViewModel: ObservableObject {
             }
         }
         rulesImp = RuleImp(controls: fields, rules: rules)
-        rulesImp.handleAllRules()
+//        rulesImp.handleAllRules()
     }
 
     func applyFieldRules(by id: String) {

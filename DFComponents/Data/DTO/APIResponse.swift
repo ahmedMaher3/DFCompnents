@@ -25,6 +25,20 @@ struct Schema: Decodable {
     let fields: [Field]
     let rules: [Rule]?
     let settings: Settings
+    let campaign: Campaign?
+}
+
+struct Campaign: Codable {
+    let header: CampaignItem?
+    let footer: CampaignItem?
+    let welcome: CampaignItem?
+}
+
+struct CampaignItem: Codable {
+    let logo: String?
+    let title: String?
+    let description: String?
+    let showQuestionsCount: Bool?
 }
 
 struct Settings: Decodable {
@@ -120,6 +134,8 @@ struct Field: Codable {
             properties = try container.decode(NumberProperties.self, forKey: .properties)
         case .section:
             properties = try container.decode(SectionProperties.self, forKey: .properties)
+        case .page:
+            properties = try container.decode(PageProperties.self, forKey: .properties)
         default:
             properties = try container.decode(BaseProperties.self, forKey: .properties)
         }

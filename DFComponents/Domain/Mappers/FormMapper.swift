@@ -9,46 +9,75 @@ import Foundation
 
 protocol EntityMapper {
     associatedtype DTO
-    func map (from dto: DTO) -> FormEntity
+    associatedtype Entity
+    func map(from dto: DTO) -> Entity
+}
+
+protocol OptionalEntityMapper {
+    associatedtype DTO
+    associatedtype Entity
+    func map(from dto: DTO?) -> Entity?
 }
 
 class FormMapper: EntityMapper {
-
+    
     typealias DTO = Schema
 
     func map(from dto: Schema) -> FormEntity {
         let pages = mapToPages(fields: dto.fields,
-                                   mode: dto.settings.format )
+                               mode: dto.settings.format, schemaProperties: dto.properties)
+        let header: PageHeaderFooterEntity? = PageHeaderFooterMapper().map(from: dto.campaign?.header)
+        let footer: PageHeaderFooterEntity? = PageHeaderFooterMapper().map(from: dto.campaign?.footer)
+        let welcomeEntity: WelcomeEntity? = WelcomeEntity(cardWelcomeData: dto.campaign?.welcome, questionCount: pages.count)
         let warnings = mapWarnings(from: dto.warnings)
         let rules =  dto.rules
-        return FormEntity(pages: pages, rules: rules ?? [], warnings: warnings)
+        return FormEntity(
+            pages: pages,
+            rules: rules ?? [],
+            warnings: warnings,
+            header: header,
+            footer: footer,
+            welcome: welcomeEntity
+        )
     }
 
-    private func mapToPages(fields: [Field], mode: FormType) -> [PageEntity] {
+    private func mapToPages(fields: [Field], mode: FormType, schemaProperties: SchemaProperties) -> [PageEntity] {
 
-        return mode == .classic ? mapToPagesInClassicMode(fields: fields, mode: mode) : mapToPagesInCardsMode(fields: fields, mode: mode)
+        return mode == .classic ? mapToPagesInClassicMode(fields: fields, mode: mode) : mapToPagesInCardsMode(fields: fields, mode: mode, schemaProperties: schemaProperties)
     }
 
     func mapToPagesInClassicMode(fields: [Field], mode: FormType) -> [PageEntity] {
-        let pageIds = fields.compactMap { $0.type == .page ? $0.id : nil }
+        let pagesData = fields.filter { $0.type == .page } // Extract page fields
         let groupedFields = Dictionary(grouping: fields.filter { $0.parentId != nil }) { $0.parentId! }
-        let pages = pageIds.compactMap { pageId -> PageEntity? in
-            guard let pageFields = groupedFields[pageId] else { return nil }
-            let mappedFields = mapFieldsRecursively(fields: pageFields, groupedFields: groupedFields)
-            return PageEntity(id: pageId, fields: mappedFields, mode: mode)
+        let pages = pagesData.compactMap { page -> PageEntity? in
+            guard let pageId = page.id else { return nil }
+            let mappedFields = mapFieldsRecursively(fields: groupedFields[pageId] ?? [], groupedFields: groupedFields)
+            return PageEntity(
+                id: pageId,
+                fields: mappedFields,
+                mode: mode,
+                page: PageField(field: page)
+            )
         }
-
         return pages
     }
 
-    private func mapToPagesInCardsMode(fields: [Field], mode: FormType) -> [PageEntity] {
+    private func mapToPagesInCardsMode(fields: [Field], mode: FormType, schemaProperties: SchemaProperties) -> [PageEntity] {
         var pages: [PageEntity] = []
         var cardIndex = 1
         let cardFields = fields.filter { $0.type != .page && $0.type != .section }
         for field in cardFields {
             let pageId = "page_\(cardIndex)"
             let mappedFields = mapFieldsRecursively(fields: [field], groupedFields: [:]) // Map single field
-            let PageEntity = PageEntity(id: pageId, fields: mappedFields, mode: mode)
+            
+            let page = PageField(field: field, schemaProperties: schemaProperties)
+
+            let PageEntity = PageEntity(
+                id: pageId,
+                fields: mappedFields,
+                mode: mode,
+                page: page
+            )
             pages.append(PageEntity)
             cardIndex += 1
         }

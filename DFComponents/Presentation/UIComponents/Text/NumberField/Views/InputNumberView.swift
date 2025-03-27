@@ -17,8 +17,7 @@ struct InputNumberView: View {
             set: { newValue in
                 viewModel.baseAnswer?.value = newValue
                 viewModel.characterCount = newValue.count
-                viewModel.validateInput(value: viewModel.baseAnswer?.value ?? "",
-                                        warnings: viewModel.numberFieldModel.fieldWarning)
+                viewModel.validateInput(value: viewModel.baseAnswer?.value ?? "", warnings: viewModel.numberFieldModel.fieldWarning)
             }
         )
     }
@@ -39,7 +38,7 @@ struct InputNumberView: View {
                     HStack {
                         Spacer()
                         Button {
-                            print("Base Answer is:\(viewModel.baseAnswer)")
+                            print("Base Answer is:\(viewModel.numberFieldModel.numberAnswer)")
                             isTextFieldFocused.toggle()
                         } label: {
                             Text("Done")

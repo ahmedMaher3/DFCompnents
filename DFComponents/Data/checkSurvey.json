@@ -136,8 +136,8 @@
             "properties": {
                 "localization": {},
                 "submit": "",
-                "next": "",
-                "back": "",
+                "next": "next card",
+                "back": "previous card",
                 "start": "",
                 "backVisibility": true,
                 "viewResults": "",
@@ -214,8 +214,8 @@
                 },
                 "footer": {
                     "logo": "c9c5e1eb-29a7-4552-8db0-41511f8e05cc",
-                    "title": "footer title",
-                    "description": "footer desc",
+                    "title": "All Inspection Findings Must Be Documented Accurately",
+                    "description": "By submitting this form, you confirm that the inspection was conducted in accordance with applicable LNG safety and regulatory standards.",
                     "showQuestionsCount": false,
                     "localization": {}
                 },
@@ -223,7 +223,7 @@
                     "logo": "f375a403-1d90-4779-b6d3-7e48dd0833e9",
                     "title": "welcome title",
                     "description": "welcome desc",
-                    "showQuestionsCount": false,
+                    "showQuestionsCount": true,
                     "localization": {}
                 },
                 "submission": {
@@ -334,6 +334,132 @@
                         "value": 0
                     },
                     "id": "66742560-71f6-427c-a04d-8a570ca8c2e1",
+                    "templateQuestionId": null,
+                    "type": "Number",
+                    "parentId": "ef31f124-476c-4b81-ad60-639f16df07fb",
+                    "order": "a1",
+                    "properties": {
+                        "decimalPlaces": 1,
+                        "step": 4 ,
+                        "minimumValue": 1.0,
+                        "maximumValue": 100.0,
+                        "minimumDigits": 1,
+                        "maximumDigits": null,
+                        "required": true,
+                        "unique": null,
+                        "addAttachment": true,
+                        "addNote": true,
+                        "defaultAnswer": {
+                            "value": "1",
+                            "type": "Number",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "What's your age ?",
+                        "sublabel": "Number",
+                        "tooltip": "test test",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "criteria": null,
+                        "value": 0
+                    },
+                    "id": "66742560-71f6-427c-a04d-8a570ca8c2e2",
+                    "templateQuestionId": null,
+                    "type": "Number",
+                    "parentId": "ef31f124-476c-4b81-ad60-639f16df07fb",
+                    "order": "a1",
+                    "properties": {
+                        "decimalPlaces": 1,
+                        "step": 4 ,
+                        "minimumValue": 1.0,
+                        "maximumValue": 100.0,
+                        "minimumDigits": 1,
+                        "maximumDigits": null,
+                        "required": true,
+                        "unique": null,
+                        "addAttachment": true,
+                        "addNote": true,
+                        "defaultAnswer": {
+                            "value": "1",
+                            "type": "Number",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "What's your age ?",
+                        "sublabel": "Number",
+                        "tooltip": "test test",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "criteria": null,
+                        "value": 0
+                    },
+                    "id": "66742560-71f6-427c-a04d-8a570ca8c2e3",
+                    "templateQuestionId": null,
+                    "type": "Number",
+                    "parentId": "ef31f124-476c-4b81-ad60-639f16df07fb",
+                    "order": "a1",
+                    "properties": {
+                        "decimalPlaces": 1,
+                        "step": 4 ,
+                        "minimumValue": 1.0,
+                        "maximumValue": 100.0,
+                        "minimumDigits": 1,
+                        "maximumDigits": null,
+                        "required": true,
+                        "unique": null,
+                        "addAttachment": true,
+                        "addNote": true,
+                        "defaultAnswer": {
+                            "value": "1",
+                            "type": "Number",
+                            "note": "",
+                            "score": null,
+                            "attachments": null
+                        },
+                        "placeholder": "",
+                        "attachmentType": null,
+                        "attachmentExtensions": null,
+                        "maxAttachmentsNumber": null,
+                        "hidden": false,
+                        "disabled": false,
+                        "labelPosition": "Top",
+                        "label": "What's your age ?",
+                        "sublabel": "Number",
+                        "tooltip": "test test",
+                        "localization": {}
+                    },
+                    "rules": null
+                },
+                {
+                    "weight": {
+                        "criteria": null,
+                        "value": 0
+                    },
+                    "id": "66742560-71f6-427c-a04d-8a570ca8c2e4",
                     "templateQuestionId": null,
                     "type": "Number",
                     "parentId": "ef31f124-476c-4b81-ad60-639f16df07fb",

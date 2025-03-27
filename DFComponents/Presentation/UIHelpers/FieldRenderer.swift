@@ -12,24 +12,24 @@ struct FieldRenderer: View {
 
    var body: some View {
        switch field {
-           case .radio((_, let viewModel)):
+           case .radio(_, let viewModel):
                BaseFieldContainerView(fieldEntity: field) {
                    RadioButtonView(radioButtonVM: viewModel)
                }
                .opacity(viewModel.control.hidden ? 0 : 1)
 
-           case .textBox((_, let viewModel)):
+           case .textBox(_, let viewModel):
                BaseFieldContainerView(fieldEntity: field) {
                    TextBoxComponent(viewModel: viewModel)
                }
                .opacity(viewModel.control.hidden ? 0 : 1)
 
-           case .number((_, let viewModel)):
+           case .number(_, let viewModel):
                BaseFieldContainerView(fieldEntity: field) {
                    NumberFieldComponent(viewModel: viewModel)
                }
-
-           case .section((_, let viewModel)):
+               .padding(8)
+           case .section(_, let viewModel):
                SectionView(
                    sectionViewModel: viewModel,
                    fields: viewModel.controls,
