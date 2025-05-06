@@ -13,22 +13,22 @@ struct RequiredValidationStrategy: FieldValidationStrategy {
         value: Any?,
         warnings: WarningsEntity?,
         warningsMessagesDictionary: inout [String: [String]]) {
-            let fieldId = fieldRender.field.fieldId ?? ""
-        guard let requiredWarning = warnings?.fieldValidation.required else {
-            warningsMessagesDictionary[fieldId] = nil
-            return
-        }
-        let isEmpty = checkValueIsEmpty(value: value)
-        let warningMessages: [String]? = isEmpty ? [requiredWarning] : nil
-        let isError = warningMessages != nil
-        let errorMessage = warningMessages?.joined(separator: "\n")
-        warningsMessagesDictionary[fieldId] = warningMessages
-//            if let validateViewModel = fieldRender.validateViewModel {
-//            Task { @MainActor in
-//                validateViewModel.updateValidationState(
-//                    isError: isError, errorMessage: errorMessage)
-//            }
+//            let fieldId = fieldRender.field.fieldId ?? ""
+//        guard let requiredWarning = warnings?.fieldValidation.required else {
+//            warningsMessagesDictionary[fieldId] = nil
+//            return
 //        }
+//        let isEmpty = checkValueIsEmpty(value: value)
+//        let warningMessages: [String]? = isEmpty ? [requiredWarning] : nil
+//        let isError = warningMessages != nil
+//        let errorMessage = warningMessages?.joined(separator: "\n")
+//        warningsMessagesDictionary[fieldId] = warningMessages
+////            if let validateViewModel = fieldRender.validateViewModel {
+////            Task { @MainActor in
+////                validateViewModel.updateValidationState(
+////                    isError: isError, errorMessage: errorMessage)
+////            }
+////        }
     }
 
     private func checkValueIsEmpty(value: Any?) -> Bool {

@@ -35,18 +35,18 @@ struct BaseFieldContainerView: View {
 //                            .padding(.leading, 0) // Adjust leading padding as needed to match the control
 
             /// Warning View
-            WarningCardView(message: viewModel.errorMessage ?? "")
-                .opacity(viewModel.errorMessage == nil ? 0 : 1)
+//            WarningCardView(message: viewModel.errorMessage ?? "")
+//                .opacity(viewModel.errorMessage == nil ? 0 : 1)
         }
         .padding(6)
         .background(field.errorMessage == nil || field.errorMessage == "" ? Color.clear : Color.red.opacity(0.05))
         .cornerRadius(8)
-        .onReceive(Just(field.errorMessage)) { errorMessage in
-            Task { @MainActor in
-                print("Display please error message:\(errorMessage ?? "nil")")
-//                viewModel.errorMessage = errorMessage ?? ""
-            }
-        }
+//        .onReceive(Just(field.errorMessage)) { errorMessage in
+//            Task { @MainActor in
+//                print("Display please error message:\(errorMessage ?? "nil")")
+////                viewModel.errorMessage = errorMessage ?? ""
+//            }
+//        }
     }
 }
 

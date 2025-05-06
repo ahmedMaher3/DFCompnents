@@ -67,13 +67,16 @@ class FormMapper: EntityMapper {
 
     // 🔹 Recursive function to map fields & handle sections dynamically
     private func mapFieldsRecursively(fields: [Field], groupedFields: [String: [Field]]) -> [(BaseFieldProtocol, FieldRenderable)] {
-        return fields.compactMap { field in
+        return fields.compactMap {
+            field in
+
 //            if field.type == .section {
 //                let sectionControls = mapFieldsRecursively(fields: groupedFields[field.id!] ?? [], groupedFields: groupedFields)
 //                let control = SectionField(field: field)
 //                return SectionButtonRenderer(field: control,controls:sectionControls)
 //               // return .section((control, SectionViewModel(controls: sectionControls, sectionField: control)))
 //            }
+
             return mapSingleField(field: field)
         }
     }
@@ -117,25 +120,24 @@ class FormMapper: EntityMapper {
 //        }
 //    }
 
-
-    private func mapSingleField(field: Field) -> FieldEntity? {
-        switch field.type {
-            case .textBox:
-                let control = TextBoxField(field: field)
-                return TextBoxRenderer(field: control)
-
-            case .radio:
-                let control = RadioButtonField(field: field)
-                return RadioButtonRenderer(field: control)
-
-            case .number:
-                let control = NumberField(field: field)
-                return NumberFieldRenderer(field: control)
-
-            default:
-                return nil
-        }
-    }
+//    private func mapSingleField(field: Field) -> FieldEntity? {
+//        switch field.type {
+////            case .textBox:
+////                let control = TextBoxField(field: field)
+////                return TextBoxRenderer(field: control)
+//
+//            case .radio:
+//                let control = RadioButtonField(field: field)
+//                return RadioButtonRenderer(field: control)
+//
+////            case .number:
+////                let control = NumberField(field: field)
+////                return NumberFieldRenderer(field: control)
+//
+//            default:
+//                return nil
+//        }
+//    }
 
 
     //    private func mapSingleField(field: Field) -> FieldEntity? {
@@ -287,12 +289,6 @@ enum FieldEntity: Identifiable {
 
 
 protocol FieldRenderable {
-//    associatedtype Field: BaseFieldProtocol
-//
-//    var field: Field { get }
-//
-//    var id: String { get }
-//    var errorMessage: String? { get }
 
     func render(field: BaseFieldProtocol) -> AnyView
    // func renderHeader() -> AnyView
@@ -303,18 +299,6 @@ protocol FieldRenderable {
 struct RadioButtonRenderer: FieldRenderable {
     var errorMessage: String?
 
-    
-
-//    var field: RadioButtonField
-//
-//
-//    init(field: RadioButtonField) {
-//        self.field = field
-//     }
-
-//   var id: String { field.fieldId}
-//   var errorMessage: String? { field.errorMessage }
-
 
     func render(field: BaseFieldProtocol) -> AnyView {
         guard let radioField = field as? RadioButtonField else { return AnyView(EmptyView()) }
@@ -324,7 +308,6 @@ struct RadioButtonRenderer: FieldRenderable {
     func renderHeader() -> AnyView {
         return AnyView(EmptyView())
     }
-
 
 }
 

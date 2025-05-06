@@ -76,8 +76,8 @@ class FormViewModel: ObservableObject {
     private func assignWarningsToFields() {
         for pageIndex in pages.indices {
             for fieldIndex in pages[pageIndex].fields.indices {
-                var field = pages[pageIndex].fields[fieldIndex].field
-                field.fieldWarning = warnings
+//                var field = pages[pageIndex].fields[fieldIndex].field
+//                field.fieldWarning = warnings
             }
         }
     }

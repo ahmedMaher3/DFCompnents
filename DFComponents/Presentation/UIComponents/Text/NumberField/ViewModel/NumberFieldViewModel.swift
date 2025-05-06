@@ -6,16 +6,16 @@
 //
 import Foundation
 
-final class NumberFieldViewModel: ObservableObject, BaseViewModel {
+final class NumberFieldViewModel: ObservableObject {
     @Published var numberFieldModel: NumberField
     @Published var characterCount: Int = 0
     @Published var warningsMessagesDictionary: [String: [String]] = [:]
 
     private let validator: FieldValidationStrategy
 
-    private lazy var fieldRender: NumberFieldRenderer = {
-        return NumberFieldRenderer(field: numberFieldModel)
-    }()
+//    private lazy var fieldRender: NumberFieldRenderer = {
+//        return NumberFieldRenderer(field: numberFieldModel)
+//    }()
 
 
     var baseAnswer: BaseAnswerNumber? {
@@ -56,12 +56,12 @@ final class NumberFieldViewModel: ObservableObject, BaseViewModel {
     }
 
     func validateInput(value: String?, warnings: WarningsEntity?) {
-        validator.validate(
-            fieldRender: fieldRender,
-            value: value,
-            warnings: warnings,
-            warningsMessagesDictionary: &warningsMessagesDictionary
-        )
+//        validator.validate(
+//            fieldRender: fieldRender,
+//            value: value,
+//            warnings: warnings,
+//            warningsMessagesDictionary: &warningsMessagesDictionary
+//        )
         let fieldId = numberFieldModel.fieldId ?? ""
         let numberWarnings = warningsMessagesDictionary[fieldId] ?? []
 
